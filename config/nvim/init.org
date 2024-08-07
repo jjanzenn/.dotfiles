@@ -1,0 +1,37 @@
+#+title: Neovim Settings
+This is the entry point for my Neovim configuration.
+
+Disable timeout to speed things up.
+#+begin_src lua :tangle yes
+vim.cmd([[set notimeout]])
+#+end_src
+
+Install plugins in the [[./lua/plugins.org][plugins.lua]] file.
+#+begin_src lua :tangle yes
+require('plugins')
+#+end_src
+
+Set up behaviour in the [[./lua/behaviour.org][behaviour.lua]] file.
+#+begin_src lua :tangle yes
+require('behaviour')
+#+end_src
+
+Set up appearance in the [[./lua/appearance.org][appearance.lua]] file.
+#+begin_src lua :tangle yes
+require('appearance')
+#+end_src
+
+Set up formatting options in the [[./lua/format.org][format.lua]] file.
+#+begin_src lua :tangle yes
+require('format')
+#+end_src
+
+Set up language servers in the [[./lua/languageServers.org][languageServers.lua]] file.
+#+begin_src lua :tangle yes
+require('languageServers')
+#+end_src
+
+Set up auto-complete in the [[./lua/autocomplete.org][autocomplete.lua]] file.
+#+begin_src lua :tangle yes
+require('autocomplete')
+#+end_src

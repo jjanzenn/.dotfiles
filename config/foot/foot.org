@@ -1,0 +1,52 @@
+#+title: Foot Settings
+* Basic Settings
+Use Source Code Pro with Nerd Font in size 10.
+#+begin_src ini :tangle yes
+font=SauceCodePro Nerd Font:size=10
+#+end_src
+
+Add 6 pixel padding around the terminal.
+#+begin_src ini :tangle yes
+pad=6x6
+#+end_src
+
+* URL
+Use Firefox to open URLs.
+#+begin_src ini :tangle yes
+[url]
+launch=firefox ${url}
+#+end_src
+
+* Mouse
+Hide the mouse when typing.
+#+begin_src ini :tangle yes
+[mouse]
+hide-when-typing=yes
+#+end_src
+
+* Colours
+The colours are defined here. I use a slightly transparent background.
+#+begin_src ini :tangle yes
+[colors]
+alpha=0.9
+background=fcfcfc
+foreground=5c6166
+
+regular0=010101
+regular1=e7666a
+regular2=80ab24
+regular3=eba54d
+regular4=4196df
+regular5=9870c3
+regular6=51b891
+regular7=c1c1c1
+
+bright0=343434
+bright1=ee9295
+bright2=9fd32f
+bright3=f0bc7b
+bright4=6daee6
+bright5=b294d2
+bright6=75c7a8
+bright7=dbdbdb
+#+end_src

@@ -1,0 +1,15 @@
+#+title: Neovim Appearance Settings
+Use line numbers.
+#+begin_src lua :tangle yes
+  vim.opt.number = true
+#+end_src
+
+Set colour scheme.
+#+begin_src lua :tangle yes
+  vim.cmd([[
+      set termguicolors
+      let ayucolor="light"
+      syntax on
+      colorscheme ayu
+  ]])
+#+end_src

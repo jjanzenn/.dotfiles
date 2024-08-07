@@ -1,0 +1,110 @@
+#+title: Waybar Configuration
+* Layout
+Define the layout of the bar.
+#+begin_src js-json :tangle config
+    {
+      "height": 30,
+      "spacing": 4,
+      "modules-left": ["sway/workspaces", "sway/scratchpad"],
+      "modules-center": ["sway/window"],
+      "modules-right": ["mpd", "pulseaudio", "network", "cpu", "memory", "clock", "tray"],
+#+end_src
+
+* Components
+Define scratchpad component.
+#+begin_src js-json :tangle config
+  "sway/scratchpad": {
+      "format": "{icon} {count}",
+      "show-empty": false,
+      "format-icons": ["", ""],
+      "tooltip": true,
+      "tooltip-format": "{app}: {title}"
+  },
+#+end_src
+
+Define music player daemon component.
+#+begin_src js-json :tangle config
+  "mpd": {
+      "format": "{stateIcon} {artist} - {album} - {title} ({elapsedTime:%M:%S}/{totalTime:%M:%S}) [{songPosition}|{queueLength}] 🎵",
+      "format-disconnected": "Disconnected 🎵",
+      "format-stopped": "{consumeIcon}Stopped 🎵",
+      "unknown-tag": "N/A",
+      "interval": 2,
+      "state-icons": {
+          "paused": "",
+          "playing": ""
+      },
+      "tooltip-format": "MPD (connected)",
+      "tooltip-format-disconnected": "MPD (disconnected)",
+      "on-click": "foot -e ncmpcpp"
+  },
+#+end_src
+
+Define tray component.
+#+begin_src js-json :tangle config
+  "tray": {
+      "icon-size": 21,
+      "spacing": 10,
+      "show-passive-items": true
+  },
+#+end_src
+
+Define clock component.
+#+begin_src js-json :tangle config
+  "clock": {
+      "format": "{:%H:%M\t%Y-%m-%d}",
+      "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>"
+  },
+#+end_src
+
+Define CPU usage component.
+#+begin_src js-json :tangle config
+  "cpu": {
+      "format": "{usage}% ",
+      "tooltip": false
+  },
+#+end_src
+
+Define memory usage component.
+#+begin_src js-json :tangle config
+  "memory": {
+      "format": "{}% "
+  },
+#+end_src
+
+Define network component.
+#+begin_src js-json :tangle config
+  "network": {
+      // "interface": "wlp2*", // (Optional) To force the use of this interface
+      "format-wifi": "",
+      "tooltip": false,
+      "format-ethernet": "",
+      "format-linked": "",
+      "format-disconnected": "⚠",
+      "format-alt": "{ifname}: {ipaddr}/{cidr}"
+  },
+#+end_src
+
+Define audio component.
+#+begin_src js-json :tangle config
+  "pulseaudio": {
+          // "scroll-step": 1, // %, can be a float
+          "format": "{volume}% {icon}",
+          "format-bluetooth": "{volume}% {icon}",
+          "format-bluetooth-muted": " {icon}",
+          "format-muted": " ",
+          "format-source": "{volume}% ",
+          "format-source-muted": "",
+          "format-icons": {
+              "headphone": "",
+              "hands-free": "",
+              "headset": "",
+              "phone": "",
+              "portable": "",
+              "car": "",
+              "default": ["", "", ""]
+          },
+          "on-click": "pavucontrol"
+      }
+  }
+#+end_src

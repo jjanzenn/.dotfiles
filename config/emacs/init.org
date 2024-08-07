@@ -1,0 +1,13 @@
+#+title: Emacs =init.el=
+
+Force the usage of a =custom.el= file for customizations.
+#+begin_src emacs-lisp :tangle yes
+(setq custom-file (concat user-emacs-directory "custom.el"))
+(when (file-exists-p custom-file)
+  (load custom-file))
+#+end_src
+
+Load the main configuration from [[./config.org][config.org]].
+#+begin_src emacs-lisp :tangle yes
+(org-babel-load-file "~/.config/emacs/config.org")
+#+end_src

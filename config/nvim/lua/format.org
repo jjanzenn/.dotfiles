@@ -1,0 +1,25 @@
+#+title: Neovim Formatting Settings
+Turn on =clang-format= in C, CUDA, C++, C#, Java, JavaScript, and JSON.
+#+begin_src lua :tangle yes
+  vim.cmd([[
+      let g:clang_format#code_style = 'file'
+      autocmd FileType c ClangFormatAutoEnable
+      autocmd FileType cuda ClangFormatAutoEnable
+      autocmd FileType cpp ClangFormatAutoEnable
+      autocmd FileType cs ClangFormatAutoEnable
+      autocmd FileType java ClangFormatAutoEnable
+      autocmd FileType javascript ClangFormatAutoEnable
+      autocmd FileType json ClangFormatAutoEnable
+      let g:vimtex_view_method = 'skim'
+  ]])
+#+end_src
+
+Auto-format Rust on save.
+#+begin_src lua :tangle yes
+  vim.g.rustfmt_autosave = 1
+#+end_src
+
+Start making a table by placing a =|=.
+#+begin_src lua :tangle yes
+  vim.g.table_mode_corner = '|'
+#+end_src
