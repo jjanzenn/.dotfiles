@@ -1,18 +1,18 @@
 #+title: Git Configuration
 Define my full name and email.
-#+begin_src conf :tangle .gitconfig
+#+begin_src conf :tangle ~/.gitconfig
   [user]
   name = Jacob Janzen
   email = jjanzenn@proton.me
 #+end_src
 Use =main= over =master=.
-#+begin_src conf :tangle .gitconfig
+#+begin_src conf :tangle ~/.gitconfig
   [init]
   defaultBranch = main
 #+end_src
 
 Make =pull= rebase on conflict.
-#+begin_src conf :tangle .gitconfig
+#+begin_src conf :tangle ~/.gitconfig
   [pull]
   rebase = true
 #+end_src

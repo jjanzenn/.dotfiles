@@ -25,7 +25,7 @@ fi
 # install config files
 find -- * -type f -name "*.org" | while read -r file; do
     echo Installing "${file}" configuration...
-    # emacs --batch "${file}" -f package-initialize --eval '(org-babel-tangle)'
+    emacs --batch "${file}" -f package-initialize --eval '(org-babel-tangle)'
 done
 
 cd "${CWD}" || exit
