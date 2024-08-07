@@ -6,6 +6,14 @@ if ! test -d ~/.dotfiles; then
     git clone git@git.sr.ht:~jjanzen/.dotfiles ~/.dotfiles
 fi
 
+# save the current working directory and move to the dotfiles repository
+CWD=$(pwd)
+cd ~/.dotfiles || exit
+git stash
+git checkout main
+git pull --rebase
+
+# Install new update-home script and run it instead of this
 if ! diff ~/.dotfiles/update-home ~/.local/bin/update-home; then
    cp ~/.dotfiles/update-home ~/.local/bin/update-home || exit 1
    echo Changes have been made to the update-home script.
@@ -14,13 +22,7 @@ if ! diff ~/.dotfiles/update-home ~/.local/bin/update-home; then
    exit
 fi
 
-# save the current working directory and move to the dotfiles repository
-CWD=$(pwd)
-cd ~/.dotfiles || exit
-git stash
-git checkout main
-git pull --rebase
-
+# install config files
 find -- * -type f -name "*.org" | while read -r file; do
     echo Installing "${file}" configuration...
     # emacs --batch "${file}" -f package-initialize --eval '(org-babel-tangle)'
