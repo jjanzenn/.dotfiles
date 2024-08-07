@@ -13,11 +13,11 @@ git stash
 git checkout main
 git pull --rebase
 
-# Install new update-home script and run it instead of this
-if ! diff ~/.dotfiles/update-home ~/.local/bin/update-home; then
-   cp ~/.dotfiles/update-home ~/.local/bin/update-home || exit 1
-   echo Changes have been made to the update-home script.
-   echo Running the new update-home script.
+# Install new install script and run it instead of this
+if ! diff ~/.dotfiles/install ~/.local/bin/update-home; then
+   cp ~/.dotfiles/install ~/.local/bin/update-home || exit 1
+   echo Changes have been made to the install script.
+   echo Running the new install script.
    ~/.local/bin/update-home
    exit
 fi
