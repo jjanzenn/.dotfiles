@@ -1,8 +1,0 @@
-#+title: Dotfiles =/.config/discord=
-Here is my discord configuration.
-
-* Directories
-- [[../index.org][../]]
-
-* Files
-- [[./settings.org][settings.json]]

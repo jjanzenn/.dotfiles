@@ -71,6 +71,23 @@ Install Lua support and run =eglot= on Lua files.
     (add-hook 'lua-mode-hook 'jj/eglot-setup))
 #+end_src
 
+Better Lisp editing with =lispy=.
+#+begin_src emacs-lisp :tangle ~/.config/emacs/languages.el :mkdirp yes
+  (use-package lispy
+    :hook (emacs-lisp-mode . lispy-mode))
+  (use-package lispyville
+    :after lispy
+    :hook (lispy-mode . lispyville-mode))
+#+end_src
+
+Better parentheses handling in lisp with =parinfer-rust-mode=.
+#+begin_src emacs-lisp :tangle ~/.config/emacs/tools.el :mkdirp yes
+  (use-package parinfer-rust-mode
+    :hook (emacs-lisp-mode . parinfer-rust-mode)
+    :init
+    (setq parinfer-rust-auto-download t))
+#+end_src
+
 * Markdown
 Install Markdown support and run =eglot= on Markdown files.
 #+begin_src emacs-lisp :tangle ~/.config/emacs/languages.el :mkdirp yes

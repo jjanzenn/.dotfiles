@@ -1,9 +1,0 @@
-#+title: Dotfiles =/.config/waybar=
-This is where my Waybar configuration is located.
-
-* Directories
-- [[../index.org][../]]
-
-* Files
-- [[./config.org][config]]
-- [[./style.org][style.css]]

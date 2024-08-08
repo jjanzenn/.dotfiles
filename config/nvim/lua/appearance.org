@@ -4,12 +4,12 @@ Use line numbers.
   vim.opt.number = true
 #+end_src
 
-Set colour scheme to the Ayu light theme.
+Turn on syntax highlighting.
 #+begin_src lua :tangle ~/.config/nvim/lua/appearance.lua :mkdirp yes
   vim.cmd([[
       set termguicolors
-      let ayucolor="light"
       syntax on
-      colorscheme ayu
+      colorscheme default
+      set background=light
   ]])
 #+end_src

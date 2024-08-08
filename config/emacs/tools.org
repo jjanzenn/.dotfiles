@@ -23,24 +23,6 @@ Use =evil-collection= to include =vi= keybindings in extra modes.
     (evil-collection-init))
 #+end_src
 
-* Lisp Editing
-Better Lisp editing with =lispy= and =lispyville=.
-#+begin_src emacs-lisp :tangle ~/.config/emacs/tools.el :mkdirp yes
-  (use-package lispy
-    :hook emacs-lisp-mode)
-  (use-package lispyville
-    :after lispy
-    :hook lispy-mode)
-#+end_src
-
-Better parentheses handling in lisp with =parinfer-rust-mode=.
-#+begin_src emacs-lisp :tangle ~/.config/emacs/tools.el :mkdirp yes
-  (use-package parinfer-rust-mode
-    :hook emacs-lisp-mode
-    :init
-    (setq parinfer-rust-auto-download t))
-#+end_src
-
 * Undo
 Better undo with =undo-fu=.
 #+begin_src emacs-lisp :tangle ~/.config/emacs/tools.el :mkdirp yes
@@ -91,7 +73,7 @@ Save place in PDFs with =saveplace-pdf-view=.
 * Org-Mode
 Ensure that =org= is set up before any of this.
 #+begin_src emacs-lisp :tangle ~/.config/emacs/tools.el :mkdirp yes
-  (require 'org)
+  (use-package org)
 #+end_src
 Set my =org-mode= directory.
 #+begin_src emacs-lisp :tangle ~/.config/emacs/tools.el :mkdirp yes

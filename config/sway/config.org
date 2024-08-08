@@ -20,7 +20,7 @@ Use =foot= as default terminal.
 
 Use =wofi= as app launcher.
 #+begin_src conf :tangle ~/.config/sway/config :mkdirp yes
-  set $menu wofi --show drun --allow-images
+  set $menu fuzzel
 #+end_src
 
 * Startup Application

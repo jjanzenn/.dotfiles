@@ -9,11 +9,16 @@ Set the default font to the Source Code Pro nerd font variant. I use size 14 fon
 Use the Doom Nord light theme.
 #+begin_src emacs-lisp :tangle ~/.config/emacs/user-interface.el :mkdirp yes
   (use-package doom-themes
+    :straight (doom-themes :type git :host github :repo "doomemacs/themes"
+                           :fork (:host github
+                                  :repo "JacobJanzen/emacs-doom-themes"))
     :config
     (setq doom-themes-enable-bold t
           doom-themes-enable-italic t)
-    (load-theme 'doom-nord-light t)
+    (load-theme 'doom-disco t)
     (doom-themes-org-config))
+
+(add-to-list 'default-frame-alist '(alpha-background . 90))
 #+end_src
 
 Use =doom-modeline= for a nicer modeline.
@@ -99,7 +104,7 @@ Don't create backup files.
 Use nerd font icons in =dired=.
 #+begin_src emacs-lisp :tangle ~/.config/emacs/user-interface.el :mkdirp yes
   (use-package nerd-icons-dired
-    :hook dired-mode)
+    :hook (dired-mode . nerd-icons-dired-mode))
 #+end_src
 
 Use colours in =dired= with =diredfl=.

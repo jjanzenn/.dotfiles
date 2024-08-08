@@ -21,7 +21,6 @@ I use =lightline= for a nice status bar. The Ayu theme matches my overall colour
 #+begin_src lua :tangle ~/.config/nvim/lua/plugins.lua :mkdirp yes
   require('lazy').setup({
     'itchyny/lightline.vim',
-    'ayu-theme/ayu-vim',
     'Raimondi/delimitMate',
     'bronson/vim-trailing-whitespace',
   })

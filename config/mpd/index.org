@@ -1,9 +1,0 @@
-#+title: Dotfiles =/.config/mpd=
-
-This is my music player daemon configuration.
-
-* Directories
-- [[../index.org][../]]
-
-* Files
-- [[./mpd.org][mpd.conf]]
