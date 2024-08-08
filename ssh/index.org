@@ -1,0 +1,6 @@
+#+title: Dotfiles =/.ssh=
+This is the home of my SSH configuration.
+* Directories
+- [[../index.org][../]]
+* Files
+- [[./config.org][config]]

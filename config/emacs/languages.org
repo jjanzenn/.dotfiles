@@ -1,0 +1,111 @@
+#+title: Emacs Programming Language Setup
+
+* Shell Script
+Run =eglot= on shell script files.
+#+begin_src emacs-lisp :tangle ~/.config/emacs/languages.el :mkdirp yes
+  (add-hook 'sh-mode-hook 'jj/eglot-setup)
+#+end_src
+
+* C
+Run =eglot= on C and C++ files.
+#+begin_src emacs-lisp :tangle ~/.config/emacs/languages.el :mkdirp yes
+  (add-hook 'c-mode-hook 'jj/eglot-setup)
+  (add-hook 'c++-mode-hook 'jj/eglot-setup)
+  (add-hook 'cc-mode-hook 'jj/eglot-setup)
+#+end_src
+
+* Web
+Run =eglot= on HTML files.
+#+begin_src emacs-lisp :tangle ~/.config/emacs/languages.el :mkdirp yes
+  (add-hook 'html-mode-hook 'jj/eglot-setup)
+#+end_src
+
+Run =eglot= on CSS files.
+#+begin_src emacs-lisp :tangle ~/.config/emacs/languages.el :mkdirp yes
+  (add-hook 'css-mode-hook 'jj/eglot-setup)
+#+end_src
+
+Run =eglot= on JavaScript files.
+#+begin_src emacs-lisp :tangle ~/.config/emacs/languages.el :mkdirp yes
+  (add-hook 'js-json-mode-hook 'jj/eglot-setup)
+  (add-hook 'js-mode-hook 'jj/eglot-setup)
+#+end_src
+
+* Python
+Run =eglot= on Python files.
+#+begin_src emacs-lisp :tangle ~/.config/emacs/languages.el :mkdirp yes
+  (add-hook 'python-mode-hook 'jj/eglot-setup)
+#+end_src
+
+* Go
+Install Go support and run =eglot= on Go files.
+#+begin_src emacs-lisp :tangle ~/.config/emacs/languages.el :mkdirp yes
+  (use-package go-mode
+    :init
+    (add-hook 'go-mode-hook 'jj/eglot-setup))
+#+end_src
+
+Get documentation for Go variables, functions, and arguments.
+#+begin_src emacs-lisp :tangle ~/.config/emacs/languages.el :mkdirp yes
+  (use-package go-eldoc
+    :init
+    (add-hook 'go-mode-hook 'go-eldoc-setup))
+#+end_src
+
+Automatically generate tests in Go.
+#+begin_src emacs-lisp :tangle ~/.config/emacs/languages.el :mkdirp yes
+  (use-package go-gen-test)
+#+end_src
+
+Get refactoring tools from =go-guru=.
+#+begin_src emacs-lisp :tangle ~/.config/emacs/languages.el :mkdirp yes
+  (use-package go-guru
+    :hook (go-mode . go-guru-hl-identifier-mode))
+#+end_src
+
+* Lua
+Install Lua support and run =eglot= on Lua files.
+#+begin_src emacs-lisp :tangle ~/.config/emacs/languages.el :mkdirp yes
+  (use-package lua-mode
+    :init
+    (add-hook 'lua-mode-hook 'jj/eglot-setup))
+#+end_src
+
+* Markdown
+Install Markdown support and run =eglot= on Markdown files.
+#+begin_src emacs-lisp :tangle ~/.config/emacs/languages.el :mkdirp yes
+  (use-package markdown-mode
+    :init
+    (add-hook 'markdown-mode-hook 'jj/eglot-setup))
+#+end_src
+
+* LaTeX
+Run =eglot= on TeX files.
+#+begin_src emacs-lisp :tangle ~/.config/emacs/languages.el :mkdirp yes
+  (add-hook 'tex-mode-hook 'jj/eglot-setup)
+#+end_src
+
+Use AUCTeX for extra LaTeX integration.
+#+begin_src emacs-lisp :tangle ~/.config/emacs/languages.el :mkdirp yes
+  (use-package auctex
+    :config
+    (add-hook 'LaTeX-mode-hook 'jj/eglot-setup)
+    (add-hook 'LaTeX-mode-hook
+            (lambda ()
+              (put 'LaTeX-mode 'eglot-language-id "latex"))))
+#+end_src
+
+Use CDLaTeX for environment and macro insertion.
+#+begin_src emacs-lisp :tangle ~/.config/emacs/languages.el :mkdirp yes
+  (use-package cdlatex
+    :config
+    (add-hook 'LaTeX-mode-hook #'turn-on-cdlatex))
+#+end_src
+
+* YAML
+Install YAML support and run =eglot= on YAML files.
+#+begin_src emacs-lisp :tangle ~/.config/emacs/languages.el :mkdirp yes
+  (use-package yaml-mode
+    :init
+    (add-hook 'yaml-mode-hook 'jj/eglot-setup))
+#+end_src

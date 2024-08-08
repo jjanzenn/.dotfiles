@@ -1,6 +1,6 @@
 #+title: Discord settings.json
 There really isn't much to this. I do set =SKIP_HOST_UPDATE= to =true= though to prevent it from trying to auto-update before it appears in my operating system repositories.
-#+begin_src json :tangle yes
+#+begin_src js-json :tangle ~/.config/discord/settings.json :mkdirp yes
 {
   "IS_MAXIMIZED": false,
   "IS_MINIMIZED": false,

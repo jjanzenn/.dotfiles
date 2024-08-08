@@ -1,0 +1,107 @@
+#+title: Dotfiles =/=
+
+This page is the home of my dotfiles. They are written using literate programming in Emacs Org-Mode. The =install= script installs the dotfiles in their correct places and installs itself as an executable called =update-home= on the path to allow myself to run the script without having the repository downloaded on my system.
+
+* Directories
+- [[./config/index.org][.config/]]
+- [[./local/index.org][.local/]]
+- [[./ssh/index.org][.ssh/]]
+
+* Files
+- [[./clang-format.org][.clang-format]]
+- [[./gitconfig.org][.gitconfig]]
+- [[./profile.org][.profile]]
+- [[./zshrc.org][.zshrc]]
+- [[./wallpaper][.wallpaper]]
+
+* Install Script
+It can be run as =./install=, so make it explicit what binary to run it with (POSIX shell).
+#+begin_src sh :tangle ~/.dotfiles/install :mkdirp yes
+  #!/bin/sh
+#+end_src
+
+Save the old log file.
+#+begin_src sh :tangle ~/.dotfiles/install :mkdirp yes
+  mv ~/.update-home.log ~/.update-home.log.old
+#+end_src
+
+Install the dotfiles repository at =~/.dotfiles= if it doesn't already exist.
+#+begin_src sh :tangle ~/.dotfiles/install :mkdirp yes
+  if ! test -d ~/.dotfiles; then
+      echo Installing dotfiles...
+      git clone git@git.sr.ht:~jjanzen/.dotfiles ~/.dotfiles >> ~/.update-home.log
+  fi
+#+end_src
+
+POSIX shell doesn't have =pushd= and =popd=. We do it manually by saving the current path before moving to =~/.dotfiles=. Exit if the =cd= call fails (it shouldn't).
+#+begin_src sh :tangle ~/.dotfiles/install :mkdirp yes
+  CWD=$(pwd)
+  cd ~/.dotfiles || exit
+#+end_src
+
+Stash any existing changes before moving to the main branch and pulling any new changes from the remote.
+#+begin_src sh :tangle ~/.dotfiles/install :mkdirp yes
+  {
+      git stash
+      git checkout main
+      git pull --rebase
+  } >> ~/.update-home.log
+#+end_src
+
+If the =update-home= executable has changed, replace it and bootstrap into the new one.
+#+begin_src sh :tangle ~/.dotfiles/install :mkdirp yes
+  if ! diff ~/.dotfiles/install ~/.local/bin/update-home >> ~/.update-home.log; then
+     cp ~/.dotfiles/install ~/.local/bin/update-home || exit 1
+     echo Changes have been made to the install script.
+     echo Running the new install script.
+     ~/.local/bin/update-home
+     exit
+  fi
+#+end_src
+
+Extract each configuration file from its literate =.org= file into its correct location by running =org-babel-tangle= on each =.org= file.
+#+begin_src sh :tangle ~/.dotfiles/install :mkdirp yes
+  echo Installing configuration files...
+  find -- * -type f -name "*.org" | while read -r file; do
+      emacs --batch "${file}" -f package-initialize --eval '(org-babel-tangle)' >> ~/.update-home.log
+  done
+#+end_src
+
+Install the [[./wallpaper][wallpaper]] file.
+#+begin_src sh :tangle ~/.dotfiles/install :mkdirp yes
+  echo Installing wallpaper...
+  cp wallpaper ~/.wallpaper
+#+end_src
+
+Install any missing fonts by extracting the corresponding =tar.gz= archive.
+#+begin_src sh :tangle ~/.dotfiles/install :mkdirp yes
+  fonts_changed=false
+  if ! test -d ~/.local/share/fonts/ComputerModern; then
+      echo Computer Modern font missing. Installing...
+      tar xf ~/.dotfiles/local/share/fonts/ComputerModern.tar.gz -C ~/.local/share/fonts >> ~/.update-home.log
+      fonts_changed=true
+  fi
+  if ! test -f ~/.local/share/fonts/NFM.ttf; then
+      echo Nerd Font Mono font missing. Installing...
+      tar xf ~/.dotfiles/local/share/fonts/NFM.tar.gz -C ~/.local/share/fonts >> ~/.update-home.log
+      fonts_changed=true
+  fi
+  if ! test -d ~/.local/share/fonts/SauceCodePro; then
+      echo Source Code Pro Nerd Font missing. Installing...
+      tar xf ~/.dotfiles/local/share/fonts/SauceCodePro.tar.gz -C ~/.local/share/fonts >> ~/.update-home.log
+      fonts_changed=true
+  fi
+#+end_src
+
+If any missing fonts were installed, update the font cache.
+#+begin_src sh :tangle ~/.dotfiles/install :mkdirp yes
+  if [ $fonts_changed = true ]; then
+      echo Updating the font cache...
+      fc-cache -f >> ~/.update-home.log
+  fi
+#+end_src
+
+Move the user back to where they came from.
+#+begin_src sh :tangle ~/.dotfiles/install :mkdirp yes
+  cd "${CWD}" || exit
+#+end_src

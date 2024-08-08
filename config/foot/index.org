@@ -1,0 +1,9 @@
+#+title: Dotfiles =/.config/foot=
+
+This is my Foot configuration.
+
+* Directories
+- [[../index.org][../]]
+
+* Files
+- [[./foot.org][foot.ini]]

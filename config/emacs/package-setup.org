@@ -1,0 +1,23 @@
+#+title: Emacs Package Setup
+
+Set up =melpa=, =org=, and =elpa= as package archives.
+#+begin_src emacs-lisp :tangle ~/.config/emacs/package-setup.el :mkdirp yes
+  (require 'package)
+
+  (setq package-archives '(("melpa" . "https://melpa.org/packages/")
+    ("org" . "https://orgmode.org/elpa/")
+    ("elpa" . "https://elpa.gnu.org/packages/")))
+
+  (package-initialize)
+  (unless package-archive-contents
+    (package-refresh-contents))
+#+end_src
+
+Install =use-package= for declarative package installation. Make =use-package= default to =ensure t= so that packages are enabled if they are declared.
+#+begin_src emacs-lisp :tangle ~/.config/emacs/package-setup.el :mkdirp yes
+  (unless (package-installed-p 'use-package)
+    (package-install 'use-package))
+
+  (require 'use-package)
+  (setq use-package-always-ensure t)
+#+end_src

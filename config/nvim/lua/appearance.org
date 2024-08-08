@@ -1,11 +1,11 @@
 #+title: Neovim Appearance Settings
 Use line numbers.
-#+begin_src lua :tangle yes
+#+begin_src lua :tangle ~/.config/nvim/lua/appearance.lua :mkdirp yes
   vim.opt.number = true
 #+end_src
 
-Set colour scheme.
-#+begin_src lua :tangle yes
+Set colour scheme to the Ayu light theme.
+#+begin_src lua :tangle ~/.config/nvim/lua/appearance.lua :mkdirp yes
   vim.cmd([[
       set termguicolors
       let ayucolor="light"

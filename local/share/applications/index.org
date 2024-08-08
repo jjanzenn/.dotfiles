@@ -1,0 +1,8 @@
+#+title: Dotfiles =/.local/share/applications=
+Here is where my custom desktop entries are stored.
+* Directories
+- [[../index.org][../]]
+
+* Files
+- [[./emacs.org][emacs.desktop]]
+- [[./steam.org][steam.desktop]]

@@ -1,0 +1,5 @@
+#+title: Dotfiles =/.local/share=
+Not much in here besides the applications directory.
+* Directories
+- [[../index.org][../]]
+- [[./applications/index.org][applications/]]

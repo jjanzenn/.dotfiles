@@ -1,0 +1,17 @@
+image: archlinux
+oauth: pages.sr.ht/PAGES:RW
+packages:
+  - emacs
+  - hut
+sources:
+  - https://git.sr.ht/~jjanzen/website
+  - https://git.sr.ht/~jjanzen/blog
+tasks:
+  - build: |
+      emacs --batch -f package-initialize --script ~/website/publish.el
+  - package: |
+      cd ~/public_html/
+      tar -cvz . > ../site.tar.gz
+  - upload: |
+      hut pages publish -d jjanzen.ca site.tar.gz
+      hut pages publish -d www.jjanzen.ca site.tar.gz

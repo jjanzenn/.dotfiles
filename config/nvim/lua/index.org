@@ -1,0 +1,11 @@
+#+title: Dotfiles =/.config/nvim/lua=
+
+This is where the modular components of my Neovim configuration are stored.
+
+* Directories
+- [[../index.org][../]]
+
+* Files
+- [[./appearance.org][appearance.lua]]
+- [[./behaviour.org][behaviour.lua]]
+- [[./plugins.org][plugins.lua]]

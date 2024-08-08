@@ -1,0 +1,111 @@
+#+title: ZSH Configuration
+Set up completions.
+#+begin_src sh :tangle ~/.zshrc :mkdirp yes
+  zstyle ':completion:*' completer _expand _complete _ignored _approximate
+  zstyle ':completion:*' matcher-list '' 'm:{[:lower:]}={[:upper:]}' 'r:|[._-]=** r:|=**' 'l:|=* r:|=*'
+  zstyle :compinstall filename '/home/jjanzen/.zshrc'
+  autoload -U compinit promptinit
+  compinit
+  promptinit
+#+end_src
+
+Enable gentoo completions on Linux.
+#+begin_src sh :tangle (cond ((eq system-type 'gnu/linux) "~/.zshrc") (t "no")) :mkdirp yes
+  prompt gentoo
+#+end_src
+
+Set up the history with 1000 entries and ignored duplicate commands.
+#+begin_src sh :tangle ~/.zshrc :mkdirp yes
+  HISTFILE=~/.histfile
+  HISTSIZE=1000
+  SAVEHIST=1000
+  setopt hist_ignore_all_dups
+#+end_src
+
+Enable automatic =cd=.
+#+begin_src sh :tangle ~/.zshrc :mkdirp yes
+  setopt autocd
+#+end_src
+
+Enable extended glob.
+#+begin_src sh :tangle ~/.zshrc :mkdirp yes
+  setopt extendedglob
+#+end_src
+
+If a glob returns nothing, don't keep the =*=.
+#+begin_src sh :tangle ~/.zshrc :mkdirp yes
+  setopt nullglob
+#+end_src
+
+Report the status of background jobs immediately.
+#+begin_src sh :tangle ~/.zshrc :mkdirp yes
+  setopt notify
+#+end_src
+
+Disable the beep.
+#+begin_src sh :tangle ~/.zshrc :mkdirp yes
+  unsetopt beep
+#+end_src
+
+Use =vi= keybindings.
+#+begin_src sh :tangle ~/.zshrc :mkdirp yes
+  bindkey -v
+#+end_src
+
+Use =lesspipe= back end for =less= if it is installed.
+#+begin_src sh :tangle ~/.zshrc :mkdirp yes
+  which lesspipe.sh &> /dev/null && export LESSOPEN="|lesspipe.sh %s"
+#+end_src
+
+Use =eza= as my =ls= command if it is installed.
+#+begin_src sh :tangle ~/.zshrc :mkdirp yes
+  which eza &> /dev/null && alias ls=eza
+#+end_src
+
+Use Neovim as my =vi= and =vim= application if it is installed.
+#+begin_src sh :tangle ~/.zshrc :mkdirp yes
+  which nvim &> /dev/null && alias vi=nvim && alias vim=nvim
+#+end_src
+
+If the Firefox binary is called =firefox-bin=, let =firefox= also run =firefox-bin=.
+#+begin_src sh :tangle ~/.zshrc :mkdirp yes
+  which firefox-bin &> /dev/null && alias firefox=firefox-bin
+#+end_src
+
+Lazy =ls= shortcuts.
+#+begin_src sh :tangle ~/.zshrc :mkdirp yes
+  alias ll='ls -alF'
+  alias la='ls -a'
+  alias l='ls -F'
+  alias sl='ls'
+#+end_src
+
+*** Prompt
+Define function to write out icons for the git status.
+#+begin_src sh :tangle ~/.zshrc :mkdirp yes
+  parse_git_dirty() {
+    git_status="$(git status 2> /dev/null)"
+    [[ "$git_status" =~ "use \"git push\" to publish your local commits" ]] && echo -n " %F{green}%f"
+    [[ "$git_status" =~ "Changes to be committed:" ]] && echo -n " %F{magenta}%f"
+    [[ "$git_status" =~ "Changes not staged for commit:" ]] && echo -n " %F{yellow}%f"
+    [[ "$git_status" =~ "Untracked files:" ]] && echo -n " %F{red}%f"
+  }
+#+end_src
+
+Enable git status in the prompt.
+#+begin_src sh :tangle ~/.zshrc :mkdirp yes
+  setopt prompt_subst
+  autoload -Uz vcs_info
+  precmd () { vcs_info }
+  zstyle ':vcs_info:*' formats ' %F{blue}%b%f' # git(main)
+#+end_src
+
+Define the prompt as follows:
+- Error code (if applicable)
+- Path using =~= for the home directory and truncating if too long
+- Git branch
+- Git status
+- =$= to mark the start of the prompt
+#+begin_src sh :tangle ~/.zshrc :mkdirp yes
+  PS1='%(?..%B%F{red}[%?%\]%f%b )%F{green}%20<...<%~%<<%f$vcs_info_msg_0_$(parse_git_dirty) $ '
+#+end_src

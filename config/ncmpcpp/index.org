@@ -1,0 +1,9 @@
+#+title: Dotfiles =/.config/ncmpcpp=
+This is my =ncmpcpp= configuration.
+
+* Directories
+- [[../index.org][../]]
+
+* Files
+- [[./bindings.org][bindings]]
+- [[./config.org][config]]

@@ -1,4 +1,4 @@
-#+title: =.profile= Settings
+#+TITLE: =.profile= Settings
 * Path
 Add items to the path.
 #+begin_src sh :tangle ~/.profile

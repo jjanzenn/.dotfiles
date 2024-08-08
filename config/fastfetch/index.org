@@ -1,0 +1,8 @@
+#+title: Dotfiles =/.config/fastfetch=
+This is my Fastfetch configuration.
+
+* Directories
+- [[../index.org][../]]
+
+* Files
+- [[./config.org][config.jsonc]]

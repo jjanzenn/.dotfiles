@@ -1,0 +1,9 @@
+#+title: Dotfiles =/.config/nvim=
+This is my Neovim configuration. The entry point for the program is [[./init.org][init.lua]].
+
+* Directories
+- [[../index.org][../]]
+- [[./lua/index.org][lua/]]
+
+* Files
+- [[./init.org][init.lua]]

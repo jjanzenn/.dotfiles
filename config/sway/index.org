@@ -1,0 +1,11 @@
+#+title: Dotfiles =/.config/sway=
+
+This is my Sway configuration.
+
+* Directories
+- [[../index.org][../]]
+
+* Files
+- [[./config.org][config]]
+- [[./poweraction.org][poweraction]]
+- [[./powerprompt.org][powerprompt]]

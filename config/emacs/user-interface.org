@@ -1,0 +1,109 @@
+#+title: Emacs User Interface
+
+* Theming
+Set the default font to the Source Code Pro nerd font variant. I use size 14 font.
+#+begin_src emacs-lisp :tangle ~/.config/emacs/user-interface.el :mkdirp yes
+  (set-face-attribute 'default t :font "Sauce Code Pro Nerd Font-14")
+#+end_src
+
+Use the Doom Nord light theme.
+#+begin_src emacs-lisp :tangle ~/.config/emacs/user-interface.el :mkdirp yes
+  (use-package doom-themes
+    :config
+    (setq doom-themes-enable-bold t
+          doom-themes-enable-italic t)
+    (load-theme 'doom-nord-light t)
+    (doom-themes-org-config))
+#+end_src
+
+Use =doom-modeline= for a nicer modeline.
+#+begin_src emacs-lisp :tangle ~/.config/emacs/user-interface.el :mkdirp yes
+  (use-package doom-modeline
+    :init (doom-modeline-mode 1))
+#+end_src
+
+* Clean UI
+Disable the Emacs start screen and make the =scratch= buffer default to empty.
+#+begin_src emacs-lisp :tangle ~/.config/emacs/user-interface.el :mkdirp yes
+  (setq inhibit-startup-screen t)
+  (setq initial-scratch-message nil)
+#+end_src
+
+Disable scroll bar, tool bar, and menu bar.
+#+begin_src emacs-lisp :tangle ~/.config/emacs/user-interface.el :mkdirp yes
+  (scroll-bar-mode -1)
+  (tool-bar-mode -1)
+  (menu-bar-mode -1)
+#+end_src
+
+* Fancy Stuff
+Use line numbers by default.
+#+begin_src emacs-lisp :tangle ~/.config/emacs/user-interface.el :mkdirp yes
+  (global-display-line-numbers-mode 1)
+#+end_src
+
+Highlight changes for an operation with =evil-goggles=.
+#+begin_src emacs-lisp :tangle ~/.config/emacs/user-interface.el :mkdirp yes
+  (use-package evil-goggles
+    :after evil
+    :config
+    (evil-goggles-mode)
+    (evil-goggles-use-diff-faces))
+#+end_src
+
+Install nerd font icons.
+#+begin_src emacs-lisp :tangle ~/.config/emacs/user-interface.el :mkdirp yes
+  (use-package nerd-icons)
+#+end_src
+
+Scroll one line at a time.
+#+begin_src emacs-lisp :tangle ~/.config/emacs/user-interface.el :mkdirp yes
+  (setq scroll-conservatively most-positive-fixnum)
+#+end_src
+
+Create parent directories when they don't yet exist.
+#+begin_src emacs-lisp :tangle ~/.config/emacs/user-interface.el :mkdirp yes
+  (defun jj/create-non-existent-directory ()
+  (let ((parent-directory (file-name-directory buffer-file-name)))
+    (when (and (not (file-exists-p parent-directory))
+               (y-or-n-p (format "Directory `%s' does not exist! Create it?" parent-directory)))
+      (make-directory parent-directory t))))
+  (add-to-list 'find-file-not-found-functions #'jj/create-non-existent-directory)
+#+end_src
+
+
+* Whitespace Management
+Use spaces over tabs and set tab width to 4.
+#+begin_src emacs-lisp :tangle ~/.config/emacs/user-interface.el :mkdirp yes
+  (setq-default indent-tabs-mode nil)
+  (setq tab-width 4
+    c-basic-offset tab-width)
+#+end_src
+
+Delete trailing whitespace on save.
+#+begin_src emacs-lisp :tangle ~/.config/emacs/user-interface.el :mkdirp yes
+  (defun jj/before-save-hook ()
+    (unless (eql (with-current-buffer (current-buffer) major-mode)
+                  'markdown-mode)
+      (delete-trailing-whitespace)))
+  (add-hook 'before-save-hook #'jj/before-save-hook)
+#+end_src
+
+* Backup Management
+Don't create backup files.
+#+begin_src emacs-lisp :tangle ~/.config/emacs/user-interface.el :mkdirp yes
+  (setq make-backup-files nil)
+#+end_src
+
+* Customize =dired=
+Use nerd font icons in =dired=.
+#+begin_src emacs-lisp :tangle ~/.config/emacs/user-interface.el :mkdirp yes
+  (use-package nerd-icons-dired
+    :hook dired-mode)
+#+end_src
+
+Use colours in =dired= with =diredfl=.
+#+begin_src emacs-lisp :tangle ~/.config/emacs/user-interface.el :mkdirp yes
+  (use-package diredfl
+    :init (diredfl-global-mode 1))
+#+end_src

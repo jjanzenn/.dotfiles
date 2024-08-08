@@ -1,12 +1,12 @@
 #+title: Sway Configuration
 * Variables
 Use =super= as modifier key.
-#+begin_src conf :tangle config
+#+begin_src conf :tangle ~/.config/sway/config :mkdirp yes
   set $mod Mod4
 #+end_src
 
 Use =vi= motions as directional inputs.
-#+begin_src conf :tangle config
+#+begin_src conf :tangle ~/.config/sway/config :mkdirp yes
   set $left h
   set $down j
   set $up k
@@ -14,72 +14,77 @@ Use =vi= motions as directional inputs.
 #+end_src
 
 Use =foot= as default terminal.
-#+begin_src conf :tangle config
+#+begin_src conf :tangle ~/.config/sway/config :mkdirp yes
   set $term foot
 #+end_src
 
 Use =wofi= as app launcher.
-#+begin_src conf :tangle config
+#+begin_src conf :tangle ~/.config/sway/config :mkdirp yes
   set $menu wofi --show drun --allow-images
 #+end_src
 
 * Startup Application
 Use =dbus= environment.
-#+begin_src conf :tangle config
+#+begin_src conf :tangle ~/.config/sway/config :mkdirp yes
   exec --no-startup-id dbus-update-activation-environment --all
 #+end_src
 
 Use =mako= as notification daemon.
-#+begin_src conf :tangle config
+#+begin_src conf :tangle ~/.config/sway/config :mkdirp yes
   exec mako
 #+end_src
 
 Launch PipeWire without =systemd=.
-#+begin_src conf :tangle config
+#+begin_src conf :tangle ~/.config/sway/config :mkdirp yes
   exec gentoo-pipewire-launcher &
 #+end_src
 
 Launch =blueman-applet= as Bluetooth daemon.
-#+begin_src conf :tangle config
+#+begin_src conf :tangle ~/.config/sway/config :mkdirp yes
   exec blueman-applet
 #+end_src
 
 Launch music player daemon.
-#+begin_src conf :tangle config
+#+begin_src conf :tangle ~/.config/sway/config :mkdirp yes
   exec mpd
 #+end_src
 
 Launch =mpdscribble= as scrobbler daemon.
-#+begin_src conf :tangle config
+#+begin_src conf :tangle ~/.config/sway/config :mkdirp yes
   exec mpdscribble
+#+end_src
+
+Launch Emacs daemon.
+#+begin_src conf :tangle ~/.config/sway/config :mkdirp yes
+  exec emacs --daemon
 #+end_src
 
 * Display
 I use a vertical monitor on the left and horizontal monitor on the right.
-#+begin_src conf :tangle config
+#+begin_src conf :tangle ~/.config/sway/config :mkdirp yes
   output HDMI-A-1 resolution 1920x1080 position 1080 140
   output HDMI-A-2 resolution 1920x1080 transform 90 position 0 0
 #+end_src
 
 Use the file at =~/.wallpaper= as my wallpaper.
-#+begin_src conf :tangle config
+#+begin_src conf :tangle ~/.config/sway/config :mkdirp yes
   output * bg ~/.wallpaper fill
 #+end_src
 
 Remove borders from windows.
-#+begin_src conf :tangle config
+#+begin_src conf :tangle ~/.config/sway/config :mkdirp yes
   default_border none
   default_floating_border none
   font pango:monospace 1
 #+end_src
 
 Use 10 pixel gaps.
-#+begin_src conf :tangle config
+#+begin_src conf :tangle ~/.config/sway/config :mkdirp yes
   gaps inner 10
 #+end_src
 
 Use =waybar= as a top bar.
-#+begin_src conf :tangle config
+#+begin_src conf :tangle ~/.config/sway/config :mkdirp yes
   bar {
       position top
 
@@ -90,7 +95,7 @@ Use =waybar= as a top bar.
 
 * Input
 Use pointer acceleration.
-#+begin_src conf :tangle config
+#+begin_src conf :tangle ~/.config/sway/config :mkdirp yes
   input * {
       accel_profile "adaptive"
       pointer_accel -.5
@@ -99,44 +104,44 @@ Use pointer acceleration.
 
 * Controls
 Add ability to lock the screen with =swaylock=. Turn off the screen after 15 seconds on lock screen.
-#+begin_src conf :tangle config
+#+begin_src conf :tangle ~/.config/sway/config :mkdirp yes
   bindsym $mod+Control+l exec swaylock --ignore-empty-password --show-failed-attempts --image ~/.wallpaper
   exec swayidle -w timeout 15 'if pgrep -x swaylock; then swaymsg "output * power off"; fi' resume 'swaymsg "output * power on"'
 #+end_src
 
 Add keybinding to open a terminal emulator.
-#+begin_src conf :tangle config
+#+begin_src conf :tangle ~/.config/sway/config :mkdirp yes
   bindsym $mod+Return exec $term
 #+end_src
 
 Add keybinding for killing a window.
-#+begin_src conf :tangle config
+#+begin_src conf :tangle ~/.config/sway/config :mkdirp yes
   bindsym $mod+Shift+q kill
 #+end_src
 
 Add keybinding for opening an app launcher.
-#+begin_src conf :tangle config
+#+begin_src conf :tangle ~/.config/sway/config :mkdirp yes
   bindsym $mod+d exec $menu
 #+end_src
 
 Holding the modifier key allows moving a window.
-#+begin_src conf :tangle config
+#+begin_src conf :tangle ~/.config/sway/config :mkdirp yes
   floating_modifier $mod normal
 #+end_src
 
 Add keybinding for reloading the configuration.
-#+begin_src conf :tangle config
+#+begin_src conf :tangle ~/.config/sway/config :mkdirp yes
   bindsym $mod+Shift+c reload
 #+end_src
 
 Add keybinding to launch logout/power off/restart [[file:powerprompt.org][prompt]] which also activates with the power key.
-#+begin_src conf :tangle config
+#+begin_src conf :tangle ~/.config/sway/config :mkdirp yes
   bindsym $mod+Shift+e exec bash ~/.config/sway/powerprompt
   bindsym XF86PowerOff exec bash ~/.config/sway/powerprompt
 #+end_src
 
 Change focus keybindings.
-#+begin_src conf :tangle config
+#+begin_src conf :tangle ~/.config/sway/config :mkdirp yes
   bindsym $mod+$left focus left
   bindsym $mod+$down focus down
   bindsym $mod+$up focus up
@@ -149,7 +154,7 @@ Change focus keybindings.
 #+end_src
 
 Move window keybindings.
-#+begin_src conf :tangle config
+#+begin_src conf :tangle ~/.config/sway/config :mkdirp yes
   bindsym $mod+Shift+$left move left
   bindsym $mod+Shift+$down move down
   bindsym $mod+Shift+$up move up
@@ -162,7 +167,7 @@ Move window keybindings.
 #+end_src
 
 Change workspace keybindings.
-#+begin_src conf :tangle config
+#+begin_src conf :tangle ~/.config/sway/config :mkdirp yes
   bindsym $mod+1 workspace number 1
   bindsym $mod+2 workspace number 2
   bindsym $mod+3 workspace number 3
@@ -176,7 +181,7 @@ Change workspace keybindings.
 #+end_src
 
 Move window to workspace keybindings.
-#+begin_src conf :tangle config
+#+begin_src conf :tangle ~/.config/sway/config :mkdirp yes
   bindsym $mod+Shift+1 move container to workspace number 1
   bindsym $mod+Shift+2 move container to workspace number 2
   bindsym $mod+Shift+3 move container to workspace number 3
@@ -190,44 +195,44 @@ Move window to workspace keybindings.
 #+end_src
 
 Set split direction keybindings.
-#+begin_src conf :tangle config
+#+begin_src conf :tangle ~/.config/sway/config :mkdirp yes
   bindsym $mod+v splith
   bindsym $mod+s splitv
 #+end_src
 
 Toggle layout keybindings.
-#+begin_src conf :tangle config
+#+begin_src conf :tangle ~/.config/sway/config :mkdirp yes
   bindsym $mod+e layout toggle split
 #+end_src
 
 Define full screen keybinding.
-#+begin_src conf :tangle config
+#+begin_src conf :tangle ~/.config/sway/config :mkdirp yes
   bindsym $mod+f fullscreen
 #+end_src
 
 Define toggle floating keybinding.
-#+begin_src conf :tangle config
+#+begin_src conf :tangle ~/.config/sway/config :mkdirp yes
   bindsym $mod+Shift+space floating toggle
 #+end_src
 
 Move focus between floating and tiled layer keybinding.
-#+begin_src conf :tangle config
+#+begin_src conf :tangle ~/.config/sway/config :mkdirp yes
   bindsym $mod+space focus mode_toggle
 #+end_src
 
 Focus on the parent window keybinding.
-#+begin_src conf :tangle config
+#+begin_src conf :tangle ~/.config/sway/config :mkdirp yes
   bindsym $mod+a focus parent
 #+end_src
 
 Keybindings  to move a window to the scratchpad and back from it.
-#+begin_src conf :tangle config
+#+begin_src conf :tangle ~/.config/sway/config :mkdirp yes
   bindsym $mod+Shift+minus move scratchpad
   bindsym $mod+minus scratchpad show
 #+end_src
 
 Add resize keybindings.
-#+begin_src conf :tangle config
+#+begin_src conf :tangle ~/.config/sway/config :mkdirp yes
   mode "resize" {
       bindsym $left resize shrink width 10px
       bindsym $down resize grow height 10px
@@ -246,24 +251,24 @@ Add resize keybindings.
 #+end_src
 
 Add screenshot keybinding.
-#+begin_src conf :tangle config
+#+begin_src conf :tangle ~/.config/sway/config :mkdirp yes
   bindsym $mod+Shift+s exec grim -g "$(slurp)" - | wl-copy
 #+end_src
 
 Add volume keybindings.
-#+begin_src conf :tangle config
+#+begin_src conf :tangle ~/.config/sway/config :mkdirp yes
   bindsym XF86AudioRaiseVolume exec wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+
   bindsym XF86AudioLowerVolume exec wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-
   bindsym XF86AudioMute exec wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle
 #+end_src
 
 Add pause keybinding.
-#+begin_src conf :tangle config
+#+begin_src conf :tangle ~/.config/sway/config :mkdirp yes
   bindsym XF86Eject exec mpc toggle
 #+end_src
 
 * Extras
 Load extra configuration.
-#+begin_src conf :tangle config
+#+begin_src conf :tangle ~/.config/sway/config :mkdirp yes
   include /etc/sway/config.d/*
 #+end_src

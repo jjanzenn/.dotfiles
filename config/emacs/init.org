@@ -1,13 +1,25 @@
-#+title: Emacs =init.el=
-
-Force the usage of a =custom.el= file for customizations.
-#+begin_src emacs-lisp :tangle yes
-(setq custom-file (concat user-emacs-directory "custom.el"))
-(when (file-exists-p custom-file)
-  (load custom-file))
+#+title: Emacs Configuration
+Load [[./force-custom-file.org][force-custom-file.el]] to ensure that =init.el= is not polluted by customizations.
+#+begin_src emacs-lisp :tangle ~/.config/emacs/init.el :mkdirp yes
+  (load "~/.config/emacs/force-custom-file.el")
 #+end_src
 
-Load the main configuration from [[./config.org][config.org]].
-#+begin_src emacs-lisp :tangle yes
-(org-babel-load-file "~/.config/emacs/config.org")
+Load [[./package-setup.org][package-setup.el]] to allow for package installation.
+#+begin_src emacs-lisp :tangle ~/.config/emacs/init.el :mkdirp yes
+  (load "~/.config/emacs/package-setup.el")
+#+end_src
+
+Load [[./user-interface.org][user-interface.el]] to clean up Emacs' user interface and make it look the way I like.
+#+begin_src emacs-lisp :tangle ~/.config/emacs/init.el :mkdirp yes
+  (load "~/.config/emacs/user-interface.el")
+#+end_src
+
+Load [[./tools.org][tools.el]] to add functionality to Emacs.
+#+begin_src emacs-lisp :tangle ~/.config/emacs/init.el :mkdirp yes
+  (load "~/.config/emacs/tools.el")
+#+end_src
+
+Load [[./languages.org][languages.el]] to add language and language server protocol support.
+#+begin_src emacs-lisp :tangle ~/.config/emacs/init.el :mkdirp yes
+  (load "~/.config/emacs/tools.el")
 #+end_src

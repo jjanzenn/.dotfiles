@@ -1,6 +1,6 @@
 #+title: Sway Power Prompt Script
 Activate =swaynag= prompt with power-off options if the lock file is not present which executes an [[file:poweraction.org][action]].
-#+begin_src sh :tangle powerprompt
+#+begin_src sh :tangle ~/.config/sway/powerprompt :mkdirp yes
   if test -f ~/.swaynaglock; then
       killall swaynag
       rm ~/.swaynaglock

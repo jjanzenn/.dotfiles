@@ -1,16 +1,16 @@
 #+title: =ncmpcpp= Configuration
 Set the =ncmpcpp= directory to =~/.config/ncmpcpp/=.
-#+begin_src conf :tangle config
-ncmpcpp_directory = "~/.ncmpcpp"
+#+begin_src conf :tangle ~/.config/ncmpcpp/config :mkdirp yes
+ncmpcpp_directory = "~/.config/ncmpcpp"
 #+end_src
 
 Set the host/port pair to find the music player daemon at.
-#+begin_src conf :tangle config
+#+begin_src conf :tangle ~/.config/ncmpcpp/config :mkdirp yes
 mpd_host = "localhost"
 mpd_port = "6600"
 #+end_src
 
 Specify the location of the Music directory to be =~/Music=.
-#+begin_src conf :tangle config
+#+begin_src conf :tangle ~/.config/ncmpcpp/config :mkdirp yes
 mpd_music_dir = "~/Music"
 #+end_src

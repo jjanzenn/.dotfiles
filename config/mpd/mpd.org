@@ -1,68 +1,68 @@
 #+title: MPD Settings
 * Directories
 Check for music files in =~/Music=.
-#+begin_src conf :tangle yes
-music_directory "~/Music"
+#+begin_src conf :tangle ~/.config/mpd/mpd.conf :mkdirp yes
+  music_directory "~/Music"
 #+end_src
 
 Put playlists at =~/.config/mpd/playlists=.
-#+begin_src conf :tangle yes
-playlist_directory "~/.config/mpd/playlists"
+#+begin_src conf :tangle ~/.config/mpd/mpd.conf :mkdirp yes
+  playlist_directory "~/.config/mpd/playlists"
 #+end_src
 
 Put database at =~/.config/mpd/database=.
-#+begin_src conf :tangle yes
-db_file "~/.config/mpd/database"
+#+begin_src conf :tangle ~/.config/mpd/mpd.conf :mkdirp yes
+  db_file "~/.config/mpd/database"
 #+end_src
 
 Put log file at =~/.config/mpd/log=.
-#+begin_src conf :tangle yes
-log_file "~/.config/mpd/log"
+#+begin_src conf :tangle ~/.config/mpd/mpd.conf :mkdirp yes
+  log_file "~/.config/mpd/log"
 #+end_src
 
 Put PID file at =~/.config/mpd/pid=.
-#+begin_src conf :tangle yes
-pid_file "~/.config/mpd/pid"
+#+begin_src conf :tangle ~/.config/mpd/mpd.conf :mkdirp yes
+  pid_file "~/.config/mpd/pid"
 #+end_src
 
 Put the state file at =~/.config/mpd/state=.
-#+begin_src conf :tangle yes
-state_file "~/.config/mpd/state"
+#+begin_src conf :tangle ~/.config/mpd/mpd.conf :mkdirp yes
+  state_file "~/.config/mpd/state"
 #+end_src
 
 Put the sticker file at =~/.config/mpd/sticker.sql=.
-#+begin_src conf :tangle yes
-sticker_file "~/.config/mpd/sticker.sql"
+#+begin_src conf :tangle ~/.config/mpd/mpd.conf :mkdirp yes
+  sticker_file "~/.config/mpd/sticker.sql"
 #+end_src
 
 Use UTF-8 in the file system.
-#+begin_src conf :tangle yes
-filesystem_charset "UTF-8"
+#+begin_src conf :tangle ~/.config/mpd/mpd.conf :mkdirp yes
+  filesystem_charset "UTF-8"
 #+end_src
 
 * Network
 Run MPD on =localhost=.
-#+begin_src conf :tangle yes
-bind_to_address "localhost"
+#+begin_src conf :tangle ~/.config/mpd/mpd.conf :mkdirp yes
+  bind_to_address "localhost"
 #+end_src
 
 * Outputs
 Output to PipeWire.
-#+begin_src conf :tangle yes
-audio_output {
-    type "pipewire"
-    name "Pipewire"
-    mixer_type "hardware"
-    enabled "yes"
-}
+#+begin_src conf :tangle ~/.config/mpd/mpd.conf :mkdirp yes
+  audio_output {
+      type "pipewire"
+      name "Pipewire"
+      mixer_type "hardware"
+      enabled "yes"
+  }
 #+end_src
 
 Output to FIFO.
-#+begin_src conf :tangle yes
-audio_output {
-    type "fifo"
-    name "my_fifo"
-    path "~/.config/mpd/mpd.fifo"
-    format "44100:16:2"
-}
+#+begin_src conf :tangle ~/.config/mpd/mpd.conf :mkdirp yes
+  audio_output {
+      type "fifo"
+      name "my_fifo"
+      path "~/.config/mpd/mpd.fifo"
+      format "44100:16:2"
+  }
 #+end_src

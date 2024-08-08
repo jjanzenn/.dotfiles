@@ -1,7 +1,7 @@
 #+title: Neovim Plugins
 * Setup
-Use =lazy= to manage plugins.
-#+begin_src lua :tangle yes
+Use =lazy= to manage plugins. This block activates =lazy=.
+#+begin_src lua :tangle ~/.config/nvim/lua/plugins.lua :mkdirp yes
   local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
   if not vim.loop.fs_stat(lazypath) then
     vim.fn.system({
@@ -9,7 +9,7 @@ Use =lazy= to manage plugins.
       "clone",
       "--filter=blob:none",
       "https://github.com/folke/lazy.nvim.git",
-      "--branch=stable", -- latest stable release
+      "--branch=stable",
       lazypath,
     })
   end
@@ -17,33 +17,12 @@ Use =lazy= to manage plugins.
 #+end_src
 
 * Plugins
-Install plugins here.
-#+begin_src lua :tangle yes
-require('lazy').setup({
-  'itchyny/lightline.vim',
-  'ayu-theme/ayu-vim',
-  'Raimondi/delimitMate',
-  'bronson/vim-trailing-whitespace',
-  'dhruvasagar/vim-table-mode',
-  'rhysd/vim-clang-format',
-  'chrisbra/csv.vim',
-  'neovim/nvim-lspconfig',
-  {
-      'nvim-treesitter/nvim-treesitter',
-      cmd = 'TSUpdate'
-  },
-  'junegunn/fzf',
-  'junegunn/fzf.vim',
-  'hrsh7th/nvim-cmp',
-  'hrsh7th/cmp-nvim-lsp',
-  'saadparwaiz1/cmp_luasnip',
-  'L3MON4D3/LuaSnip',
-  {
-      'fatih/vim-go',
-      cmd = 'GoUpdateBinaries',
-  },
-  'rust-lang/rust.vim',
-  'neovimhaskell/haskell-vim',
-  'lervag/vimtex',
-})
+I use =lightline= for a nice status bar. The Ayu theme matches my overall colour scheme. =delimitmate= provides better delimiter handling. Trailing whitespace is highlighted with =vim-trailing-whitespace=.
+#+begin_src lua :tangle ~/.config/nvim/lua/plugins.lua :mkdirp yes
+  require('lazy').setup({
+    'itchyny/lightline.vim',
+    'ayu-theme/ayu-vim',
+    'Raimondi/delimitMate',
+    'bronson/vim-trailing-whitespace',
+  })
 #+end_src

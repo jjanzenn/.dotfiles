@@ -1,7 +1,7 @@
 #+title: Neovim Behaviour Settings
 
 Use tabs with width 4.
-#+begin_src lua :tangle yes
+#+begin_src lua :tangle ~/.config/nvim/lua/behaviour.lua :mkdirp yes
   vim.opt.tabstop = 4
   vim.opt.expandtab = true
   vim.opt.shiftwidth = 4
@@ -9,11 +9,11 @@ Use tabs with width 4.
 #+end_src
 
 Better command line completion.
-#+begin_src lua :tangle yes
+#+begin_src lua :tangle ~/.config/nvim/lua/behaviour.lua :mkdirp yes
   vim.opt.wildmode = 'longest,list'
 #+end_src
 
 Better management of file types.
-#+begin_src lua :tangle yes
+#+begin_src lua :tangle ~/.config/nvim/lua/behaviour.lua :mkdirp yes
   vim.cmd('filetype plugin indent on')
 #+end_src

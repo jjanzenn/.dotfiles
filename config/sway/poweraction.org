@@ -1,6 +1,6 @@
 #+title: Sway Power Action Script
-Run this shell script from power off menu to either log off or power off.
-#+begin_src sh :tangle poweraction
+Run this shell script from power off menu to either log off, restart, or power off.
+#+begin_src sh :tangle ~/.config/sway/poweraction :mkdirp yes
   rm ~/.swaynaglock
   case $1 in
       logout) swaymsg exit;;
