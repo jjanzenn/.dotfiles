@@ -1,6 +1,6 @@
 #+title: =ncmpcpp= Keyboard Bindings
 Use =vi= motions in =ncmpcpp=.
-#+begin_src txt :tangle ~/.config/ncmpcpp/bindings :mkdirp yes
+#+begin_src conf :tangle ~/.config/ncmpcpp/bindings :mkdirp yes
 def_key "j"
   scroll_down
 def_key "k"

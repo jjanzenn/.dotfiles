@@ -1,7 +1,7 @@
 #+title: Waybar Configuration
 * Layout
 Define the layout of the bar with workspaces and scratchpad on the left, the current window in the middle, and music player daemon, sound, network, CPU usage, memory usage, clock, and system tray on the right.
-#+begin_src js-json :tangle ~/.config/waybar/config :mkdirp yes
+#+begin_src js :tangle ~/.config/waybar/config :mkdirp yes
   {
     "height": 30,
     "spacing": 4,
@@ -12,7 +12,7 @@ Define the layout of the bar with workspaces and scratchpad on the left, the cur
 
 * Components
 Define scratchpad component. To show an icon and the count of items in it.
-#+begin_src js-json :tangle ~/.config/waybar/config :mkdirp yes
+#+begin_src js :tangle ~/.config/waybar/config :mkdirp yes
   "sway/scratchpad": {
       "format": "{icon} {count}",
       "show-empty": false,
@@ -23,7 +23,7 @@ Define scratchpad component. To show an icon and the count of items in it.
 #+end_src
 
 Define music player daemon component to list the current song, album, artist, and position in the song with an icon representing the status. Clicking it opens a TUI interface to the daemon.
-#+begin_src js-json :tangle ~/.config/waybar/config :mkdirp yes
+#+begin_src js :tangle ~/.config/waybar/config :mkdirp yes
   "mpd": {
       "format": "{stateIcon} {artist} - {album} - {title} ({elapsedTime:%M:%S}/{totalTime:%M:%S}) [{songPosition}|{queueLength}] 🎵",
       "format-disconnected": "Disconnected 🎵",
@@ -41,7 +41,7 @@ Define music player daemon component to list the current song, album, artist, an
 #+end_src
 
 Define tray component.
-#+begin_src js-json :tangle ~/.config/waybar/config :mkdirp yes
+#+begin_src js :tangle ~/.config/waybar/config :mkdirp yes
   "tray": {
       "icon-size": 21,
       "spacing": 10,
@@ -50,7 +50,7 @@ Define tray component.
 #+end_src
 
 Define clock component to show the current time and a calendar in a tooltip.
-#+begin_src js-json :tangle ~/.config/waybar/config :mkdirp yes
+#+begin_src js :tangle ~/.config/waybar/config :mkdirp yes
   "clock": {
       "format": "{:%H:%M\t%Y-%m-%d}",
       "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>"
@@ -58,7 +58,7 @@ Define clock component to show the current time and a calendar in a tooltip.
 #+end_src
 
 Define CPU usage component to show usage in percent with an icon.
-#+begin_src js-json :tangle ~/.config/waybar/config :mkdirp yes
+#+begin_src js :tangle ~/.config/waybar/config :mkdirp yes
   "cpu": {
       "format": "{usage}% ",
       "tooltip": false
@@ -66,14 +66,14 @@ Define CPU usage component to show usage in percent with an icon.
 #+end_src
 
 Define memory usage component to show usage in percent with an icon.
-#+begin_src js-json :tangle ~/.config/waybar/config :mkdirp yes
+#+begin_src js :tangle ~/.config/waybar/config :mkdirp yes
   "memory": {
       "format": "{}% "
   },
 #+end_src
 
 Define network component to show a Wi-Fi icon if connected and a warning signal if not.
-#+begin_src js-json :tangle ~/.config/waybar/config :mkdirp yes
+#+begin_src js :tangle ~/.config/waybar/config :mkdirp yes
   "network": {
       // "interface": "wlp2*", // (Optional) To force the use of this interface
       "format-wifi": "",
@@ -86,7 +86,7 @@ Define network component to show a Wi-Fi icon if connected and a warning signal 
 #+end_src
 
 Define audio component to show the volume level and whether or not it is muted with an icon. Clicking it opens a GUI sound menu.
-#+begin_src js-json :tangle ~/.config/waybar/config :mkdirp yes
+#+begin_src js :tangle ~/.config/waybar/config :mkdirp yes
   "pulseaudio": {
           // "scroll-step": 1, // %, can be a float
           "format": "{volume}% {icon}",
