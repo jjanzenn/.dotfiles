@@ -12,7 +12,7 @@ This page is the home of my dotfiles. They are written using literate programmin
 - [[./gitconfig.org][.gitconfig]]
 - [[./profile.org][.profile]]
 - [[./zshrc.org][.zshrc]]
-- [[./wallpaper][.wallpaper]]
+- [[./wallpaper.jpg][.wallpaper]]
 
 * Install Script
 It can be run as =./install=, so make it explicit what binary to run it with (POSIX shell).
