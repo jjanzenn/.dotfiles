@@ -12,7 +12,7 @@ This page is the home of my dotfiles. They are written using literate programmin
 - [[./gitconfig.org][.gitconfig]]
 - [[./profile.org][.profile]]
 - [[./zshrc.org][.zshrc]]
-- [[./wallpaper.jpg][.wallpaper]]
+- [[./wallpaper.png][.wallpaper]]
 
 * Install Script
 It can be run as =./install=, so make it explicit what binary to run it with (POSIX shell).
@@ -67,10 +67,10 @@ Extract each configuration file from its literate =.org= file into its correct l
   done
 #+end_src
 
-Install the [[./wallpaper][wallpaper]] file.
+Install the [[./wallpaper.png][wallpaper]] file.
 #+begin_src sh :tangle ~/.dotfiles/install :mkdirp yes
   echo Installing wallpaper...
-  cp wallpaper ~/.wallpaper
+  cp wallpaper.png ~/.wallpaper
 #+end_src
 
 Install any missing fonts by extracting the corresponding =tar.gz= archive.
