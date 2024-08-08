@@ -3,9 +3,9 @@
 This page is the home of my dotfiles. They are written using literate programming in Emacs Org-Mode. The =install= script installs the dotfiles in their correct places and installs itself as an executable called =update-home= on the path to allow myself to run the script without having the repository downloaded on my system.
 
 * Directories
-- [[./config/index.org][.config/]]
-- [[./local/index.org][.local/]]
-- [[./ssh/index.org][.ssh/]]
+- [[./config/][.config/]]
+- [[./local/][.local/]]
+- [[./ssh/][.ssh/]]
 
 * Files
 - [[./clang-format.org][.clang-format]]
@@ -62,7 +62,7 @@ If the =update-home= executable has changed, replace it and bootstrap into the n
 Extract each configuration file from its literate =.org= file into its correct location by running =org-babel-tangle= on each =.org= file.
 #+begin_src sh :tangle ~/.dotfiles/install :mkdirp yes
   echo Installing configuration files...
-  find -- * -type f -name "*.org" | while read -r file; do
+  find -- . -type f -name "*.org" | while read -r file; do
       emacs --batch "${file}" -f package-initialize --eval '(org-babel-tangle)' >> ~/.update-home.log
   done
 #+end_src
