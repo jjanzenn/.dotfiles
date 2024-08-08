@@ -3,9 +3,9 @@
 This page is the home of my dotfiles. They are written using literate programming in Emacs Org-Mode. The =install= script installs the dotfiles in their correct places and installs itself as an executable called =update-home= on the path to allow myself to run the script without having the repository downloaded on my system.
 
 * Directories
-- [[./config/][.config/]]
-- [[./local/][.local/]]
-- [[./ssh/][.ssh/]]
+- [[./.config/][.config/]]
+- [[./.local/][.local/]]
+- [[./.ssh/][.ssh/]]
 
 * Files
 - [[./clang-format.org][.clang-format]]
