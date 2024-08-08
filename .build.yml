@@ -8,6 +8,8 @@ sources:
   - https://git.sr.ht/~jjanzen/blog
 tasks:
   - build: |
+      cd ~/.dotfiles
+      ~/website/fix-dotfile-paths.sh
       emacs --batch -f package-initialize --script ~/website/publish.el
   - package: |
       cd ~/public_html/
