@@ -55,7 +55,7 @@ Extract each configuration file from its literate =.org= file into its correct l
 Install the [[./wallpaper.png][wallpaper]] file.
 #+begin_src sh :tangle ~/.dotfiles/install :mkdirp yes
   echo Installing wallpaper...
-  cp wallpaper.png ~/.wallpaper
+  cp .wallpaper ~/.wallpaper
   osascript -e "tell application \"System Events\" to tell every desktop to set picture to \"/~/.wallpaper\" as POSIX file"
 #+end_src
 
@@ -64,17 +64,17 @@ Install any missing fonts by extracting the corresponding =tar.gz= archive.
   fonts_changed=false
   if ! test -d ~/.local/share/fonts/ComputerModern; then
       echo Computer Modern font missing. Installing...
-      tar xf ~/.dotfiles/local/share/fonts/ComputerModern.tar.gz -C ~/.local/share/fonts >> ~/.update-home.log
+      tar xf ~/.dotfiles/.local/share/fonts/ComputerModern.tar.gz -C ~/.local/share/fonts >> ~/.update-home.log
       fonts_changed=true
   fi
   if ! test -f ~/.local/share/fonts/NFM.ttf; then
       echo Nerd Font Mono font missing. Installing...
-      tar xf ~/.dotfiles/local/share/fonts/NFM.tar.gz -C ~/.local/share/fonts >> ~/.update-home.log
+      tar xf ~/.dotfiles/.local/share/fonts/NFM.tar.gz -C ~/.local/share/fonts >> ~/.update-home.log
       fonts_changed=true
   fi
   if ! test -d ~/.local/share/fonts/SauceCodePro; then
       echo Source Code Pro Nerd Font missing. Installing...
-      tar xf ~/.dotfiles/local/share/fonts/SauceCodePro.tar.gz -C ~/.local/share/fonts >> ~/.update-home.log
+      tar xf ~/.dotfiles/.local/share/fonts/SauceCodePro.tar.gz -C ~/.local/share/fonts >> ~/.update-home.log
       fonts_changed=true
   fi
 #+end_src
