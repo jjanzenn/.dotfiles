@@ -56,4 +56,10 @@ if [ $fonts_changed = true ]; then
     fc-cache -f >> ~/.update-home.log
 fi
 
+if ! ps -e | sed '/grep/d' | grep 'emacs.*--daemon'; then
+    launchctl load -w ~/Library/LaunchAgents/gnu.emacs.daemon.plist
+fi
+
+chmod +x ~/Applications/Emacs.app/Contents/MacOS/Emacs
+
 cd "${CWD}" || exit

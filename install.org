@@ -88,6 +88,20 @@ If any missing fonts were installed, update the font cache.
   fi
 #+end_src
 
+Start the Emacs daemon.
+#+begin_src sh :tangle ~/.dotfiles/install :mkdirp yes
+  if ! ps -e | sed '/grep/d' | grep 'emacs.*--daemon'; then
+      launchctl load -w ~/Library/LaunchAgents/gnu.emacs.daemon.plist
+  fi
+#+end_src
+
+Make Emacs.app executable (why does Mac OS make this so painful?).
+
+#+begin_src sh :tangle ~/.dotfiles/install :mkdirp yes
+  chmod +x ~/Applications/Emacs.app/Contents/MacOS/Emacs
+#+end_src
+
+
 Move the user back to where they came from.
 #+begin_src sh :tangle ~/.dotfiles/install :mkdirp yes
   cd "${CWD}" || exit

@@ -1,0 +1,7 @@
+#+title: Emacs Client Application
+
+#+begin_src sh :tangle ~/Applications/Emacs.app/Contents/MacOS/Emacs :mkdirp yes :tangle-mode o755
+  #!/bin/sh
+  /opt/homebrew/bin/emacsclient -c &> /dev/null &
+  disown
+#+end_src
