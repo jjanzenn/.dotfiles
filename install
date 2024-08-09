@@ -31,6 +31,7 @@ done
 
 echo Installing wallpaper...
 cp wallpaper.png ~/.wallpaper
+osascript -e "tell application \"System Events\" to tell every desktop to set picture to \"/~/.wallpaper\" as POSIX file"
 
 fonts_changed=false
 if ! test -d ~/.local/share/fonts/ComputerModern; then
