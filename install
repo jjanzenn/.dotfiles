@@ -12,7 +12,7 @@ cd ~/.dotfiles || exit
 
 {
     git stash
-    git checkout main
+    git checkout macos
     git pull --rebase
 } >> ~/.update-home.log
 

@@ -28,7 +28,7 @@ Stash any existing changes before moving to the main branch and pulling any new 
 #+begin_src sh :tangle ~/.dotfiles/install :mkdirp yes
   {
       git stash
-      git checkout main
+      git checkout macos
       git pull --rebase
   } >> ~/.update-home.log
 #+end_src
@@ -56,6 +56,7 @@ Install the [[./wallpaper.png][wallpaper]] file.
 #+begin_src sh :tangle ~/.dotfiles/install :mkdirp yes
   echo Installing wallpaper...
   cp wallpaper.png ~/.wallpaper
+  osascript -e "tell application \"System Events\" to tell every desktop to set picture to \"/~/.wallpaper\" as POSIX file"
 #+end_src
 
 Install any missing fonts by extracting the corresponding =tar.gz= archive.
