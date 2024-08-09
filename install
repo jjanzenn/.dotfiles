@@ -20,6 +20,7 @@ if ! diff ~/.dotfiles/install ~/.local/bin/update-home >> ~/.update-home.log; th
    cp ~/.dotfiles/install ~/.local/bin/update-home || exit 1
    echo Changes have been made to the install script.
    echo Running the new install script.
+   chmod +x ~/.local/bin/update-home
    ~/.local/bin/update-home
    exit
 fi
@@ -31,7 +32,7 @@ done
 
 echo Installing wallpaper...
 cp .wallpaper ~/.wallpaper
-osascript -e "tell application \"System Events\" to tell every desktop to set picture to \"/~/.wallpaper\" as POSIX file"
+osascript -e "tell application \"System Events\" to tell every desktop to set picture to \"/Users/jjanzen/.wallpaper\" as POSIX file"
 
 fonts_changed=false
 if ! test -d ~/.local/share/fonts/ComputerModern; then

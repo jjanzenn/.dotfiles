@@ -7,7 +7,7 @@ Use line numbers.
 Turn on syntax highlighting.
 #+begin_src lua :tangle ~/.config/nvim/lua/appearance.lua :mkdirp yes
   vim.cmd([[
-      set termguicolors
+      set notermguicolors
       syntax on
       colorscheme default
       set background=light

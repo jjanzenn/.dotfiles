@@ -39,6 +39,7 @@ If the =update-home= executable has changed, replace it and bootstrap into the n
      cp ~/.dotfiles/install ~/.local/bin/update-home || exit 1
      echo Changes have been made to the install script.
      echo Running the new install script.
+     chmod +x ~/.local/bin/update-home
      ~/.local/bin/update-home
      exit
   fi
@@ -56,7 +57,7 @@ Install the [[./wallpaper.png][wallpaper]] file.
 #+begin_src sh :tangle ~/.dotfiles/install :mkdirp yes
   echo Installing wallpaper...
   cp .wallpaper ~/.wallpaper
-  osascript -e "tell application \"System Events\" to tell every desktop to set picture to \"/~/.wallpaper\" as POSIX file"
+  osascript -e "tell application \"System Events\" to tell every desktop to set picture to \"/Users/jjanzen/.wallpaper\" as POSIX file"
 #+end_src
 
 Install any missing fonts by extracting the corresponding =tar.gz= archive.

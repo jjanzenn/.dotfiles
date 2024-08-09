@@ -6,6 +6,11 @@ Disable timeout to speed things up.
   vim.cmd([[set notimeout]])
 #+end_src
 
+Fix unable to open swap file issue.
+#+begin_src lua :tangle ~/.config/nvim/init.lua :mkdirp yes
+  vim.cmd([[set directory=~/.local/share/nvim/swap//"]])
+#+end_src
+
 Install plugins in the [[./lua/plugins.org][plugins.lua]] file.
 #+begin_src lua :tangle ~/.config/nvim/init.lua :mkdirp yes
   require('plugins')

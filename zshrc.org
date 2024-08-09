@@ -9,11 +9,6 @@ Set up completions.
   promptinit
 #+end_src
 
-Enable completions.
-#+begin_src sh :tangle ~/.zshrc :mkdirp yes
-  prompt /opt/homebrew/share/zsh/site-functions
-#+end_src
-
 Set up the history with 1000 entries and ignored duplicate commands.
 #+begin_src sh :tangle ~/.zshrc :mkdirp yes
   HISTFILE=~/.histfile
