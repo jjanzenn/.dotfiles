@@ -1,0 +1,27 @@
+#+title: Neovim Plugins
+* Setup
+Use =lazy= to manage plugins. This block activates =lazy=.
+#+begin_src lua :tangle ~/.config/nvim/lua/plugins.lua :mkdirp yes
+  local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+  if not vim.loop.fs_stat(lazypath) then
+    vim.fn.system({
+      "git",
+      "clone",
+      "--filter=blob:none",
+      "https://github.com/folke/lazy.nvim.git",
+      "--branch=stable",
+      lazypath,
+    })
+  end
+  vim.opt.rtp:prepend(lazypath)
+#+end_src
+
+* Plugins
+I use =lightline= for a nice status bar. The Ayu theme matches my overall colour scheme. =delimitmate= provides better delimiter handling. Trailing whitespace is highlighted with =vim-trailing-whitespace=.
+#+begin_src lua :tangle ~/.config/nvim/lua/plugins.lua :mkdirp yes
+  require('lazy').setup({
+    'itchyny/lightline.vim',
+    'Raimondi/delimitMate',
+    'bronson/vim-trailing-whitespace',
+  })
+#+end_src

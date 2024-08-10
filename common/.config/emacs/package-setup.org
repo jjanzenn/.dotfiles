@@ -1,0 +1,25 @@
+#+title: Emacs Package Setup
+Install =straight= for better package management.
+#+begin_src emacs-lisp :tangle ~/.config/emacs/package-setup.el :mkdirp yes
+  (defvar bootstrap-version)
+  (let ((bootstrap-file
+         (expand-file-name
+          "straight/repos/straight.el/bootstrap.el"
+          (or (bound-and-true-p straight-base-dir)
+              user-emacs-directory)))
+        (bootstrap-version 7))
+    (unless (file-exists-p bootstrap-file)
+      (with-current-buffer
+          (url-retrieve-synchronously
+           "https://raw.githubusercontent.com/radian-software/straight.el/develop/install.el"
+           'silent 'inhibit-cookies)
+        (goto-char (point-max))
+        (eval-print-last-sexp)))
+    (load bootstrap-file nil 'nomessage))
+#+end_src
+
+Install =use-package= for declarative package installation. Make =use-package= default to =ensure t= so that packages are enabled if they are declared.
+#+begin_src emacs-lisp :tangle ~/.config/emacs/package-setup.el :mkdirp yes
+  (straight-use-package 'use-package)
+  (setq straight-use-package-by-default t)
+#+end_src

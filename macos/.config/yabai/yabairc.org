@@ -1,0 +1,63 @@
+#+title: Yabai Configuration
+
+Load script additions automatically.
+#+begin_src sh :tangle ~/.config/yabai/yabairc :mkdirp yes
+  yabai -m signal --add event=dock_did_restart action="sudo /opt/homebrew/bin/yabai --load-sa"
+  sudo /opt/homebrew/bin/yabai --load-sa
+#+end_src
+
+Tile the windows.
+#+begin_src sh :tangle ~/.config/yabai/yabairc :mkdirp yes
+  yabai -m config layout bsp
+#+end_src
+
+Automatically balance window sizes.
+#+begin_src sh :tangle ~/.config/yabai/yabairc :mkdirp yes
+  yabai -m config auto_balance on
+#+end_src
+
+Use 10 pixel gaps.
+#+begin_src sh :tangle ~/.config/yabai/yabairc :mkdirp yes
+  yabai -m config top_padding 10
+  yabai -m config bottom_padding 10
+  yabai -m config left_padding 10
+  yabai -m config right_padding 10
+  yabai -m config window_gap 10
+#+end_src
+
+Remove window shadows unless the window is floating.
+#+begin_src sh :tangle ~/.config/yabai/yabairc :mkdirp yes
+  yabai -m config window_shadow float
+#+end_src
+
+Move mouse to focused window anad focus on the window that the mouse is on.
+#+begin_src sh :tangle ~/.config/yabai/yabairc :mkdirp yes
+  yabai -m config focus_follows_mouse autoraise
+  yabai -m config mouse_follows_focus on
+#+end_src
+
+Control windows if =cmd= is held.
+#+begin_src sh :tangle ~/.config/yabai/yabairc :mkdirp yes
+  yabai -m config mouse_modifier cmd
+#+end_src
+
+Move windows with left click.
+#+begin_src sh :tangle ~/.config/yabai/yabairc :mkdirp yes
+  yabai -m config mouse_action1 move
+#+end_src
+
+Resize windows with right click.
+#+begin_src sh :tangle ~/.config/yabai/yabairc :mkdirp yes
+  yabai -m config mouse_action2 resize
+#+end_src
+
+Update Positions when the window is dropped.
+#+begin_src sh :tangle ~/.config/yabai/yabairc :mkdirp yes
+  yabai -m mouse_drop_action swap
+#+end_src
+
+Don't manage some apps.
+#+begin_src sh :tangle ~/.config/yabai/yabairc :mkdirp yes
+  yabai -m rule --add app="^System Settings$" manage=off
+  yabai -m rule --add app="^Calculator$" manage=off
+#+end_src

@@ -1,9 +1,1 @@
-#+title: Clang-Format Settings
-Use a style similar to Linux kernel style (but with 4-wide indents and spaces over tabs).
-#+begin_src yaml :tangle ~/.clang-format
-BasedOnStyle: LLVM
-IndentWidth: 4
-BreakBeforeBraces: Linux
-AllowShortIfStatementsOnASingleLine: false
-IndentCaseLabels: false
-#+end_src
+../common/clang-format.org

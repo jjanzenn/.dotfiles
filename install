@@ -1,0 +1,67 @@
+#!/bin/sh
+
+echo 'backing up previous log file to ~/.update-home-old.log'
+mv ~/.update-home.log ~/.update-home-old.log &>> /dev/null
+
+if ! test -d ~/.dotfiles; then
+    echo '.dotfiles should be at ~/.dotfiles; reinstalling dotfiles at ~/.dotfiles...'
+    git clone git@git.sr.ht:~jjanzen/.dotfiles ~/.dotfiles >> ~/.update-home.log 2>&1
+fi
+
+echo 'retrieving the latest changes (any unmerged local changes will be stashed)...'
+{
+    git stash
+    git checkout main
+    git pull --rebase
+} >> ~/.update-home.log 2>&1
+
+CWD=$(pwd)
+
+if [ "$(uname)" = 'Darwin' ]; then
+    echo 'detected Mac OS; installing Mac OS configuration...'
+    cd ~/.dotfiles/macos/ || exit
+elif [ "$(uname)" = 'Linux' ] && grep 'ID=gentoo' /etc/os-release; then
+    echo 'detected Gentoo; installing Gentoo configuration...'
+    cd ~/.dotfiles/gentoo/ || exit
+else
+    echo 'unsupported operating system'
+    exit 1
+fi
+
+echo 'installing configuration files...'
+find -- . -type f -name "*.org" | while read -r file; do
+    echo "    installing $file..."
+    emacs --batch "$file" -f package-initialize --eval '(org-babel-tangle)' >> ~/.update-home.log 2>&1
+done
+
+echo 'installing wallpaper...'
+cp .wallpaper ~/.wallpaper
+if [ "$(uname)" = 'Darwin' ]; then
+    osascript -e "tell application \"System Events\" to tell every desktop to set picture to \"/$HOME/.wallpaper\" as POSIX file"
+fi
+
+echo 'installing fonts...'
+fonts_changed=false
+mkdir -p ~/.local/share/fonts
+if ! test -d ~/.local/share/fonts/ComputerModern; then
+    echo '    Computer Modern font missing. Installing...'
+    tar xf .local/share/fonts/ComputerModern.tar.gz -C ~/.local/share/fonts >> ~/.update-home.log 2>&1
+    fonts_changed=true
+fi
+if ! test -f ~/.local/share/fonts/NFM.ttf; then
+    echo '    Nerd Font Mono font missing. Installing...'
+    tar xf .local/share/fonts/NFM.tar.gz -C ~/.local/share/fonts >> ~/.update-home.log 2>&1
+    fonts_changed=true
+fi
+if ! test -d ~/.local/share/fonts/SauceCodePro; then
+    echo '    Source Code Pro Nerd Font missing. Installing...'
+    tar xf .local/share/fonts/SauceCodePro.tar.gz -C ~/.local/share/fonts >> ~/.update-home.log 2>&1
+    fonts_changed=true
+fi
+
+if [ $fonts_changed = true ]; then
+    echo '   updating the font cache...'
+    fc-cache -f >> ~/.update-home.log
+fi
+
+cd "$CWD" || exit
