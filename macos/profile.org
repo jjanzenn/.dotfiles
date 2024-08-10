@@ -1,7 +1,1 @@
-#+TITLE: =.profile= Settings
-* Path
-Add items to the path.
-#+begin_src sh :tangle ~/.profile
-  export PATH="$HOME/.local/share/fzf-zsh-plugin/bin:$HOME/node_modules/.bin:$HOME/gems/bin:$HOME/.local/bin:$HOME/go/bin:$PATH"
-  export PATH="/Users/jjanzen/Library/Python/3.12/bin:/opt/local/libexec/gnubin:/opt/local/bin:/opt/local/sbin:$PATH"
-#+end_src
+../common/profile.org
