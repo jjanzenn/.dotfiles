@@ -56,7 +56,7 @@ Extract each configuration file from its literate =.org= file into its correct l
 Install the [[./wallpaper.png][wallpaper]] file.
 #+begin_src sh :tangle ~/.dotfiles/install :mkdirp yes
   echo Installing wallpaper...
-  cp wallpaper.png ~/.wallpaper
+  cp .wallpaper ~/.wallpaper
 #+end_src
 
 Install any missing fonts by extracting the corresponding =tar.gz= archive.

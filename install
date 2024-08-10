@@ -31,7 +31,7 @@ find -- . -type f -name "*.org" | while read -r file; do
 done
 
 echo Installing wallpaper...
-cp wallpaper.png ~/.wallpaper
+cp .wallpaper ~/.wallpaper
 
 fonts_changed=false
 if ! test -d ~/.local/share/fonts/ComputerModern; then
