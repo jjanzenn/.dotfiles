@@ -140,9 +140,12 @@ Follow links with the return key.
 
 Tangle on save.
 #+begin_src emacs-lisp :tangle ~/.config/emacs/tools.el :mkdirp yes
+  (defun org-babel-tangle-config ()
+    (when (string-suffix-p ".org" (buffer-file-name))
+      (org-babel-tangle)))
   (add-hook 'org-mode-hook
     (lambda ()
-      (add-hook 'after-save-hook #'org-babel-tangle)))
+      (add-hook 'after-save-hook #'org-babel-tangle-config)))
 #+end_src
 
 * Shell

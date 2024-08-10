@@ -6,7 +6,7 @@ Set the default font to the Source Code Pro nerd font variant. I use size 14 fon
   (set-face-attribute 'default t :font "Sauce Code Pro Nerd Font-14")
 #+end_src
 
-Use the Doom Nord light theme.
+Use my custom Emacs theme.
 #+begin_src emacs-lisp :tangle ~/.config/emacs/user-interface.el :mkdirp yes
   (use-package doom-themes
     :straight (doom-themes :type git :host github :repo "doomemacs/themes"

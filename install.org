@@ -39,6 +39,7 @@ If the =update-home= executable has changed, replace it and bootstrap into the n
      cp ~/.dotfiles/install ~/.local/bin/update-home || exit 1
      echo Changes have been made to the install script.
      echo Running the new install script.
+     chmod +x ~/.local/bin/update-home
      ~/.local/bin/update-home
      exit
   fi
@@ -63,17 +64,17 @@ Install any missing fonts by extracting the corresponding =tar.gz= archive.
   fonts_changed=false
   if ! test -d ~/.local/share/fonts/ComputerModern; then
       echo Computer Modern font missing. Installing...
-      tar xf ~/.dotfiles/local/share/fonts/ComputerModern.tar.gz -C ~/.local/share/fonts >> ~/.update-home.log
+      tar xf ~/.dotfiles/.local/share/fonts/ComputerModern.tar.gz -C ~/.local/share/fonts >> ~/.update-home.log
       fonts_changed=true
   fi
   if ! test -f ~/.local/share/fonts/NFM.ttf; then
       echo Nerd Font Mono font missing. Installing...
-      tar xf ~/.dotfiles/local/share/fonts/NFM.tar.gz -C ~/.local/share/fonts >> ~/.update-home.log
+      tar xf ~/.dotfiles/.local/share/fonts/NFM.tar.gz -C ~/.local/share/fonts >> ~/.update-home.log
       fonts_changed=true
   fi
   if ! test -d ~/.local/share/fonts/SauceCodePro; then
       echo Source Code Pro Nerd Font missing. Installing...
-      tar xf ~/.dotfiles/local/share/fonts/SauceCodePro.tar.gz -C ~/.local/share/fonts >> ~/.update-home.log
+      tar xf ~/.dotfiles/.local/share/fonts/SauceCodePro.tar.gz -C ~/.local/share/fonts >> ~/.update-home.log
       fonts_changed=true
   fi
 #+end_src
