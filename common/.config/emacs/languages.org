@@ -81,7 +81,7 @@ Better Lisp editing with =lispy=.
 #+end_src
 
 Better parentheses handling in lisp with =parinfer-rust-mode=.
-#+begin_src emacs-lisp :tangle ~/.config/emacs/tools.el :mkdirp yes
+#+begin_src emacs-lisp :tangle ~/.config/emacs/languages.el :mkdirp yes
   (use-package parinfer-rust-mode
     :hook (emacs-lisp-mode . parinfer-rust-mode)
     :init

@@ -21,5 +21,5 @@ Load [[./tools.org][tools.el]] to add functionality to Emacs.
 
 Load [[./languages.org][languages.el]] to add language and language server protocol support.
 #+begin_src emacs-lisp :tangle ~/.config/emacs/init.el :mkdirp yes
-  (load "~/.config/emacs/tools.el")
+  (load "~/.config/emacs/languages.el")
 #+end_src
