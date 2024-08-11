@@ -1,13 +1,23 @@
 #+title: Emacs User Interface
 
 * Theming
-Set the default font to the Source Code Pro nerd font variant. I use size 14 font.
+Set up Source Code Pro with Nerd Font patches as default font and Computer Modern as a variable pitch font.
 #+begin_src emacs-lisp :tangle ~/.config/emacs/user-interface.el :mkdirp yes
+  (defvar jj/mono-font)
+  (defvar jj/var-font)
+  (pcase system-type
+    (`gnu/linux
+     (when (eq (system-name) "gentoo"))
+     (setq jj/mono-font "SauceCodePro Nerd Font-11")
+     (setq jj/var-font "CMU Serif-14"))
+    (`darwin
+      (setq jj/mono-font "SauceCodePro Nerd Font-14:weight=thin")
+      (setq jj/var-font "CMU Serif-18")))
   (add-to-list 'default-frame-alist
-               '(font . "SauceCodePro Nerd Font-14"))
+               `(font . ,jj/mono-font))
 #+end_src
 
-Use the Doom Nord light theme.
+Use my custom Doom Disco light theme.
 #+begin_src emacs-lisp :tangle ~/.config/emacs/user-interface.el :mkdirp yes
   (use-package doom-themes
     :straight (doom-themes :type git :host github :repo "doomemacs/themes"
@@ -28,7 +38,7 @@ Use =doom-modeline= for a nicer modeline.
     :init (doom-modeline-mode 1))
 #+end_src
 
-Remove the titlebar.
+Remove the title bar.
 #+begin_src emacs-lisp :tangle ~/.config/emacs/user-interface.el :mkdirp yes
   (add-to-list 'default-frame-alist '(undecorated . t))
 #+end_src

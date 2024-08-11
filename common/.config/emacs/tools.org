@@ -98,8 +98,8 @@ Set up fonts. Don't use =monospace= by default. Do use it where necessary though
 #+begin_src emacs-lisp :tangle ~/.config/emacs/tools.el :mkdirp yes
   (add-hook 'org-mode-hook 'variable-pitch-mode)
   (custom-set-faces
-   '(variable-pitch ((t :font "CMU Serif-18:weight=thin")))
-   '(fixed-pitch ((t :font "SauceCodePro Nerd Font-14:weight=regular")))
+   `(variable-pitch ((t :font ,jj/var-font)))
+   `(fixed-pitch ((t :font ,jj/mono-font)))
    '(org-block ((t (:inherit fixed-pitch))))
    '(org-code ((t (:inherit (shadow fixed-pitch)))))
    '(org-document-info-keyword ((t (:inherit (shadow fixed-pitch)))))

@@ -11,7 +11,7 @@ Set up completions.
 
 Enable Gentoo completions on my Gentoo system.
 #+begin_src sh :tangle ~/.zshrc :mkdirp yes
-  if [ "$(uname)" = 'Linux' ] && grep 'ID=gentoo' /etc/os-release; then
+  if [ "$(uname)" = 'Linux' ] && grep -q 'ID=gentoo' /etc/os-release; then
     prompt gentoo
   fi
 #+end_src
