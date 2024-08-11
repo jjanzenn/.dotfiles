@@ -20,7 +20,7 @@ CWD=$(pwd)
 if [ "$(uname)" = 'Darwin' ]; then
     echo 'detected Mac OS; installing Mac OS configuration...'
     cd ~/.dotfiles/macos/ || exit
-elif [ "$(uname)" = 'Linux' ] && grep 'ID=gentoo' /etc/os-release; then
+elif [ "$(uname)" = 'Linux' ] && grep -q 'ID=gentoo' /etc/os-release; then
     echo 'detected Gentoo; installing Gentoo configuration...'
     cd ~/.dotfiles/gentoo/ || exit
 else
