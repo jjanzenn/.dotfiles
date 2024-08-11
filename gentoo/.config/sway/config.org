@@ -62,7 +62,7 @@ Launch Emacs daemon.
 * Display
 I use a vertical monitor on the left and horizontal monitor on the right.
 #+begin_src conf :tangle ~/.config/sway/config :mkdirp yes
-  output HDMI-A-1 resolution 1920x1080 position 1080 140
+  output HDMI-A-1 resolution 1920x1080 position 1080 290
   output HDMI-A-2 resolution 1920x1080 transform 90 position 0 0
 #+end_src
 
