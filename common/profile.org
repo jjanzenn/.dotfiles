@@ -8,7 +8,7 @@ export PATH="$HOME/.local/share/fzf-zsh-plugin/bin:$HOME/node_modules/.bin:$HOME
 * SSH Agent
 Run =ssh-agent= if =ssh-agent= is not already running on my Gentoo system. Ensure that the authorization socket is available in the shell.
 #+begin_src sh :tangle ~/.profile
-  if [ "$(uname)" = 'Linux' ] && grep 'ID=gentoo' /etc/os-release; then
+  if [ "$(uname)" = 'Linux' ] && grep -q 'ID=gentoo' /etc/os-release; then
       if [ ! -S ~/.ssh/ssh_auth_sock ]; then
           eval `ssh-agent` > /dev/null
           ln -sf "$SSH_AUTH_SOCK" ~/.ssh/ssh_auth_sock
