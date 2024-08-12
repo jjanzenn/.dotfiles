@@ -148,6 +148,14 @@ Tangle on save.
       (add-hook 'after-save-hook #'org-babel-tangle-config)))
 #+end_src
 
+Enable Org Crypt.
+#+begin_src emacs-lisp :tangle ~/.config/emacs/tools.el :mkdirp yes
+  (org-crypt-use-before-save-magic)
+  (setq org-tags-exclude-from-inheritance '("crypt"))
+  (setq org-crypt-key nil)
+  (setq auto-save-default nil)
+#+end_src
+
 * Shell
 Use =eshell= as an integrated shell.
 #+begin_src emacs-lisp :tangle ~/.config/emacs/tools.el :mkdirp yes
