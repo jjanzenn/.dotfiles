@@ -81,7 +81,7 @@ Define network component to show a Wi-Fi icon if connected and a warning signal 
       "format-ethernet": "",
       "format-linked": "",
       "format-disconnected": "⚠",
-      "format-alt": "{ifname}: {ipaddr}/{cidr}"
+      "on-click": "kcmshell5 kcm_networkmanagement"
   },
 #+end_src
 
