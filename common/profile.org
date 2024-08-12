@@ -1,11 +1,9 @@
 #+TITLE: =.profile= Settings
-* Path
 Add items to the path.
 #+begin_src sh :tangle ~/.profile
-export PATH="$HOME/.local/share/fzf-zsh-plugin/bin:$HOME/node_modules/.bin:$HOME/.emacs.d/bin:$HOME/bin:$HOME/gems/bin:$HOME/.local/bin:$HOME/go/bin:$PATH"
+export PATH="$HOME/.local/share/fzf-zsh-plugin/bin:$HOME/node_modules/.bin:$HOME/.emacs.d/bin:$HOME/bin:$HOME/gems/bin:$HOME/.local/bin:$HOME/go/bin:/usr/local/bin:$PATH"
 #+end_src
 
-* SSH Agent
 Run =ssh-agent= if =ssh-agent= is not already running on my Gentoo system. Ensure that the authorization socket is available in the shell.
 #+begin_src sh :tangle ~/.profile
   if [ "$(uname)" = 'Linux' ] && grep -q 'ID=gentoo' /etc/os-release; then
@@ -14,5 +12,12 @@ Run =ssh-agent= if =ssh-agent= is not already running on my Gentoo system. Ensur
           ln -sf "$SSH_AUTH_SOCK" ~/.ssh/ssh_auth_sock
       fi
       export SSH_AUTH_SOCK=~/.ssh/ssh_auth_sock
+  fi
+#+end_src
+
+Set =GPG_TTY= on Mac OS.
+#+begin_src sh :tangle ~/.profile
+  if [ "$(uname)" = 'Darwin' ] && ps -e | grep -q 'emacs --daemon'; then
+      export GPG_TTY=$(tty)
   fi
 #+end_src
