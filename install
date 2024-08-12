@@ -35,7 +35,7 @@ find -L -- . -type f -name "*\.org" | while read -r file; do
 done
 find -L -- . -type f -name "*\.org\.gpg" | while read -r file; do
     echo "    installing $file..."
-    gpg -d "$file" 1> tmp.org 2>> ~/.update-home.log
+    gpg -d --batch "$file" 1> tmp.org 2>> ~/.update-home.log
     emacs --batch tmp.org -f package-initialize --eval '(org-babel-tangle)' >> ~/.update-home.log 2>&1
     rm tmp.org
 done
