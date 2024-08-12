@@ -5,7 +5,7 @@
   :PROPERTIES:
   :ID: elfeed
   :END:
-  ,** Journalism
+  ,** Journalism :journalism:
   ,*** [[https://waxy.org/feed/][Waxy.org]]
   ,*** [[https://pluralistic.net/feed/][Cory Doctorow]] :technology:software:fiction:
   ,** Computer Science :cs:
@@ -26,6 +26,7 @@
   ,** Comics :comic:
   ,*** [[https://xkcd.com/atom.xml][XKCD]]
   ,** People I know
+  ,*** [[https://www.weavingwatersexpedition.com/news?format=rss][Weaving Waters Expedition]] :journalism:
   ,*** [[https://pinkish.bearblog.dev/feed/][Pinkish]] :software:
   ,*** [[https://jjanzen.ca/rss.xml][Me]] :software:review:
   ,** Internet Infrastructure :internet:software:
