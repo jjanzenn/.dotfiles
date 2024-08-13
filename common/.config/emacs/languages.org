@@ -14,6 +14,13 @@ Run =eglot= on C and C++ files.
   (add-hook 'cc-mode-hook 'jj/eglot-setup)
 #+end_src
 
+Run =eglot= on CMake files.
+#+begin_src emacs-lisp :tangle ~/.config/emacs/languages.el :mkdirp yes
+  (use-package cmake-mode
+    :init
+    (add-hook 'cmake-mode-hook 'jj/eglot-setup))
+#+end_src
+
 * Web
 Run =eglot= on HTML files.
 #+begin_src emacs-lisp :tangle ~/.config/emacs/languages.el :mkdirp yes
