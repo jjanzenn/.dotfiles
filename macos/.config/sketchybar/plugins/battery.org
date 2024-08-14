@@ -1,0 +1,46 @@
+#+title: SketchyBar Battery Plugin
+
+Get the percentage and charging status.
+#+begin_src sh :tangle ~/.config/sketchybar/plugins/battery.sh :mkdirp yes :tangle-mode o755
+  #!/bin/sh
+  PERCENTAGE="$(pmset -g batt | grep -Eo "\d+%" | cut -d% -f1)"
+  CHARGING="$(pmset -g batt | grep 'AC Power')"
+#+end_src
+
+Exit if no percentage was reported.
+#+begin_src sh :tangle ~/.config/sketchybar/plugins/battery.sh :mkdirp yes :tangle-mode o755
+  if [ "$PERCENTAGE" = "" ]; then
+    exit 0
+  fi
+#+end_src
+
+Choose the icon based on the percentage.
+#+begin_src sh :tangle ~/.config/sketchybar/plugins/battery.sh :mkdirp yes :tangle-mode o755
+  if [[ "$CHARGING" != "" ]]; then
+      case "${PERCENTAGE}" in
+        9[0-9]|100) ICON="󰂅"
+        ;;
+        [6-8][0-9]) ICON="󰂉"
+        ;;
+        [3-5][0-9]) ICON="󰂇"
+        ;;
+        [1-2][0-9]) ICON="󰢜"
+        ;;
+        ,*) ICON="󰁺"
+      esac
+  else
+      case "${PERCENTAGE}" in
+        9[0-9]|100) ICON="󰁹"
+        ;;
+        [6-8][0-9]) ICON="󰁿"
+        ;;
+        [3-5][0-9]) ICON="󰁼"
+        ;;
+        [1-2][0-9]) ICON="󰁺"
+        ;;
+        ,*) ICON=""
+      esac
+  fi
+
+  sketchybar --set "$NAME" icon="$ICON" label="${PERCENTAGE}%"
+#+end_src
