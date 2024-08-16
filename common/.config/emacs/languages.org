@@ -21,6 +21,12 @@ Run =eglot= on CMake files.
     (add-hook 'cmake-mode-hook 'jj/eglot-setup))
 #+end_src
 
+Turn off C mode in =lex= and =yacc= files.
+#+begin_src emacs-lisp :tangle ~/.config/emacs/languages.el :mkdirp yes
+  (add-to-list 'auto-mode-alist '("\\.l$" . prog-mode))
+  (add-to-list 'auto-mode-alist '("\\.y$" . prog-mode))
+#+end_src
+
 * Web
 Run =eglot= on HTML files.
 #+begin_src emacs-lisp :tangle ~/.config/emacs/languages.el :mkdirp yes
