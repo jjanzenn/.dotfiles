@@ -111,3 +111,20 @@ Define the prompt as follows:
 #+begin_src sh :tangle ~/.zshrc :mkdirp yes
   PS1='%(?..%B%F{red}[%?%\]%f%b )%F{green}%20<...<%~%<<%f$vcs_info_msg_0_$(parse_git_dirty) $ '
 #+end_src
+
+Enable VPN shortcut.
+#+begin_src sh :tangle ~/.zshrc :mkdirp yes
+  if [ "$(uname)" = 'Linux' ] && grep -q 'ID=gentoo' /etc/os-release; then
+      vpn () {
+          if test -f /tmp/vpn.lock; then
+              echo turning off vpn...
+              doas /usr/bin/wg-quick down ca-tor-wg-101
+              rm /tmp/vpn.lock
+          else
+              echo turning on vpn...
+              doas /usr/bin/wg-quick up ca-tor-wg-101
+              touch /tmp/vpn.lock
+          fi
+      }
+  fi
+#+end_src
