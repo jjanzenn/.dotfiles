@@ -17,7 +17,7 @@ Add keybinding for opening an app launcher.
 
 Add keybinding for reloading the configuration.
 #+begin_src conf :tangle ~/.config/skhd/skhdrc :mkdirp yes
-  cmd + shift - c : yabai --restart-service && skhd --restart-service
+  cmd + shift - c : yabai --restart-service && skhd --restart-service && brew services restart sketchybar
 #+end_src
 
 Change focus keybindings.
