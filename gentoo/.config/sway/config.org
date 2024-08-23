@@ -64,6 +64,11 @@ Launch Proton Mail Bridge at login.
   exec proton-mail-bridge --noninteractive
 #+end_src
 
+Launch Syncthing at login.
+#+begin_src conf :tangle ~/.config/sway/config :mkdirp yes
+  exec syncthing
+#+end_src
+
 * Display
 I use a vertical monitor on the left and horizontal monitor on the right.
 #+begin_src conf :tangle ~/.config/sway/config :mkdirp yes
