@@ -59,6 +59,11 @@ Launch Emacs daemon.
   exec emacs --daemon
 #+end_src
 
+Launch Proton Mail Bridge at login.
+#+begin_src conf :tangle ~/.config/sway/config :mkdirp yes
+  exec proton-mail-bridge --noninteractive
+#+end_src
+
 * Display
 I use a vertical monitor on the left and horizontal monitor on the right.
 #+begin_src conf :tangle ~/.config/sway/config :mkdirp yes
