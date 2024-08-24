@@ -36,7 +36,7 @@ Use =mako= as notification daemon.
 
 Launch PipeWire without =systemd=.
 #+begin_src conf :tangle ~/.config/sway/config :mkdirp yes
-  exec gentoo-pipewire-launcher &
+  exec gentoo-pipewire-launcher restart &
 #+end_src
 
 Launch =blueman-applet= as Bluetooth daemon.

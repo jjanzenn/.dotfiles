@@ -118,11 +118,11 @@ Enable VPN shortcut.
       vpn () {
           if test -f /tmp/vpn.lock; then
               echo turning off vpn...
-              doas /usr/bin/wg-quick down ca-tor-wg-101
+              doas /usr/bin/wg-quick down gentoo-CA-340
               rm /tmp/vpn.lock
           else
               echo turning on vpn...
-              doas /usr/bin/wg-quick up ca-tor-wg-101
+              doas /usr/bin/wg-quick up gentoo-CA-340
               touch /tmp/vpn.lock
           fi
       }
