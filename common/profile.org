@@ -21,3 +21,10 @@ Set =GPG_TTY= on Mac OS.
       export GPG_TTY=$(tty)
   fi
 #+end_src
+
+Fix =pipx= path on Mac OS.
+#+begin_src sh :tangle ~/.profile
+  if [ "$(uname)" = 'Darwin' ]; then
+      PIPX_HOME="$HOME/.local/pipx"
+  fi
+#+end_src
