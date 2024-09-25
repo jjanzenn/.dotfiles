@@ -48,6 +48,11 @@ Install Magit for Git integration.
   (use-package magit)
 #+end_src
 
+* Remote Editing
+#+begin_src emacs-lisp :tangle ~/.config/emacs/tools.el :mkdirp yes
+(setq tramp-default-method "ssh")
+#+end_src
+
 * Document Viewing
 Replace =DocView= with a better document viewer from =pdf-tools=.
 #+begin_src emacs-lisp :tangle ~/.config/emacs/tools.el :mkdirp yes
