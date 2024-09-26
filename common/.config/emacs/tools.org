@@ -374,8 +374,18 @@ Use the Deft package to manage notes.
           deft-default-extension "org"))
 #+end_src
 
-* Biblio
-Use Biblio to manage citations.
+* Reference Management
+Use Biblio and Citar to manage citations.
 #+begin_src emacs-lisp :tangle ~/.config/emacs/tools.el :mkdirp yes
   (use-package biblio)
+  (use-package citar
+    :custom
+    (citar-bibliography '("~/bib/references.bib"))
+    :hook
+    (LaTeX-mode . citar-capf-setup)
+    (org-mode . citar-capf-setup))
+  (use-package citar-embark
+    :after citar embark
+    :no-require
+    :config (citar-embark-mode))
 #+end_src

@@ -16,6 +16,7 @@
   ,*** [[https://www.lilysthings.org/blog/rss.xml][The Cool Blog]]
   ,** Software :software:
   ,*** [[https://ersei.net/en/blog.atom][Ersei]]
+  ,*** [[https://lilysthings.org/blog/rss.xml][Lily's Things]]
   ,*** [[https://ntietz.com/atom.xml][Technically a Blog]]
   ,*** [[https://alexwlchan.net/atom.xml][Alex Chan]]
   ,*** [[https://eaton-works.com/feed.atom][Eaton Works]] :hacking:
