@@ -20,9 +20,9 @@ CWD=$(pwd)
 if [ "$(uname)" = 'Darwin' ]; then
     echo 'detected Mac OS; installing Mac OS configuration...'
     cd ~/.dotfiles/macos/ || exit
-elif [ "$(uname)" = 'Linux' ] && grep -q 'ID=gentoo' /etc/os-release; then
-    echo 'detected Gentoo; installing Gentoo configuration...'
-    cd ~/.dotfiles/gentoo/ || exit
+elif [ "$(uname)" = 'Linux' ] && grep -q 'ID=nixos' /etc/os-release; then
+    echo 'detected NixOS; installing NixOS configuration...'
+    cd ~/.dotfiles/nixos/ || exit
 else
     echo 'unsupported operating system'
     exit 1
@@ -46,28 +46,35 @@ if [ "$(uname)" = 'Darwin' ]; then
     osascript -e "tell application \"System Events\" to tell every desktop to set picture to \"/$HOME/.wallpaper\" as POSIX file"
 fi
 
-echo 'installing fonts...'
-fonts_changed=false
-mkdir -p ~/.local/share/fonts
-if ! test -d ~/.local/share/fonts/ComputerModern; then
-    echo '    Computer Modern font missing. Installing...'
-    tar xf .local/share/fonts/ComputerModern.tar.gz -C ~/.local/share/fonts >> ~/.update-home.log 2>&1
-    fonts_changed=true
-fi
-if ! test -f ~/.local/share/fonts/NFM.ttf; then
-    echo '    Nerd Font Mono font missing. Installing...'
-    tar xf .local/share/fonts/NFM.tar.gz -C ~/.local/share/fonts >> ~/.update-home.log 2>&1
-    fonts_changed=true
-fi
-if ! test -d ~/.local/share/fonts/SauceCodePro; then
-    echo '    Source Code Pro Nerd Font missing. Installing...'
-    tar xf .local/share/fonts/SauceCodePro.tar.gz -C ~/.local/share/fonts >> ~/.update-home.log 2>&1
-    fonts_changed=true
+if [ "$(uname)" = 'Linux' ] && grep -q 'ID=nixos' /etc/os-release; then
+    echo 'installing NixOS flake'
+    sudo nixos-rebuild switch --flake './flake#nixos'
 fi
 
-if [ $fonts_changed = true ]; then
-    echo '   updating the font cache...'
-    fc-cache -f >> ~/.update-home.log
+fonts_changed=false
+if [ "$(uname)" = 'Darwin' ]; then
+    echo 'installing fonts...'
+    mkdir -p ~/.local/share/fonts
+    if ! test -d ~/.local/share/fonts/ComputerModern; then
+        echo '    Computer Modern font missing. Installing...'
+        tar xf .local/share/fonts/ComputerModern.tar.gz -C ~/.local/share/fonts >> ~/.update-home.log 2>&1
+        fonts_changed=true
+    fi
+    if ! test -f ~/.local/share/fonts/NFM.ttf; then
+        echo '    Nerd Font Mono font missing. Installing...'
+        tar xf .local/share/fonts/NFM.tar.gz -C ~/.local/share/fonts >> ~/.update-home.log 2>&1
+        fonts_changed=true
+    fi
+    if ! test -d ~/.local/share/fonts/SauceCodePro; then
+        echo '    Source Code Pro Nerd Font missing. Installing...'
+        tar xf .local/share/fonts/SauceCodePro.tar.gz -C ~/.local/share/fonts >> ~/.update-home.log 2>&1
+        fonts_changed=true
+    fi
+    
+    if [ $fonts_changed = true ]; then
+        echo '   updating the font cache...'
+        fc-cache -f >> ~/.update-home.log
+    fi
 fi
 
 cd "$CWD" || exit
