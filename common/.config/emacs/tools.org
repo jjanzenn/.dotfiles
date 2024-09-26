@@ -373,3 +373,9 @@ Use the Deft package to manage notes.
     (setq deft-directory "~/notes/"
           deft-default-extension "org"))
 #+end_src
+
+* Biblio
+Use Biblio to manage citations.
+#+begin_src emacs-lisp :tangle ~/.config/emacs/tools.el :mkdirp yes
+  (use-package biblio)
+#+end_src
