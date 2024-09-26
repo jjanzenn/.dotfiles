@@ -48,31 +48,33 @@ fi
 
 if [ "$(uname)" = 'Linux' ] && grep -q 'ID=nixos' /etc/os-release; then
     echo 'installing NixOS flake'
-    sudo nixos-rebuild switch --flake './flake#nixos'
+    sudo nixos-rebuild switch --flake './.flake#nixos'
 fi
 
-fonts_changed=false
-echo 'installing fonts...'
-mkdir -p ~/.local/share/fonts
-if ! test -d ~/.local/share/fonts/ComputerModern; then
-    echo '    Computer Modern font missing. Installing...'
-    tar xf .local/share/fonts/ComputerModern.tar.gz -C ~/.local/share/fonts >> ~/.update-home.log 2>&1
-    fonts_changed=true
-fi
-if ! test -f ~/.local/share/fonts/NFM.ttf; then
-    echo '    Nerd Font Mono font missing. Installing...'
-    tar xf .local/share/fonts/NFM.tar.gz -C ~/.local/share/fonts >> ~/.update-home.log 2>&1
-    fonts_changed=true
-fi
-if ! test -d ~/.local/share/fonts/SauceCodePro; then
-    echo '    Source Code Pro Nerd Font missing. Installing...'
-    tar xf .local/share/fonts/SauceCodePro.tar.gz -C ~/.local/share/fonts >> ~/.update-home.log 2>&1
-    fonts_changed=true
-fi
+if [ "$(uname)" = 'Darwin' ]; then
+    fonts_changed=false
+    echo 'installing fonts...'
+    mkdir -p ~/.local/share/fonts
+    if ! test -d ~/.local/share/fonts/ComputerModern; then
+        echo '    Computer Modern font missing. Installing...'
+        tar xf .local/share/fonts/ComputerModern.tar.gz -C ~/.local/share/fonts >> ~/.update-home.log 2>&1
+        fonts_changed=true
+    fi
+    if ! test -f ~/.local/share/fonts/NFM.ttf; then
+        echo '    Nerd Font Mono font missing. Installing...'
+        tar xf .local/share/fonts/NFM.tar.gz -C ~/.local/share/fonts >> ~/.update-home.log 2>&1
+        fonts_changed=true
+    fi
+    if ! test -d ~/.local/share/fonts/SauceCodePro; then
+        echo '    Source Code Pro Nerd Font missing. Installing...'
+        tar xf .local/share/fonts/SauceCodePro.tar.gz -C ~/.local/share/fonts >> ~/.update-home.log 2>&1
+        fonts_changed=true
+    fi
 
-if [ $fonts_changed = true ]; then
-    echo '   updating the font cache...'
-    fc-cache -f >> ~/.update-home.log
+    if [ $fonts_changed = true ]; then
+        echo '   updating the font cache...'
+        fc-cache -f >> ~/.update-home.log
+    fi
 fi
 
 cd "$CWD" || exit

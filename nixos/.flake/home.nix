@@ -24,6 +24,7 @@
     mpdscribble
     pavucontrol
     mpc-cli
+    cm_unicode
   ];
 
   programs.ssh = {
