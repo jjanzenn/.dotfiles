@@ -52,29 +52,27 @@ if [ "$(uname)" = 'Linux' ] && grep -q 'ID=nixos' /etc/os-release; then
 fi
 
 fonts_changed=false
-if [ "$(uname)" = 'Darwin' ]; then
-    echo 'installing fonts...'
-    mkdir -p ~/.local/share/fonts
-    if ! test -d ~/.local/share/fonts/ComputerModern; then
-        echo '    Computer Modern font missing. Installing...'
-        tar xf .local/share/fonts/ComputerModern.tar.gz -C ~/.local/share/fonts >> ~/.update-home.log 2>&1
-        fonts_changed=true
-    fi
-    if ! test -f ~/.local/share/fonts/NFM.ttf; then
-        echo '    Nerd Font Mono font missing. Installing...'
-        tar xf .local/share/fonts/NFM.tar.gz -C ~/.local/share/fonts >> ~/.update-home.log 2>&1
-        fonts_changed=true
-    fi
-    if ! test -d ~/.local/share/fonts/SauceCodePro; then
-        echo '    Source Code Pro Nerd Font missing. Installing...'
-        tar xf .local/share/fonts/SauceCodePro.tar.gz -C ~/.local/share/fonts >> ~/.update-home.log 2>&1
-        fonts_changed=true
-    fi
-    
-    if [ $fonts_changed = true ]; then
-        echo '   updating the font cache...'
-        fc-cache -f >> ~/.update-home.log
-    fi
+echo 'installing fonts...'
+mkdir -p ~/.local/share/fonts
+if ! test -d ~/.local/share/fonts/ComputerModern; then
+    echo '    Computer Modern font missing. Installing...'
+    tar xf .local/share/fonts/ComputerModern.tar.gz -C ~/.local/share/fonts >> ~/.update-home.log 2>&1
+    fonts_changed=true
+fi
+if ! test -f ~/.local/share/fonts/NFM.ttf; then
+    echo '    Nerd Font Mono font missing. Installing...'
+    tar xf .local/share/fonts/NFM.tar.gz -C ~/.local/share/fonts >> ~/.update-home.log 2>&1
+    fonts_changed=true
+fi
+if ! test -d ~/.local/share/fonts/SauceCodePro; then
+    echo '    Source Code Pro Nerd Font missing. Installing...'
+    tar xf .local/share/fonts/SauceCodePro.tar.gz -C ~/.local/share/fonts >> ~/.update-home.log 2>&1
+    fonts_changed=true
+fi
+
+if [ $fonts_changed = true ]; then
+    echo '   updating the font cache...'
+    fc-cache -f >> ~/.update-home.log
 fi
 
 cd "$CWD" || exit
