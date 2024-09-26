@@ -11,6 +11,8 @@
 
   fonts.fontconfig.enable = true;
   home.packages = with pkgs; [
+    python3
+    texliveFull
     obs-studio
     prismlauncher
     discord
