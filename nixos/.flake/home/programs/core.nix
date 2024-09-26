@@ -14,8 +14,7 @@
 
   home.packages = with pkgs; [
     discord # not FOSS
-    emacs # TODO
-    fuzzel # TODO
+    fuzzel
     htop
     hyfetch
     hyprshot
@@ -25,7 +24,7 @@
     pavucontrol
     prismlauncher # minecraft
     python3
-    swaybg # TODO
+    swaybg
     texliveFull
   ];
 }

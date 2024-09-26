@@ -12,8 +12,6 @@
         "nm-applet &"
         "blueman-applet &"
         "waybar"
-        "mako" # TODO: remove this
-        "emacs --daemon" # TODO: remove this
         "swaybg -m fill -i ~/.wallpaper"
         "mpdscribble"
       ];
