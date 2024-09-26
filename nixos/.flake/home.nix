@@ -11,6 +11,8 @@
 
   fonts.fontconfig.enable = true;
   home.packages = with pkgs; [
+    obs-studio
+    prismlauncher
     discord
     hyprshot
     (pkgs.nerdfonts.override { fonts = [ "SourceCodePro" ]; })
