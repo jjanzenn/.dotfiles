@@ -21,7 +21,7 @@
 	          home-manager.backupFileExtension = "bak";
 	          home-manager.useGlobalPkgs = true;
 	          home-manager.useUserPackages = true;
-	          home-manager.users.jane = import ./home.nix;
+	          home-manager.users.jane = import ./home/core.nix;
 	        }
       ];
     };
