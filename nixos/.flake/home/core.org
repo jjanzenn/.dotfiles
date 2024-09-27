@@ -1,0 +1,22 @@
+#+title: Core Home Configuration
+
+Set up home manager for my user account and import submodules.
+#+begin_src nix :tangle ~/.flake/home/core.nix :mkdirp yes
+  { config, pkgs, ... }:
+
+  {
+    imports = [
+      ./cursor.nix
+      ./fonts.nix
+      ./hyprland.nix
+      ./programs/core.nix
+      ./services/core.nix
+    ];
+
+    home.username = "jane";
+    home.homeDirectory = "/home/jane";
+
+    home.stateVersion = "24.05";
+    programs.home-manager.enable = true;
+  }
+#+end_src

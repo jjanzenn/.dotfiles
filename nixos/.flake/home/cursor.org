@@ -1,3 +1,7 @@
+#+title: Cursor Configuration
+
+Use =vanilla-dmz= cursor size 16.
+#+begin_src nix :tangle ~/.flake/home/cursor.nix :mkdirp yes
 { config, pkgs, ... }:
 
 {
@@ -6,3 +10,4 @@
     "Xcursor.size" = 16;
   };
 }
+#+end_src

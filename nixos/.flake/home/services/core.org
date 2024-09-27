@@ -1,3 +1,7 @@
+#+title: Core Service Configuration
+
+Import service configurations.
+#+begin_src nix :tangle ~/.flake/home/services/core.nix :mkdirp yes
 { config, pkgs, ... }:
 
 {
@@ -12,3 +16,4 @@
     mpdscribble
   ];
 }
+#+end_src

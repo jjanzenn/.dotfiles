@@ -1,0 +1,103 @@
+#+title: Desktop System Configuration
+
+Open the desktop configuration.
+#+begin_src nix :tangle ~/.flake/system/desktop.nix :mkdirp yes
+  { config, lib, pkgs, ... }:
+
+  {
+#+end_src
+
+Allow unfree packages on this system.
+#+begin_src nix :tangle ~/.flake/system/desktop.nix :mkdirp yes
+    nixpkgs.config.allowUnfree = true;
+#+end_src
+
+Install necessary packages for the desktop.
+#+begin_src nix :tangle ~/.flake/system/desktop.nix :mkdirp yes
+    environment.systemPackages = with pkgs; [
+      dolphin
+      firefox
+      git
+      greetd.tuigreet
+      kitty
+      neovim
+      wget
+    ];
+#+end_src
+
+Use Neovim as my default editor.
+#+begin_src nix :tangle ~/.flake/system/desktop.nix :mkdirp yes
+    environment.variables.EDITOR = "nvim";
+#+end_src
+
+Enable GPG agent globally.
+#+begin_src nix :tangle ~/.flake/system/desktop.nix :mkdirp yes
+    programs.gnupg.agent = {
+      enable = true;
+      enableSSHSupport = true;
+    };
+#+end_src
+
+Install =zsh= and set up completions.
+#+begin_src nix :tangle ~/.flake/system/desktop.nix :mkdirp yes
+    programs.zsh.enable = true;
+    environment.pathsToLink = [ "/share/zsh" ];
+#+end_src
+
+Use the =us= keyboard layout.
+#+begin_src nix :tangle ~/.flake/system/desktop.nix :mkdirp yes
+    services.xserver.xkb.layout = "us";
+#+end_src
+
+Install Hyprland as a window manager.
+#+begin_src nix :tangle ~/.flake/system/desktop.nix :mkdirp yes
+    services.xserver.enable = true;
+    xdg.portal.enable = true;
+    programs.hyprland.enable = true;
+    environment.sessionVariables.NIXOS_OZONE_WL = "1";
+#+end_src
+
+Enable =pam= support for Hyprlock.
+#+begin_src nix :tangle ~/.flake/system/desktop.nix :mkdirp yes
+    security.pam.services.hyprlock = {};
+#+end_src
+
+Enable =greetd= with =tuigreet= as my login manager.
+#+begin_src nix :tangle ~/.flake/system/desktop.nix :mkdirp yes
+    services.greetd = {
+      enable = true;
+      settings = {
+        default_session = {
+          command = "${pkgs.greetd.tuigreet}/bin/tuigreet --time --remember --remember-session --sessions ${pkgs.hyprland}/share/wayland-sessions --cmd \"dbus-run-session Hyprland\"";
+  	      user = "greeter";
+        };
+      };
+    };
+    systemd.services.greetd.serviceConfig = {
+      Type = "idle";
+      StandardInput = "tty";
+      StanardOutput = "tty";
+      StandardError = "journal";
+      TTYReset = true;
+      TTYVHangup = true;
+      TTYVTDisallocate = true;
+    };
+#+end_src
+
+Enable PipeWire.
+#+begin_src nix :tangle ~/.flake/system/desktop.nix :mkdirp yes
+    services.pipewire = {
+      enable = true;
+      pulse.enable = true;
+    };
+#+end_src
+
+Enable Flatpaks.
+#+begin_src nix :tangle ~/.flake/system/desktop.nix :mkdirp yes
+    services.flatpak.enable = true;
+#+end_src
+
+Close the desktop configuration.
+#+begin_src nix :tangle ~/.flake/system/desktop.nix :mkdirp yes
+  }
+#+end_src

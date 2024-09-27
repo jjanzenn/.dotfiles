@@ -1,0 +1,11 @@
+#+title: Locale Setup
+
+My timezone is Winnipeg, and I use Canadian English.
+#+begin_src nix :tangle ~/.flake/system/locale.nix :mkdirp yes
+  { config, lib, pkgs, ... }:
+
+  {
+    time.timeZone = "America/Winnipeg";
+    i18n.defaultLocale = "en_CA.UTF-8";
+  }
+#+end_src
