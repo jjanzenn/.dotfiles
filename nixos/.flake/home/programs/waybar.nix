@@ -31,7 +31,6 @@
         };
         clock = {
           format = "{:%H:%M\t%Y-%m-%d}";
-          tooltip-format = "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>";
         };
         cpu = {
           format = "{usage}% ";

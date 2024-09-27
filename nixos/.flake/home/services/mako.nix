@@ -3,6 +3,6 @@
 {
   services.mako = {
     enable = true;
-    backgroundColor = "#ece0c9ff";
+    backgroundColor = "#191916ff";
   };
 }

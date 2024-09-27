@@ -15,10 +15,12 @@
   home.packages = with pkgs; [
     discord # not FOSS
     fuzzel
+    gcc
     htop
     hyfetch
     hyprshot
     mpc-cli
+    mpv
     networkmanagerapplet
     obs-studio
     pavucontrol

@@ -102,7 +102,8 @@
         "$mainMod, S, exec, hyprshot -m window --clipboard-only"
         "$mainMod SHIFT, S, exec, hyprshot -m region --clipboard-only"
         "$mainMod SHIFT CONTROL, S, exec, hyprshot -m output --clipboard-only"
-        "$mainMod, M, exit"
+        "$mainMod, M, exec, ~/.local/bin/poweroptions.sh"
+        "$mainMod, F, fullscreen"
       ];
       bindel = [
         ",XF86AudioRaiseVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+"

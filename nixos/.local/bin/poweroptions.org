@@ -1,0 +1,24 @@
+#+title: Power Options Script
+
+Use =fuzzel= to open a menu to power off, reboot, or log out.
+#+begin_src sh :tangle ~/.local/bin/poweroptions.sh :mkdirp yes :tangle-mode o755
+  #!/bin/sh
+
+  getoption () {
+      fuzzel --dmenu -l 3 -x 1 -r 10 << EOF
+          󰐥 power off
+          󰜉 restart
+          󰍃 logout
+  EOF
+  }
+
+  option=$(getoption | xargs)
+  case $option in
+      '󰐥 power off')
+          systemctl poweroff;;
+      '󰜉 restart')
+          systemctl reboot;;
+      '󰍃 logout')
+          hyprctl dispatch exit;;
+  esac
+#+end_src
