@@ -20,6 +20,7 @@ This is the core of my program configuration. This file installs programs that d
       discord # not FOSS
       eza
       fuzzel
+      ispell
       gcc
       htop
       hyfetch
