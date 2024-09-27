@@ -50,7 +50,7 @@ if [ "$(uname)" = 'Linux' ] && grep -q 'ID=nixos' /etc/os-release; then
     echo 'installing NixOS flake'
     cp ./.flake/system/hardware-configuration.nix ~/.flake
     sudo cp ./.flake/flake.lock ~/.flake
-    sudo nixos-rebuild switch --flake '~/.flake#nixos'
+    sudo nixos-rebuild switch --flake "$HOME/.flake#nixos"
 fi
 
 if [ "$(uname)" = 'Darwin' ]; then
