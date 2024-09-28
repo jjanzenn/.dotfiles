@@ -25,9 +25,19 @@ Install necessary packages for the desktop.
     ];
 #+end_src
 
+Install Steam.
+#+begin_src nix :tangle ~/.flake/system/desktop.nix :mkdirp yes
+  programs.steam = {
+    enable = true;
+    remotePlay.openFirewall = true;
+    dedicatedServer.openFirewall = true;
+    localNetworkGameTransfers.openFirewall = true;
+  };
+#+end_src
+
 Use Neovim as my default editor.
 #+begin_src nix :tangle ~/.flake/system/desktop.nix :mkdirp yes
-    environment.variables.EDITOR = "nvim";
+      environment.variables.EDITOR = "nvim";
 #+end_src
 
 Enable GPG agent globally.
@@ -90,11 +100,6 @@ Enable PipeWire.
       enable = true;
       pulse.enable = true;
     };
-#+end_src
-
-Enable Flatpaks.
-#+begin_src nix :tangle ~/.flake/system/desktop.nix :mkdirp yes
-    services.flatpak.enable = true;
 #+end_src
 
 Close the desktop configuration.
