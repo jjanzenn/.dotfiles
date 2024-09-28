@@ -1,7 +1,7 @@
 .PHONY: install update rollback
 
 SRCDIR = ./nixos
-DSTDIR = $(HOME)/quarantine
+DSTDIR = $(HOME)
 
 SOURCES := $(shell find -L $(SRCDIR)/ -type f)
 CONFIGS := $(subst $(SRCDIR)/,$(DSTDIR)/,$(SOURCES:%.org=%))
