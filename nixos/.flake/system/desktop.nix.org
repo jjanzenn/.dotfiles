@@ -20,7 +20,9 @@ Install necessary packages for the desktop.
       git
       greetd.tuigreet
       kitty
+      gnumake
       neovim
+      python3
       wget
     ];
 #+end_src
