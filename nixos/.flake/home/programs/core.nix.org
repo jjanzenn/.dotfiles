@@ -6,6 +6,7 @@ This is the core of my program configuration. This file installs programs that d
 
   {
     imports = [
+      ./emacs/core.nix
       ./fastfetch.nix
       ./foot.nix
       ./git.nix

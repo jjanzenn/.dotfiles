@@ -139,3 +139,10 @@ Install YAML support and run =eglot= on YAML files.
     :init
     (add-hook 'yaml-mode-hook 'jj/eglot-setup))
 #+end_src
+
+* Nix
+Install =nix= support and run =eglot= on =nix= files.
+#+begin_src emacs-lisp :tangle ~/.config/emacs/languages.el :mkdirp yes
+  (use-package nix-mode
+    :mode "\\.nix\\'")
+#+end_src

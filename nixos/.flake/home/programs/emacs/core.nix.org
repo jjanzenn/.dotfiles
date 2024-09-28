@@ -1,0 +1,25 @@
+#+title: Emacs Configuration
+
+#+begin_src nix :tangle ~/.flake/home/programs/emacs/core.nix :mkdirp yes
+  { config, pkgs, ... }:
+
+  {
+    home.file = {
+      "./.config/emacs/force-custom-file.el".source = ./force-custom-file.el;
+      "./.config/emacs/package-setup.el".source = ./package-setup.el;
+      "./.config/emacs/user-interface.el".source = ./user-interface.el;
+      "./.config/emacs/tools.el".source = ./tools.el;
+      "./.config/emacs/languages.el".source = ./languages.el;
+    };
+    programs.emacs = {
+      enable = true;
+      extraConfig = ''
+        (load "~/.config/emacs/force-custom-file.el")
+        (load "~/.config/emacs/package-setup.el")
+        (load "~/.config/emacs/user-interface.el")
+        (load "~/.config/emacs/tools.el")
+        (load "~/.config/emacs/languages.el")
+      '';
+    };
+  }
+#+end_src
