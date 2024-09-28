@@ -24,6 +24,7 @@ This is the core of my program configuration. This file installs programs that d
       fuzzel
       ispell
       gcc
+      gzdoom
       htop
       hyfetch
       hyprshot
@@ -34,6 +35,7 @@ This is the core of my program configuration. This file installs programs that d
       obs-studio
       pavucontrol
       prismlauncher # minecraft
+      protonvpn-gui
       python3
       swaybg
       texliveFull
