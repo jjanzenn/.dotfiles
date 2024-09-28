@@ -54,7 +54,6 @@ Create potential aliases and create the prompt.
       initExtra = ''
       which lesspipe.sh &> /dev/null && export LESSOPEN="|lesspipe.sh %s"
       which eza &> /dev/null && alias ls=eza
-      which nvim &> /dev/null && alias vi=nvim && alias vim=nvim
       parse_git_dirty() {
         git_status="$(git status 2> /dev/null)"
         [[ "$git_status" =~ "use \"git push\" to publish your local commits" ]] && echo -n " %F{green}%f"

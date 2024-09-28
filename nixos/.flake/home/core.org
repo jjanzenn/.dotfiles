@@ -6,6 +6,7 @@ Set up home manager for my user account and import submodules.
 
   {
     imports = [
+      ./clang-format.nix
       ./cursor.nix
       ./fonts.nix
       ./hyprland.nix

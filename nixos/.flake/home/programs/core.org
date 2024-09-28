@@ -11,6 +11,7 @@ This is the core of my program configuration. This file installs programs that d
       ./git.nix
       ./hyprlock.nix
       ./ncmpcpp.nix
+      ./neovim.nix
       ./ssh.nix
       ./waybar.nix
       ./zsh.nix
@@ -18,6 +19,7 @@ This is the core of my program configuration. This file installs programs that d
 
     home.packages = with pkgs; [
       discord # not FOSS
+      clang-tools
       eza
       fuzzel
       ispell

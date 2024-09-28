@@ -1,0 +1,15 @@
+#+title: Clang Format Default Options
+
+#+begin_src nix :tangle ~/.flake/home/clang-format.nix :mkdirp yes
+  { config, pkgs, ... }:
+
+  {
+    home.file.".clang-format".text = ''
+      BasedOnStyle: LLVM
+      IndentWidth: 4
+      BreakBeforeBraces: Linux
+      AllowShortIfStatementsOnASingleLine: false
+      IndentCaseLabels: false
+    '';
+  }
+#+end_src
