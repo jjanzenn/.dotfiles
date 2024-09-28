@@ -1,4 +1,4 @@
-.PHONY: install update rollback nixos-update nixos-install
+.PHONY: install update nixos-update nixos-install
 
 SYSTEM = $(shell uname -n)
 SRCDIR = ./$(SYSTEM)
