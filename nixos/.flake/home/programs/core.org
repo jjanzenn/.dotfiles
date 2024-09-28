@@ -39,6 +39,8 @@ This is the core of my program configuration. This file installs programs that d
       python3
       swaybg
       texliveFull
+      unzip
+      zip
     ];
   }
 #+end_src
