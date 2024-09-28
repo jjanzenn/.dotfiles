@@ -1,0 +1,43 @@
+#+title: Custom Scripts
+
+Open script container.
+#+begin_src nix :tangle ~/.flake/home/scripts.nix :mkdirp yes
+  { config, pkgs, ... }:
+
+  {
+    home.file = {
+#+end_src
+
+Use =fuzzel= to open a menu to power off, reboot, or log out.
+#+begin_src nix :tangle ~/.flake/home/scripts.nix :mkdirp yes
+      ".local/bin/poweroptions.sh" = {
+        text = ''
+    #!/bin/sh
+
+    getoption () {
+        fuzzel --dmenu -l 3 -x 1 -r 10 << EOF
+            󰐥 power off
+            󰜉 restart
+            󰍃 logout
+    EOF
+    }
+
+    option=$(getoption | xargs)
+    case $option in
+        '󰐥 power off')
+            systemctl poweroff;;
+        '󰜉 restart')
+            systemctl reboot;;
+        '󰍃 logout')
+            hyprctl dispatch exit;;
+    esac
+        '';
+        executable = true;
+      };
+#+end_src
+
+Close script container.
+#+begin_src nix :tangle ~/.flake/home/scripts.nix :mkdirp yes
+    };
+  }
+#+end_src

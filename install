@@ -48,7 +48,8 @@ fi
 
 if [ "$(uname)" = 'Linux' ] && grep -q 'ID=nixos' /etc/os-release; then
     echo 'installing NixOS flake'
-    cp ./.flake/system/hardware-configuration.nix ~/.flake
+    sudo cp ./.flake/system/hardware-configuration.nix ~/.flake/system
+    sudo cp ./.flake/home/.wallpaper ~/.flake/home
     sudo cp ./.flake/flake.lock ~/.flake
     sudo nixos-rebuild switch --flake "$HOME/.flake#nixos"
 fi

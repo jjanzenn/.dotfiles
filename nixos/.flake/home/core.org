@@ -10,11 +10,13 @@ Set up home manager for my user account and import submodules.
       ./fonts.nix
       ./hyprland.nix
       ./programs/core.nix
+      ./scripts.nix
       ./services/core.nix
     ];
 
     home.username = "jane";
     home.homeDirectory = "/home/jane";
+    home.file.".wallpaper".source = ./.wallpaper;
 
     home.stateVersion = "24.05";
     programs.home-manager.enable = true;
