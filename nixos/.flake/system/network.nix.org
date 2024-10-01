@@ -36,10 +36,17 @@ Enable SSH.
 
 Set up my firewall.
 #+begin_src nix :tangle ~/.flake/system/network.nix :mkdirp yes
-    networking.firewall = {
-      allowedTCPPorts = [ ];
-      allowedUDPPorts = [ ];
+  networking.firewall = {
+    allowedTCPPorts = [ ];
+    allowedUDPPorts = [ ];
+  };
+
+  environment.etc = {
+    "openvpn/update-resolv-conf" = {
+      source = ./update-resolv-conf.sh;
+      mode = "0700";
     };
+  };
 #+end_src
 
 Close the network configuration.

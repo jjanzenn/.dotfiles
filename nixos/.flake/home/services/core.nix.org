@@ -2,18 +2,18 @@
 
 Import service configurations.
 #+begin_src nix :tangle ~/.flake/home/services/core.nix :mkdirp yes
-{ config, pkgs, ... }:
+  { config, pkgs, ... }:
 
-{
-  imports = [
-    ./emacs.nix
-    ./mako.nix
-    ./mpd.nix
-    ./syncthing.nix
-  ];
+  {
+    imports = [
+      ./emacs.nix
+      ./mako.nix
+      ./mpd.nix
+      ./syncthing.nix
+    ];
 
-  home.packages = with pkgs; [
-    mpdscribble
-  ];
-}
+    home.packages = with pkgs; [
+      mpdscribble
+    ];
+  }
 #+end_src

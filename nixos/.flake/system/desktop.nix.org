@@ -104,6 +104,12 @@ Enable PipeWire.
     };
 #+end_src
 
+Enable GNOME Keyring.
+#+begin_src nix :tangle ~/.flake/system/desktop.nix :mkdirp yes
+  services.gnome.gnome-keyring.enable = true;
+  security.pam.services.greetd.enableGnomeKeyring = true;
+#+end_src
+
 Close the desktop configuration.
 #+begin_src nix :tangle ~/.flake/system/desktop.nix :mkdirp yes
   }
