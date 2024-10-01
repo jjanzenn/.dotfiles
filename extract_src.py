@@ -1,5 +1,7 @@
 #!/usr/bin/env python3
 
+import os
+from stat import ST_MODE
 import sys
 import re
 
@@ -27,3 +29,5 @@ with open(sys.argv[1], "r") as inp:
                 if min_spaces == -1 or min_spaces > spaces:
                     min_spaces = spaces
                 curr.append(re.sub(r"^(\s*),(\*|,\*|#\+|,#\+)", r"\1\2", line))
+
+        os.chmod(sys.argv[2], os.stat(sys.argv[1])[ST_MODE])

@@ -1,0 +1,10 @@
+#+title: Emacs Configuration
+
+Load files for config.
+#+begin_src emacs-lisp :tangle ~/.config/emacs/init.el :mkdirp yes
+  (load "~/.config/emacs/force-custom-file.el")
+  (load "~/.config/emacs/package-setup.el")
+  (load "~/.config/emacs/user-interface.el")
+  (load "~/.config/emacs/tools.el")
+  (load "~/.config/emacs/languages.el")
+#+end_src
