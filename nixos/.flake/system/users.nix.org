@@ -1,11 +1,11 @@
 #+title: User Configuration
 
 Set up my user account with =zsh= as default shell with =sudoers= and network management permissions.
-#+begin_src nix :tangle ~/.flake/system/users.nix :mkdirp yes
+#+begin_src nix
 { config, lib, pkgs, ... }:
 
 {
-  users.users.jane = {
+  users.users.jjanzen = {
     shell = pkgs.zsh;
     isNormalUser = true;
     extraGroups = [ "networkmanager" "wheel" ];

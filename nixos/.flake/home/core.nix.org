@@ -15,8 +15,8 @@ Set up home manager for my user account and import submodules.
       ./services/core.nix
     ];
 
-    home.username = "jane";
-    home.homeDirectory = "/home/jane";
+    home.username = "jjanzen";
+    home.homeDirectory = "/home/jjanzen";
     home.file.".wallpaper".source = ./.wallpaper;
 
     home.stateVersion = "24.05";
