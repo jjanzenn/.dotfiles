@@ -1,0 +1,21 @@
+#+title: Home Configuration
+
+Set up home manager for my user account and import submodules.
+#+begin_src nix
+  { config, pkgs, ... }:
+
+  {
+    imports = [
+      ./clang-format.nix
+      ./fonts.nix
+      ./programs/core.nix
+    ];
+
+    home.username = "jjanzen";
+    home.homeDirectory = "/Users/jjanzen";
+    home.file.".wallpaper".source = ./.wallpaper;
+
+    home.stateVersion = "24.05";
+    programs.home-manager.enable = true;
+  }
+#+end_src

@@ -8,7 +8,7 @@ import re
 with open(sys.argv[1], "r") as inp:
     with open(sys.argv[2], "w") as out:
         in_src = False
-        startp = re.compile(r"^\s*#\+begin_src .* :tangle")
+        startp = re.compile(r"^\s*#\+begin_src")
         endp = re.compile(r"^\s*#\+end_src")
         quoted = re.compile(r"^\s*,(\*|,\*|#\+)")
 

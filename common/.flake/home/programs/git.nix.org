@@ -1,0 +1,18 @@
+#+title: Git Configuration
+
+Specify my name and email for =git=. Also enable =delta= and =pull.rebase=.
+#+begin_src nix :tangle ~/.flake/home/programs/git.nix :mkdirp yes
+{ config, pkgs, ... }:
+
+{
+  programs.git = {
+    enable = true;
+    userName = "Jacob Janzen";
+    userEmail = "jacob.a.s.janzen@gmail.com";
+    delta.enable = true;
+    extraConfig = {
+      pull.rebase = true;
+    };
+  };
+}
+#+end_src

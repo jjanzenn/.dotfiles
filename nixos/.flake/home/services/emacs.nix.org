@@ -1,14 +1,1 @@
-#+title: Emacs Service Configuration
-
-Enable Emacs daemon and client.
-#+begin_src nix :tangle ~/.flake/home/services/emacs.nix :mkdirp yes
-{ config, pkgs, ... }:
-
-{
-  services.emacs = {
-    enable = true;
-    client.enable = true;
-    socketActivation.enable = true;
-  };
-}
-#+end_src
+../../../../common/.flake/home/services/emacs.nix.org

@@ -74,8 +74,9 @@ $(DSTDIR)/$(FONTSDIR)/.SauceCodePro: $(SRCDIR)/$(FONTSDIR)/SauceCodePro.tar.gz
 macos-update: install
 	brew upgrade
 
-# macos install also install fonts and tells System Events to update the wallpaper
-macos-install: $(CONFIGS) fonts
+# macos install tells System Events to update the wallpaper
+macos-install: $(CONFIGS)
+	darwin-rebuild switch --flake $(DSTDIR)/.flake
 	osascript -e "tell application \"System Events\" to tell every desktop to set picture to \"/$$HOME/.wallpaper\" as POSIX file"
 
 # nixos update backs up the flake lock file

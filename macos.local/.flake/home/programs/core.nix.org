@@ -1,0 +1,39 @@
+#+title:  Core Program Configuration
+
+#+begin_src nix
+  { config, pkgs, ... }:
+
+  {
+    imports = [
+      ./emacs/core.nix
+      ./fastfetch.nix
+      ./git.nix
+      ./neovim.nix
+      ./zsh.nix
+    ];
+
+    home.packages = with pkgs; [
+      aspell
+      bash-language-server
+      inetutils
+      clang-tools
+      cmake
+      cmake-language-server
+      eza
+      gcc-arm-embedded
+      htop
+      hyfetch
+      marksman
+      mpv
+      openocd
+      pinentry_mac
+      python312
+      python312Packages.black
+      python312Packages.pylint
+      python312Packages.python-lsp-server
+      sqlite
+      texliveFull
+      yt-dlp
+    ];
+  }
+#+end_src

@@ -1,0 +1,14 @@
+#+title: Font Configuration
+
+Install fonts necessary for my configuration.
+#+begin_src nix :tangle ~/.flake/home/fonts.nix :mkdirp yes
+{ config, pkgs, ... }:
+
+{
+  fonts.fontconfig.enable = true;
+  home.packages = with pkgs; [
+    cm_unicode
+    (pkgs.nerdfonts.override { fonts = [ "SourceCodePro" ]; })
+  ];
+}
+#+end_src

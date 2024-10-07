@@ -1,0 +1,13 @@
+#+title: SSH Configuration
+
+Add keys to SSH agent.
+#+begin_src nix :tangle ~/.flake/home/programs/ssh.nix :mkdirp yes
+{ config, pkgs, ... }:
+
+{
+  programs.ssh = {
+    enable = true;
+    addKeysToAgent = "yes";
+  };
+}
+#+end_src

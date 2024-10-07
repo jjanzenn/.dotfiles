@@ -1,0 +1,32 @@
+#+title: macOS Nix Configuration
+
+#+begin_src nix
+  {
+    description = "My Darwin Configuration";
+
+    inputs = {
+      nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
+      nix-darwin.url = "github:LnL7/nix-darwin";
+      nix-darwin.inputs.nixpkgs.follows = "nixpkgs";
+      home-manager.url = "github:nix-community/home-manager";
+      home-manager.inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    outputs = inputs@{ self, nix-darwin, nixpkgs, home-manager }: {
+      darwinConfigurations."macos" = nix-darwin.lib.darwinSystem {
+       specialArgs = { inherit inputs; };
+        modules = [
+          ./system/core.nix
+          home-manager.darwinModules.home-manager
+          {
+            home-manager.useGlobalPkgs = true;
+            home-manager.useUserPackages = true;
+            home-manager.users.jjanzen = import ./home/core.nix;
+          }
+        ];
+      };
+
+      darwinPackages = self.darwinConfigurations."macos".pkgs;
+    };
+  }
+#+end_src

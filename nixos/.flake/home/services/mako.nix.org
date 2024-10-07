@@ -1,13 +1,1 @@
-#+title: Mako Configuration
-
-Enable =mako= to handle notifications.
-#+begin_src nix :tangle ~/.flake/home/services/mako.nix :mkdirp yes
-{ config, pkgs, ... }:
-
-{
-  services.mako = {
-    enable = true;
-    backgroundColor = "#191916ff";
-  };
-}
-#+end_src
+../../../../common/.flake/home/services/mako.nix.org
