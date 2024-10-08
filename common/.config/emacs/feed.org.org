@@ -1,6 +1,6 @@
 #+title: Emacs RSS Feed
 
-#+begin_src org :tangle ~/.config/emacs/feed.org :mkdirp yes
+#+begin_src org
   ,* Blogs
   :PROPERTIES:
   :ID: elfeed
