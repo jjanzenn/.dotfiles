@@ -6,11 +6,14 @@ This file imports various system configuration components in addition to enablin
   { config, pkgs, ... }:
 
   {
+    imports = [
+      ./skhd.nix
+      ./yabai.nix
+    ];
     environment.systemPackages = with pkgs; [
       emacs-macport
       gnupg
       neovim
-      yabai
       skhd
     ];
 

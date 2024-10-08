@@ -1,0 +1,1 @@
+../../../../common/.flake/home/programs/alacritty.nix.org

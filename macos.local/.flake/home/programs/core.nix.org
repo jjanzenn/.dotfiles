@@ -5,6 +5,7 @@
 
   {
     imports = [
+      ./alacritty.nix
       ./emacs/core.nix
       ./fastfetch.nix
       ./git.nix

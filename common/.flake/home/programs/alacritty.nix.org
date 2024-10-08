@@ -1,0 +1,55 @@
+#+title: Alacritty Configuration
+
+#+begin_src nix
+  { config, pkgs, ... }:
+
+  {
+    programs.alacritty = {
+      enable = true;
+      settings = {
+        window = {
+          decorations = "None";
+          opacity = 0.9;
+          padding = {
+            x = 6;
+            y = 6;
+          };
+          option_as_alt = "Both";
+        };
+        font = {
+          normal = {
+            family = "SauceCodePro Nerd Font";
+            style = "Regular";
+          };
+          size = 14;
+        };
+        colors = {
+          primary = {
+            background = "#ece0c9";
+            foreground = "#191916";
+          };
+          normal = {
+            black   = "#191916";
+            red     = "#ac4438";
+            green   = "#354d52";
+            yellow  = "#ba9151";
+            blue    = "#465b91";
+            magenta = "#5b5489";
+            cyan    = "#4e6062";
+            white   = "#c9ad7a";
+          };
+          bright = {
+            black   = "#293c3c";
+            red     = "#d8611c";
+            green   = "#4b7b53";
+            yellow  = "#d8974b";
+            blue    = "#2f3d91";
+            magenta = "#735e82";
+            cyan    = "#6b8f92";
+            white   = "#ece0c9";
+          };
+        };
+      };
+    };
+  }
+#+end_src
