@@ -5,6 +5,7 @@
 
   {
     home.file = {
+      "./.config/emacs/feed.org".source = ./feed.org;
       "./.config/emacs/init.el".source = ./init.el;
       "./.config/emacs/force-custom-file.el".source = ./force-custom-file.el;
       "./.config/emacs/package-setup.el".source = ./package-setup.el;
