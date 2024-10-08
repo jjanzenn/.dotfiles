@@ -10,6 +10,7 @@ This file imports various system configuration components in addition to enablin
       ./skhd.nix
       ./yabai.nix
     ];
+
     environment.systemPackages = with pkgs; [
       emacs-macport
       gnupg

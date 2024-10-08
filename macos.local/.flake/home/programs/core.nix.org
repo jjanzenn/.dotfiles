@@ -17,6 +17,7 @@
       aspell
       bash-language-server
       inetutils
+      choose-gui
       clang-tools
       cmake
       cmake-language-server
