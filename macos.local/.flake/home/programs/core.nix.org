@@ -28,6 +28,7 @@
       ispell
       marksman
       mpv
+      ninja
       openocd
       pinentry_mac
       python312
