@@ -2,7 +2,7 @@
 
 * Vi Keybindings
 Use =vi= keybindings with =evil=. Set the undo system to =undo-fu=. Wrapped lines can be moved between with =j= and =k=.
-#+begin_src emacs-lisp :tangle ~/.config/emacs/tools.el :mkdirp yes
+#+begin_src emacs-lisp
   (use-package evil
     :init
     (setq evil-want-keybinding nil)
@@ -16,7 +16,7 @@ Use =vi= keybindings with =evil=. Set the undo system to =undo-fu=. Wrapped line
 #+end_src
 
 Use =evil-collection= to include =vi= keybindings in extra modes.
-#+begin_src emacs-lisp :tangle ~/.config/emacs/tools.el :mkdirp yes
+#+begin_src emacs-lisp
   (use-package evil-collection
     :after evil
     :config
@@ -25,37 +25,37 @@ Use =evil-collection= to include =vi= keybindings in extra modes.
 
 * Undo
 Better undo with =undo-fu=.
-#+begin_src emacs-lisp :tangle ~/.config/emacs/tools.el :mkdirp yes
+#+begin_src emacs-lisp
   (use-package undo-fu)
 #+end_src
 
 Make undo persistent when closing Emacs with =undo-fu-session=.
-#+begin_src emacs-lisp :tangle ~/.config/emacs/tools.el :mkdirp yes
+#+begin_src emacs-lisp
   (use-package undo-fu-session
     :init (undo-fu-session-global-mode 1))
 #+end_src
 
 * Lookup
 Better lookup with =dumb-jump=.
-#+begin_src emacs-lisp :tangle ~/.config/emacs/tools.el :mkdirp yes
+#+begin_src emacs-lisp
   (use-package dumb-jump
     :init (add-hook 'xref-backend-functions #'dumb-jump-xref-activate))
 #+end_src
 
 * Version Control
 Install Magit for Git integration.
-#+begin_src emacs-lisp :tangle ~/.config/emacs/tools.el :mkdirp yes
+#+begin_src emacs-lisp
   (use-package magit)
 #+end_src
 
 * Remote Editing
-#+begin_src emacs-lisp :tangle ~/.config/emacs/tools.el :mkdirp yes
+#+begin_src emacs-lisp
 (setq tramp-default-method "ssh")
 #+end_src
 
 * Document Viewing
 Replace =DocView= with a better document viewer from =pdf-tools=.
-#+begin_src emacs-lisp :tangle ~/.config/emacs/tools.el :mkdirp yes
+#+begin_src emacs-lisp
   (use-package pdf-tools
     :config
     (pdf-tools-install)
@@ -70,37 +70,37 @@ Replace =DocView= with a better document viewer from =pdf-tools=.
 #+end_src
 
 Save place in PDFs with =saveplace-pdf-view=.
-#+begin_src emacs-lisp :tangle ~/.config/emacs/tools.el :mkdirp yes
+#+begin_src emacs-lisp
   (use-package saveplace-pdf-view
     :config (save-place-mode 1))
 #+end_src
 
 * Org-Mode
 Ensure that =org= is set up before any of this.
-#+begin_src emacs-lisp :tangle ~/.config/emacs/tools.el :mkdirp yes
+#+begin_src emacs-lisp
   (use-package org)
 #+end_src
 Set my =org-mode= directory.
-#+begin_src emacs-lisp :tangle ~/.config/emacs/tools.el :mkdirp yes
+#+begin_src emacs-lisp
   (setq org-directory "~/org")
 #+end_src
 
 Hide emphasis markers because I can see if something is *bold*, /italic/, or =monospace= without needing to see the markers.
-#+begin_src emacs-lisp :tangle ~/.config/emacs/tools.el :mkdirp yes
+#+begin_src emacs-lisp
   (setq org-hide-emphasis-markers t)
 #+end_src
 
 Set up nicer looking bullet points.
 - they look like circles
 - instead of hyphens
-#+begin_src emacs-lisp :tangle ~/.config/emacs/tools.el :mkdirp yes
+#+begin_src emacs-lisp
   (font-lock-add-keywords 'org-mode
                           '(("^ *\\([-]\\) "
                              (0 (prog1 () (compose-region (match-beginning 1) (match-end 1) "•"))))))
 #+end_src
 
 Set up fonts. Don't use =monospace= by default. Do use it where necessary though. Also, make different heading levels different sizes.
-#+begin_src emacs-lisp :tangle ~/.config/emacs/tools.el :mkdirp yes
+#+begin_src emacs-lisp
   (add-hook 'org-mode-hook 'variable-pitch-mode)
   (custom-set-faces
    `(variable-pitch ((t :font ,jj/var-font)))
@@ -122,7 +122,7 @@ Set up fonts. Don't use =monospace= by default. Do use it where necessary though
 #+end_src
 
 Wrap lines and centre the view to make for a nicer reading experience.
-#+begin_src emacs-lisp :tangle ~/.config/emacs/tools.el :mkdirp yes
+#+begin_src emacs-lisp
   (use-package visual-fill-column)
   (add-hook 'org-mode-hook 'visual-line-mode)
   (add-hook 'org-mode-hook #'(lambda () (display-line-numbers-mode -1)))
@@ -134,27 +134,17 @@ Wrap lines and centre the view to make for a nicer reading experience.
 #+end_src
 
 Increase the size of LaTeX previews.
-#+begin_src emacs-lisp :tangle ~/.config/emacs/tools.el :mkdirp yes
+#+begin_src emacs-lisp
   (setq org-format-latex-options (plist-put org-format-latex-options :scale 2.0))
 #+end_src
 
 Follow links with the return key.
-#+begin_src emacs-lisp :tangle ~/.config/emacs/tools.el :mkdirp yes
+#+begin_src emacs-lisp
   (setq org-return-follows-link t)
 #+end_src
 
-Tangle on save.
-#+begin_src emacs-lisp :tangle ~/.config/emacs/tools.el :mkdirp yes
-  (defun org-babel-tangle-config ()
-    (when (string-suffix-p ".org" (buffer-file-name))
-      (org-babel-tangle)))
-  (add-hook 'org-mode-hook
-    (lambda ()
-      (add-hook 'after-save-hook #'org-babel-tangle-config)))
-#+end_src
-
 Enable Org Crypt.
-#+begin_src emacs-lisp :tangle ~/.config/emacs/tools.el :mkdirp yes
+#+begin_src emacs-lisp
   (org-crypt-use-before-save-magic)
   (setq org-tags-exclude-from-inheritance '("crypt"))
   (setq org-crypt-key nil)
@@ -163,26 +153,26 @@ Enable Org Crypt.
 
 * Shell
 Use =eshell= as an integrated shell.
-#+begin_src emacs-lisp :tangle ~/.config/emacs/tools.el :mkdirp yes
+#+begin_src emacs-lisp
   (use-package eshell)
   (global-set-key (kbd "C-c e") 'eshell)
 #+end_src
 
 * Language Servers
 Add =eglot= keybindings.
-#+begin_src emacs-lisp :tangle ~/.config/emacs/tools.el :mkdirp yes
+#+begin_src emacs-lisp
   (global-set-key (kbd "C-c r") 'eglot-rename)
   (global-set-key (kbd "C-c a") 'eglot-code-actions)
 #+end_src
 
 Install =tree-sitter=.
-#+begin_src emacs-lisp :tangle ~/.config/emacs/tools.el :mkdirp yes
+#+begin_src emacs-lisp
   (use-package tree-sitter)
   (use-package tree-sitter-langs)
 #+end_src
 
 Define function to set up =eglot= automatically.
-#+begin_src emacs-lisp :tangle ~/.config/emacs/tools.el :mkdirp yes
+#+begin_src emacs-lisp
   (defun jj/eglot-setup ()
     (eglot-ensure)
     (tree-sitter-mode 1)
@@ -191,7 +181,7 @@ Define function to set up =eglot= automatically.
 
 * Completions
 Use company for completions with no delay, starting immediately after first character is typed.
-#+begin_src emacs-lisp :tangle ~/.config/emacs/tools.el :mkdirp yes
+#+begin_src emacs-lisp
   (use-package company
     :config
     (add-hook 'after-init-hook 'global-company-mode)
@@ -201,7 +191,7 @@ Use company for completions with no delay, starting immediately after first char
 #+end_src
 
 Use =vertico= as a completion user interface.
-#+begin_src emacs-lisp :tangle ~/.config/emacs/tools.el :mkdirp yes
+#+begin_src emacs-lisp
   (use-package vertico
     :custom
     (vertico-cycle t)
@@ -210,7 +200,7 @@ Use =vertico= as a completion user interface.
 #+end_src
 
 Use =orderless= to allow typing any portion of a word that you want to search for.
-#+begin_src emacs-lisp :tangle ~/.config/emacs/tools.el :mkdirp yes
+#+begin_src emacs-lisp
   (use-package orderless
     :ensure t
     :custom
@@ -219,7 +209,7 @@ Use =orderless= to allow typing any portion of a word that you want to search fo
 #+end_src
 
 Get descriptions of items in =vertico= with =marginalia=.
-#+begin_src emacs-lisp :tangle ~/.config/emacs/tools.el :mkdirp yes
+#+begin_src emacs-lisp
   (use-package marginalia
     :bind (:map minibuffer-local-map
            ("M-A" . marginalia-cycle))
@@ -228,14 +218,14 @@ Get descriptions of items in =vertico= with =marginalia=.
 #+end_src
 
 Get nerd font icons in completions.
-#+begin_src emacs-lisp :tangle ~/.config/emacs/tools.el :mkdirp yes
+#+begin_src emacs-lisp
   (use-package nerd-icons-completion
     :config
     (nerd-icons-completion-mode))
 #+end_src
 
 Use consult with =vertico= for extra functionality to various functions.
-#+begin_src emacs-lisp :tangle ~/.config/emacs/tools.el :mkdirp yes
+#+begin_src emacs-lisp
   (use-package consult
     :bind (
            ("C-c M-x" . consult-mode-command)
@@ -301,14 +291,14 @@ Use consult with =vertico= for extra functionality to various functions.
 #+end_src
 
 Use Flycheck for syntax checking.
-#+begin_src emacs-lisp :tangle ~/.config/emacs/tools.el :mkdirp yes
+#+begin_src emacs-lisp
   (use-package flycheck
     :config
     (add-hook 'after-init-hook #'global-flycheck-mode))
 #+end_src
 
 Use Flyspell for spell checking.
-#+begin_src emacs-lisp :tangle ~/.config/emacs/tools.el :mkdirp yes
+#+begin_src emacs-lisp
   (dolist (hook '(text-mode-hook))
     (add-hook hook (lambda () (flyspell-mode 1))))
   (use-package flyspell-correct
@@ -318,7 +308,7 @@ Use Flyspell for spell checking.
 
 * Snippets
 Use =yasnippet= for snippets so I don't need to type as much.
-#+begin_src emacs-lisp :tangle ~/.config/emacs/tools.el :mkdirp yes
+#+begin_src emacs-lisp
   (use-package yasnippet
     :init
     (yas-global-mode 1)
@@ -327,13 +317,13 @@ Use =yasnippet= for snippets so I don't need to type as much.
 #+end_src
 
 Install snippet collection for =yasnippet=.
-#+begin_src emacs-lisp :tangle ~/.config/emacs/tools.el :mkdirp yes
+#+begin_src emacs-lisp
   (use-package yasnippet-snippets)
 #+end_src
 
 * Formatting
 Automatically format with Apheleia and =clang-format=.
-#+begin_src emacs-lisp :tangle ~/.config/emacs/tools.el :mkdirp yes
+#+begin_src emacs-lisp
   (use-package apheleia
     :init (apheleia-global-mode +1))
   (use-package clang-format)
@@ -341,7 +331,7 @@ Automatically format with Apheleia and =clang-format=.
 
 * RSS
 Use Emacs as an RSS feed with =elfeed=.
-#+begin_src emacs-lisp :tangle ~/.config/emacs/tools.el :mkdirp yes
+#+begin_src emacs-lisp
   (use-package elfeed
     :config
     (global-set-key (kbd "C-c f") 'elfeed)
@@ -349,7 +339,7 @@ Use Emacs as an RSS feed with =elfeed=.
 #+end_src
 
 Make =elfeed= more powerful with =elfeed-goodies=.
-#+begin_src emacs-lisp :tangle ~/.config/emacs/tools.el :mkdirp yes
+#+begin_src emacs-lisp
   (use-package elfeed-goodies
     :after elfeed
     :config
@@ -357,16 +347,38 @@ Make =elfeed= more powerful with =elfeed-goodies=.
 #+end_src
 
 Store my feed in Org-mode [[./feed.org][here]].
-#+begin_src emacs-lisp :tangle ~/.config/emacs/tools.el :mkdirp yes
+#+begin_src emacs-lisp
   (use-package elfeed-org
     :config
     (elfeed-org)
     (setq rmh-elfeed-org-files (list "~/.config/emacs/feed.org")))
 #+end_src
 
+Style =elfeed-show-mode=.
+#+begin_src emacs-lisp
+  (add-hook 'elfeed-show-mode-hook 'visual-line-mode)
+  (add-hook 'elfeed-show-mode-hook #'(lambda () (display-line-numbers-mode -1)))
+  (defun jj/elfeed-show-mode-visual-fill ()
+    (setq visual-fill-column-width 100
+          visual-fill-column-center-text t)
+     (visual-fill-column-mode 1))
+  (add-hook 'elfeed-show-mode-hook #'jj/elfeed-show-mode-visual-fill)
+  (use-package unfill
+    :config
+    (defun jj/unfill-buffer ()
+      (interactive)
+      (goto-char (point-min))
+      (while (not (eobp))
+        (condition-case ex (unfill-paragraph)
+          (error
+           (message "Skipping Paragraph: %s" ex)))
+        (forward-paragraph))))
+  (add-hook 'elfeed-show-mode-hook #'jj/unfill-buffer)
+#+end_src
+
 * Deft
 Use the Deft package to manage notes.
-#+begin_src emacs-lisp :tangle ~/.config/emacs/tools.el :mkdirp yes
+#+begin_src emacs-lisp
   (use-package deft
     :config
     (global-set-key (kbd "C-c d") 'deft)
@@ -376,7 +388,7 @@ Use the Deft package to manage notes.
 
 * Reference Management
 Use Biblio and Citar to manage citations.
-#+begin_src emacs-lisp :tangle ~/.config/emacs/tools.el :mkdirp yes
+#+begin_src emacs-lisp
   (use-package biblio)
   (use-package citar
     :custom
