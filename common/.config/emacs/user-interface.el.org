@@ -93,7 +93,6 @@ Create parent directories when they don't yet exist.
   (add-to-list 'find-file-not-found-functions #'jj/create-non-existent-directory)
 #+end_src
 
-
 * Whitespace Management
 Use spaces over tabs and set tab width to 4.
 #+begin_src emacs-lisp :tangle ~/.config/emacs/user-interface.el :mkdirp yes

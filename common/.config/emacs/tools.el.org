@@ -1,17 +1,5 @@
 #+title: Emacs Tool Setup
 
-* Undo
-Better undo with =undo-fu=.
-#+begin_src emacs-lisp
-  (use-package undo-fu)
-#+end_src
-
-Make undo persistent when closing Emacs with =undo-fu-session=.
-#+begin_src emacs-lisp
-  (use-package undo-fu-session
-    :init (undo-fu-session-global-mode 1))
-#+end_src
-
 * Lookup
 Better lookup with =dumb-jump=.
 #+begin_src emacs-lisp
