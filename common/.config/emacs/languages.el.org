@@ -174,6 +174,13 @@ Use CDLaTeX for environment and macro insertion.
     (add-hook 'LaTeX-mode-hook #'turn-on-cdlatex))
 #+end_src
 
+Use =latex-preview-pane= to see the PDF automatically.
+#+begin_src emacs-lisp
+  (use-package latex-preview-pane
+    :config
+    (latex-preview-pane-enable))
+#+end_src
+
 * YAML
 Install YAML support and run =eglot= on YAML files.
 #+begin_src emacs-lisp

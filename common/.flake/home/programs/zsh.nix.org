@@ -23,7 +23,7 @@ Enable auto-suggestions.
 
 Use =vi= keybindings.
 #+begin_src nix :tangle ~/.flake/home/programs/zsh.nix :mkdirp yes
-      defaultKeymap = "viins";
+      defaultKeymap = "emacs";
 #+end_src
 
 Append to the history and ignore duplicates.

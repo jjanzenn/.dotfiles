@@ -13,9 +13,5 @@
       "./.config/emacs/tools.el".source = ./tools.el;
       "./.config/emacs/languages.el".source = ./languages.el;
     };
-    programs.emacs = {
-      # enable = true;
-      # package = pkgs.emacs-macport;
-    };
   }
 #+end_src

@@ -1,28 +1,5 @@
 #+title: Emacs Tool Setup
 
-* Vi Keybindings
-Use =vi= keybindings with =evil=. Set the undo system to =undo-fu=. Wrapped lines can be moved between with =j= and =k=.
-#+begin_src emacs-lisp
-  (use-package evil
-    :init
-    (setq evil-want-keybinding nil)
-    :config
-    (evil-mode)
-    (evil-global-set-key 'motion "j" 'evil-next-visual-line)
-    (evil-global-set-key 'motion "k" 'evil-previous-visual-line)
-    (evil-global-set-key 'motion (kbd "RET") nil)
-    :custom
-    (evil-undo-system 'undo-fu))
-#+end_src
-
-Use =evil-collection= to include =vi= keybindings in extra modes.
-#+begin_src emacs-lisp
-  (use-package evil-collection
-    :after evil
-    :config
-    (evil-collection-init))
-#+end_src
-
 * Undo
 Better undo with =undo-fu=.
 #+begin_src emacs-lisp
@@ -156,6 +133,12 @@ Use =eshell= as an integrated shell.
 #+begin_src emacs-lisp
   (use-package eshell)
   (global-set-key (kbd "C-c e") 'eshell)
+#+end_src
+
+Use =vterm= when it works better than =eshell=.
+#+begin_src emacs-lisp
+  (use-package vterm)
+  (global-set-key (kbd "C-c v") 'vterm)
 #+end_src
 
 * Language Servers
