@@ -14,29 +14,11 @@
     ];
 
     home.packages = with pkgs; [
-      bash-language-server
-      choose-gui
-      clang-tools
-      cmake
-      cmake-language-server
-      eza
-      gcc-arm-embedded
-      htop
-      hyfetch
-      inetutils
-      ispell
-      marksman
-      mpv
-      ninja
-      openocd
-      pinentry_mac
       python312
       python312Packages.black
       python312Packages.pylint
       python312Packages.python-lsp-server
-      sqlite
       texliveFull
-      yt-dlp
     ];
   }
 #+end_src
