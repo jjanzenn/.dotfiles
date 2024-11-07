@@ -15,6 +15,7 @@
   ,*** [[https://www.citationneeded.news/rss/][Citation Needed]]
   ,*** [[https://www.lilysthings.org/blog/rss.xml][The Cool Blog]]
   ,** Software :software:
+  ,*** [[https://garyodernichts.blogspot.com/rss.xml][Gary's Hacking Stuff]] :hacking:hardware:
   ,*** [[https://eieio.games/feed.xml][eieio.games]]
   ,*** [[https://ersei.net/en/blog.atom][Ersei]]
   ,*** [[https://ntietz.com/atom.xml][Technically a Blog]]

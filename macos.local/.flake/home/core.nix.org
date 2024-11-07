@@ -16,7 +16,8 @@ Set up home manager for my user account and import submodules.
     home.file.".wallpaper".source = ./.wallpaper;
     home.sessionPath = [
       "/opt/homebrew/bin"
-      "~/.local/bin"
+      "$HOME/.local/bin"
+      "/usr/local/bin"
     ];
 
     home.stateVersion = "24.05";
