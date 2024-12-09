@@ -8,7 +8,7 @@ Install fonts necessary for my configuration.
   fonts.fontconfig.enable = true;
   home.packages = with pkgs; [
     cm_unicode
-    (pkgs.nerdfonts.override { fonts = [ "SourceCodePro" ]; })
+    nerd-fonts.sauce-code-pro
   ];
 }
 #+end_src
