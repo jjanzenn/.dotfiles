@@ -28,7 +28,7 @@
     nixpkgs.overlays = [
       (final: prev:
         {
-          emacs29-pgtk = prev.emacs29-pgtk.overrideAttrs (old: {
+          emacs = prev.emacs.overrideAttrs (old: {
             patches =
           (old.patches or [])
           ++ [
@@ -54,7 +54,7 @@
     ];
     programs.emacs = {
       enable = false;
-      package = pkgs.emacs29-pgtk;
+      package = pkgs.emacs;
     };
   }
 #+end_src
