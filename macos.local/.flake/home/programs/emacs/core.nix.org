@@ -12,18 +12,8 @@
       "./.config/emacs/user-interface.el".source = ./user-interface.el;
       "./.config/emacs/tools.el".source = ./tools.el;
       "./.config/emacs/languages.el".source = ./languages.el;
-
-      "./Applications/Emacs.app/Contents/MacOS/Emacs" = {
-        executable = true;
-        text = ''
-        #!/bin/sh
-        if ! ps -e | grep -q '[E]macs --bg-daemon'; then
-           /opt/homebrew/bin/emacs --daemon
-        fi
-        /opt/homebrew/bin/emacsclient -c &> /dev/null
-        '';
-      };
     };
+
     nixpkgs.overlays = [
       (final: prev:
         {
@@ -51,8 +41,15 @@
         }
       )
     ];
+
     programs.emacs = {
       enable = true;
+      package = pkgs.emacs29-pgtk;
+    };
+
+    services.emacs = {
+      enable = true;
+      client.enable = true;
       package = pkgs.emacs29-pgtk;
     };
   }
