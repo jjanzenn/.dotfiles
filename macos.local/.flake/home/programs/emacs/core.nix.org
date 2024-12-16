@@ -12,6 +12,13 @@
       "./.config/emacs/user-interface.el".source = ./user-interface.el;
       "./.config/emacs/tools.el".source = ./tools.el;
       "./.config/emacs/languages.el".source = ./languages.el;
+      "./Applications/Emacs.app/Contents/MacOS/Emacs" = {
+        executable = true;
+        text = ''
+        #!/bin/sh
+        emacsclient -c & disown
+        '';
+      };
     };
 
     nixpkgs.overlays = [
