@@ -15,6 +15,7 @@
     ];
 
     home.packages = with pkgs; [
+      libgccjit
       python312
       python312Packages.black
       python312Packages.pylint
