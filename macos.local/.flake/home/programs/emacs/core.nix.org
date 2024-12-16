@@ -16,7 +16,7 @@
         executable = true;
         text = ''
         #!/bin/sh
-        emacsclient -c
+        emacsclient -c & disown
         '';
       };
     };
