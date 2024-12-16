@@ -33,9 +33,13 @@ endif
 all: update
 update: install $(UPDATE_TARGET)
 	cp $(DSTDIR)/.flake/flake.lock $(SRCDIR)/.flake
+	git add -A
+	git commit -m "update lock file" || true
 
 # install configs and any additional targets
 install: $(CONFIGS) $(INSTALL_TARGET)
+	git add -A
+	git commit -m "system changes" || true
 
 # install encrypted org configs
 $(DSTDIR)/%: $(SRCDIR)/%.org.gpg
