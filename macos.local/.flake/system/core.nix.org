@@ -25,6 +25,8 @@ This file imports various system configuration components in addition to enablin
       skhd
     ];
 
+    security.pam.enableSudoTouchIdAuth = true;
+
     environment.variables.EDITOR = "nvim";
 
     programs.gnupg.agent.enable = true;
