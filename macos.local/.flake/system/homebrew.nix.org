@@ -16,6 +16,7 @@
         "binutils"
         "bison"
         "btop"
+        "choose-gui"
         "clang-format"
         "cmake"
         "cmake-language-server"

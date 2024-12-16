@@ -12,6 +12,17 @@
       "./.config/emacs/user-interface.el".source = ./user-interface.el;
       "./.config/emacs/tools.el".source = ./tools.el;
       "./.config/emacs/languages.el".source = ./languages.el;
+
+      "./Applications/Emacs.app/Contents/MacOS/Emacs" = {
+        executable = true;
+        text = ''
+        #!/bin/sh
+        if ! ps -e | grep -q '[E]macs --bg-daemon'; then
+           /opt/homebrew/bin/emacs --daemon
+        fi
+        /opt/homebrew/bin/emacsclient -c &> /dev/null
+        '';
+      };
     };
   }
 #+end_src
