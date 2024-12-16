@@ -1,6 +1,7 @@
 #+title: Emacs Package Setup
 Install =straight= for better package management.
 #+begin_src emacs-lisp :tangle ~/.config/emacs/package-setup.el :mkdirp yes
+  (setq native-comp-async-report-warnings-errors silent)
   (defvar bootstrap-version)
   (let ((bootstrap-file
          (expand-file-name
