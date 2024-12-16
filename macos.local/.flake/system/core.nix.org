@@ -13,6 +13,7 @@ This file imports various system configuration components in addition to enablin
    nixpkgs.config.allowUnfree = true;
 
     imports = [
+      ./homebrew.nix
       ./skhd.nix
       ./yabai.nix
     ];

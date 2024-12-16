@@ -1,0 +1,37 @@
+#+title: SSH Configuration
+
+#+begin_src nix
+  { config, pkgs, ... }:
+  {
+    programs.ssh = {
+      enable = true;
+      addKeysToAgent = "yes";
+      matchBlocks = {
+        "*" = {
+          identityFile = "~/.ssh/id_ed25519";
+          extraOptions = {
+            "UseKeychain" = "yes";
+          };
+        };
+        "aviary" = {
+          hostname = "aviary.cs.umanitoba.ca";
+          user = "janzenj2";
+        };
+        "jjanzen.ca" = {
+          setEnv = {
+            "TERM" = "xterm";
+          };
+        };
+        "oracle" = {
+          setEnv = {
+            "TERM" = "xterm";
+          };
+          hostname = "jjanzen.ca";
+          identityFile = "~/.ssh/oracle";
+          identitiesOnly = true;
+          user = "opc";
+        };
+      };
+    };
+  }
+#+end_src

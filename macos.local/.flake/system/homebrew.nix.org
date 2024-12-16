@@ -1,0 +1,121 @@
+#+title: Homebrew Configuration
+
+#+begin_src nix
+  { config, pkgs, ... }:
+
+  {
+    homebrew = {
+      enable = true;
+      brews = [
+        "aescrypt"
+        "aspell"
+        "avrdude"
+        "bash-language-server"
+        "bear"
+        "biber"
+        "binutils"
+        "bison"
+        "btop"
+        "clang-format"
+        "cmake"
+        "cmake-language-server"
+        "coreutils"
+        "curl"
+        "dos2unix"
+        "dotnet"
+        "eza"
+        "fd"
+        "gnutls"
+        "ffmpeg"
+        "fzf"
+        "gpgme"
+        "go"
+        "grep"
+        "htop"
+        "hunspell"
+        "hyfetch"
+        "imagemagick"
+        "ispell"
+        "jq"
+        "lesspipe"
+        "latexdiff"
+        "llvm@18"
+        "marksman"
+        "meson"
+        "mono"
+        "mpv"
+        "ninja"
+        "nmap"
+        "open-mpi"
+        "open-ocd"
+        "openjdk"
+        "pandoc"
+        "pinentry-mac"
+        "ripgrep"
+        "rsync"
+        "rust"
+        "sevenzip"
+        "shellcheck"
+        "shfmt"
+        "telnet"
+        "texlab"
+        "tree-sitter"
+        "typescript-language-server"
+        "wget"
+        "yt-dlp"
+        {
+          name = "d12frosted/emacs-plus/emacs-plus@29";
+          args = [ "with-imagemagick" ];
+        }
+        "felixkratz/formulae/sketchybar"
+        "osx-cross/avr/avr-binutils"
+        "osx-cross/avr/avarice"
+        "osx-cross/avr/avr-gcc@14"
+      ];
+      caskArgs.no_quarantine = true;
+      casks = [
+        "alacritty"
+        "audacity"
+        "blender"
+        "cabal"
+        "calibre"
+        "desmume"
+        "gcc-arm-embedded"
+        "gimp"
+        "godot"
+        "inkscape"
+        "krita"
+        "mactex"
+        "multimc"
+        "obs"
+        "openemu"
+        "pokemon-showdown"
+        "protonmail-bridge"
+        "protonvpn"
+        "qbittorrent"
+        "rar"
+        "syncthing"
+        "thunderbird"
+        "vlc"
+        "whisky"
+        "zen-browser"
+        "zotero"
+      ];
+      global.autoUpdate = false;
+      onActivation = {
+        autoUpdate = false;
+        cleanup = "zap";
+        upgrade = true;
+      };
+      taps = [
+        "d12frosted/emacs-plus"
+        "felixkratz/formulae"
+        "homebrew/bundle"
+        "homebrew/cask-fonts"
+        "homebrew/cask-versions"
+        "homebrew/services"
+        "osx-cross/avr"
+      ];
+    };
+  }
+#+end_src

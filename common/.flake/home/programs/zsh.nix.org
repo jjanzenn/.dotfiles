@@ -1,7 +1,7 @@
 #+title: ZSH Configuration
 
 Open =zsh= configuration.
-#+begin_src nix :tangle ~/.flake/home/programs/zsh.nix :mkdirp yes
+#+begin_src nix
   { config, pkgs, ... }:
 
   {
@@ -10,78 +10,103 @@ Open =zsh= configuration.
 #+end_src
 
 Automatically =cd= if only the path is used.
-#+begin_src nix :tangle ~/.flake/home/programs/zsh.nix :mkdirp yes
-      autocd = true;
+#+begin_src nix
+  autocd = true;
 #+end_src
 
 Enable auto-suggestions.
-#+begin_src nix :tangle ~/.flake/home/programs/zsh.nix :mkdirp yes
-      autosuggestion = {
-        enable = true;
-      };
+#+begin_src nix
+  autosuggestion = {
+    enable = true;
+  };
 #+end_src
 
 Use =vi= keybindings.
-#+begin_src nix :tangle ~/.flake/home/programs/zsh.nix :mkdirp yes
-      defaultKeymap = "emacs";
+#+begin_src nix
+  defaultKeymap = "emacs";
 #+end_src
 
 Append to the history and ignore duplicates.
-#+begin_src nix :tangle ~/.flake/home/programs/zsh.nix :mkdirp yes
-      history = {
-        append = true;
-        ignoreAllDups = true;
-      };
+#+begin_src nix
+  history = {
+    append = true;
+    ignoreAllDups = true;
+  };
 #+end_src
 
 Specify =ls= aliases.
-#+begin_src nix :tangle ~/.flake/home/programs/zsh.nix :mkdirp yes
-      shellAliases = {
-        "ll" = "ls -alF";
-        "la" = "ls -a";
-        "l" = "ls -F";
-        "sl" = "ls";
-      };
+#+begin_src nix
+  shellAliases = {
+    "ll" = "ls -alF";
+    "la" = "ls -a";
+    "l" = "ls -F";
+    "sl" = "ls";
+  };
 #+end_src
 
 Enable syntax highlighting.
-#+begin_src nix :tangle ~/.flake/home/programs/zsh.nix :mkdirp yes
-      syntaxHighlighting.enable = true;
+#+begin_src nix
+  syntaxHighlighting.enable = true;
+#+end_src
+
+Load extra code.
+#+begin_src nix
+  initExtra = ''
 #+end_src
 
 Create potential aliases and create the prompt.
-#+begin_src nix :tangle ~/.flake/home/programs/zsh.nix :mkdirp yes
-      initExtra = ''
-      which lesspipe.sh &> /dev/null && export LESSOPEN="|lesspipe.sh %s"
-      which eza &> /dev/null && alias ls=eza
-      parse_git_dirty() {
-        git_status="$(git status 2> /dev/null)"
-        [[ "$git_status" =~ "use \"git push\" to publish your local commits" ]] && echo -n " %F{green}%f"
-        [[ "$git_status" =~ "Changes to be committed:" ]] && echo -n " %F{magenta}%f"
-        [[ "$git_status" =~ "Changes not staged for commit:" ]] && echo -n " %F{yellow}%f"
-        [[ "$git_status" =~ "Untracked files:" ]] && echo -n " %F{red}%f"
-      }
-      setopt prompt_subst
-      autoload -Uz vcs_info
-      precmd () { vcs_info }
-      zstyle ':vcs_info:*' formats ' %F{blue}%b%f' # git(main)
-      PS1='%(?..%B%F{red}[%?%\]%f%b )%F{green}%20<...<%~%<<%f$vcs_info_msg_0_$(parse_git_dirty) $ '
-      '';
+#+begin_src sh
+  which lesspipe.sh &> /dev/null && export LESSOPEN="|lesspipe.sh %s"
+  which eza &> /dev/null && alias ls=eza
+#+end_src
+
+Set up fuzzy finder.
+#+begin_src sh
+  which zsh &> /dev/null && source <(fzf --zsh)
+#+end_src
+
+Create the prompt.
+#+begin_src sh
+  parse_git_dirty() {
+    git_status="$(git status 2> /dev/null)"
+    [[ "$git_status" =~ "use \"git push\" to publish your local commits" ]] && echo -n " %F{green}%f"
+    [[ "$git_status" =~ "Changes to be committed:" ]] && echo -n " %F{magenta}%f"
+    [[ "$git_status" =~ "Changes not staged for commit:" ]] && echo -n " %F{yellow}%f"
+    [[ "$git_status" =~ "Untracked files:" ]] && echo -n " %F{red}%f"
+  }
+  setopt prompt_subst
+  autoload -Uz vcs_info
+  precmd () { vcs_info }
+  zstyle ':vcs_info:*' formats ' %F{blue}%b%f' # git(main)
+  PS1='%(?..%B%F{red}[%?%\]%f%b )%F{green}%20<...<%~%<<%f$vcs_info_msg_0_$(parse_git_dirty) $ '
+#+end_src
+
+#+begin_src nix
+  '';
+#+end_src
+
+Load =.profile= code.
+#+begin_src nix
+  profileExtra = ''
 #+end_src
 
 Launch =ssh-agent= at login.
-#+begin_src nix :tangle ~/.flake/home/programs/zsh.nix :mkdirp yes
-      profileExtra = ''
-      if [ ! -S ~/.ssh/ssh_auth_sock ]; then
-          eval `ssh-agent` > /dev/null
-          ln -sf "$SSH_AUTH_SOCK" ~/.ssh/ssh_auth_sock
-      fi
-      export SSH_AUTH_SOCK=~/.ssh/ssh_auth_sock
-      '';
+#+begin_src sh
+  if [ ! -S ~/.ssh/ssh_auth_sock ]; then
+      eval `ssh-agent` > /dev/null
+      ln -sf "$SSH_AUTH_SOCK" ~/.ssh/ssh_auth_sock
+  fi
+  export SSH_AUTH_SOCK=~/.ssh/ssh_auth_sock
 #+end_src
 
+Close =.profile= code.
+#+begin_src nix
+  '';
+#+end_src
+
+
 Close =zsh= configuration.
-#+begin_src nix :tangle ~/.flake/home/programs/zsh.nix :mkdirp yes
+#+begin_src nix
     };
   }
 #+end_src
