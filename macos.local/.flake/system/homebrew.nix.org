@@ -1,124 +1,140 @@
 #+title: Homebrew Configuration
 
+Set up Homebrew.
 #+begin_src nix
   { config, pkgs, ... }:
 
   {
     homebrew = {
       enable = true;
-      brews = [
-        "aescrypt"
-        "aspell"
-        "avrdude"
-        "bash-language-server"
-        "bear"
-        "biber"
-        "binutils"
-        "bison"
-        "btop"
-        "choose-gui"
-        "clang-format"
-        "cmake"
-        "cmake-language-server"
-        "coreutils"
-        "curl"
-        "dos2unix"
-        "dotnet"
-        "eza"
-        "fd"
-        "gcc"
-        "gnutls"
-        "ffmpeg"
-        "fzf"
-        "go"
-        "gpgme"
-        "grep"
-        "htop"
-        "hunspell"
-        "hyfetch"
-        "imagemagick"
-        "ispell"
-        "jq"
-        "lesspipe"
-        "latexdiff"
-        "libgccjit"
-        "llvm@18"
-        "marksman"
-        "meson"
-        "mono"
-        "mpv"
-        "ninja"
-        "nmap"
-        "open-mpi"
-        "open-ocd"
-        "openjdk"
-        "pandoc"
-        "pinentry-mac"
-        "ripgrep"
-        "rsync"
-        "rust"
-        "sevenzip"
-        "shellcheck"
-        "shfmt"
-        "telnet"
-        "texlab"
-        "tree-sitter"
-        "typescript-language-server"
-        "wget"
-        "yt-dlp"
-        {
-          name = "d12frosted/emacs-plus/emacs-plus@29";
-          args = [ "with-imagemagick" ];
-        }
-        "felixkratz/formulae/sketchybar"
-        "osx-cross/avr/avr-binutils"
-        "osx-cross/avr/avarice"
-        "osx-cross/avr/avr-gcc@14"
-      ];
-      caskArgs.no_quarantine = true;
-      casks = [
-        "alacritty"
-        "audacity"
-        "blender"
-        "cabal"
-        "calibre"
-        "desmume"
-        "gcc-arm-embedded"
-        "gimp"
-        "godot"
-        "inkscape"
-        "krita"
-        "mactex"
-        "multimc"
-        "obs"
-        "openemu"
-        "pokemon-showdown"
-        "protonmail-bridge"
-        "protonvpn"
-        "qbittorrent"
-        "rar"
-        "syncthing"
-        "thunderbird"
-        "vlc"
-        "whisky"
-        "zen-browser"
-        "zotero"
-      ];
-      global.autoUpdate = false;
-      onActivation = {
-        autoUpdate = false;
-        cleanup = "zap";
-        upgrade = true;
-      };
-      taps = [
-        "d12frosted/emacs-plus"
-        "felixkratz/formulae"
-        "homebrew/bundle"
-        "homebrew/cask-fonts"
-        "homebrew/cask-versions"
-        "homebrew/services"
-        "osx-cross/avr"
-      ];
+#+end_src
+
+Do not quarantine casks.
+#+begin_src nix
+  caskArgs.no_quarantine = true;
+#+end_src
+
+Don't automatically update except with Nix update and clean up any packages that are not listed.
+#+begin_src nix
+  global.autoUpdate = false;
+  onActivation = {
+    autoUpdate = false;
+    cleanup = "zap";
+    upgrade = true;
+  };
+#+end_src
+
+List the taps to use on Homebrew.
+#+begin_src nix
+  taps = [
+    "felixkratz/formulae"
+    "homebrew/bundle"
+    "homebrew/cask-fonts"
+    "homebrew/cask-versions"
+    "homebrew/services"
+    "osx-cross/avr"
+  ];
+#+end_src
+
+List packages to install with Homebrew.
+#+begin_src nix
+  brews = [
+    "aescrypt"
+    "avrdude"
+    "bash-language-server"
+    "bear"
+    "binutils"
+    "bison"
+    "choose-gui"
+    "clang-format"
+    "cmake"
+    "cmake-language-server"
+    "coreutils"
+    "curl"
+    "dos2unix"
+    "dotnet"
+    "eza"
+    "fd"
+    "gcc"
+    "gnutls"
+    "ffmpeg"
+    "fzf"
+    "go"
+    "gpgme"
+    "grep"
+    "htop"
+    "hunspell"
+    "hyfetch"
+    "imagemagick"
+    "ispell"
+    "jq"
+    "lesspipe"
+    "latexdiff"
+    "libgccjit"
+    "llvm@18"
+    "marksman"
+    "meson"
+    "mono"
+    "mpv"
+    "ninja"
+    "nmap"
+    "open-mpi"
+    "open-ocd"
+    "openjdk"
+    "pandoc"
+    "pinentry-mac"
+    "ripgrep"
+    "rsync"
+    "rust"
+    "sevenzip"
+    "shellcheck"
+    "shfmt"
+    "telnet"
+    "tree-sitter"
+    "typescript-language-server"
+    "wget"
+    "yt-dlp"
+    "felixkratz/formulae/sketchybar"
+    "osx-cross/avr/avr-binutils"
+    "osx-cross/avr/avarice"
+    "osx-cross/avr/avr-gcc@14"
+  ];
+#+end_src
+
+List casks to install with Homebrew.
+#+begin_src nix
+  casks = [
+    "alacritty"
+    "audacity"
+    "blender"
+    "cabal"
+    "calibre"
+    "desmume"
+    "gcc-arm-embedded"
+    "gimp"
+    "godot"
+    "inkscape"
+    "krita"
+    "mactex"
+    "multimc"
+    "obs"
+    "openemu"
+    "pokemon-showdown"
+    "protonmail-bridge"
+    "protonvpn"
+    "qbittorrent"
+    "rar"
+    "syncthing"
+    "thunderbird"
+    "vlc"
+    "whisky"
+    "zen-browser"
+    "zotero"
+  ];
+#+end_src
+
+Close Homebrew configuration
+#+begin_src nix
     };
   }
 #+end_src

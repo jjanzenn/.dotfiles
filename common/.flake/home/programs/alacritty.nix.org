@@ -1,5 +1,6 @@
 #+title: Alacritty Configuration
 
+This is the configuration for Alacritty terminal emulator.
 #+begin_src nix
   { config, pkgs, ... }:
 
@@ -7,6 +8,10 @@
     programs.alacritty = {
       enable = true;
       settings = {
+#+end_src
+
+Use no window decorations, slight transparency, small padding, and allow the =⌥= to work as =alt=.
+#+begin_src nix
         window = {
           decorations = "None";
           opacity = 0.9;
@@ -16,6 +21,10 @@
           };
           option_as_alt = "Both";
         };
+#+end_src
+
+Use Source Code Pro (Nerd Font), size 14 as my font.
+#+begin_src nix
         font = {
           normal = {
             family = "SauceCodePro Nerd Font";
@@ -23,6 +32,10 @@
           };
           size = 14;
         };
+#+end_src
+
+Set colour scheme.
+#+begin_src nix
         colors = {
           primary = {
             background = "#ece0c9";

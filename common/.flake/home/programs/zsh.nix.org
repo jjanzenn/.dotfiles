@@ -81,6 +81,7 @@ Create the prompt.
   PS1='%(?..%B%F{red}[%?%\]%f%b )%F{green}%20<...<%~%<<%f$vcs_info_msg_0_$(parse_git_dirty) $ '
 #+end_src
 
+Close the extra code block.
 #+begin_src nix
   '';
 #+end_src
@@ -103,7 +104,6 @@ Close =.profile= code.
 #+begin_src nix
   '';
 #+end_src
-
 
 Close =zsh= configuration.
 #+begin_src nix

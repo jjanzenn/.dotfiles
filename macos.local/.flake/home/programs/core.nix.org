@@ -1,5 +1,6 @@
 #+title:  Core Program Configuration
 
+Import configurations for programs and install programs with no configuration.
 #+begin_src nix
   { config, pkgs, ... }:
 

@@ -1,6 +1,6 @@
 #+title: Neovim Settings
 
-Create a simple Neovim configuration.
+Create a simple Neovim configuration. Install some basic packages and use a light colour scheme.
 #+begin_src nix
   { config, pkgs, ... }:
 

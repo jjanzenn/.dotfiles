@@ -9,18 +9,30 @@ Set up home manager for my user account and import submodules.
       ./clang-format.nix
       ./fonts.nix
       ./programs/core.nix
+      ./scripts/core.nix
     ];
 
+    home.stateVersion = "24.05";
+    programs.home-manager.enable = true;
+#+end_src
+
+Set username and paths.
+#+begin_src nix
     home.username = "jjanzen";
     home.homeDirectory = "/Users/jjanzen";
+#+end_src
+
+Import a wallpaper to the path =~/.wallpaper=.
+#+begin_src nix
     home.file.".wallpaper".source = ./.wallpaper;
+#+end_src
+
+Add Homebrew to the path along with standard =bin= directories.
+#+begin_src nix
     home.sessionPath = [
       "/opt/homebrew/bin"
       "$HOME/.local/bin"
       "/usr/local/bin"
     ];
-
-    home.stateVersion = "24.05";
-    programs.home-manager.enable = true;
   }
 #+end_src

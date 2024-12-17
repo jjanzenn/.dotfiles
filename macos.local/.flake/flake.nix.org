@@ -1,5 +1,6 @@
 #+title: macOS Nix Configuration
 
+The root for my macOS nix configuration using flake and home-manager.
 #+begin_src nix
   {
     description = "My Darwin Configuration";

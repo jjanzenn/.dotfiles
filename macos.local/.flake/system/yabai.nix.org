@@ -1,1 +1,61 @@
-../../../common/.flake/system/yabai.nix.org
+#+title: Yabai Configuration
+
+#+begin_src nix
+  { config, pkgs, ... }:
+
+  {
+    services.yabai = {
+      enable = true;
+#+end_src
+
+Use scripting addition features.
+#+begin_src nix
+  enableScriptingAddition = true;
+  config = {
+#+end_src
+
+Use auto-tiling.
+#+begin_src nix
+  layout = "bsp";
+  auto_balance = "on";
+#+end_src
+
+Do not use padding between windows.
+#+begin_src nix
+  top_padding = 0;
+  bottom_padding = 0;
+  left_padding = 0;
+  right_padding = 0;
+  window_gap = 0;
+#+end_src
+
+Disable window shadows unless the application is floating.
+#+begin_src nix
+  window_shadow = "float";
+#+end_src
+
+Mouse moves to focused window and windows are focused on mouse hover.
+#+begin_src nix
+  focus_follows_mouse = "autoraise";
+  mouse_follows_focus = "on";
+#+end_src
+
+Use =⌘= with the mouse to move and resize.
+#+begin_src nix
+  mouse_modifier = "cmd";
+  mouse_action1 = "move";
+  mouse_action2 = "resize";
+  mouse_drop_action = "swap";
+#+end_src
+
+Add exceptions for some apps.
+#+begin_src nix
+      };
+      extraConfig = ''
+        yabai -m rule --add app="^System Settings$" manage=off
+        yabai -m rule --add app="^Calculator$" manage=off
+        yabai -m rule --add app="^mpv" manage=off
+      '';
+    };
+  }
+#+end_src
