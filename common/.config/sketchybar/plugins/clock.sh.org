@@ -1,7 +1,0 @@
-#+title: SketchyBar Clock Plugin
-
-Get the date and set it as the label.
-#+begin_src sh :tangle ~/.config/sketchybar/plugins/clock.sh :mkdirp yes :tangle-mode o755
-  #!/bin/sh
-  sketchybar --set "$NAME" label="$(date '+%Y-%m-%d %H:%M')"
-#+end_src

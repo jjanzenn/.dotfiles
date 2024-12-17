@@ -1,9 +1,0 @@
-#+title: SketchyBar Front App Plugin
-
-Get the name of the focused application.
-#+begin_src sh :tangle ~/.config/sketchybar/plugins/front_app.sh :mkdirp yes :tangle-mode o755
-  #!/bin/sh
-  if [ "$SENDER" = "front_app_switched" ]; then
-    sketchybar --set "$NAME" label="$INFO"
-  fi
-#+end_src

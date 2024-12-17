@@ -1,7 +1,0 @@
-#+title: SketchyBar CPU Plugin
-
-Get the CPU percentage and display it.
-#+begin_src sh :tangle ~/.config/sketchybar/plugins/cpu.sh :mkdirp yes :tangle-mode o755
-  #!/bin/sh
-  sketchybar --set "$NAME" icon='󰍛' label="$(top -l  2 | grep -E "^CPU" | tail -1 | awk '{ print $3 + $5"%" }')"
-#+end_src

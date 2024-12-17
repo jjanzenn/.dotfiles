@@ -1,7 +1,0 @@
-#+title: SketchyBar Space Plugin
-
-Get the current space.
-#+begin_src sh :tangle ~/.config/sketchybar/plugins/space.sh :mkdirp yes :tangle-mode o755
-  #!/bin/sh
-  sketchybar --set "$NAME" background.drawing="$SELECTED"
-#+end_src
