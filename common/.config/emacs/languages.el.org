@@ -88,9 +88,6 @@ Better Lisp editing with =lispy=.
 #+begin_src emacs-lisp
   (use-package lispy
     :hook (emacs-lisp-mode . lispy-mode))
-  (use-package lispyville
-    :after lispy
-    :hook (lispy-mode . lispyville-mode))
 #+end_src
 
 Better parentheses handling in lisp with =parinfer-rust-mode=.

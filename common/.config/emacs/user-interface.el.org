@@ -63,15 +63,6 @@ Use line numbers by default.
   (global-display-line-numbers-mode 1)
 #+end_src
 
-Highlight changes for an operation with =evil-goggles=.
-#+begin_src emacs-lisp
-  (use-package evil-goggles
-    :after evil
-    :config
-    (evil-goggles-mode)
-    (evil-goggles-use-diff-faces))
-#+end_src
-
 Install nerd font icons.
 #+begin_src emacs-lisp
   (use-package nerd-icons)
