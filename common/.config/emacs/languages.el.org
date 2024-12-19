@@ -84,12 +84,6 @@ Install Lua support and run =eglot= on Lua files.
     (add-hook 'lua-mode-hook 'jj/eglot-setup))
 #+end_src
 
-Better Lisp editing with =lispy=.
-#+begin_src emacs-lisp
-  (use-package lispy
-    :hook (emacs-lisp-mode . lispy-mode))
-#+end_src
-
 Better parentheses handling in lisp with =parinfer-rust-mode=.
 #+begin_src emacs-lisp
   (use-package parinfer-rust-mode

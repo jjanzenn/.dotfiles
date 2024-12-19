@@ -1,5 +1,24 @@
 #+title: Emacs Configuration
 
+Force the use of a =custom.el= file instead of appending to =init.el=.
+#+begin_src emacs-lisp
+  (defun jj/force-custom-file ()
+    (setq custom-file (concat user-emacs-directory "custom.el"))
+    (when (file-exists-p custom-file)
+      (load custom-file)))
+#+end_src
+
+Use the correct =PATH= variable.
+#+begin_src emacs-lisp
+  (defun jj/set-exec-path-from-shell-PATH ()
+    (interactive)
+    (let ((path-from-shell (replace-regexp-in-string
+                            "[ \t\n]*$" "" (shell-command-to-string
+                                            "$SHELL --login -c 'echo $PATH'"))))
+      (setenv "PATH" path-from-shell)
+      (setq exec-path (split-string path-from-shell path-separator))))
+#+end_src
+
 Load files for config.
 #+begin_src emacs-lisp :tangle ~/.config/emacs/init.el :mkdirp yes
   (load "~/.config/emacs/force-custom-file.el")
