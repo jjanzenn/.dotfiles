@@ -435,8 +435,8 @@ Run the early setup right away.
 
 =jj/setup-c= configures Emacs to work with C source code the way I like. Notably, I disable =c-mode= in =lex= and =yacc= files.
 #+begin_src emacs-lisp
-  (defun jj/setup-c ()
-    "configure C source"
+  ;;(defun jj/setup-c ()
+  ;;  "configure C source"
     ;;(dolist (extension '("\\.l$" "\\.y$"))
     ;;        (add-to-list 'auto-mode-alist '(extension . prog-mode))))
 #+end_src
