@@ -62,7 +62,7 @@ Font definitions.
     (setq straight-use-package-by-default t))
 #+end_src
 
-=jj/early-setup= runs all early setup functions.
+Run the early setup right away.
 #+begin_src emacs-lisp
   (jj/force-custom-file)
   (jj/set-exec-path-from-shell-PATH)
@@ -583,4 +583,13 @@ Font definitions.
       (add-hook lang-hook (lambda () ((eglot-ensure)
                                       (tree-sitter-mode 1)
                                       (tree-sitter-hl-mode 1))))))
+#+end_src
+
+** Main
+
+#+begin_src emacs-lisp
+  (jj/appearance)
+  (jj/behaviour)
+  (jj/tools)
+  (jj/languages)
 #+end_src
