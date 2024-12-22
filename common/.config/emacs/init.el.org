@@ -437,8 +437,8 @@ Run the early setup right away.
 #+begin_src emacs-lisp
   (defun jj/setup-c ()
     "configure C source"
-    (dolist (extension '("\\.l$" "\\.y$"))
-            (add-to-list 'auto-mode-alist '(extension . prog-mode))))
+    ;;(dolist (extension '("\\.l$" "\\.y$"))
+    ;;        (add-to-list 'auto-mode-alist '(extension . prog-mode))))
 #+end_src
 
 =jj/setup-go= installs =go-mode= and tools for =go= source code. Namely, =go-eldoc= gets documentation for =go= variables, functions, and arguments, =go-gen-tests= automatically generates tests for =go= code, and =go-guru= helps with refactoring =go= code.
