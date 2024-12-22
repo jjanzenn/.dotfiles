@@ -1,0 +1,27 @@
+#    -*- mode: org -*-
+
+
+Archived entries from file /Users/jjanzen/.dotfiles/macos.local/.flake/home/programs/emacs/init.el.org
+
+
+* Variables
+:PROPERTIES:
+:ARCHIVE_TIME: 2024-12-19 Thu 12:39
+:ARCHIVE_FILE: ~/.dotfiles/macos.local/.flake/home/programs/emacs/init.el.org
+:ARCHIVE_CATEGORY: init.el
+:END:
+
+Font definitions.
+#+begin_src emacs-lisp
+  (defvar jj/mono-font)
+  (defvar jj/var-font)
+#+end_src
+
+Load files for config.
+#+begin_src emacs-lisp :tangle ~/.config/emacs/init.el :mkdirp yes
+  (load "~/.config/emacs/force-custom-file.el")
+  (load "~/.config/emacs/package-setup.el")
+  (load "~/.config/emacs/user-interface.el")
+  (load "~/.config/emacs/tools.el")
+  (load "~/.config/emacs/languages.el")
+#+end_src
