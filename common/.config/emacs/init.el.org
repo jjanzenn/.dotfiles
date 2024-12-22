@@ -84,8 +84,11 @@ Run the early setup right away.
        (setq jj/mono-font "SauceCodePro Nerd Font-14:weight=thin"
              jj/var-font "CMU Serif-18")))
     (add-to-list 'default-frame-alist
-                 `(font . ,jj/mono-font)))
-#+end_src
+                 `(font . ,jj/mono-font))
+    (custom-set-faces
+     `(variable-pitch ((t :font ,jj/var-font)))
+     `(fixed-pitch ((t :font ,jj/mono-font)))))
+ #+end_src
 
 =jj/setup-theme= is the reason I use =straight= rather than just =use-package=. I have a custom Emacs theme that comes from my own fork of =doom-themes=. I also use =doom-modeline= and =nerd-icons= for a nicer-looking user interface and remove the title bar from the window along with any other unnecessary elements from the screen. =dired= is modified to use =nerd-icons= and colours.
 #+begin_src emacs-lisp
@@ -155,7 +158,9 @@ Run the early setup right away.
     (defun jj/run-visual-line-mode ()
       "run visual-line-mode"
       (visual-line-mode)
-      (visual-fill-column-mode))
+      (visual-fill-column-mode)
+      (setq visual-fill-column-width 100
+            visual-fill-column-center-text t))
     (use-package visual-fill-column
       :hook
       (org-mode . jj/run-visual-line-mode)
