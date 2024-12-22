@@ -396,8 +396,9 @@ Run the early setup right away.
     "setup org-mode"
     (use-package org
       :hook
-      (org-mode . (lambda () ((variable-pitch-mode)
-                              (display-line-numbers-mode -1))))
+      (org-mode . (lambda ()
+                    (variable-pitch-mode)
+                    (display-line-numbers-mode -1)))
       :config
       (org-crypt-use-before-save-magic)
       (setq org-directory "~/org"
@@ -431,14 +432,6 @@ Run the early setup right away.
   (defun jj/setup-cmake ()
       "install cmake-mode"
       (use-package cmake-mode))
-#+end_src
-
-=jj/setup-c= configures Emacs to work with C source code the way I like. Notably, I disable =c-mode= in =lex= and =yacc= files.
-#+begin_src emacs-lisp
-  ;;(defun jj/setup-c ()
-  ;;  "configure C source"
-    ;;(dolist (extension '("\\.l$" "\\.y$"))
-    ;;        (add-to-list 'auto-mode-alist '(extension . prog-mode))))
 #+end_src
 
 =jj/setup-go= installs =go-mode= and tools for =go= source code. Namely, =go-eldoc= gets documentation for =go= variables, functions, and arguments, =go-gen-tests= automatically generates tests for =go= code, and =go-guru= helps with refactoring =go= code.
@@ -479,8 +472,9 @@ Run the early setup right away.
     "configure and install markdown-mode"
     (use-package markdown-mode
       :hook
-      (markdown-mode . (lambda () ((variable-pitch-mode)
-                                   (display-line-numbers-mode -1))))
+      (markdown-mode . (lambda ()
+                         (variable-pitch-mode)
+                         (display-line-numbers-mode -1)))
       :config
       (setq markdown-hide-markup t)
       :custom-face
@@ -579,9 +573,10 @@ Run the early setup right away.
                          LaTeX-mode-hook
                          yaml-mode-hook
                          nix-mode-hook))
-      (add-hook lang-hook (lambda () ((eglot-ensure)
-                                      (tree-sitter-mode 1)
-                                      (tree-sitter-hl-mode 1))))))
+      (add-hook lang-hook (lambda ()
+                            (eglot-ensure)
+                            (tree-sitter-mode 1)
+                            (tree-sitter-hl-mode 1)))))
 #+end_src
 
 ** Main
