@@ -550,7 +550,6 @@ Run the early setup right away.
     "install language tools and configure eglot"
     (jj/setup-org-mode)
     (jj/setup-cmake)
-    (jj/setup-c)
     (jj/setup-go)
     (jj/setup-lua)
     (jj/setup-lisp)
