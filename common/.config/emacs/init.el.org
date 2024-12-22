@@ -64,12 +64,10 @@ Font definitions.
 
 =jj/early-setup= runs all early setup functions.
 #+begin_src emacs-lisp
-  (defun jj/early-setup ()
-    "Run early setup functions"
-    (jj/force-custom-file)
-    (jj/set-exec-path-from-shell-PATH)
-    (jj/suppress-nativecomp-errors)
-    (jj/setup-package-management))
+  (jj/force-custom-file)
+  (jj/set-exec-path-from-shell-PATH)
+  (jj/suppress-nativecomp-errors)
+  (jj/setup-package-management)
 #+end_src
 
 ** Appearance
