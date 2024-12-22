@@ -392,8 +392,8 @@ Font definitions.
 
 =jj/setup-org-mode= configures =org-mode=. I use =~/org= as my =org= directory and hide emphasis markers because it's much easier to read that way. I enable =org-crypt= to allow reading and writing encrypted =org= files. I also replace bullets in bulleted lists with nicer looking icons. I configure faces to default to variable-width font, but switching to monospace where it is necessary. Finally, I use =visual-fill-column= to make =org= files display with a relatively narrow window centred in the frame.
 #+begin_src emacs-lisp
-  (defun jj/setup-org-mode
-      "setup org-mode"
+  (defun jj/setup-org-mode ()
+    "setup org-mode"
     (use-package org
       :hook
       (org-mode . (lambda () ((variable-pitch-mode)
