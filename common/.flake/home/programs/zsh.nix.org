@@ -60,9 +60,7 @@ Configure Homebrew =llvm=.
   export CC='/opt/homebrew/opt/llvm/bin/clang'
   export CXX="$CC++"
   export LDFLAGS="$LDFLAGS -L/opt/homebrew/opt/llvm/lib -L/opt/homebrew/lib"
-  export INCLUDE_FLAGS="-I/opt/homebrew/opt/llvm/include -I/opt/homebrew/include"
-  export CFLAGS="$CFLAGS $INCLUDE_FLAGS"
-  export CPPFLAGS="$CPPFLAGS $INCLUDE_FLAGS"
+  export CPPFLAGS="$CPPFLAGS -I/opt/homebrew/opt/llvm/include -I/opt/homebrew/include"
 #+end_src
 
 Create potential aliases and create the prompt.
