@@ -30,9 +30,10 @@ Import a wallpaper to the path =~/.wallpaper=.
 Add Homebrew to the path along with standard =bin= directories.
 #+begin_src nix
     home.sessionPath = [
-      "/opt/homebrew/bin"
       "$HOME/.local/bin"
       "/usr/local/bin"
+      "/opt/homebrew/bin"
+      "/opt/homebrew/opt/llvm/bin"
     ];
   }
 #+end_src
