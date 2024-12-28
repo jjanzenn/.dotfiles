@@ -33,7 +33,6 @@ Add Homebrew to the path along with standard =bin= directories.
       "$HOME/.local/bin"
       "/usr/local/bin"
       "/opt/homebrew/bin"
-      "/opt/homebrew/opt/llvm/bin"
     ];
   }
 #+end_src

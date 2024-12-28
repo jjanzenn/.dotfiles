@@ -56,6 +56,7 @@ Load extra code.
 
 Configure Homebrew =llvm=.
 #+begin_src sh
+  export PATH="/opt/homebrew/opt/llvm/bin:$PATH"
   export CC='/opt/homebrew/opt/llvm/bin/clang'
   export CXX="$CC++"
   export LDFLAGS="$LDFLAGS -L/opt/homebrew/opt/llvm/lib"
