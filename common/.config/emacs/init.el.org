@@ -433,7 +433,7 @@ Run the early setup right away.
             auto-save-default nil)
       (font-lock-add-keywords 'org-mode
                               '(("^ *\\([-]\\) "
-                                 (0 (prog1 () (compose-region (match-beginning 1) (match-end 1O) "•"))))))
+                                 (0 (prog1 () (compose-region (match-beginning 1) (match-end 1) "•"))))))
       :custom-face
       (org-block ((t :font ,jj/mono-font)))
       (org-code ((t :font ,jj/mono-font (:inherit (shadow)))))
