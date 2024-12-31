@@ -95,6 +95,7 @@ List packages to install with Homebrew.
     "telnet"
     "tree-sitter"
     "typescript-language-server"
+    "vscode-langservers-extracted"
     "wget"
     "yt-dlp"
     "felixkratz/formulae/sketchybar"
