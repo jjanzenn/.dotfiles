@@ -8,6 +8,9 @@ This terminal emulator seems over-hyped, but I'm trying it anyways.
     programs.ghostty = {
       enable = true;
       enableZshIntegration = true;
+      settings = {
+        font-family = "SauceCodePro Nerd Font";
+      };
     };
   }
 #+end_src
