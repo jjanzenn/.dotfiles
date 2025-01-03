@@ -6,6 +6,7 @@ Import various scripts useful on my system.
 
   {
     imports = [
+      ./deploy-website.nix
       ./launcher.nix
       ./remove-quarantine.nix
     ];
