@@ -12,7 +12,7 @@ I use =skhd= to configure keyboard bindings.
 
 Use =⌘-Enter= to open my terminal.
 #+begin_src text
-  cmd - return : /opt/homebrew/bin/alacritty
+  cmd - return : open -n /Applications/Ghostty.app
 #+end_src
 
 Close a window with =⌘-Shift-Q= to close a window.
