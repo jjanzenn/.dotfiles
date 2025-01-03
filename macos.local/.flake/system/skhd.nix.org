@@ -6,7 +6,7 @@ I use =skhd= to configure keyboard bindings.
 
   {
     services.skhd = {
-      enable = true;
+      enable = false;
       skhdConfig = ''
 #+end_src
 
