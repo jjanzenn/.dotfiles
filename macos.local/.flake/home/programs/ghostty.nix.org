@@ -10,6 +10,14 @@ This terminal emulator seems over-hyped, but I'm trying it anyways.
     font-thicken = true
     theme = "Unikitty"
     window-decoration = false
+    option-as-alt = true
+    quit-after-last-window-closed = true;
+    macos-window-shadow = false
+    macos-icon = "custom-style"
+    macos-icon-frame = "beige"
+    macos-icon-ghost-color = "#f891D6"
+    macos-icon-screen-color = "#0B0B0B"
+    auto-update = "off"
     '';
   }
 #+end_src
