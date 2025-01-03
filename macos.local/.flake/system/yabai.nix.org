@@ -5,7 +5,7 @@
 
   {
     services.yabai = {
-      enable = false;
+      enable = true;
 #+end_src
 
 Use scripting addition features.
