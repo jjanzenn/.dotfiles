@@ -7,7 +7,7 @@ This terminal emulator seems over-hyped, but I'm trying it anyways.
   {
     home.file."./.config/ghostty/config".text = ''
     font-family = "SauceCodePro Nerd Font"
-    font-size = 50
+    font-thicken = true
     '';
   }
 #+end_src
