@@ -9,6 +9,7 @@ This terminal emulator seems over-hyped, but I'm trying it anyways.
     font-family = "SauceCodePro Nerd Font"
     font-thicken = true
     theme = "Unikitty"
+    window-decoration = false
     '';
   }
 #+end_src
