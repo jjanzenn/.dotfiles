@@ -9,6 +9,7 @@ This terminal emulator seems over-hyped, but I'm trying it anyways.
     auto-update = "off"
     background-blur-radius = 20
     background-opacity = 0.8
+    clipboard-trim-trailing-spaces = true
     font-family = "SauceCodePro Nerd Font"
     font-thicken = true
     macos-icon = "custom-style"
