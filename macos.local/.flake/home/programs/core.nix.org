@@ -9,6 +9,7 @@ Import configurations for programs and install programs with no configuration.
       ./alacritty.nix
       ./emacs/core.nix
       ./fastfetch.nix
+      ./ghostty.nix
       ./git.nix
       ./neovim.nix
       ./ssh.nix

@@ -5,12 +5,8 @@ This terminal emulator seems over-hyped, but I'm trying it anyways.
   { config, pkgs, ... }:
 
   {
-    programs.ghostty = {
-      enable = true;
-      enableZshIntegration = true;
-      settings = {
-        font-family = "SauceCodePro Nerd Font";
-      };
-    };
+    home.file."./.config/ghostty/config".text = ''
+    font-family = "SauceCodePro Nerd Font"
+    '';
   }
 #+end_src
