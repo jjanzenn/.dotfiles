@@ -2,17 +2,17 @@
 
 Specify my name and email for =git=. Also enable =delta= and =pull.rebase=.
 #+begin_src nix
-{ config, pkgs, ... }:
+  { config, pkgs, ... }:
 
-{
-  programs.git = {
-    enable = true;
-    userName = "Jacob Janzen";
-    userEmail = "jacob.a.s.janzen@gmail.com";
-    delta.enable = true;
-    extraConfig = {
-      pull.rebase = true;
+  {
+    programs.git = {
+      enable = true;
+      userName = "jjanzen";
+      userEmail = "jjanzen@jjanzen.ca";
+      delta.enable = true;
+      extraConfig = {
+        pull.rebase = true;
+      };
     };
-  };
-}
+  }
 #+end_src
