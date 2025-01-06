@@ -1,26 +1,14 @@
 #+title: Emacs Configuration
 
-* Variables
-
-Font definitions.
+* Early Setup
+Force the use of a =custom.el= file instead of appending to =init.el=.
 #+begin_src emacs-lisp
-  (defvar jj/mono-font)
-  (defvar jj/var-font)
+  (setq custom-file (concat user-emacs-directory "custom.el"))
+  (when (file-exists-p custom-file)
+    (load custom-file))
 #+end_src
 
-* Functions
-
-** Early Setup
-=jj/force-custom-file= forces the use of a =custom.el= file instead of appending to =init.el=.
-#+begin_src emacs-lisp
-  (defun jj/force-custom-file ()
-    "Use a custom file: custom.el. Load that file if it exists."
-    (setq custom-file (concat user-emacs-directory "custom.el"))
-    (when (file-exists-p custom-file)
-      (load custom-file)))
-#+end_src
-
-=jj/set-exec-path-from-shell-PATH= make Emacs use the correct =PATH= variable as macOS fails to load the =PATH= variable from my login shell.
+Make Emacs use the correct =PATH= variable as macOS fails to load the =PATH= variable from my login shell.
 #+begin_src emacs-lisp
   (defun jj/set-exec-path-from-shell-PATH ()
     "Load the login shell's PATH variable manually because macOS doesn't behave well."
@@ -30,583 +18,453 @@ Font definitions.
                                             "$SHELL --login -c 'echo $PATH'"))))
       (setenv "PATH" path-from-shell)
       (setq exec-path (split-string path-from-shell path-separator))))
-#+end_src
-
-=jj/suppress-nativecomp-errors= suppresses native compilation warnings and errors. Native compilation seems to be a little broken on macOS and the warnings are just annoying.
-#+begin_src emacs-lisp :tangle yes
-  (defun jj/suppress-nativecomp-errors ()
-    "Log errors and warnings, but don't show them on screen."
-    (setq native-comp-async-report-warnings-errors 'silent))
-#+end_src
-
-=jj/setup-package-management= bootstraps package management. I use =straight= with =use-package= to allow declarative package management and include =git= repositories in addition to =elpa= / =melpa=.
-#+begin_src emacs-lisp
-  (defun jj/setup-package-management ()
-    "Use straight with use-package for package management"
-    (defvar bootstrap-version)
-    (let ((bootstrap-file
-           (expand-file-name
-            "straight/repos/straight.el/bootstrap.el"
-            (or (bound-and-true-p straight-base-dir)
-                user-emacs-directory)))
-          (bootstrap-version 7))
-      (unless (file-exists-p bootstrap-file)
-        (with-current-buffer
-            (url-retrieve-synchronously
-             "https://raw.githubusercontent.com/radian-software/straight.el/develop/install.el"
-             'silent 'inhibit-cookies)
-          (goto-char (point-max))
-          (eval-print-last-sexp)))
-      (load bootstrap-file nil ':nomessage))
-    (straight-use-package 'use-package)
-    (setq straight-use-package-by-default t))
-#+end_src
-
-Run the early setup right away.
-#+begin_src emacs-lisp
-  (jj/force-custom-file)
   (jj/set-exec-path-from-shell-PATH)
-  (jj/suppress-nativecomp-errors)
-  (jj/setup-package-management)
 #+end_src
 
-** Appearance
+Suppress native compilation warnings and errors. Native compilation seems to be a little broken on macOS and the warnings are just annoying.
+#+begin_src emacs-lisp :tangle yes
+  (setq native-comp-async-report-warnings-errors 'silent)
+#+end_src
 
-=jj/setup-fonts= sets up fonts. I use Source Code Pro (Nerd Font) for monospace and Computer Modern for variable width.
+Bootstrap package management. I use =straight= with =use-package= to allow declarative package management and include =git= repositories in addition to =elpa= / =melpa=.
 #+begin_src emacs-lisp
-  (defun jj/setup-fonts ()
-    "Set font sizes based on the operating system. macOS expects bigger fonts than Linux"
-    (pcase system-type
-      (`gnu/linux
-       (setq jj/mono-font "SauceCodePro Nerd Font-11"
-             jj/var-font "CMU Serif-14"))
-      (`darwin
-       (setq jj/mono-font "SauceCodePro Nerd Font-14:weight=thin"
-             jj/var-font "CMU Serif-18")))
-    (add-to-list 'default-frame-alist
-                 `(font . ,jj/mono-font))
-    (custom-set-faces
-     `(variable-pitch ((t :font ,jj/var-font)))
-     `(fixed-pitch ((t :font ,jj/mono-font)))))
+  (defvar bootstrap-version)
+  (let ((bootstrap-file
+         (expand-file-name
+          "straight/repos/straight.el/bootstrap.el"
+          (or (bound-and-true-p straight-base-dir)
+              user-emacs-directory)))
+        (bootstrap-version 7))
+    (unless (file-exists-p bootstrap-file)
+      (with-current-buffer
+          (url-retrieve-synchronously
+           "https://raw.githubusercontent.com/radian-software/straight.el/develop/install.el"
+           'silent 'inhibit-cookies)
+        (goto-char (point-max))
+        (eval-print-last-sexp)))
+    (load bootstrap-file nil ':nomessage))
+  (straight-use-package 'use-package)
+  (setq straight-use-package-by-default t)
+#+end_src
+
+* Appearance
+
+Set up fonts. I use Source Code Pro (Nerd Font) for monospace and Computer Modern for variable width.
+#+begin_src emacs-lisp
+  (defvar jj/mono-font)
+  (defvar jj/var-font)
+  (pcase system-type
+    (`gnu/linux
+     (setq jj/mono-font "SauceCodePro Nerd Font-11"
+           jj/var-font "CMU Serif-14"))
+    (`darwin
+     (setq jj/mono-font "SauceCodePro Nerd Font-14:weight=thin"
+           jj/var-font "CMU Serif-18")))
+  (add-to-list 'default-frame-alist
+               `(font . ,jj/mono-font))
+  (custom-set-faces
+   `(variable-pitch ((t :font ,jj/var-font)))
+   `(fixed-pitch ((t :font ,jj/mono-font))))
  #+end_src
 
-=jj/setup-theme= is the reason I use =straight= rather than just =use-package=. I have a custom Emacs theme that comes from my own fork of =doom-themes=. I also use =doom-modeline= and =nerd-icons= for a nicer-looking user interface and remove the title bar from the window along with any other unnecessary elements from the screen. =dired= is modified to use =nerd-icons= and colours.
+This block is the reason I use =straight= rather than just =use-package=. I have a custom Emacs theme that comes from my own fork of =doom-themes=. I also use =doom-modeline= and =nerd-icons= for a nicer-looking user interface and remove the title bar from the window along with any other unnecessary elements from the screen. =dired= is modified to use =nerd-icons= and colours.
 #+begin_src emacs-lisp
-  (defun jj/setup-theme ()
-    "Install theming for Emacs from my fork of the doom-themes repo"
-    (use-package doom-themes
-      :straight
-      (doom-themes :type git
-                   :host github
-                   :repo "doomemacs/themes"
-                   :fork
-                   (:host github
-                    :repo "JacobJanzen/emacs-doom-themes"))
-      :config
-      (setq doom-themes-enable-bold t
-            doom-themes-enable-italic t)
-      (load-theme 'doom-pink t)
-      (doom-themes-org-config))
-    (use-package doom-modeline
-      :init
-      (doom-modeline-mode 1))
-    (use-package nerd-icons)
-    (use-package nerd-icons-dired
-      :after
-      (nerd-icons)
-      :hook
-      (dired-mode . nerd-icons-dired-mode))
-    (use-package nerd-icons-completion
-      :config
-      (nerd-icons-completion-mode))
-    (use-package diredfl
-      :init
-      (diredfl-global-mode 1))
-    (add-to-list 'default-frame-alist '(undecorated . t))
-    (scroll-bar-mode -1)
-    (tool-bar-mode -1)
-    (menu-bar-mode -1))
+  (use-package doom-themes
+    :straight
+    (doom-themes :type git
+                 :host github
+                 :repo "doomemacs/themes"
+                 :fork
+                 (:host github
+                  :repo "JacobJanzen/emacs-doom-themes"))
+    :config
+    (setq doom-themes-enable-bold t
+          doom-themes-enable-italic t)
+    (load-theme 'doom-pink t)
+    (doom-themes-org-config))
+  (use-package doom-modeline
+    :init
+    (doom-modeline-mode 1))
+  (use-package nerd-icons)
+  (use-package nerd-icons-dired
+    :after
+    (nerd-icons)
+    :hook
+    (dired-mode . nerd-icons-dired-mode))
+  (use-package nerd-icons-completion
+    :config
+    (nerd-icons-completion-mode))
+  (use-package diredfl
+    :init
+    (diredfl-global-mode 1))
+  (add-to-list 'default-frame-alist '(undecorated . t))
+  (scroll-bar-mode -1)
+  (tool-bar-mode -1)
+  (menu-bar-mode -1)
 #+end_src
 
-=jj/clean-startup-screen= disables the default startup screen so Emacs starts in the =scratch= buffer and also defaults to an empty =scratch= buffer.
+Disable the default startup screen so Emacs starts in the =scratch= buffer and also defaults to an empty =scratch= buffer.
 #+begin_src emacs-lisp
-  (defun jj/clean-startup-screen ()
-    "Remove default startup screen; clean scratch buffer"
-    (setq inhibit-startup-screen t
-          initial-scratch-message nil))
+  (setq inhibit-startup-screen t
+        initial-scratch-message nil)
 #+end_src
 
-=jj/enable-line-numbers= tells Emacs to use line numbers by default.
+Tell Emacs to use line numbers by default.
 #+begin_src emacs-lisp
-  (defun jj/enable-line-numbers ()
-    "Enable line numbers by default"
-    (global-display-line-numbers-mode 1))
+  (global-display-line-numbers-mode 1)
 #+end_src
 
-=jj/setup-whitespace= configures Emacs to default to spaces over tabs and use a width of 4 by default.
+Configure Emacs to default to spaces over tabs and use a width of 4 by default.
 #+begin_src emacs-lisp
-  (defun jj/setup-whitespace ()
-    (setq-default indent-tabs-mode nil)
-    (setq tab-width 4
-          c-basic-offset tab-width))
+  (setq-default indent-tabs-mode nil)
+  (setq tab-width 4
+        c-basic-offset tab-width)
 #+end_src
 
-=jj/setup-visual-fill-column= installs and configures =visual-fill-column= to make some file types display with a narrow window centred in the frame.
+Install and configure =visual-fill-column= to make some file types display with a narrow window centred in the frame.
 #+begin_src emacs-lisp
-  (defun jj/setup-visual-fill-column ()
-    "configure and install visual-fill-column"
-    (defun jj/run-visual-line-mode ()
-      "run visual-line-mode"
-      (visual-line-mode)
-      (visual-fill-column-mode)
-      (setq visual-fill-column-width 100
-            visual-fill-column-center-text t))
-    (use-package visual-fill-column
-      :hook
-      (org-mode . jj/run-visual-line-mode)
-      (markdown-mode . jj/run-visual-line-mode)
-      :config
-      (setq visual-fill-column-width 100
-            visual-fill-column-center-text t)))
+  (defun jj/run-visual-line-mode ()
+    "run visual-line-mode"
+    (visual-line-mode)
+    (visual-fill-column-mode)
+    (setq visual-fill-column-width 100
+          visual-fill-column-center-text t))
+  (use-package visual-fill-column
+    :hook
+    (org-mode . jj/run-visual-line-mode)
+    (markdown-mode . jj/run-visual-line-mode)
+    :config
+    (setq visual-fill-column-width 100
+          visual-fill-column-center-text t))
 #+end_src
 
-=jj/appearance= runs all appearance functions.
-#+begin_src emacs-lisp
-  (defun jj/appearance ()
-    "Run appearance functions"
-    (jj/setup-fonts)
-    (jj/setup-theme)
-    (jj/clean-startup-screen)
-    (jj/enable-line-numbers)
-    (jj/setup-whitespace)
-    (jj/setup-visual-fill-column))
+* Behaviour
 
+Make Emacs scroll one line at a time instead of big jumps.
+#+begin_src emacs-lisp
+  (setq scroll-conservatively most-positive-fixnum)
 #+end_src
 
-** Behaviour
-
-=jj/nicer-scroll= makes Emacs scroll one line at a time instead of big jumps.
+Make Emacs delete trailing whitspace on save. This does not happen in =markdown-mode= which sometimes needs trailing whitespace.
 #+begin_src emacs-lisp
-  (defun jj/nicer-scroll ()
-    "Scroll one line at a time"
-    (setq scroll-conservatively most-positive-fixnum))
+  (add-hook 'before-save-hook
+            (lambda ()
+              (unless (eql (with-current-buffer (current-buffer) major-mode)
+                           'markdown-mode)
+                (delete-trailing-whitespace))))
 #+end_src
 
-=jj/setup-delete-trailing-whitespace= make Emacs delete trailing whitspace on save. This does not happen in =markdown-mode= which sometimes needs trailing whitespace.
+Make Emacs create directories if they don't exist if the user selects that answer.
 #+begin_src emacs-lisp
-  (defun jj/setup-delete-trailing-whitespace ()
-    "Delete trailing whitespace on save"
-    (add-hook 'before-save-hook
-              (lambda ()
-                (unless (eql (with-current-buffer (current-buffer) major-mode)
-                             'markdown-mode)
-                  (delete-trailing-whitespace)))))
+  (add-to-list 'find-file-not-found-functions
+               (lambda ()
+                 (let ((parent-directory (file-name-directory buffer-file-name)))
+                   (when (and (not (file-exists-p parent-directory))
+                              (y-or-n-p (format "Directory `%s' does not exist! Create it?" parent-directory)))
+                     (make-directory parent-directory t)))))
 #+end_src
 
-=jj/setup-auto-make-directory= makes Emacs create directories if they don't exist if the user selects that answer.
+Disable the creation of backup files which pollute the file system.
 #+begin_src emacs-lisp
-  (defun jj/setup-auto-make-directory ()
-    (add-to-list 'find-file-not-found-functions
-                 (lambda ()
-                   (let ((parent-directory (file-name-directory buffer-file-name)))
-                     (when (and (not (file-exists-p parent-directory))
-                                (y-or-n-p (format "Directory `%s' does not exist! Create it?" parent-directory)))
-                       (make-directory parent-directory t))))))
+  (setq make-backup-files nil)
 #+end_src
 
-=jj/setup-disable-backup-files= disables the creation of backup files which pollute the file system.
+Make PDFs save where in the document it was last.
 #+begin_src emacs-lisp
-  (defun jj/setup-disable-backup-files ()
-    "disable creation of backup files"
-    (setq make-backup-files nil))
+  (use-package saveplace-pdf-view
+    :config
+    (save-place-mode 1))
 #+end_src
 
-=jj/save-place-in-pdf= makes PDFs save where in the document it was last.
+* Tools
+
+Configure =dumb-jump= for better lookup.
 #+begin_src emacs-lisp
-  (defun jj/save-place-in-pdf ()
-    "keep position in PDF files"
-    (use-package saveplace-pdf-view
-      :config
-      (save-place-mode 1)))
+  (use-package dumb-jump
+    :init
+    (add-hook 'xref-backend-functions #'dumb-jump-xref-activate))
 #+end_src
 
-=jj/behaviour= runs all behaviour setup functions.
-#+begin_src emacs-lisp :tangle yes
-  (defun jj/behaviour ()
-    "Setup behaviour for Emacs"
-    (jj/nicer-scroll)
-    (jj/setup-delete-trailing-whitespace)
-    (jj/setup-auto-make-directory)
-    (jj/setup-disable-backup-files)
-    (jj/save-place-in-pdf))
+Configure and install =magit= as a =git= front end.
+#+begin_src emacs-lisp
+  (use-package magit)
 #+end_src
 
-** Tools
-
-=jj/setup-dumb-jump= configures =dumb-jump= for better lookup.
+Install a better PDF viewer than =DocView=.
 #+begin_src emacs-lisp
-  (defun jj/setup-dumb-jump ()
-    "install and configure dumb-jump"
-    (use-package dumb-jump
-      :init (add-hook 'xref-backend-functions #'dumb-jump-xref-activate)))
+  (use-package pdf-tools
+    :config
+    (pdf-tools-install)
+    :hook
+    (pdf-view-mode . (lambda () (display-line-numbers-mode -1)))
+    :init
+    (add-hook 'TeX-after-compilation-finished-functions #'TeX-revert-document-buffer)
+    :config
+    (setq TeX-view-program-selection '((output-pdf "PDF Tools"))
+          TeX-view-program-list '(("PDF Tools" TeX-pdf-tools-sync-view))
+          TeX-source-correlate-start-server t))
 #+end_src
 
-=jj/setup-magit= configures and installs =magit= as a =git= front end.
+Install and configure =fzf= to be used as a fuzzy finder.
 #+begin_src emacs-lisp
-  (defun jj/setup-magit ()
-    "install magit"
-    (use-package magit))
+  (use-package fzf
+    :bind
+    ("C-c C-f" . fzf)
+    :config
+    (setq fzf/args "-x --color 16 --print-query --margin=1,0 --no-hscroll"
+          fzf/executable "fzf"
+          fzf/git-grep-args "-i --line-number %s"
+          fzf/grep-command "grep -nrH"
+          fzf/position-bottom nil
+          fzf/window-height 15))
 #+end_src
 
-=jj/setup-pdf-tools= installs a better PDF viewer than =DocView=.
+Install and configure =vterm= as a terminal emulator in Emacs.
 #+begin_src emacs-lisp
-  (defun jj/setup-pdf-tools ()
-    "install pdf-tools"
-    (use-package pdf-tools
-      :config
-      (pdf-tools-install)
-      :hook
-      (pdf-view-mode . (lambda () (display-line-numbers-mode -1)))
-      :init
-      (add-hook 'TeX-after-compilation-finished-functions #'TeX-revert-document-buffer)
-      :config
-      (setq TeX-view-program-selection '((output-pdf "PDF Tools"))
-            TeX-view-program-list '(("PDF Tools" TeX-pdf-tools-sync-view))
-            TeX-source-correlate-start-server t)))
+  (use-package vterm
+    :bind
+    ("C-c v" . vterm))
 #+end_src
 
-=jj/setup-fzf= installs and configures =fzf= to be used as a fuzzy finder.
+Install =company= for completions. It is configured to start with no delay immediately after the first key press. =vertico= is used as a front end for completions. =orderless= is used to allow searching in any portion of a string and =marginalia= gives descriptions of items in the list.
 #+begin_src emacs-lisp
-  (defun jj/setup-fzf ()
-    "install and configure fzf"
-    (use-package fzf
-      :bind
-      ("C-c C-f" . fzf)
-      :config
-      (setq fzf/args "-x --color 16 --print-query --margin=1,0 --no-hscroll"
-            fzf/executable "fzf"
-            fzf/git-grep-args "-i --line-number %s"
-            fzf/grep-command "grep -nrH"
-            fzf/position-bottom nil
-            fzf/window-height 15)))
+  (use-package company
+    :config
+    (add-hook 'after-init-hook 'global-company-mode)
+    (setq company-idle-delay 0
+          company-minimum-prefix-length 1
+          company-selection-wrap-around t))
+  (use-package vertico
+    :custom
+    (vertico-cycle t)
+    :init
+    (vertico-mode 1))
+  (use-package orderless
+    :custom
+    (completion-styles '(orderless basic))
+    (completion-category-overrides '((file (styles basic partial-completion)))))
+  (use-package marginalia
+    :bind
+    (:map minibuffer-local-map
+          ("M-A" . marginalia-cycle))
+    :init
+    (marginalia-mode 1))
 #+end_src
 
-=jj/setup-vterm= configures and installs =vterm= as a terminal emulator in Emacs.
+Set up =flycheck= and =flyspell= for syntax and spell checking respectively.
 #+begin_src emacs-lisp
-  (defun jj/setup-vterm ()
-    "install and configure vterm"
-    (use-package vterm
-      :bind
-      ("C-c v" . vterm)))
+  (use-package flycheck
+    :config
+    (add-hook 'after-init-hook #'global-flycheck-mode))
+  (use-package flyspell
+    :hook
+    (text-mode . flyspell-mode))
+  (use-package flyspell-correct
+    :after flyspell
+    :bind (:map flyspell-mode-map ("C-;" . flyspell-correct-wrapper)))
 #+end_src
 
-=jj/setup-completions= installs =company= for completions. It is configured to start with no delay immediately after the first key press. =vertico= is used as a front end for completions. =orderless= is used to allow searching in any portion of a string and =marginalia= gives descriptions of items in the list.
+Install =yasnippet= for managing snippets and =yasnippet-snippets= for a collection of useful snippets.
 #+begin_src emacs-lisp
-  (defun jj/setup-completions ()
-    "configure and install company"
-    (use-package company
-      :config
-      (add-hook 'after-init-hook 'global-company-mode)
-      (setq company-idle-delay 0
-            company-minimum-prefix-length 1
-            company-selection-wrap-around t))
-    (use-package vertico
-      :custom
-      (vertico-cycle t)
-      :init
-      (vertico-mode 1))
-    (use-package orderless
-      :custom
-      (completion-styles '(orderless basic))
-      (completion-category-overrides '((file (styles basic partial-completion)))))
-    (use-package marginalia
-      :bind
-      (:map minibuffer-local-map
-            ("M-A" . marginalia-cycle))
-      :init
-      (marginalia-mode 1)))
+  (use-package yasnippet
+    :init
+    (yas-global-mode 1)
+    :bind
+    ("C-c s" . yas-insert-snippet))
+  (use-package yasnippet-snippets)
 #+end_src
 
-=jj/setup-checkers= sets up =flycheck= and =flyspell= for syntax and spell checking respectively.
+Install =apheleia= and =clang-format= to automatically format code on save.
 #+begin_src emacs-lisp
-  (defun jj/setup-checkers ()
-    "Configure and install flycheck and flyspell"
-    (use-package flycheck
-      :config
-      (add-hook 'after-init-hook #'global-flycheck-mode))
-    (use-package flyspell
-      :hook
-      (text-mode . flyspell-mode))
-    (use-package flyspell-correct
-      :after flyspell
-      :bind (:map flyspell-mode-map ("C-;" . flyspell-correct-wrapper))))
-#+end_src
-
-=jj/setup-snippets= installs =yasnippet= for managing snippets and =yasnippet-snippets= for a collection of useful snippets.
-#+begin_src emacs-lisp
-  (defun jj/setup-snippets ()
-    "install snippets"
-    (use-package yasnippet
-      :init
-      (yas-global-mode 1)
-      :bind
-      ("C-c s" . yas-insert-snippet))
-    (use-package yasnippet-snippets))
-#+end_src
-
-=jj/setup-formatting= installs =apheleia= and =clang-format= to automatically format code on save.
-#+begin_src emacs-lisp
-  (defun jj/setup-formatting ()
-    "setup auto-formatters"
     (use-package apheleia
       :init (apheleia-global-mode 1))
-    (use-package clang-format))
+    (use-package clang-format)
 #+end_src
 
-=jj/setup-rss= configures and installs =elfeed= to serve as an =rss= feed reader. It stores the feed [[./feed.org.org][here]].
+Configure and install =elfeed= to serve as an =rss= feed reader. It stores the feed [[./feed.org.org][here]].
 #+begin_src emacs-lisp
-  (defun jj/setup-rss ()
-    "configure elfeed for rss"
-    (use-package elfeed
-      :bind
-      ("C-c e f" . elfeed)
-      ("C-c e u" . elfeed-update))
-    (use-package elfeed-goodies
-      :after
-      elfeed
-      :config
-      (elfeed-goodies/setup))
-    (use-package elfeed-org
-      :config
-      (elfeed-org)
-      (setq rmh-elfeed-org-files (list "~/.config/emacs/feed.org"))))
+  (use-package elfeed
+    :bind
+    ("C-c e f" . elfeed)
+    ("C-c e u" . elfeed-update))
+  (use-package elfeed-goodies
+    :after
+    elfeed
+    :config
+    (elfeed-goodies/setup))
+  (use-package elfeed-org
+    :config
+    (elfeed-org)
+    (setq rmh-elfeed-org-files (list "~/.config/emacs/feed.org")))
 #+end_src
 
-=jj/setup-note-management= sets up =deft= for quick notes.
+Set up =deft= for quick notes.
 #+begin_src emacs-lisp
-  (defun jj/setup-note-management ()
-    "configure and install deft"
-    (use-package deft
-      :bind
-      ("C-c d" . deft)
-      :config
-      (setq deft-directory "~/notes/"
-            deft-default-extension "org")))
+  (use-package deft
+    :bind
+    ("C-c d" . deft)
+    :config
+    (setq deft-directory "~/notes/"
+          deft-default-extension "org"))
 #+end_src
 
-=jj/tools= installs and configures all tools specified above.
+* Languages
+
+Configure =org-mode=. I use =~/org= as my =org= directory and hide emphasis markers because it's much easier to read that way. I enable =org-crypt= to allow reading and writing encrypted =org= files. I also replace bullets in bulleted lists with nicer looking icons. I configure faces to default to variable-width font, but switching to monospace where it is necessary. Finally, I use =visual-fill-column= to make =org= files display with a relatively narrow window centred in the frame.
 #+begin_src emacs-lisp
-  (defun jj/tools ()
-    "configure and install tools"
-    (jj/setup-dumb-jump)
-    (jj/setup-magit)
-    (jj/setup-fzf)
-    (jj/setup-pdf-tools)
-    (jj/setup-vterm)
-    (jj/setup-completions)
-    (jj/setup-checkers)
-    (jj/setup-snippets)
-    (jj/setup-formatting)
-    (jj/setup-rss)
-    (jj/setup-note-management))
+  (use-package org
+    :hook
+    (org-mode . (lambda ()
+                  (variable-pitch-mode)
+                  (display-line-numbers-mode -1)))
+    :config
+    (org-crypt-use-before-save-magic)
+    (setq org-directory "~/org"
+          org-hide-emphasis-markers t
+          org-format-latex-options (plist-put org-format-latex-options :scale 2.0)
+          org-return-follows-link t
+          org-tags-exclude-from-inheritance '("crypt")
+          org-crypt-key nil
+          auto-save-default nil)
+    (font-lock-add-keywords 'org-mode
+                            '(("^ *\\([-]\\) "
+                               (0 (prog1 () (compose-region (match-beginning 1) (match-end 1) "•"))))))
+    :custom-face
+    (org-block ((t :font ,jj/mono-font)))
+    (org-code ((t :font ,jj/mono-font (:inherit (shadow)))))
+    (org-document-info-keyword ((t :font ,jj/mono-font (:inherit (shadow)))))
+    (org-meta-line ((t :font ,jj/mono-font (:inherit (font-lock-comment-face)))))
+    (org-verbatim ((t :font ,jj/mono-font (:inherit (shadow)))))
+    (org-table ((t :font ,jj/mono-font (:inherit (shadow)))))
+    (org-document-title ((t (:inherit title :height 2.0 :underline nil))))
+    (org-level-1 ((t (:inherit outline-1 :weight bold :height 1.75))))
+    (org-level-2 ((t (:inherit outline-2 :weight bold :height 1.5))))
+    (org-level-3 ((t (:inherit outline-3 :weight bold :height 1.25))))
+    (org-level-4 ((t (:inherit outline-4 :weight bold :height 1.1))))
+    (org-level-5 ((t (:inherit outline-5 :height 1.1))))
+    (org-level-6 ((t (:inherit outline-6)))))
 #+end_src
 
-** Languages
-
-=jj/setup-org-mode= configures =org-mode=. I use =~/org= as my =org= directory and hide emphasis markers because it's much easier to read that way. I enable =org-crypt= to allow reading and writing encrypted =org= files. I also replace bullets in bulleted lists with nicer looking icons. I configure faces to default to variable-width font, but switching to monospace where it is necessary. Finally, I use =visual-fill-column= to make =org= files display with a relatively narrow window centred in the frame.
+Install =cmake-mode=.
 #+begin_src emacs-lisp
-  (defun jj/setup-org-mode ()
-    "setup org-mode"
-    (use-package org
-      :hook
-      (org-mode . (lambda ()
-                    (variable-pitch-mode)
-                    (display-line-numbers-mode -1)))
-      :config
-      (org-crypt-use-before-save-magic)
-      (setq org-directory "~/org"
-            org-hide-emphasis-markers t
-            org-format-latex-options (plist-put org-format-latex-options :scale 2.0)
-            org-return-follows-link t
-            org-tags-exclude-from-inheritance '("crypt")
-            org-crypt-key nil
-            auto-save-default nil)
-      (font-lock-add-keywords 'org-mode
-                              '(("^ *\\([-]\\) "
-                                 (0 (prog1 () (compose-region (match-beginning 1) (match-end 1) "•"))))))
-      :custom-face
-      (org-block ((t :font ,jj/mono-font)))
-      (org-code ((t :font ,jj/mono-font (:inherit (shadow)))))
-      (org-document-info-keyword ((t :font ,jj/mono-font (:inherit (shadow)))))
-      (org-meta-line ((t :font ,jj/mono-font (:inherit (font-lock-comment-face)))))
-      (org-verbatim ((t :font ,jj/mono-font (:inherit (shadow)))))
-      (org-table ((t :font ,jj/mono-font (:inherit (shadow)))))
-      (org-document-title ((t (:inherit title :height 2.0 :underline nil))))
-      (org-level-1 ((t (:inherit outline-1 :weight bold :height 1.75))))
-      (org-level-2 ((t (:inherit outline-2 :weight bold :height 1.5))))
-      (org-level-3 ((t (:inherit outline-3 :weight bold :height 1.25))))
-      (org-level-4 ((t (:inherit outline-4 :weight bold :height 1.1))))
-      (org-level-5 ((t (:inherit outline-5 :height 1.1))))
-      (org-level-6 ((t (:inherit outline-6))))))
+  (use-package cmake-mode)
 #+end_src
 
-=jj/setup-cmake= installs =cmake-mode=.
+Install =go-mode= and tools for =go= source code. Namely, =go-eldoc= gets documentation for =go= variables, functions, and arguments, =go-gen-tests= automatically generates tests for =go= code, and =go-guru= helps with refactoring =go= code.
 #+begin_src emacs-lisp
-  (defun jj/setup-cmake ()
-      "install cmake-mode"
-      (use-package cmake-mode))
+  (use-package go-mode)
+  (use-package go-eldoc
+    :hook
+    (go-mode . go-eldoc-setup))
+  (use-package go-gen-test)
+  (use-package go-guru
+    :hook
+    (go-mode . go-guru-hl-identifier-mode))
 #+end_src
 
-=jj/setup-go= installs =go-mode= and tools for =go= source code. Namely, =go-eldoc= gets documentation for =go= variables, functions, and arguments, =go-gen-tests= automatically generates tests for =go= code, and =go-guru= helps with refactoring =go= code.
+Install tools for LaTeX. Namely, =auctex= for better integration with Emacs and =cdlatex= for environment and macro insertion.
 #+begin_src emacs-lisp
-  (defun jj/setup-go ()
-    "install go-mode and tools for go"
-    (use-package go-mode)
-    (use-package go-eldoc
-      :hook
-      (go-mode . go-eldoc-setup))
-    (use-package go-gen-test)
-    (use-package go-guru
-      :hook
-      (go-mode . go-guru-hl-identifier-mode)))
+  (use-package auctex
+    :hook
+    (LaTeX-mode . (lambda () (put 'LaTeX-mode 'eglot-language-id "latex"))))
+  (use-package cdlatex
+    :hook
+    (LaTeX-mode . turn-on-cdlatex))
 #+end_src
 
-=jj/setup-lua= installs =lua-mode=.
-#+begin_src emacs-lisp
-  (defun jj/setup-lua ()
-    "install lua-mode"
-    (use-package lua-mode))
-#+end_src
-
-=jj/setup-lisp= installs tools for Emacs Lisp. Namely =parinfer-rust-mode= which handles parentheses nicely in Emacs Lisp.
+Install tools for Emacs Lisp. Namely =parinfer-rust-mode= which handles parentheses nicely in Emacs Lisp.
 #+begin_src emacs-lisp :tangle yes
-  (defun jj/setup-lisp ()
-    "install tools for lisp"
-    (use-package parinfer-rust-mode
-      :hook
-      (emacs-lisp-mode . parinfer-rust-mode)
-      :init
-      (setq parinfer-rust-auto-download t)))
+  (use-package parinfer-rust-mode
+    :hook
+    (emacs-lisp-mode . parinfer-rust-mode)
+    :init
+    (setq parinfer-rust-auto-download t))
 #+end_src
 
-=jj/setup-markdown= configures how Markdown is displayed (default to variable-width font and use monospace where necessary) and installs =markdown-mode=.
+Install =lua-mode=.
 #+begin_src emacs-lisp
-  (defun jj/setup-markdown ()
-    "configure and install markdown-mode"
-    (use-package markdown-mode
-      :hook
-      (markdown-mode . (lambda ()
-                         (variable-pitch-mode)
-                         (display-line-numbers-mode -1)))
-      :config
-      (setq markdown-hide-markup t)
-      :custom-face
-      (markdown-header-face ((t :font ,jj/var-font :weight bold)))
-      (markdown-header-face-1 ((t (:inherit markdown-header-face :height 2.0))))
-      (markdown-header-face-2 ((t (:inherit markdown-header-face :height 1.75))))
-      (markdown-header-face-3 ((t (:inherit markdown-header-face :height 1.5))))
-      (markdown-header-face-4 ((t (:inherit markdown-header-face :height 1.25))))
-      (markdown-header-face-5 ((t (:inherit markdown-header-face :height 1.1))))
-      (markdown-header-face-6 ((t (:inherit markdown-header-face :height 1.1))))
-      (markdown-blockquote-face ((t :font ,jj/var-font)))
-      (markdown-code-face ((t :font ,jj/mono-font)))
-      (markdown-html-attr-name-face ((t :font ,jj/mono-font)))
-      (markdown-html-attr-value-face ((t :font ,jj/mono-font)))
-      (markdown-html-entity-face ((t :font ,jj/mono-font)))
-      (markdown-html-tag-delimiter-face ((t :font ,jj/mono-font)))
-      (markdown-html-tag-name-face ((t :font ,jj/mono-font)))
-      (markdown-html-comment-face ((t :font ,jj/mono-font)))
-      (markdown-header-delimiter-face ((t :font ,jj/mono-font)))
-      (markdown-hr-face ((t :font ,jj/mono-font)))
-      (markdown-inline-code-face ((t :font ,jj/mono-font)))
-      (markdown-language-info-face ((t :font ,jj/mono-font)))
-      (markdown-language-keyword-face ((t :font ,jj/mono-font)))
-      (markdown-link-face ((t :font ,jj/mono-font)))
-      (markdown-markup-face ((t :font ,jj/mono-font)))
-      (markdown-math-face ((t :font ,jj/mono-font)))
-      (markdown-metadata-key-face ((t :font ,jj/mono-font)))
-      (markdown-metadata-value-face ((t :font ,jj/mono-font)))
-      (markdown-missing-link-face ((t :font ,jj/mono-font)))
-      (markdown-plain-url-face ((t :font ,jj/mono-font)))
-      (markdown-reference-face ((t :font ,jj/mono-font)))
-      (markdown-table-face ((t :font ,jj/mono-font)))
-      (markdown-url-face ((t :font ,jj/mono-font)))))
+  (use-package lua-mode)
 #+end_src
 
-=jj/setup-latex= installs tools for LaTeX. Namely, =auctex= for better integration with Emacs and =cdlatex= for environment and macro insertion.
+Configure how Markdown is displayed (default to variable-width font and use monospace where necessary) and installs =markdown-mode=.
 #+begin_src emacs-lisp
-  (defun jj/setup-latex ()
-    "install tools for LaTeX"
-    (use-package auctex
-      :hook
-      (LaTeX-mode . (lambda () (put 'LaTeX-mode 'eglot-language-id "latex"))))
-    (use-package cdlatex
-      :hook
-      (LaTeX-mode . turn-on-cdlatex)))
+  (use-package markdown-mode
+    :hook
+    (markdown-mode . (lambda ()
+                       (variable-pitch-mode)
+                       (display-line-numbers-mode -1)))
+    :config
+    (setq markdown-hide-markup t)
+    :custom-face
+    (markdown-header-face ((t :font ,jj/var-font :weight bold)))
+    (markdown-header-face-1 ((t (:inherit markdown-header-face :height 2.0))))
+    (markdown-header-face-2 ((t (:inherit markdown-header-face :height 1.75))))
+    (markdown-header-face-3 ((t (:inherit markdown-header-face :height 1.5))))
+    (markdown-header-face-4 ((t (:inherit markdown-header-face :height 1.25))))
+    (markdown-header-face-5 ((t (:inherit markdown-header-face :height 1.1))))
+    (markdown-header-face-6 ((t (:inherit markdown-header-face :height 1.1))))
+    (markdown-blockquote-face ((t :font ,jj/var-font)))
+    (markdown-code-face ((t :font ,jj/mono-font)))
+    (markdown-html-attr-name-face ((t :font ,jj/mono-font)))
+    (markdown-html-attr-value-face ((t :font ,jj/mono-font)))
+    (markdown-html-entity-face ((t :font ,jj/mono-font)))
+    (markdown-html-tag-delimiter-face ((t :font ,jj/mono-font)))
+    (markdown-html-tag-name-face ((t :font ,jj/mono-font)))
+    (markdown-html-comment-face ((t :font ,jj/mono-font)))
+    (markdown-header-delimiter-face ((t :font ,jj/mono-font)))
+    (markdown-hr-face ((t :font ,jj/mono-font)))
+    (markdown-inline-code-face ((t :font ,jj/mono-font)))
+    (markdown-language-info-face ((t :font ,jj/mono-font)))
+    (markdown-language-keyword-face ((t :font ,jj/mono-font)))
+    (markdown-link-face ((t :font ,jj/mono-font)))
+    (markdown-markup-face ((t :font ,jj/mono-font)))
+    (markdown-math-face ((t :font ,jj/mono-font)))
+    (markdown-metadata-key-face ((t :font ,jj/mono-font)))
+    (markdown-metadata-value-face ((t :font ,jj/mono-font)))
+    (markdown-missing-link-face ((t :font ,jj/mono-font)))
+    (markdown-plain-url-face ((t :font ,jj/mono-font)))
+    (markdown-reference-face ((t :font ,jj/mono-font)))
+    (markdown-table-face ((t :font ,jj/mono-font)))
+    (markdown-url-face ((t :font ,jj/mono-font))))
 #+end_src
 
-=jj/setup-yaml= installs =yaml-mode=.
-#+begin_src emacs-lisp :tangle yes
-  (defun jj/setup-yaml ()
-    "install yaml-mode"
-    (use-package yaml-mode))
-#+end_src
-
-=jj/setup-nix= installs =nix-mode=.
+Install =nix-mode=.
 #+begin_src emacs-lisp
-  (defun jj/setup-nix ()
-    "install nix-mode"
     (use-package nix-mode
       :mode
-      "\\.nix\\'"))
+      "\\.nix\\'")
 #+end_src
 
-=jj/languages= installs language modes and tools in addition to setting up =eglot= to run on those languages.
-#+begin_src emacs-lisp
-  (defun jj/languages ()
-    "install language tools and configure eglot"
-    (jj/setup-org-mode)
-    (jj/setup-cmake)
-    (jj/setup-go)
-    (jj/setup-lua)
-    (jj/setup-lisp)
-    (jj/setup-markdown)
-    (jj/setup-latex)
-    (jj/setup-yaml)
-    (jj/setup-nix)
-
-    (global-set-key (kbd "C-c r") 'eglot-rename)
-    (global-set-key (kbd "C-c a") 'eglot-code-actions)
-    (use-package tree-sitter)
-    (use-package tree-sitter-langs)
-    (dolist (lang-hook '(sh-mode-hook
-                         c-mode-hook
-                         c++-mode-hook
-                         cc-mode-hook
-                         cmake-mode-hook
-                         html-mode-hook
-                         css-mode-hook
-                         js-json-mode-hook
-                         js-mode-hook
-                         python-mode-hook
-                         go-mode-hook
-                         lua-mode-hook
-                         markdown-mode-hook
-                         tex-mode-hook
-                         LaTeX-mode-hook
-                         yaml-mode-hook
-                         nix-mode-hook))
-      (add-hook lang-hook (lambda ()
-                            (eglot-ensure)
-                            (tree-sitter-mode 1)
-                            (tree-sitter-hl-mode 1)))))
+Install =yaml-mode=.
+#+begin_src emacs-lisp :tangle yes
+  (use-package yaml-mode)
 #+end_src
 
-** Main
-
+Set up =eglot= to run on languages that have been configured.
 #+begin_src emacs-lisp
-  (jj/appearance)
-  (jj/behaviour)
-  (jj/tools)
-  (jj/languages)
+  (global-set-key (kbd "C-c r") 'eglot-rename)
+  (global-set-key (kbd "C-c a") 'eglot-code-actions)
+  (use-package tree-sitter)
+  (use-package tree-sitter-langs)
+  (dolist (lang-hook '(sh-mode-hook
+                       c-mode-hook
+                       c++-mode-hook
+                       cc-mode-hook
+                       cmake-mode-hook
+                       html-mode-hook
+                       css-mode-hook
+                       js-json-mode-hook
+                       js-mode-hook
+                       python-mode-hook
+                       go-mode-hook
+                       lua-mode-hook
+                       markdown-mode-hook
+                       tex-mode-hook
+                       LaTeX-mode-hook
+                       yaml-mode-hook
+                       nix-mode-hook))
+    (add-hook lang-hook (lambda ()
+                          (eglot-ensure)
+                          (tree-sitter-mode 1)
+                          (tree-sitter-hl-mode 1))))
 #+end_src
