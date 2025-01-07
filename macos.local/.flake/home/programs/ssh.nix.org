@@ -21,6 +21,9 @@ Here is my University of Manitoba computer science SSH server. My account is =ja
   "aviary" = {
     hostname = "aviary.cs.umanitoba.ca";
     user = "janzenj2";
+    setEnv = {
+      "TERM" = "xterm";
+    };
   };
 #+end_src
 
