@@ -173,6 +173,15 @@ Install =esup= as a profiling tool.
     (setq esup-depth 0))
 #+end_src
 
+Allow multiple cursors.
+#+begin_src emacs-lisp
+  (use-package multiple-cursors
+    :bind
+    ("C->" . mc/mark-next-like-this)
+    ("C-<" . mc/mark-previous-like-this))
+#+end_src
+
+
 Configure =dumb-jump= for better lookup.
 #+begin_src emacs-lisp
   (use-package dumb-jump
