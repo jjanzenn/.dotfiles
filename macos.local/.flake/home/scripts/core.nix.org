@@ -5,20 +5,17 @@ Import various scripts useful on my system.
   { config, pkgs, ... }:
 
   {
-    home.file."./.local/bin/hmmmmm".text = "hi";
     home.file."./.local/bin/deploy-website" = {
-        executable = true;
-        source = ./deploy-website;
+      executable = true;
+      source = ./deploy-website;
     };
-    home.file = {
-      "./local/bin/launcher" = {
-        executable = true;
-        source = ./launcher;
-      };
-      "./local/bin/remove-quarantine" = {
-        executable = true;
-        source = ./remove-quarantine;
-      };
+    home.file."./local/bin/launcher" = {
+      executable = true;
+      source = ./launcher;
+    };
+    home.file."./local/bin/remove-quarantine" = {
+      executable = true;
+      source = ./remove-quarantine;
     };
   }
 #+end_src
