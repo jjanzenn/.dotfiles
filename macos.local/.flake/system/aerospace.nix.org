@@ -16,6 +16,24 @@
         on-focus-changed = [
           "move-mouse window-lazy-center"
         ];
+        workspace-to-monitor-force-assignment = {
+          "1" = "main";
+          "2" = "main";
+          "3" = "main";
+          "4" = "main";
+          "5" = "main";
+          "6" = "main";
+          "7" = "main";
+          "8" = "main";
+          "9" = [
+            "secondary"
+            "dell"
+          ];
+          "10" = [
+            "secondary"
+            "built-in"
+          ];
+        };
         mode.main.binding = {
           cmd-enter = "exec-and-forget open -n /Applications/Ghostty.app/";
           cmd-d = "exec-and-forget ~/.local/bin/launcher";
@@ -57,7 +75,6 @@
           cmd-shift-9 = "move-node-to-workspace 9";
           cmd-shift-0 = "move-node-to-workspace 10";
 
-          cmd-ctrl-shift-m = "move-workspace-to-monitor --wrap-around next";
           cmd-ctrl-shift-h = "join-with left";
           cmd-ctrl-shift-j = "join-with down";
           cmd-ctrl-shift-k = "join-with up";
