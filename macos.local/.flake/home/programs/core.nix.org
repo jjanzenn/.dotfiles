@@ -6,7 +6,6 @@ Import configurations for programs and install programs with no configuration.
 
   {
     imports = [
-      ./alacritty.nix
       ./emacs/core.nix
       ./fastfetch.nix
       ./ghostty.nix

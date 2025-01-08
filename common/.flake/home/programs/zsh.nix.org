@@ -7,106 +7,54 @@ Open =zsh= configuration.
   {
     programs.zsh = {
       enable = true;
-#+end_src
 
-Automatically =cd= if only the path is used.
-#+begin_src nix
-  autocd = true;
-#+end_src
+      autocd = true;
 
-Enable auto-suggestions.
-#+begin_src nix
-  autosuggestion = {
-    enable = true;
-  };
-#+end_src
+      autosuggestion.enable = true;
 
-Use =vi= keybindings.
-#+begin_src nix
-  defaultKeymap = "emacs";
-#+end_src
+      defaultKeymap = "emacs";
 
-Append to the history and ignore duplicates.
-#+begin_src nix
-  history = {
-    append = true;
-    ignoreAllDups = true;
-  };
-#+end_src
+      history = {
+        append = true;
+        ignoreAllDups = true;
+      };
 
-Specify =ls= aliases.
-#+begin_src nix
-  shellAliases = {
-    "ll" = "ls -alF";
-    "la" = "ls -a";
-    "l" = "ls -F";
-    "sl" = "ls";
-  };
-#+end_src
+      shellAliases = {
+        "ll" = "ls -alF";
+        "la" = "ls -a";
+        "l" = "ls -F";
+        "sl" = "ls";
+      };
 
-Enable syntax highlighting.
-#+begin_src nix
-  syntaxHighlighting.enable = true;
-#+end_src
+      syntaxHighlighting.enable = true;
 
-Load extra code.
-#+begin_src nix
-  initExtra = ''
-#+end_src
+      initExtra = ''
+        which lesspipe.sh &> /dev/null && export LESSOPEN="|lesspipe.sh %s"
+        which eza &> /dev/null && alias ls=eza
 
-Create potential aliases and create the prompt.
-#+begin_src sh
-  which lesspipe.sh &> /dev/null && export LESSOPEN="|lesspipe.sh %s"
-  which eza &> /dev/null && alias ls=eza
-#+end_src
+        which zsh &> /dev/null && source <(fzf --zsh)
 
-Set up fuzzy finder.
-#+begin_src sh
-  which zsh &> /dev/null && source <(fzf --zsh)
-#+end_src
+        parse_git_dirty() {
+          git_status="$(git status 2> /dev/null)"
+          [[ "$git_status" =~ "use \"git push\" to publish your local commits" ]] && echo -n " %F{green}%f"
+          [[ "$git_status" =~ "Changes to be committed:" ]] && echo -n " %F{magenta}%f"
+          [[ "$git_status" =~ "Changes not staged for commit:" ]] && echo -n " %F{yellow}%f"
+          [[ "$git_status" =~ "Untracked files:" ]] && echo -n " %F{red}%f"
+        }
+        setopt prompt_subst
+        autoload -Uz vcs_info
+        precmd () { vcs_info }
+        zstyle ':vcs_info:*' formats ' %F{blue}%b%f' # git(main)
+        PS1='%(?..%B%F{red}[%?%\]%f%b )%F{green}%20<...<%~%<<%f$vcs_info_msg_0_$(parse_git_dirty) $ '
+      '';
 
-Create the prompt.
-#+begin_src sh
-  parse_git_dirty() {
-    git_status="$(git status 2> /dev/null)"
-    [[ "$git_status" =~ "use \"git push\" to publish your local commits" ]] && echo -n " %F{green}%f"
-    [[ "$git_status" =~ "Changes to be committed:" ]] && echo -n " %F{magenta}%f"
-    [[ "$git_status" =~ "Changes not staged for commit:" ]] && echo -n " %F{yellow}%f"
-    [[ "$git_status" =~ "Untracked files:" ]] && echo -n " %F{red}%f"
-  }
-  setopt prompt_subst
-  autoload -Uz vcs_info
-  precmd () { vcs_info }
-  zstyle ':vcs_info:*' formats ' %F{blue}%b%f' # git(main)
-  PS1='%(?..%B%F{red}[%?%\]%f%b )%F{green}%20<...<%~%<<%f$vcs_info_msg_0_$(parse_git_dirty) $ '
-#+end_src
-
-Close the extra code block.
-#+begin_src nix
-  '';
-#+end_src
-
-Load =.profile= code.
-#+begin_src nix
-  profileExtra = ''
-#+end_src
-
-Launch =ssh-agent= at login.
-#+begin_src sh
-  if [ ! -S ~/.ssh/ssh_auth_sock ]; then
-      eval `ssh-agent` > /dev/null
-      ln -sf "$SSH_AUTH_SOCK" ~/.ssh/ssh_auth_sock
-  fi
-  export SSH_AUTH_SOCK=~/.ssh/ssh_auth_sock
-#+end_src
-
-Close =.profile= code.
-#+begin_src nix
-  '';
-#+end_src
-
-Close =zsh= configuration.
-#+begin_src nix
+      profileExtra = ''
+        if [ ! -S ~/.ssh/ssh_auth_sock ]; then
+          eval `ssh-agent` > /dev/null
+          ln -sf "$SSH_AUTH_SOCK" ~/.ssh/ssh_auth_sock
+        fi
+        export SSH_AUTH_SOCK=~/.ssh/ssh_auth_sock
+      '';
     };
   }
 #+end_src

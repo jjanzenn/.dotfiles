@@ -6,7 +6,7 @@ Set global =clang-format= options:
 - Use Linux standards for braces (new line for functions, same line for everything else)
 - If statements cannot be on a single line.
 - Case labels are not indented.
-#+begin_src nix :tangle ~/.flake/home/clang-format.nix :mkdirp yes
+#+begin_src nix
   { config, pkgs, ... }:
 
   {

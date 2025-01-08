@@ -1,0 +1,7 @@
+#+title: Remove Quarantine
+
+macOS likes putting applications in quarantine without me wanting. This script removes an application from the quarantine. Remove the app from quarantine by recursively deleting the quarantine attribute on the application.
+#+begin_src sh
+  #!/bin/sh
+  /usr/bin/xattr -dr com.apple.quarantine "$@"
+#+end_src

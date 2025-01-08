@@ -5,10 +5,19 @@ Import various scripts useful on my system.
   { config, pkgs, ... }:
 
   {
-    imports = [
-      ./deploy-website.nix
-      ./launcher.nix
-      ./remove-quarantine.nix
-    ];
+    home.file = {
+      "./.local/bin/deploy-website" = {
+        executable = true;
+        source = ./deploy-website;
+      };
+      "./local/bin/launcher" = {
+        executable = true;
+        source = ./launcher;
+      };
+      "./local/bin/remove-quarantine" = {
+        executable = true;
+        source = ./remove-quarantine;
+      };
+    };
   }
 #+end_src

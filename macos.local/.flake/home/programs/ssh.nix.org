@@ -1,6 +1,6 @@
 #+title: SSH Configuration
 
-Configure SSH. Keys should be added to the SSH agent. Specify the key file and use the system keychain.
+Configure SSH. Keys should be added to the SSH agent. Use the system keychain on all configurations.
 #+begin_src nix
   { config, pkgs, ... }:
   {
@@ -14,30 +14,21 @@ Configure SSH. Keys should be added to the SSH agent. Specify the key file and u
             "UseKeychain" = "yes";
           };
         };
-#+end_src
 
-Here is my University of Manitoba computer science SSH server. My account is =janzenj2=.
-#+begin_src nix
-  "aviary" = {
-    hostname = "aviary.cs.umanitoba.ca";
-    user = "janzenj2";
-    setEnv = {
-      "TERM" = "xterm";
-    };
-  };
-#+end_src
+        "aviary" = {
+          hostname = "aviary.cs.umanitoba.ca";
+          user = "janzenj2";
+          setEnv = {
+            "TERM" = "xterm";
+          };
+        };
 
-Here is my web server at =jjanzen.ca=. Set the =$TERM= variable to =xterm=.
-#+begin_src nix
-  "jjanzen.ca" = {
-    setEnv = {
-      "TERM" = "xterm";
-    };
-  };
-#+end_src
+        "jjanzen.ca" = {
+          setEnv = {
+            "TERM" = "xterm";
+          };
+        };
 
-Here is my oracle cloud instance login. Use the =opc= user and a provided key file. Set the =$TERM= variable to =xterm=.
-#+begin_src nix
         "oracle" = {
           setEnv = {
             "TERM" = "xterm";

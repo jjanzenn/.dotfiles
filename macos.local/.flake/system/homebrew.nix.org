@@ -1,6 +1,6 @@
 #+title: Homebrew Configuration
 
-Set up Homebrew.
+Set up Homebrew. I disable the quarantine automatically and ensure that the state of Homebrew is exactly as specified here.
 #+begin_src nix
   { config, pkgs, ... }:
 

@@ -1,6 +1,6 @@
 #+title: Home Configuration
 
-Set up home manager for my user account and import submodules.
+Set up home manager for my user account and import submodules. Define my user as =jjanzen= and specify the wallpaper and add items to the =PATH= variable.
 #+begin_src nix
   { config, pkgs, ... }:
 
@@ -14,21 +14,12 @@ Set up home manager for my user account and import submodules.
 
     home.stateVersion = "24.05";
     programs.home-manager.enable = true;
-#+end_src
 
-Set username and paths.
-#+begin_src nix
     home.username = "jjanzen";
     home.homeDirectory = "/Users/jjanzen";
-#+end_src
 
-Import a wallpaper to the path =~/.wallpaper=.
-#+begin_src nix
     home.file.".wallpaper".source = ./.wallpaper;
-#+end_src
 
-Add Homebrew to the path along with standard =bin= directories.
-#+begin_src nix
     home.sessionPath = [
       "$HOME/.local/bin"
       "/usr/local/bin"

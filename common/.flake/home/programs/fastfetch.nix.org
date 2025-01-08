@@ -1,33 +1,6 @@
 #+title: Fastfetch Configuration
 
-Specify the layout for =fastfetch=.
-#+begin_src nix
-  { config, pkgs, ... }:
-
-  {
-    programs.fastfetch = {
-      enable = true;
-      settings = {
-#+end_src
-
-Use a =sixel=-encoded logo at =~/.config/fastfetch/logo.sixel=.
-#+begin_src nix
-  logo = {
-      type = "raw";
-      source = "~/.config/fastfetch/logo.sixel";
-      width = 40;
-      height = 19;
-  };
-#+end_src
-
-Use two spaces as a separator.
-#+begin_src nix
-  display = {
-    separator = "  ";
-  };
-#+end_src
-
-List out
+Specify the layout for =fastfetch=. List out
 - Operating system
 - The kernel
 - Uptime
@@ -42,7 +15,23 @@ List out
 - Disk usage
 - Locale
 - Colours
+
 #+begin_src nix
+  { config, pkgs, ... }:
+
+  {
+    programs.fastfetch = {
+      enable = true;
+      settings = {
+        logo = {
+          type = "raw";
+          source = "~/.config/fastfetch/logo.sixel";
+          width = 40;
+          height = 19;
+        };
+        display = {
+          separator = "  ";
+        };
         modules = [
           "title"
           {

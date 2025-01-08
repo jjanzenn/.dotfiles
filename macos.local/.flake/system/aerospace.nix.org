@@ -1,5 +1,6 @@
 #+title: Aerospace Configuration
 
+Enable Aerospace as a window manager for macOS. I have disabled gaps, move the mouse to follow windows, and an =i3=-like binding configuration.
 #+begin_src nix
   { config, pkgs, ... }:
 
