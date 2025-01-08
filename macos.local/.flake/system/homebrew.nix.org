@@ -108,7 +108,6 @@ List packages to install with Homebrew.
 List casks to install with Homebrew.
 #+begin_src nix
   casks = [
-    "alacritty"
     "audacity"
     "blender"
     "cabal"
