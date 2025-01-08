@@ -5,6 +5,7 @@ Import various scripts useful on my system.
   { config, pkgs, ... }:
 
   {
+    home.file."./.local/bin/hmmmmm".text = "hi";
     home.file = {
       "./.local/bin/deploy-website" = {
         executable = true;
