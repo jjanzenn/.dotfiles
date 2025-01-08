@@ -5,82 +5,49 @@ This file imports various system configuration components in addition to enablin
   { config, pkgs, ... }:
 
   let
-#+end_src
-
-Add =aspell= dictionaries.
-#+begin_src nix
   inherit (pkgs) aspellWithDicts;
-
   myaspell = aspellWithDicts (d: [d.en d.en-computers d.en-science]);
-#+end_src
-
-Import submodules.
-#+begin_src nix
   in {
     imports = [
       ./aerospace.nix
       ./homebrew.nix
     ];
-#+end_src
 
-Allow unfree packages.
-#+begin_src nix
-  nixpkgs.config.allowUnfree = true;
-#+end_src
+    # Unfortunately, I sometimes need unfree packages
+    nixpkgs.config.allowUnfree = true;
 
-Install system packages.
-#+begin_src nix
-  environment.systemPackages = with pkgs; [
-    gnupg
-    myaspell
-    neovim
-    skhd
-  ];
-#+end_src
+    # Install a small number of packages for root
+    environment.systemPackages = with pkgs; [
+      gnupg
+      myaspell
+      neovim
+    ];
 
-Use Touch ID for =sudo= authentication.
-#+begin_src nix
-  security.pam.enableSudoTouchIdAuth = true;
-#+end_src
+    # Use TouchID for sudo
+    security.pam.enableSudoTouchIdAuth = true;
 
-Use Neovim as my default editor.
-#+begin_src nix
-  environment.variables.EDITOR = "nvim";
-#+end_src
+    # Open text files in neovim by default
+    environment.variables.EDITOR = "nvim";
 
-Enable GPG agent.
-#+begin_src nix
-  programs.gnupg.agent.enable = true;
-#+end_src
+    # Run Gnu Privacy Guard
+    programs.gnupg.agent.enable = true;
 
-Enable =nix= daemon.
-#+begin_src nix
-  services.nix-daemon.enable = true;
-  nix.package = pkgs.nix;
-#+end_src
+    # Enable nix
+    services.nix-daemon.enable = true;
+    nix.package = pkgs.nix;
 
-Enable flakes.
-#+begin_src nix
-  nix.settings.experimental-features = "nix-command flakes";
-#+end_src
+    # Use flakes
+    nix.settings.experimental-features = "nix-command flakes";
 
-Use =zsh= as my shell.
-#+begin_src nix
-  programs.zsh.enable = true;
-#+end_src
+    # Use zsh as my shell
+    programs.zsh.enable = true;
 
-Necessary boilerplate.
-#+begin_src nix
     system.stateVersion = 5;
-#+end_src
 
-Use ARM packages for Darwin.
-#+begin_src nix
+    # Use ARM64 packages
     nixpkgs.hostPlatform = "aarch64-darwin";
-#+end_src
 
-Define my users.
-#+begin_src nix
+    # Define my user
     users.users.jjanzen = {
       name = "jjanzen";
       home = "/Users/jjanzen";
