@@ -12,7 +12,7 @@ Import configurations for programs and install programs with no configuration.
       ./git.nix
       ./neovim.nix
       ./ssh.nix
-      ./zsh.nix
+      ./zsh/core.nix
     ];
 
     home.packages = with pkgs; [
