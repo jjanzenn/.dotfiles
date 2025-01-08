@@ -7,138 +7,118 @@ Set up Homebrew.
   {
     homebrew = {
       enable = true;
-#+end_src
 
-Do not quarantine casks.
-#+begin_src nix
-  caskArgs.no_quarantine = true;
-#+end_src
+      caskArgs.no_quarantine = true;
 
-Don't automatically update except with Nix update and clean up any packages that are not listed.
-#+begin_src nix
-  global.autoUpdate = false;
-  onActivation = {
-    autoUpdate = false;
-    cleanup = "zap";
-    upgrade = true;
-  };
-#+end_src
+      global.autoUpdate = false;
+      onActivation = {
+        autoUpdate = true;
+        cleanup = "zap";
+        upgrade = true;
+      };
 
-List the taps to use on Homebrew.
-#+begin_src nix
-  taps = [
-    "felixkratz/formulae"
-    "homebrew/bundle"
-    "homebrew/cask-fonts"
-    "homebrew/cask-versions"
-    "homebrew/services"
-    "osx-cross/avr"
-  ];
-#+end_src
+      taps = [
+        "homebrew/bundle"
+        "homebrew/cask-fonts"
+        "homebrew/cask-versions"
+        "homebrew/services"
+        "osx-cross/avr"
+      ];
 
-List packages to install with Homebrew.
-#+begin_src nix
-  brews = [
-    "aescrypt"
-    "avrdude"
-    "bash-language-server"
-    "bear"
-    "binutils"
-    "bison"
-    "choose-gui"
-    "clang-format"
-    "cmake"
-    "cmake-language-server"
-    "coreutils"
-    "curl"
-    "dos2unix"
-    "dotnet"
-    "eza"
-    "fd"
-    "gcc"
-    "gnutls"
-    "ffmpeg"
-    "fzf"
-    "go"
-    "gpgme"
-    "grep"
-    "htop"
-    "hunspell"
-    "hyfetch"
-    "imagemagick"
-    "ispell"
-    "jq"
-    "lesspipe"
-    "latexdiff"
-    "libgccjit"
-    "llvm@18"
-    "marksman"
-    "meson"
-    "mono"
-    "mpv"
-    "ninja"
-    "nmap"
-    "nspr"
-    "nss"
-    "open-mpi"
-    "open-ocd"
-    "openjdk"
-    "pandoc"
-    "pinentry-mac"
-    "poppler"
-    "ripgrep"
-    "rsync"
-    "rust"
-    "sevenzip"
-    "shellcheck"
-    "shfmt"
-    "telnet"
-    "tree-sitter"
-    "typescript-language-server"
-    "vscode-langservers-extracted"
-    "wget"
-    "yt-dlp"
-    "felixkratz/formulae/sketchybar"
-    "osx-cross/avr/avr-binutils"
-    "osx-cross/avr/avarice"
-    "osx-cross/avr/avr-gcc@14"
-  ];
-#+end_src
+      brews = [
+        "aescrypt"
+        "avrdude"
+        "bash-language-server"
+        "bear"
+        "binutils"
+        "bison"
+        "choose-gui"
+        "clang-format"
+        "cmake"
+        "cmake-language-server"
+        "coreutils"
+        "curl"
+        "dos2unix"
+        "dotnet"
+        "eza"
+        "fd"
+        "gcc"
+        "gnutls"
+        "ffmpeg"
+        "fzf"
+        "go"
+        "gpgme"
+        "grep"
+        "htop"
+        "hunspell"
+        "hyfetch"
+        "imagemagick"
+        "ispell"
+        "jq"
+        "lesspipe"
+        "latexdiff"
+        "libgccjit"
+        "llvm@18"
+        "marksman"
+        "meson"
+        "mono"
+        "mpv"
+        "ninja"
+        "nmap"
+        "nspr"
+        "nss"
+        "open-mpi"
+        "open-ocd"
+        "openjdk"
+        "pandoc"
+        "pinentry-mac"
+        "poppler"
+        "ripgrep"
+        "rsync"
+        "rust"
+        "sevenzip"
+        "shellcheck"
+        "shfmt"
+        "telnet"
+        "tree-sitter"
+        "typescript-language-server"
+        "vscode-langservers-extracted"
+        "wget"
+        "yt-dlp"
+        "felixkratz/formulae/sketchybar"
+        "osx-cross/avr/avr-binutils"
+        "osx-cross/avr/avarice"
+        "osx-cross/avr/avr-gcc@14"
+      ];
 
-List casks to install with Homebrew.
-#+begin_src nix
-  casks = [
-    "audacity"
-    "blender"
-    "cabal"
-    "calibre"
-    "desmume"
-    "gcc-arm-embedded"
-    "ghostty"
-    "gimp"
-    "godot"
-    "inkscape"
-    "krita"
-    "mactex"
-    "multimc"
-    "obs"
-    "openemu"
-    "pokemon-showdown"
-    "proton-mail-bridge"
-    "protonvpn"
-    "qbittorrent"
-    "rar"
-    "syncthing"
-    "thunderbird"
-    "vlc"
-    "whisky"
-    "zen-browser"
-    "zotero"
-  ];
-#+end_src
-
-Close Homebrew configuration
-#+begin_src nix
+      casks = [
+        "audacity"
+        "blender"
+        "cabal"
+        "calibre"
+        "desmume"
+        "gcc-arm-embedded"
+        "ghostty"
+        "gimp"
+        "godot"
+        "inkscape"
+        "krita"
+        "mactex"
+        "multimc"
+        "obs"
+        "openemu"
+        "pokemon-showdown"
+        "proton-mail-bridge"
+        "protonvpn"
+        "qbittorrent"
+        "rar"
+        "syncthing"
+        "thunderbird"
+        "vlc"
+        "whisky"
+        "zen-browser"
+        "zotero"
+       ];
     };
   }
 #+end_src
