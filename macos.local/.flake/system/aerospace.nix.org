@@ -58,8 +58,10 @@
           cmd-shift-0 = "move-node-to-workspace 10";
 
           cmd-ctrl-shift-m = "move-workspace-to-monitor --wrap-around next";
-          cmd-shift-v = "split horizontal";
-          cmd-shift-s = "split vertical";
+          cmd-ctrl-shift-h = "join-with left";
+          cmd-ctrl-shift-j = "join-with down";
+          cmd-ctrl-shift-k = "join-with up";
+          cmd-ctrl-shift-l = "join-with right";
         };
       };
     };
