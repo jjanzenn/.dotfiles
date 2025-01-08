@@ -18,8 +18,8 @@ Import submodules.
 #+begin_src nix
   in {
     imports = [
-      ./homebrew.nix
       ./aerospace.nix
+      ./homebrew.nix
     ];
 #+end_src
 
