@@ -13,7 +13,7 @@
           outer.top = 0;
           outer.right = 0;
         };
-        on-focused-changed = [
+        on-focus-changed = [
           "move-mouse monitor-lazy-center"
         ];
         mode.main.binding = {
