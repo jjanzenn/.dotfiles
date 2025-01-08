@@ -69,19 +69,19 @@ Set up fonts. I use Source Code Pro (Nerd Font) for monospace and Computer Moder
 
 This block is the reason I use =straight= rather than just =use-package=. I have a custom Emacs theme that comes from my own fork of =doom-themes=. I also use =doom-modeline= and =nerd-icons= for a nicer-looking user interface and remove the title bar from the window along with any other unnecessary elements from the screen. =dired= is modified to use =nerd-icons= and colours.
 #+begin_src emacs-lisp
-  (use-package doom-themes
-    :straight
-    (doom-themes :type git
-                 :host github
-                 :repo "doomemacs/themes"
-                 :fork
-                 (:host github
-                  :repo "JacobJanzen/emacs-doom-themes"))
-    :config
-    (setq doom-themes-enable-bold t
-          doom-themes-enable-italic t)
-    (load-theme 'doom-pink t)
-    (doom-themes-org-config))
+  ;; (use-package doom-themes
+  ;;   :straight
+  ;;   (doom-themes :type git
+  ;;                :host github
+  ;;                :repo "doomemacs/themes"
+  ;;                :fork
+  ;;                (:host github
+  ;;                 :repo "JacobJanzen/emacs-doom-themes"))
+  ;;   :config
+  ;;   (setq doom-themes-enable-bold t
+  ;;         doom-themes-enable-italic t)
+  ;;   (load-theme 'doom-pink t)
+  ;;   (doom-themes-org-config))
   (use-package doom-modeline
     :init
     (doom-modeline-mode 1))
