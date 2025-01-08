@@ -6,11 +6,11 @@ Import various scripts useful on my system.
 
   {
     home.file."./.local/bin/hmmmmm".text = "hi";
-    home.file = {
-      "./.local/bin/deploy-website" = {
+    home.file."./.local/bin/deploy-website" = {
         executable = true;
         source = ./deploy-website;
-      };
+    };
+    home.file = {
       "./local/bin/launcher" = {
         executable = true;
         source = ./launcher;
