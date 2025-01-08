@@ -28,23 +28,29 @@ Suppress native compilation warnings and errors. Native compilation seems to be 
 
 Bootstrap package management. I use =straight= with =use-package= to allow declarative package management and include =git= repositories in addition to =elpa= / =melpa=.
 #+begin_src emacs-lisp
-  (defvar bootstrap-version)
-  (let ((bootstrap-file
-         (expand-file-name
-          "straight/repos/straight.el/bootstrap.el"
-          (or (bound-and-true-p straight-base-dir)
-              user-emacs-directory)))
-        (bootstrap-version 7))
-    (unless (file-exists-p bootstrap-file)
-      (with-current-buffer
-          (url-retrieve-synchronously
-           "https://raw.githubusercontent.com/radian-software/straight.el/develop/install.el"
-           'silent 'inhibit-cookies)
-        (goto-char (point-max))
-        (eval-print-last-sexp)))
-    (load bootstrap-file nil ':nomessage))
-  (straight-use-package 'use-package)
-  (setq straight-use-package-by-default t)
+  ;; (defvar bootstrap-version)
+  ;; (let ((bootstrap-file
+  ;;        (expand-file-name
+  ;;         "straight/repos/straight.el/bootstrap.el"
+  ;;         (or (bound-and-true-p straight-base-dir)
+  ;;             user-emacs-directory)))
+  ;;       (bootstrap-version 7))
+  ;;   (unless (file-exists-p bootstrap-file)
+  ;;     (with-current-buffer
+  ;;         (url-retrieve-synchronously
+  ;;          "https://raw.githubusercontent.com/radian-software/straight.el/develop/install.el"
+  ;;          'silent 'inhibit-cookies)
+  ;;       (goto-char (point-max))
+  ;;       (eval-print-last-sexp)))
+  ;;   (load bootstrap-file nil ':nomessage))
+  ;; (straight-use-package 'use-package)
+  ;; (setq straight-use-package-by-default t
+  (unless (package-installed-p 'use-package)
+    (package-refresh-contents)
+    (package-install 'use-package))
+  (eval-and-compile
+    (setq use-package-always-ensure t
+          use-package-expand-minimally t))
 #+end_src
 
 * Appearance
@@ -67,21 +73,8 @@ Set up fonts. I use Source Code Pro (Nerd Font) for monospace and Computer Moder
    `(fixed-pitch ((t :font ,jj/mono-font))))
  #+end_src
 
-This block is the reason I use =straight= rather than just =use-package=. I have a custom Emacs theme that comes from my own fork of =doom-themes=. I also use =doom-modeline= and =nerd-icons= for a nicer-looking user interface and remove the title bar from the window along with any other unnecessary elements from the screen. =dired= is modified to use =nerd-icons= and colours.
+I use =doom-modeline= and =nerd-icons= for a nicer-looking user interface and remove the title bar from the window along with any other unnecessary elements from the screen. =dired= is modified to use =nerd-icons= and colours.
 #+begin_src emacs-lisp
-  ;; (use-package doom-themes
-  ;;   :straight
-  ;;   (doom-themes :type git
-  ;;                :host github
-  ;;                :repo "doomemacs/themes"
-  ;;                :fork
-  ;;                (:host github
-  ;;                 :repo "JacobJanzen/emacs-doom-themes"))
-  ;;   :config
-  ;;   (setq doom-themes-enable-bold t
-  ;;         doom-themes-enable-italic t)
-  ;;   (load-theme 'doom-pink t)
-  ;;   (doom-themes-org-config))
   (use-package doom-modeline
     :init
     (doom-modeline-mode 1))
@@ -201,8 +194,6 @@ Configure and install =magit= as a =git= front end.
 Install a better PDF viewer than =DocView=.
 #+begin_src emacs-lisp
   (use-package pdf-tools
-    :config
-    ;;(pdf-tools-install)
     :hook
     (pdf-view-mode . (lambda () (display-line-numbers-mode -1)))
     :init
