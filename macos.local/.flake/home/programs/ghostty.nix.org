@@ -20,7 +20,7 @@ This terminal emulator seems over-hyped, but I'm trying it anyways.
     macos-window-shadow = false
     mouse-hide-while-typing = true
     quit-after-last-window-closed = true
-    theme = "Unikitty"
+    theme = "Builtin Light"
     window-decoration = true
     '';
   }
