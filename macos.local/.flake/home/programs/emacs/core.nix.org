@@ -1,6 +1,10 @@
 #+title: Emacs Configuration
 
-Here is my Emacs configuration. Define configuration files that should exist.
+Here is my Emacs configuration. Define configuration files that should exist, define a macOS application wrapper for =emacsclient= that runs =emacsclient= and disowns the process before closing. Apply patches from =d12frosted/emacs-plus= Homebrew package for Emacs:
+- Fix OS window role (=yabai= needs this to tile Emacs)
+- Enable rounded window with no decoration (I don't really use this)
+- Make Emacs aware of OS-level light/dark mode
+
 #+begin_src nix
   { config, pkgs, ... }:
 
@@ -8,61 +12,37 @@ Here is my Emacs configuration. Define configuration files that should exist.
     home.file = {
       "./.config/emacs/feed.org".source = ./feed.org;
       "./.config/emacs/init.el".source = ./init.el;
-#+end_src
-
-Define a macOS application wrapper for =emacsclient=.
-#+begin_src nix
-  "./Applications/Emacs.app/Contents/MacOS/Emacs" = {
-    executable = true;
-    text = ''
-#+end_src
-
-Run =emacsclient= and disown the process before closing.
-#+begin_src sh
-  #!/bin/sh
-  /etc/profiles/per-user/jjanzen/bin/emacsclient -c & disown
-#+end_src
-
-Close the block.
-#+begin_src nix
-      '';
+      "./Applications/Emacs.app/Contents/MacOS/Emacs" = {
+        executable = true;
+        text = ''
+          #!/bin/sh
+          /etc/profiles/per-user/jjanzen/bin/emacsclient -c & disown
+        '';
+      };
     };
-  };
-#+end_src
-
-Apply patches from =d12frosted/emacs-plus= Homebrew package for Emacs:
-- Fix OS window role (=yabai= needs this to tile Emacs)
-- Enable rounded window with no decoration (I don't really use this)
-- Make Emacs aware of OS-level light/dark mode
-#+begin_src nix
-  nixpkgs.overlays = [
-    (final: prev:
-      {
-        emacs29-pgtk = prev.emacs29-pgtk.overrideAttrs (old: {
-          patches =
-        (old.patches or [])
-        ++ [
-          (prev.fetchpatch {
-            url = "https://raw.githubusercontent.com/d12frosted/homebrew-emacs-plus/master/patches/emacs-28/fix-window-role.patch";
-            sha256 = "sha256-+z/KfsBm1lvZTZNiMbxzXQGRTjkCFO4QPlEK35upjsE=";
-          })
-          (prev.fetchpatch {
-            url = "https://raw.githubusercontent.com/d12frosted/homebrew-emacs-plus/master/patches/emacs-29/round-undecorated-frame.patch";
-            sha256 = "sha256-uYIxNTyfbprx5mCqMNFVrBcLeo+8e21qmBE3lpcnd+4=";
-          })
-          (prev.fetchpatch {
-            url = "https://raw.githubusercontent.com/d12frosted/homebrew-emacs-plus/master/patches/emacs-28/system-appearance.patch";
-            sha256 = "sha256-oM6fXdXCWVcBnNrzXmF0ZMdp8j0pzkLE66WteeCutv8=";
-          })
-        ];
-        });
-      }
-    )
-  ];
-#+end_src
-
-Install Emacs program and service.
-#+begin_src nix
+    nixpkgs.overlays = [
+      (final: prev:
+        {
+          emacs29-pgtk = prev.emacs29-pgtk.overrideAttrs (old: {
+            patches = (old.patches or [])
+            ++ [
+              (prev.fetchpatch {
+                url = "https://raw.githubusercontent.com/d12frosted/homebrew-emacs-plus/master/patches/emacs-28/fix-window-role.patch";
+                sha256 = "sha256-+z/KfsBm1lvZTZNiMbxzXQGRTjkCFO4QPlEK35upjsE=";
+              })
+              (prev.fetchpatch {
+                url = "https://raw.githubusercontent.com/d12frosted/homebrew-emacs-plus/master/patches/emacs-29/round-undecorated-frame.patch";
+                sha256 = "sha256-uYIxNTyfbprx5mCqMNFVrBcLeo+8e21qmBE3lpcnd+4=";
+              })
+              (prev.fetchpatch {
+                url = "https://raw.githubusercontent.com/d12frosted/homebrew-emacs-plus/master/patches/emacs-28/system-appearance.patch";
+                sha256 = "sha256-oM6fXdXCWVcBnNrzXmF0ZMdp8j0pzkLE66WteeCutv8=";
+              })
+            ];
+          });
+        }
+      )
+    ];
     programs.emacs = {
       enable = true;
       package = pkgs.emacs29-pgtk;
