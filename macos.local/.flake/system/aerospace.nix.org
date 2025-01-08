@@ -18,11 +18,14 @@
         ];
         mode.main.binding = {
           cmd-enter = "exec-and-forget open -n /Applications/Ghostty.app/";
+          cmd-d = "exec-and-forget ~/.local/bin/launcher";
+          cmd-shift-f = "fullscreen";
+          cmd-shift-space = "layout floating tiling";
 
-          cmd-h = "focus left";
-          cmd-j = "focus down";
-          cmd-k = "focus up";
-          cmd-l = "focus right";
+          cmd-h = "focus --boundaries-action wrap-around-the-workspace left";
+          cmd-j = "focus --boundaries-action wrap-around-the-workspace down";
+          cmd-k = "focus --boundaries-action wrap-around-the-workspace up";
+          cmd-l = "focus --boundaries-action wrap-around-the-workspace right";
 
           cmd-shift-h = "move left";
           cmd-shift-j = "move down";
