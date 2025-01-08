@@ -1,0 +1,11 @@
+#+title: Aerospace Configuration
+
+#+begin_src nix
+  { config, pkgs, ... }:
+
+  {
+    services.aerospace = {
+      enable = true;
+    };
+  }
+#+end_src

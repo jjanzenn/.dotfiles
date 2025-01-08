@@ -19,8 +19,7 @@ Import submodules.
   in {
     imports = [
       ./homebrew.nix
-      ./skhd.nix
-      ./yabai.nix
+      ./aerospace.nix
     ];
 #+end_src
 
