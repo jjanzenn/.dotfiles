@@ -6,6 +6,20 @@
   {
     services.aerospace = {
       enable = true;
+      settings = {
+        gaps = {
+          outer.left = 0;
+          outer.bottom = 0;
+          outer.top = 0;
+          outer.right = 0;
+        };
+        mode.main.binding = {
+          cmd-h = "focus left";
+          cmd-j = "focus down";
+          cmd-k = "focus up";
+          cmd-l = "focus right";
+        };
+      };
     };
   }
 #+end_src
