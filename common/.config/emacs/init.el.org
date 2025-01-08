@@ -179,6 +179,10 @@ Make PDFs save where in the document it was last.
 #+end_src
 
 * Tools
+Install =esup= as a profiling tool.
+#+begin_src emacs-lisp
+  (use-package esup)
+#+end_src
 
 Configure =dumb-jump= for better lookup.
 #+begin_src emacs-lisp
