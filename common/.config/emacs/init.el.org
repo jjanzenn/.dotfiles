@@ -107,8 +107,8 @@ This block is the reason I use =straight= rather than just =use-package=. I have
 
 Disable the default startup screen so Emacs starts in the =scratch= buffer and also defaults to an empty =scratch= buffer.
 #+begin_src emacs-lisp
-  ;; (setq inhibit-startup-screen t
-  ;;       initial-scratch-message nil)
+  (setq inhibit-startup-screen t
+        initial-scratch-message nil)
 #+end_src
 
 Tell Emacs to use line numbers by default.
