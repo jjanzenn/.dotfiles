@@ -20,7 +20,7 @@ Define a macOS application wrapper for =emacsclient=.
 Run =emacsclient= and disown the process before closing.
 #+begin_src sh
   #!/bin/sh
-  emacsclient -c
+  emacsclient -c & disown
 #+end_src
 
 Close the block.
