@@ -114,7 +114,8 @@ I use =doom-modeline= and =nerd-icons= for a nicer-looking user interface and re
     :init
     (ns-auto-titlebar-mode))
   (scroll-bar-mode -1)
-  (tool-bar-mode -1)
+;;  (tool-bar-mode -1)
+  (push '(tool-bar-lines . 0) default-frame-alist)
   (menu-bar-mode -1)
 #+end_src
 
