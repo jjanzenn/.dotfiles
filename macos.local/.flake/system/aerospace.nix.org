@@ -37,6 +37,7 @@ Enable Aerospace as a window manager for macOS. I have disabled gaps, move the m
         };
         mode.main.binding = {
           cmd-enter = "exec-and-forget open -n /Applications/Ghostty.app/";
+          cmd-shift-enter = "exec-and-forget /opt/homebrew/bin/emacs";
           cmd-d = "exec-and-forget ~/.local/bin/launcher";
           cmd-shift-f = "fullscreen";
           cmd-shift-space = "layout floating tiling";
