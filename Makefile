@@ -66,6 +66,8 @@ macos-update: install
 macos-install: $(CONFIGS)
 	darwin-rebuild switch --flake $(DSTDIR)/.flake
 	osascript -e "tell application \"System Events\" to tell every desktop to set picture to \"/$$HOME/.wallpaper\" as POSIX file"
+	mkdir -p ~/Applications/Emacs.app/Contents/MacOS
+	ln -s $$(which emacs) ~/Applications/Emacs.app/Contents/MacOS/Emacs
 
 nixos-update: install
 	nix flake update $(DSTDIR)/.flake
