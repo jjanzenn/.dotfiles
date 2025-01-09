@@ -288,7 +288,7 @@ Set up =flycheck= and =flyspell= for syntax and spell checking respectively.
     :hook
     (text-mode . flyspell-mode)
     :bind
-    (:map flyspell-mode-map ("C-;" . flyspell-correct-word)))
+    (:map flyspell-mode-map ("C-;" . flyspell-correct-wrapper)))
 #+end_src
 
 Install =yasnippet= for managing snippets and =yasnippet-snippets= for a collection of useful snippets.
