@@ -1,10 +1,6 @@
 #+title: Emacs Configuration
 
-Here is my Emacs configuration. Define configuration files that should exist, define a macOS application wrapper for =emacsclient= that runs =emacsclient= and disowns the process before closing. Apply patches from =d12frosted/emacs-plus= Homebrew package for Emacs:
-- Fix OS window role (=yabai= needs this to tile Emacs)
-- Enable rounded window with no decoration (I don't really use this)
-- Make Emacs aware of OS-level light/dark mode
-
+Here is my Emacs configuration. This file just defines configurations that should exist. Emacs is installed with Homebrew.
 #+begin_src nix
   { config, pkgs, ... }:
 
@@ -12,33 +8,6 @@ Here is my Emacs configuration. Define configuration files that should exist, de
     home.file = {
       "./.config/emacs/feed.org".source = ./feed.org;
       "./.config/emacs/init.el".source = ./init.el;
-    };
-    nixpkgs.overlays = [
-      (final: prev:
-        {
-          emacs = prev.emacs.overrideAttrs (old: {
-            patches = (old.patches or [])
-            ++ [
-              (prev.fetchpatch {
-                url = "https://raw.githubusercontent.com/d12frosted/homebrew-emacs-plus/master/patches/emacs-28/fix-window-role.patch";
-                sha256 = "sha256-+z/KfsBm1lvZTZNiMbxzXQGRTjkCFO4QPlEK35upjsE=";
-              })
-              (prev.fetchpatch {
-                url = "https://raw.githubusercontent.com/d12frosted/homebrew-emacs-plus/master/patches/emacs-29/round-undecorated-frame.patch";
-                sha256 = "sha256-uYIxNTyfbprx5mCqMNFVrBcLeo+8e21qmBE3lpcnd+4=";
-              })
-              (prev.fetchpatch {
-                url = "https://raw.githubusercontent.com/d12frosted/homebrew-emacs-plus/master/patches/emacs-28/system-appearance.patch";
-                sha256 = "sha256-oM6fXdXCWVcBnNrzXmF0ZMdp8j0pzkLE66WteeCutv8=";
-              })
-            ];
-          });
-        }
-      )
-    ];
-    programs.emacs = {
-      enable = true;
-      package = pkgs.emacs;
     };
   }
 #+end_src
