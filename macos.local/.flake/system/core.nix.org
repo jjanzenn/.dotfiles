@@ -30,7 +30,7 @@ This file imports various system configuration components in addition to enablin
     environment.variables.EDITOR = "nvim";
 
     # Run Gnu Privacy Guard
-    programs.gnupg.agent.enable = false;
+    programs.gnupg.agent.enable = true;
 
     # Enable nix
     services.nix-daemon.enable = true;
