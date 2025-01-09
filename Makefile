@@ -63,11 +63,13 @@ macos-update: install
 	darwin-rebuild switch --flake $(DSTDIR)/.flake
 
 # macos install tells System Events to update the wallpaper after installation
-macos-install: $(CONFIGS)
+macos-install: $(CONFIGS) ~/Applications/Emacs.app/Contents/MacOS/Emacs
 	darwin-rebuild switch --flake $(DSTDIR)/.flake
 	osascript -e "tell application \"System Events\" to tell every desktop to set picture to \"/$$HOME/.wallpaper\" as POSIX file"
+
+~/Applications/Emacs.app/Contents/MacOS/Emacs:
 	mkdir -p ~/Applications/Emacs.app/Contents/MacOS
-	ln -s $$(which emacs) ~/Applications/Emacs.app/Contents/MacOS/Emacs
+	ln -s /etc/profiles/per-user/jjanzen/bin/emacs ~/Applications/Emacs.app/Contents/MacOS/Emacs
 
 nixos-update: install
 	nix flake update $(DSTDIR)/.flake
