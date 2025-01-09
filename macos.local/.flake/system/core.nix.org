@@ -29,9 +29,6 @@ This file imports various system configuration components in addition to enablin
     # Open text files in neovim by default
     environment.variables.EDITOR = "nvim";
 
-    # Run Gnu Privacy Guard
-    programs.gnupg.agent.enable = true;
-
     # Enable nix
     services.nix-daemon.enable = true;
     nix.package = pkgs.nix;
