@@ -10,15 +10,11 @@ Force the use of a =custom.el= file instead of appending to =init.el=.
 
 Make Emacs use the correct =PATH= variable as macOS fails to load the =PATH= variable from my login shell.
 #+begin_src emacs-lisp
-  (defun jj/set-exec-path-from-shell-PATH ()
-    "Load the login shell's PATH variable manually because macOS doesn't behave well."
-    (interactive)
-    (let ((path-from-shell (replace-regexp-in-string
-                            "[ \t\n]*$" "" (shell-command-to-string
-                                            "$SHELL --login -c 'echo $PATH'"))))
-      (setenv "PATH" path-from-shell)
-      (setq exec-path (split-string path-from-shell path-separator))))
-  (jj/set-exec-path-from-shell-PATH)
+  (let ((path-from-shell (replace-regexp-in-string
+                          "[ \t\n]*$" "" (shell-command-to-string
+                                          "$SHELL --login -c 'echo $PATH'"))))
+    (setenv "PATH" path-from-shell)
+    (setq exec-path (split-string path-from-shell path-separator)))
 #+end_src
 
 Suppress native compilation warnings and errors. Native compilation seems to be a little broken on macOS and the warnings are just annoying.
@@ -324,16 +320,6 @@ Configure and install =elfeed= to serve as an =rss= feed reader. It stores the f
     :config
     (elfeed-org)
     (setq rmh-elfeed-org-files (list "~/.config/emacs/feed.org")))
-#+end_src
-
-Set up =deft= for quick notes.
-#+begin_src emacs-lisp
-  (use-package deft
-    :bind
-    ("C-c d" . deft)
-    :config
-    (setq deft-directory "~/notes/"
-          deft-default-extension "org"))
 #+end_src
 
 * Languages
