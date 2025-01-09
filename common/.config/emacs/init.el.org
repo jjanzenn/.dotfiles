@@ -181,7 +181,6 @@ Allow multiple cursors.
     ("C-<" . mc/mark-previous-like-this))
 #+end_src
 
-
 Configure =dumb-jump= for better lookup.
 #+begin_src emacs-lisp
   (use-package dumb-jump
