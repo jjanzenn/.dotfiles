@@ -217,6 +217,7 @@ Configure =dumb-jump= for better lookup.
 
 Configure and install =magit= as a =git= front end.
 #+begin_src emacs-lisp
+  (use-package transient)
   (use-package magit)
 #+end_src
 
