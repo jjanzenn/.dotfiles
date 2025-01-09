@@ -121,7 +121,6 @@ Set up Homebrew. I disable the quarantine automatically and ensure that the stat
         "godot"
         "inkscape"
         "krita"
-        "mactex"
         "multimc"
         "obs"
         "openemu"
