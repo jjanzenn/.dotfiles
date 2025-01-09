@@ -16,7 +16,7 @@ Here is my Emacs configuration. Define configuration files that should exist, de
     nixpkgs.overlays = [
       (final: prev:
         {
-          emacs29-pgtk = prev.emacs29-pgtk.overrideAttrs (old: {
+          emacs = prev.emacs.overrideAttrs (old: {
             patches = (old.patches or [])
             ++ [
               (prev.fetchpatch {
@@ -38,13 +38,13 @@ Here is my Emacs configuration. Define configuration files that should exist, de
     ];
     programs.emacs = {
       enable = true;
-      package = pkgs.emacs29-pgtk;
+      package = pkgs.emacs;
     };
 
     services.emacs = {
       enable = true;
       client.enable = true;
-      package = pkgs.emacs29-pgtk;
+      package = pkgs.emacs;
     };
   }
 #+end_src
