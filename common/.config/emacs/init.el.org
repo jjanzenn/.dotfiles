@@ -257,8 +257,9 @@ Install and configure =vterm= as a terminal emulator in Emacs.
 Install =company= for completions. It is configured to start with no delay immediately after the first key press. =vertico= is used as a front end for completions. =orderless= is used to allow searching in any portion of a string and =marginalia= gives descriptions of items in the list.
 #+begin_src emacs-lisp
   (use-package company
+    :hook
+    (after-init . global-company-mode)
     :config
-    (add-hook 'after-init-hook 'global-company-mode)
     (setq company-idle-delay 0
           company-minimum-prefix-length 1
           company-selection-wrap-around t))
