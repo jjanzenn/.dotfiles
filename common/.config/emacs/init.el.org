@@ -1,11 +1,6 @@
 #+title: Emacs Configuration
 
 * Early Setup
-Save time on garbage collection during startup.
-#+begin_src
-  (setq gc-cons-threshold 100000000)
-#+end_src
-
 Force the use of a =custom.el= file instead of appending to =init.el=.
 #+begin_src emacs-lisp
   (setq custom-file (concat user-emacs-directory "custom.el"))
