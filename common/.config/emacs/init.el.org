@@ -113,8 +113,8 @@ I use =doom-modeline= and =nerd-icons= for a nicer-looking user interface and re
   (use-package ns-auto-titlebar
     :init
     (ns-auto-titlebar-mode))
-  (scroll-bar-mode -1)
-  (tool-bar-mode -1)
+  ;; (scroll-bar-mode -1)
+  ;; (tool-bar-mode -1)
   (menu-bar-mode -1)
 #+end_src
 
