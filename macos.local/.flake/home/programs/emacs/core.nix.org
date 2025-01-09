@@ -12,13 +12,6 @@ Here is my Emacs configuration. Define configuration files that should exist, de
     home.file = {
       "./.config/emacs/feed.org".source = ./feed.org;
       "./.config/emacs/init.el".source = ./init.el;
-      "./Applications/Emacs.app/Contents/MacOS/Emacs" = {
-        executable = true;
-        text = ''
-          #!/bin/sh
-          /etc/profiles/per-user/jjanzen/bin/emacsclient -c & disown
-        '';
-      };
     };
     nixpkgs.overlays = [
       (final: prev:
