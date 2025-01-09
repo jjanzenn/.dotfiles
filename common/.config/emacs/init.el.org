@@ -1,6 +1,11 @@
 #+title: Emacs Configuration
 
 * Early Setup
+Save time on garbage collection during startup.
+#+begin_src
+  (setq gc-cons-threshold 100000000)
+#+end_src
+
 Force the use of a =custom.el= file instead of appending to =init.el=.
 #+begin_src emacs-lisp
   (setq custom-file (concat user-emacs-directory "custom.el"))
@@ -113,8 +118,7 @@ I use =doom-modeline= and =nerd-icons= for a nicer-looking user interface and re
   (use-package ns-auto-titlebar
     :init
     (ns-auto-titlebar-mode))
-  ;; (scroll-bar-mode -1)
-  (add-to-list 'default-frame-alist '(vertical-scroll-bars . nil))
+  (add-to-list 'default-frame-alist '(vertical-scroll-bars . nil)) ; saves about 0.02 seconds on startup over `(scroll-bar-mode -1)`
   (push '(tool-bar-lines . 0) default-frame-alist) ; saves about 0.1 seconds on startup over `(tool-bar-mode -1)`
   (menu-bar-mode -1)
 #+end_src
