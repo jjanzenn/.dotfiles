@@ -285,12 +285,11 @@ Set up =flycheck= and =flyspell= for syntax and spell checking respectively.
   (use-package flycheck
     :config
     (add-hook 'after-init-hook #'global-flycheck-mode))
-  (use-package flyspell
-    :hook
-    (text-mode . flyspell-mode))
   (use-package flyspell-correct
-    :after flyspell
-    :bind (:map flyspell-mode-map ("C-;" . flyspell-correct-wrapper)))
+    :hook
+    (text-mode . flyspell-mode)
+    :bind
+    (:map flyspell-mode-map ("C-;" . flyspell-correct-wrapper)))
 #+end_src
 
 Install =yasnippet= for managing snippets and =yasnippet-snippets= for a collection of useful snippets.
