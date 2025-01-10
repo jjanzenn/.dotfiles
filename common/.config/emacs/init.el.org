@@ -190,7 +190,7 @@ Make PDFs save where in the document it was last.
 * Tools
 Install =emacs-application-framework=.
 #+begin_src emacs-lisp
-  (add-to-list 'load-path "~/.emacs.d/site-lisp/emacs-application-framework/")
+  (add-to-list 'load-path "~/.config/emacs/site-lisp/emacs-application-framework/")
   (require 'eaf)
   (require 'eaf-video-player)
 #+end_src
