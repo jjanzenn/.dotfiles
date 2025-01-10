@@ -1,27 +1,6 @@
 #+title: Emacs Configuration
 
 * Early Setup
-Force the use of a =custom.el= file instead of appending to =init.el=.
-#+begin_src emacs-lisp
-  (setq custom-file (concat user-emacs-directory "custom.el"))
-  (when (file-exists-p custom-file)
-    (load custom-file))
-#+end_src
-
-Make Emacs use the correct =PATH= variable as macOS fails to load the =PATH= variable from my login shell.
-#+begin_src emacs-lisp
-  (let ((path-from-shell (replace-regexp-in-string
-                          "[ \t\n]*$" "" (shell-command-to-string
-                                          "$SHELL --login -c 'echo $PATH'"))))
-    (setenv "PATH" path-from-shell)
-    (setq exec-path (split-string path-from-shell path-separator)))
-#+end_src
-
-Suppress native compilation warnings and errors. Native compilation seems to be a little broken on macOS and the warnings are just annoying.
-#+begin_src emacs-lisp :tangle yes
-  (setq native-comp-async-report-warnings-errors 'silent)
-#+end_src
-
 Bootstrap package management. I use =elpaca= with =use-package= to allow asynchronous declarative package management.
 #+begin_src emacs-lisp
   (defvar elpaca-installer-version 0.8)
@@ -67,6 +46,27 @@ Bootstrap package management. I use =elpaca= with =use-package= to allow asynchr
 
   (elpaca elpaca-use-package
     (elpaca-use-package-mode))
+#+end_src
+
+Force the use of a =custom.el= file instead of appending to =init.el=.
+#+begin_src emacs-lisp
+  (setq custom-file (concat user-emacs-directory "custom.el"))
+  (when (file-exists-p custom-file)
+    (load custom-file))
+#+end_src
+
+Make Emacs use the correct =PATH= variable as macOS fails to load the =PATH= variable from my login shell.
+#+begin_src emacs-lisp
+  (let ((path-from-shell (replace-regexp-in-string
+                          "[ \t\n]*$" "" (shell-command-to-string
+                                          "$SHELL --login -c 'echo $PATH'"))))
+    (setenv "PATH" path-from-shell)
+    (setq exec-path (split-string path-from-shell path-separator)))
+#+end_src
+
+Suppress native compilation warnings and errors. Native compilation seems to be a little broken on macOS and the warnings are just annoying.
+#+begin_src emacs-lisp :tangle yes
+ ;; (setq native-comp-async-report-warnings-errors 'silent)
 #+end_src
 
 * Appearance
