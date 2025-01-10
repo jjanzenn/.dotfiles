@@ -33,6 +33,8 @@ This file imports various system configuration components in addition to enablin
     services.nix-daemon.enable = true;
     nix.package = pkgs.nix;
 
+    programs.gnupg.agent.enable = false;
+
     # Use flakes
     nix.settings.experimental-features = "nix-command flakes";
 
