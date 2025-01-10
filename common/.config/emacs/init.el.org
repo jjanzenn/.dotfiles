@@ -195,24 +195,6 @@ Install =esup= as a profiling tool.
     (setq esup-depth 0))
 #+end_src
 
-Use =emms= as a media player.
-#+begin_src emacs-lisp
-  (use-package emms
-    :config
-    (require 'emms-setup)
-    (emms-all)
-    (emms-default-players)
-    (setq emms-source-file-default-directory "~/Music"
-          emms-playlist-buffer-name "*Music*"
-          emms-info-asynchronously t)
-    (require 'emms-info-libtag)
-    (setq emms-info-functions '(emms-info-libtag))
-    (require 'emms-mode-line)
-    (emms-mode-line 1)
-    (require 'emms-playing-time)
-    (emms-playing-time 1))
-#+end_src
-
 Allow multiple cursors.
 #+begin_src emacs-lisp
   (use-package multiple-cursors
