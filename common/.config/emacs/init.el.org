@@ -152,12 +152,9 @@ Install and configure =visual-fill-column= to make some file types display with 
 Install and configure =ultra-scroll= for nicer scrolling (not yet in =melpa=, so the install with =package-vc-install=).
 #+begin_src emacs-lisp
   (package-vc-install '(ultra-scroll :vc-backend Git :url  "https://github.com/jdtsmith/ultra-scroll"))
-  (use-package ultra-scroll
-    :init
-   (setq scroll-conservatively 101 ; important!
-         scroll-margin 0)
-   :config
-   (ultra-scroll-mode 1))
+  (setq scroll-conservatively 101
+        scroll-margin 0)
+  (ultra-scroll-mode 1)
 #+end_src
 
 
