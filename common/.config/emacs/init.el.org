@@ -182,6 +182,20 @@ Make PDFs save where in the document it was last.
     (save-place-mode 1))
 #+end_src
 
+Configure superior Emacs window management with =windmove=.
+#+begin_src emacs-lisp
+  (keymap-global-set "C-c w h" 'windmove-left)
+  (keymap-global-set "C-c w j" 'windmove-down)
+  (keymap-global-set "C-c w k" 'windmove-up)
+  (keymap-global-set "C-c w l" 'windmove-right)
+
+  (keymap-global-set "C-c C-w h" 'windmove-swap-states-left)
+  (keymap-global-set "C-c C-w j" 'windmove-swap-states-down)
+  (keymap-global-set "C-c C-w k" 'windmove-swap-states-up)
+  (keymap-global-set "C-c C-w l" 'windmove-swap-states-right)
+#+end_src
+
+
 * Tools
 Install =esup= as a profiling tool.
 #+begin_src emacs-lisp
