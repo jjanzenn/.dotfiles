@@ -66,7 +66,7 @@ Make Emacs use the correct =PATH= variable as macOS fails to load the =PATH= var
 
 * Appearance
 
-Set up fonts. I use Source Code Pro (Nerd Font) for monospace and Computer Modern for variable width.
+Set up fonts. I use Source Code Pro (Nerd Font) for =monospace= and Computer Modern for /variable width/.
 #+begin_src emacs-lisp
   (defvar jj/mono-font)
   (defvar jj/var-font)
