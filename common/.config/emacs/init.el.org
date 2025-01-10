@@ -149,20 +149,11 @@ Install and configure =visual-fill-column= to make some file types display with 
           visual-fill-column-center-text t))
 #+end_src
 
-Install and configure =ultra-scroll= for nicer scrolling (not yet in =melpa=, so the install with =package-vc-install=).
-#+begin_src emacs-lisp
-  (package-vc-install '(ultra-scroll :vc-backend Git :url  "https://github.com/jdtsmith/ultra-scroll"))
-  (setq scroll-conservatively 101
-        scroll-margin 0)
-  (ultra-scroll-mode 1)
-#+end_src
-
-
 * Behaviour
 
 Make Emacs scroll one line at a time instead of big jumps.
 #+begin_src emacs-lisp
-  ;;(setq scroll-conservatively most-positive-fixnum)
+  (setq scroll-conservatively most-positive-fixnum)
 #+end_src
 
 Make Emacs delete trailing whitspace on save. This does not happen in =markdown-mode= which sometimes needs trailing whitespace.
