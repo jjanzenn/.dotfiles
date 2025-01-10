@@ -64,11 +64,6 @@ Make Emacs use the correct =PATH= variable as macOS fails to load the =PATH= var
     (setq exec-path (split-string path-from-shell path-separator)))
 #+end_src
 
-Suppress native compilation warnings and errors. Native compilation seems to be a little broken on macOS and the warnings are just annoying.
-#+begin_src emacs-lisp :tangle yes
- ;; (setq native-comp-async-report-warnings-errors 'silent)
-#+end_src
-
 * Appearance
 
 Set up fonts. I use Source Code Pro (Nerd Font) for monospace and Computer Modern for variable width.
