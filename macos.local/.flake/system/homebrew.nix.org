@@ -61,6 +61,7 @@ Set up Homebrew. I disable the quarantine automatically and ensure that the stat
         "ffmpeg"
         "fzf"
         "gnupg"
+        "gnupg2"
         "go"
         "gpgme"
         "grep"
