@@ -50,7 +50,7 @@ Set up Homebrew. I disable the quarantine automatically and ensure that the stat
             "with-xwidgets"
             "with-mailutils"
             "with-ctags"
-            "with-retro-sink-bw-icon"
+            "with-retro-emacs-logo-icon"
           ];
         }
         "eza"
