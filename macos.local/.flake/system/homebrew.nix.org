@@ -42,17 +42,17 @@ Set up Homebrew. I disable the quarantine automatically and ensure that the stat
         "curl"
         "dos2unix"
         "dotnet"
-        {
-          name = "emacs-plus";
-          args = [
-            "with-native-comp"
-            "with-imagemagick"
-            "with-xwidgets"
-            "with-mailutils"
-            "with-ctags"
-            "with-retro-emacs-logo-icon"
-          ];
-        }
+        # {
+        #   name = "emacs-plus";
+        #   args = [
+        #     "with-native-comp"
+        #     "with-imagemagick"
+        #     "with-xwidgets"
+        #     "with-mailutils"
+        #     "with-ctags"
+        #     "with-retro-emacs-logo-icon"
+        #   ];
+        # }
         "eza"
         "fd"
         "gcc"
