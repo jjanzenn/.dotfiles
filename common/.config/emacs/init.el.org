@@ -216,6 +216,7 @@ Install a better PDF viewer than =DocView=.
 #+begin_src emacs-lisp
   (use-package pdf-tools
     :hook
+    (doc-view-mode . (lambda () (pdf-tools-install)))
     (pdf-view-mode . (lambda () (display-line-numbers-mode -1)))
     :init
     (add-hook 'TeX-after-compilation-finished-functions #'TeX-revert-document-buffer)
