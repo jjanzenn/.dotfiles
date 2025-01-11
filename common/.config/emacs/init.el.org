@@ -84,20 +84,8 @@ Set up fonts. I use Source Code Pro (Nerd Font) for =monospace= and Computer Mod
    `(fixed-pitch ((t :font ,jj/mono-font))))
  #+end_src
 
-I use =doom-modeline= and =nerd-icons= for a nicer-looking user interface and remove the title bar from the window along with any other unnecessary elements from the screen. =dired= is modified to use =nerd-icons= and colours.
+Use =diredfl= for a colourful =dired= and clean up the interface by removing scroll bars, tool bars, and menu bars.
 #+begin_src emacs-lisp
-  (use-package doom-modeline
-    :init
-    (doom-modeline-mode 1))
-  (use-package nerd-icons)
-  (use-package nerd-icons-dired
-    :after
-    (nerd-icons)
-    :hook
-    (dired-mode . nerd-icons-dired-mode))
-  (use-package nerd-icons-completion
-    :config
-    (nerd-icons-completion-mode))
   (use-package diredfl
     :init
     (diredfl-global-mode 1))
