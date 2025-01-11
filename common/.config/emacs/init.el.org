@@ -89,6 +89,9 @@ Use =diredfl= for a colourful =dired= and clean up the interface by removing scr
   (use-package diredfl
     :init
     (diredfl-global-mode 1))
+  (use-package ns-auto-titlebar
+    :init
+    (ns-auto-titlebar-mode))
   (add-to-list 'default-frame-alist '(vertical-scroll-bars . nil)) ; saves about 0.02 seconds on startup over `(scroll-bar-mode -1)`
   (push '(tool-bar-lines . 0) default-frame-alist) ; saves about 0.1 seconds on startup over `(tool-bar-mode -1)`
   (menu-bar-mode -1)
