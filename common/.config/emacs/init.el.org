@@ -260,7 +260,7 @@ Install =company= for completions. It is configured to start with no delay immed
     :init
     (global-company-mode)
     :config
-    (setq company-idle-delay 0
+    (setq company-idle-delay 0.4
           company-minimum-prefix-length 1
           company-selection-wrap-around t))
   (use-package vertico
