@@ -119,6 +119,7 @@ Set up Homebrew. I disable the quarantine automatically and ensure that the stat
         "cabal"
         "calibre"
         "desmume"
+        "dwarf-fortress-lmp"
         "gcc-arm-embedded"
         "ghostty"
         "gimp"
