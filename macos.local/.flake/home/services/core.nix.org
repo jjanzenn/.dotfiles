@@ -1,0 +1,12 @@
+#+title: Service Configuration
+
+Load service configurations.
+#+begin_src nix
+  { config, pkgs, ... }:
+
+  {
+    imports = [
+      ./mpd.nix
+    ];
+  }
+#+end_src

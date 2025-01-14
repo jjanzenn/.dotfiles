@@ -1,0 +1,21 @@
+#+title: =mpd= Configuration
+
+Configure =mpd= as a music player.
+#+begin_src nix
+  { config, pkgs, ... }:
+
+  {
+    services.mpd = {
+      enable = true;
+      musicDirectory = "/Volumes/Media/Music";
+      extraConfig = ''
+      audio_output {
+        type "osx"
+        name "CoreAudio"
+        mixer_type "software"
+        enabled "yes"
+      }
+      '';
+    };
+  }
+#+end_src

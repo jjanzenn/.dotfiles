@@ -10,6 +10,7 @@ Import configurations for programs and install programs with no configuration.
       ./fastfetch.nix
       ./ghostty.nix
       ./git.nix
+      ./ncmpcpp.nix
       ./neovim.nix
       ./ssh.nix
       ./zsh/core.nix
