@@ -1,6 +1,6 @@
 #+title: =mpd= Configuration
 
-Configure =mpd= as a music player.
+Configure =mpd= as a music player. =services.mpd= only works on Linux for some reason so I manually write out the configuration here. This is actually a really gross setup and requires manually creating files in =.mpd= and manually starting =mpd=, but it does seem to work at least.
 #+begin_src nix
   { config, pkgs, ... }:
 
