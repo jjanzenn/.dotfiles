@@ -44,13 +44,6 @@ Configure =mpd= as a music player.
        auto_resample "no"
        use_mmap "yes"
       }
-
-      audio_output {
-        type "osx"
-        name "CoreAudio"
-        mixer_type "software"
-        enabled "yes"
-      }
     '';
   }
 #+end_src
