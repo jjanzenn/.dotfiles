@@ -84,7 +84,7 @@ Set up fonts. I use Source Code Pro (Nerd Font) for =monospace= and Computer Mod
    `(fixed-pitch ((t :font ,jj/mono-font))))
  #+end_src
 
-Use =diredfl= for a colourful =dired= and clean up the interface by removing scroll bars, tool bars, and menu bars.
+Use =diredfl= for a colourful =dired= and clean up the interface by removing scroll bars, tool bars, and menu bars. Allow Emacs to scale frames by pixel rather than character.
 #+begin_src emacs-lisp
   (use-package diredfl
     :init
@@ -95,6 +95,7 @@ Use =diredfl= for a colourful =dired= and clean up the interface by removing scr
   (add-to-list 'default-frame-alist '(vertical-scroll-bars . nil)) ; saves about 0.02 seconds on startup over `(scroll-bar-mode -1)`
   (push '(tool-bar-lines . 0) default-frame-alist) ; saves about 0.1 seconds on startup over `(tool-bar-mode -1)`
   (menu-bar-mode -1)
+  (setq frame-resize-pixelwise t)
 #+end_src
 
 Disable the default startup screen so Emacs starts in the =scratch= buffer and also defaults to an empty =scratch= buffer.
