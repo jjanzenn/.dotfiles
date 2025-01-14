@@ -6,7 +6,7 @@ Configure =mpd= as a music player.
 
   {
     home.packages = with pkgs; [
-      mpd
+      # mpd
     ];
     home.file."./.config/mpd/mpd.conf".text = ''
       music_directory = "/Volumes/Media/Music";
