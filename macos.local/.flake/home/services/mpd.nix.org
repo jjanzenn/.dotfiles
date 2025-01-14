@@ -5,17 +5,17 @@ Configure =mpd= as a music player.
   { config, pkgs, ... }:
 
   {
-    services.mpd = {
-      enable = true;
-      musicDirectory = "/Volumes/Media/Music";
-      extraConfig = ''
+    home.packages = with pkgs; [
+      mpd
+    ];
+    home.file."./.config/mpd/mpd.conf".text = ''
+      music_directory = "/Volumes/Media/Music";
       audio_output {
         type "osx"
         name "CoreAudio"
         mixer_type "software"
         enabled "yes"
       }
-      '';
-    };
+    '';
   }
 #+end_src
