@@ -9,7 +9,7 @@ Configure =mpd= as a music player.
       mpd
     ];
     home.file."./.mpdconf".text = ''
-      music_directory = "/Volumes/Media/Music"
+      music_directory "/Volumes/Media/Music"
       playlist_directory "~/.mpd/playlists"
       db_file "~/.mpd/mpd.db"
       log_file "~/.mpd/mpd.log"
