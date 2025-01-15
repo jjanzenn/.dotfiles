@@ -60,6 +60,7 @@ Set up Homebrew. I disable the quarantine automatically and ensure that the stat
         "automake"
         "pkg-config"
         "poppler"
+        "llvm@18"
 
         # required by emacs-plus@30
         "imagemagick"
@@ -67,6 +68,7 @@ Set up Homebrew. I disable the quarantine automatically and ensure that the stat
         "jpeg"
         "libgccjit"
         "librsvg"
+
         "mailutils"
         "tree-sitter"
 
