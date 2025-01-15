@@ -28,12 +28,7 @@ Set up Homebrew. I disable the quarantine automatically and ensure that the stat
       ];
 
       brews = [
-        "aescrypt"
         "avrdude"
-        "bash-language-server"
-        "bear"
-        "binutils"
-        "bison"
         "choose-gui"
         "clang-format"
         "cmake"

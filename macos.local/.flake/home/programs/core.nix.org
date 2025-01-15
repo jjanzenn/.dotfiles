@@ -17,6 +17,11 @@ Import configurations for programs and install programs with no configuration.
     ];
 
     home.packages = with pkgs; [
+      aescrypt
+      bash-language-server
+      bear
+      binutils
+      bison
       gopls
       python312
       python312Packages.black
