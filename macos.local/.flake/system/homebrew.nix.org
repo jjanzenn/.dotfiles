@@ -28,10 +28,9 @@ Set up Homebrew. I disable the quarantine automatically and ensure that the stat
       ];
 
       brews = [
-        "choose-gui" # nix version fails to build
-        "clang-format" # nix version screws up clang setup
+        # emacs is handled better by homebrew on mac
         {
-          name = "emacs-plus@30"; # handled better with homebrew than nix
+          name = "emacs-plus@30";
           args = [
             "with-native-comp"
             "with-imagemagick"
@@ -42,6 +41,9 @@ Set up Homebrew. I disable the quarantine automatically and ensure that the stat
           ];
         }
 
+        # problematic nix builds
+        "choose-gui" # nix version fails to build
+        "clang-format" # nix version screws up clang setup
         "openjdk" # there's really no jdk for mac from nix?
         "pinentry-touchid" # no nix version
 
@@ -58,6 +60,7 @@ Set up Homebrew. I disable the quarantine automatically and ensure that the stat
         "jansson"
         "jpeg"
         "libgccjit"
+        "librsvg"
         "mailutils"
         "tree-sitter"
 
@@ -66,6 +69,7 @@ Set up Homebrew. I disable the quarantine automatically and ensure that the stat
         "pinentry-mac"
       ];
 
+      # homebrew handles graphical applications better than nix
       casks = [
         "audacity"
         "blender"
