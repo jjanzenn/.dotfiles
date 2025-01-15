@@ -26,7 +26,21 @@ Import configurations for programs and install programs with no configuration.
       cmake-language-server
       curl
       dos2unix
+      eza
+      ffmpeg
+      gnutls
+      go
       gopls
+      gpgme
+      htop
+      imagemagick
+      lesspipe
+      marksman
+      mailutils
+      meson
+      mpv
+      ninja
+      pandoc
       python312
       python312Packages.black
       python312Packages.pylint
