@@ -17,6 +17,7 @@ Import configurations for programs and install programs with no configuration.
     ];
 
     home.packages = with pkgs; [
+      gopls
       python312
       python312Packages.black
       python312Packages.pylint
