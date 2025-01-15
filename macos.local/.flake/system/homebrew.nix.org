@@ -43,7 +43,7 @@ Set up Homebrew. I disable the quarantine automatically and ensure that the stat
         "dos2unix"
         "dotnet"
         {
-          name = "emacs-plus";
+          name = "emacs-plus@30";
           args = [
             "with-native-comp"
             "with-imagemagick"
