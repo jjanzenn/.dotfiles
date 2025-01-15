@@ -18,8 +18,6 @@ Import configurations for programs and install programs with no configuration.
 
     home.packages = with pkgs; [
       aescrypt
-      autoconf
-      automake
       bash-language-server
       bear
       binutils
@@ -48,8 +46,6 @@ Import configurations for programs and install programs with no configuration.
       ninja
       p7zip
       pandoc
-      pkg-config
-      poppler
       python312
       python312Packages.black
       python312Packages.pylint
