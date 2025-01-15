@@ -28,12 +28,10 @@ Set up Homebrew. I disable the quarantine automatically and ensure that the stat
       ];
 
       brews = [
-        "avrdude"
-        "choose-gui"
-        "clang-format"
-        "coreutils"
+        "choose-gui" # nix version fails to build
+        "clang-format" # nix version screws up clang setup
         {
-          name = "emacs-plus@30";
+          name = "emacs-plus@30"; # handled better with homebrew than nix
           args = [
             "with-native-comp"
             "with-imagemagick"
@@ -43,11 +41,6 @@ Set up Homebrew. I disable the quarantine automatically and ensure that the stat
             "with-retro-emacs-logo-icon"
           ];
         }
-        "gdk-pixbuf"
-        "fzf"
-        "gnupg"
-        "gnupg2"
-        "gsasl"
         "hunspell"
         "hyfetch"
         "ispell"
@@ -59,6 +52,9 @@ Set up Homebrew. I disable the quarantine automatically and ensure that the stat
         "pinentry-mac"
         "pinentry-touchid"
         "sevenzip"
+
+        # need for grading purposes
+        "avrdude"
         "osx-cross/avr/avr-binutils"
         "osx-cross/avr/avarice"
         "osx-cross/avr/avr-gcc@14"

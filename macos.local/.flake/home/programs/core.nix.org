@@ -29,6 +29,7 @@ Import configurations for programs and install programs with no configuration.
       eza
       ffmpeg
       gnutls
+      fzf
       go
       gopls
       gpgme
