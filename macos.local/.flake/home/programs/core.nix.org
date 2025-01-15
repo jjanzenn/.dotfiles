@@ -34,6 +34,7 @@ Import configurations for programs and install programs with no configuration.
       gpgme
       htop
       imagemagick
+      inetutils
       lesspipe
       marksman
       mailutils
@@ -45,7 +46,16 @@ Import configurations for programs and install programs with no configuration.
       python312Packages.black
       python312Packages.pylint
       python312Packages.python-lsp-server
+      rsync
+      rustup
+      shellcheck
+      shfmt
       texliveFull
+      tree-sitter
+      typescript-language-server
+      vscode-langservers-extracted
+      wget
+      yt-dlp
     ];
   }
 #+end_src
