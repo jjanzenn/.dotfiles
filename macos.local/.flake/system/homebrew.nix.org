@@ -58,6 +58,7 @@ Set up Homebrew. I disable the quarantine automatically and ensure that the stat
         # needed for pdf-tools for emacs
         "autoconf"
         "automake"
+        "libpng"
         "pkg-config"
         "poppler"
         "llvm@18"
