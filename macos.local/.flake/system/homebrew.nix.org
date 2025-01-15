@@ -31,12 +31,8 @@ Set up Homebrew. I disable the quarantine automatically and ensure that the stat
         "avrdude"
         "choose-gui"
         "clang-format"
-        "cmake"
-        "cmake-language-server"
         "coreutils"
-        "curl"
-        "dos2unix"
-        "dotnet"
+        # "dotnet"
         {
           name = "emacs-plus@30";
           args = [
@@ -48,9 +44,7 @@ Set up Homebrew. I disable the quarantine automatically and ensure that the stat
             "with-retro-emacs-logo-icon"
           ];
         }
-        "eza"
-        "fd"
-        "gcc"
+        # "eza"
         "gdk-pixbuf"
         "gnutls"
         "ffmpeg"

@@ -22,6 +22,10 @@ Import configurations for programs and install programs with no configuration.
       bear
       binutils
       bison
+      cmake
+      cmake-language-server
+      curl
+      dos2unix
       gopls
       python312
       python312Packages.black
