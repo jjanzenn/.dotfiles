@@ -18,6 +18,7 @@ Set up Homebrew. I disable the quarantine automatically and ensure that the stat
       };
 
       taps = [
+        "camillescholtz/formulae"
         "d12frosted/emacs-plus"
         "homebrew/bundle"
         "homebrew/cask-fonts"
