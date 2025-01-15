@@ -20,7 +20,7 @@ Import configurations for programs and install programs with no configuration.
       aescrypt
       bash-language-server
       bear
-      binutils
+      # binutils
       bison
       cmake
       cmake-language-server
