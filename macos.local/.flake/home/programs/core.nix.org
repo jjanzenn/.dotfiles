@@ -33,7 +33,6 @@ Import configurations for programs and install programs with no configuration.
       gopls
       gpgme
       htop
-      imagemagick
       inetutils
       lesspipe
       marksman
@@ -51,7 +50,6 @@ Import configurations for programs and install programs with no configuration.
       shellcheck
       shfmt
       texliveFull
-      tree-sitter
       typescript-language-server
       vscode-langservers-extracted
       wget
