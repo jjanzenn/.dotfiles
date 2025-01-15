@@ -41,7 +41,6 @@ Set up Homebrew. I disable the quarantine automatically and ensure that the stat
             "with-retro-emacs-logo-icon"
           ];
         }
-        "librsvg"
 
         "openjdk" # there's really no jdk for mac from nix?
         "pinentry-touchid" # no nix version
@@ -58,6 +57,7 @@ Set up Homebrew. I disable the quarantine automatically and ensure that the stat
         "imagemagick"
         "jansson"
         "jpeg"
+        "libgccjit"
         "mailutils"
         "tree-sitter"
 
