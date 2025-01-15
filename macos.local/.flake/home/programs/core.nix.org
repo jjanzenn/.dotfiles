@@ -28,13 +28,15 @@ Import configurations for programs and install programs with no configuration.
       dos2unix
       eza
       ffmpeg
-      gnutls
       fzf
+      gnutls
       go
       gopls
       gpgme
       htop
+      hunspell
       inetutils
+      ispell
       lesspipe
       marksman
       mailutils

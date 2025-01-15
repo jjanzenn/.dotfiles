@@ -41,9 +41,7 @@ Set up Homebrew. I disable the quarantine automatically and ensure that the stat
             "with-retro-emacs-logo-icon"
           ];
         }
-        "hunspell"
         "hyfetch"
-        "ispell"
         "libgccjit"
         "librsvg"
         "open-mpi"
