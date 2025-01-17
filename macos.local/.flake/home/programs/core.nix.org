@@ -43,6 +43,7 @@ Import configurations for programs and install programs with no configuration.
       meson
       mpv
       ninja
+      nodejs_23
       p7zip
       pandoc
       python312
