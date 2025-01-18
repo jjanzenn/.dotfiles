@@ -135,6 +135,11 @@ Install and configure =visual-fill-column= to make some file types display with 
 
 * Behaviour
 
+Make Emacs confirm that I want to close it on kill.
+#+begin_src emacs-lisp
+(setq confirm-kill-emacs 'yes-or-no-p)
+#+end_src
+
 Make Emacs scroll one line at a time instead of big jumps.
 #+begin_src emacs-lisp
   (setq scroll-conservatively most-positive-fixnum)
@@ -405,7 +410,7 @@ Install =lua-mode=.
   (use-package lua-mode)
 #+end_src
 
-Configure how Markdown is displayed (default to variable-width font and use monospace where necessary) and installs =markdown-mode=.
+Configure how Markdown is displayed (default to variable-width font and use monospace where necessary) and installs =markdown-mode=. (Markdown faces seem to be broken on Emacs 30).
 #+begin_src emacs-lisp
   (use-package markdown-mode
     :hook
@@ -477,7 +482,7 @@ Set up =eglot= to run on languages that have been configured.
                        python-mode-hook
                        go-mode-hook
                        lua-mode-hook
-                       markdown-mode-hook
+                       ;; markdown-mode-hook
                        tex-mode-hook
                        LaTeX-mode-hook
                        yaml-mode-hook
