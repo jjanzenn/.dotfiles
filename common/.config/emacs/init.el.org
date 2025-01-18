@@ -410,13 +410,14 @@ Install =lua-mode=.
   (use-package lua-mode)
 #+end_src
 
-Configure how Markdown is displayed (default to variable-width font and use monospace where necessary) and installs =markdown-mode=. (Markdown faces seem to be broken on Emacs 30).
+Configure how Markdown is displayed (default to variable-width font and use monospace where necessary) and installs =markdown-mode=.
 #+begin_src emacs-lisp
   (use-package markdown-mode
     :hook
     (markdown-mode . (lambda ()
                        (variable-pitch-mode)
-                       (display-line-numbers-mode -1)))
+                       (display-line-numbers-mode -1)
+                       (eglot-ensure)))
     :config
     (setq markdown-hide-markup t)
     :custom-face
@@ -482,7 +483,6 @@ Set up =eglot= to run on languages that have been configured.
                        python-mode-hook
                        go-mode-hook
                        lua-mode-hook
-                       ;; markdown-mode-hook
                        tex-mode-hook
                        LaTeX-mode-hook
                        yaml-mode-hook
