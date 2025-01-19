@@ -60,6 +60,7 @@ Import configurations for programs and install programs with no configuration.
       wget
       yt-dlp
       zig
+      zls
     ];
   }
 #+end_src
