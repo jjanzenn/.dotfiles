@@ -467,7 +467,7 @@ Install =yaml-mode=.
 
 Install =zig-mode=.
 #+begin_src emacs-lisp
-  (use-pacakge zig-mode)
+  (use-package zig-mode)
 #+end_src
 
 Set up =eglot= to run on languages that have been configured.
