@@ -59,6 +59,7 @@ Import configurations for programs and install programs with no configuration.
       vscode-langservers-extracted
       wget
       yt-dlp
+      zig
     ];
   }
 #+end_src
