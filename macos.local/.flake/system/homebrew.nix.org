@@ -73,6 +73,7 @@ Set up Homebrew. I disable the quarantine automatically and ensure that the stat
         "tree-sitter"
 
         # required by pinentry-touchid
+        "libassuan@2"
         "gnupg"
         "pinentry-mac"
       ];
