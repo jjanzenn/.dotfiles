@@ -135,7 +135,7 @@ Install and configure =visual-fill-column= to make some file types display with 
 
 * Behaviour
 
-Emacs has behaved oddly when accidentally scrolling a little bit while the control key is held. The text scale goes all the way up and then Emacs seems to hang. Just disable this behaviour.
+I hate macOS scroll inertia. Scrolling in one window, switching to Emacs, and hitting control occasionally changes the text size and can even cause Emacs (and my window manager for some reason) to hang forcing me to force quit Emacs.
 #+begin_src emacs-lisp
   (global-unset-key (kbd "<C-wheel-up>"))
   (global-unset-key (kbd "<C-wheel-down>"))
