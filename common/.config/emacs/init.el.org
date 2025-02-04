@@ -135,6 +135,12 @@ Install and configure =visual-fill-column= to make some file types display with 
 
 * Behaviour
 
+Emacs has behaved oddly when accidentally scrolling a little bit while the control key is held. The text scale goes all the way up and then Emacs seems to hang. Just disable this behaviour.
+#+begin_src emacs-lisp
+  (global-unset-key (kbd "<C-wheel-up>"))
+  (global-unset-key (kbd "<C-wheel-down>"))
+#+end_src
+
 Make Emacs confirm that I want to close it on kill.
 #+begin_src emacs-lisp
 (setq confirm-kill-emacs 'yes-or-no-p)
