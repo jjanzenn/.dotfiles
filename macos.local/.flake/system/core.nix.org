@@ -29,8 +29,7 @@ This file imports various system configuration components in addition to enablin
     # Open text files in neovim by default
     environment.variables.EDITOR = "nvim";
 
-    # Enable nix
-    services.nix-daemon.enable = true;
+    # Enable nix packages
     nix.package = pkgs.nix;
 
     programs.gnupg.agent.enable = false;
