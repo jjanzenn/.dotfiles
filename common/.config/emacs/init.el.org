@@ -146,6 +146,11 @@ Make Emacs confirm that I want to close it on kill.
 (setq confirm-kill-emacs 'yes-or-no-p)
 #+end_src
 
+Make Emacs scroll one line at a time instead of big jumps.
+#+begin_src emacs-lisp
+  (setq scroll-conservatively most-positive-fixnum)
+#+end_src
+
 Make Emacs delete trailing whitspace on save. This does not happen in =markdown-mode= which sometimes needs trailing whitespace.
 #+begin_src emacs-lisp
   (add-hook 'before-save-hook
@@ -278,7 +283,7 @@ Install =company= for completions. It is configured to start with no delay immed
   (use-package orderless
     :custom
     (completion-styles '(orderless basic))
-    (completion-category-overrideps '((file (styles basic partial-completion)))))
+    (completion-category-overrides '((file (styles basic partial-completion)))))
   (use-package marginalia
     :bind
     (:map minibuffer-local-map
@@ -332,20 +337,6 @@ Configure and install =elfeed= to serve as an =rss= feed reader. It stores the f
     (elfeed-org)
     (setq rmh-elfeed-org-files (list "~/.config/emacs/feed.org")))
 #+end_src
-
-Configure smooth scrolling with =ultra-scroll=.
-#+begin_src emacs-lisp
-  (use-package ultra-scroll
-  :vc (
-       :url "https://github.com/jdtsmith/ultra-scroll"
-       :branch "main")
-  :init
-  (setq scroll-conservatively 101
-        scroll-margin 0)
-  :config
-  (ultra-scroll-mode 1))
-#+end_src
-
 
 * Languages
 
