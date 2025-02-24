@@ -148,7 +148,7 @@ Make Emacs confirm that I want to close it on kill.
 
 Make Emacs scroll one line at a time instead of big jumps.
 #+begin_src emacs-lisp
-  (setq scroll-conservatively most-positive-fixnum)
+  ;;(setq scroll-conservatively most-positive-fixnum)
 #+end_src
 
 Make Emacs delete trailing whitspace on save. This does not happen in =markdown-mode= which sometimes needs trailing whitespace.
@@ -193,6 +193,18 @@ Configure superior Emacs window management with =windmove=.
   (keymap-global-set "C-c C-w j" 'windmove-swap-states-down)
   (keymap-global-set "C-c C-w k" 'windmove-swap-states-up)
   (keymap-global-set "C-c C-w l" 'windmove-swap-states-right)
+#+end_src
+
+Get smooth scrolling with =ultra-scroll=.
+#+begin_src emacs-lisp
+  (use-package ultra-scroll
+    :vc (:url https://github.com/jdtsmith/ultra-scroll
+              :rev newest)
+    :init
+    (setq scroll-conservatively 101
+          scroll-margin 0)
+    :config
+    (ultra-scroll-mode 1))
 #+end_src
 
 * Tools
