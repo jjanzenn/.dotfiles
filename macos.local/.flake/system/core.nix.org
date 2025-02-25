@@ -24,7 +24,7 @@ This file imports various system configuration components in addition to enablin
     ];
 
     # Use TouchID for sudo
-    security.pam.enableSudoTouchIdAuth = true;
+    security.pam.services.sudo_local.touchIdAuth = true;
 
     # Open text files in neovim by default
     environment.variables.EDITOR = "nvim";
