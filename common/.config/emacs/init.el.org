@@ -44,7 +44,6 @@ Bootstrap package management. I use =elpaca= with =use-package= to allow asynchr
   (add-hook 'after-init-hook #'elpaca-process-queues)
   (elpaca `(,@elpaca-order))
 
-  (elpaca-wait)
   (setq use-package-always-ensure t)
 
   (elpaca elpaca-use-package
