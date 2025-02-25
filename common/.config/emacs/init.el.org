@@ -146,11 +146,6 @@ Make Emacs confirm that I want to close it on kill.
 (setq confirm-kill-emacs 'yes-or-no-p)
 #+end_src
 
-Make Emacs scroll one line at a time instead of big jumps.
-#+begin_src emacs-lisp
-  (setq scroll-conservatively most-positive-fixnum)
-#+end_src
-
 Make Emacs delete trailing whitspace on save. This does not happen in =markdown-mode= which sometimes needs trailing whitespace.
 #+begin_src emacs-lisp
   (add-hook 'before-save-hook
