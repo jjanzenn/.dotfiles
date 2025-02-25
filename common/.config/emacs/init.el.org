@@ -338,6 +338,17 @@ Configure and install =elfeed= to serve as an =rss= feed reader. It stores the f
     (setq rmh-elfeed-org-files (list "~/.config/emacs/feed.org")))
 #+end_src
 
+Smooth scrolling with =ultra-scroll=.
+#+begin_src emacs-lisp
+  (use-package ultra-scroll
+   :ensure (ultra-scroll :host github :repo "jdtsmith/ultra-scroll")
+   :init
+   (setq scroll-conservatively 101
+     scroll-margin 0)
+   :config
+   (ultra-scroll-mode 1))
+#+end_src
+
 * Languages
 
 Configure =org-mode=. I use =~/org= as my =org= directory and hide emphasis markers because it's much easier to read that way. I enable =org-crypt= to allow reading and writing encrypted =org= files. I also replace bullets in bulleted lists with nicer looking icons. I configure faces to default to variable-width font, but switching to monospace where it is necessary. Finally, I use =visual-fill-column= to make =org= files display with a relatively narrow window centred in the frame.
