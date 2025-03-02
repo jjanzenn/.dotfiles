@@ -50,22 +50,6 @@ Bootstrap package management. I use =elpaca= with =use-package= to allow asynchr
     (elpaca-use-package-mode))
 #+end_src
 
-Force the use of a =custom.el= file instead of appending to =init.el=.
-#+begin_src emacs-lisp
-  (setq custom-file (concat user-emacs-directory "custom.el"))
-  (when (file-exists-p custom-file)
-    (load custom-file))
-#+end_src
-
-Make Emacs use the correct =PATH= variable as macOS fails to load the =PATH= variable from my login shell.
-#+begin_src emacs-lisp
-  (let ((path-from-shell (replace-regexp-in-string
-                          "[ \t\n]*$" "" (shell-command-to-string
-                                          "$SHELL --login -c 'echo $PATH'"))))
-    (setenv "PATH" path-from-shell)
-    (setq exec-path (split-string path-from-shell path-separator)))
-#+end_src
-
 * Appearance
 
 Set up fonts. I use Source Code Pro (Nerd Font) for =monospace= and Computer Modern for /variable width/.
@@ -86,7 +70,7 @@ Set up fonts. I use Source Code Pro (Nerd Font) for =monospace= and Computer Mod
    `(fixed-pitch ((t :font ,jj/mono-font))))
  #+end_src
 
-Use =diredfl= for a colourful =dired= and clean up the interface by removing scroll bars, tool bars, and menu bars. Allow Emacs to scale frames by pixel rather than character.
+Use =diredfl= for a colourful =dired= and =ns-auto-titlebar= for a macOS native title-bar look.
 #+begin_src emacs-lisp
   (use-package diredfl
     :init
@@ -94,16 +78,6 @@ Use =diredfl= for a colourful =dired= and clean up the interface by removing scr
   (use-package ns-auto-titlebar
     :init
     (ns-auto-titlebar-mode))
-  (add-to-list 'default-frame-alist '(vertical-scroll-bars . nil)) ; saves about 0.02 seconds on startup over `(scroll-bar-mode -1)`
-  (push '(tool-bar-lines . 0) default-frame-alist) ; saves about 0.1 seconds on startup over `(tool-bar-mode -1)`
-  (menu-bar-mode -1)
-  (setq frame-resize-pixelwise t)
-#+end_src
-
-Disable the default startup screen so Emacs starts in the =scratch= buffer and also defaults to an empty =scratch= buffer.
-#+begin_src emacs-lisp
-  (setq inhibit-startup-screen t
-        initial-scratch-message nil)
 #+end_src
 
 Tell Emacs to use line numbers by default.
@@ -136,6 +110,15 @@ Install and configure =visual-fill-column= to make some file types display with 
 #+end_src
 
 * Behaviour
+
+Make Emacs use the correct =PATH= variable as macOS fails to load the =PATH= variable from my login shell.
+#+begin_src emacs-lisp
+  (let ((path-from-shell (replace-regexp-in-string
+                          "[ \t\n]*$" "" (shell-command-to-string
+                                          "$SHELL --login -c 'echo $PATH'"))))
+    (setenv "PATH" path-from-shell)
+    (setq exec-path (split-string path-from-shell path-separator)))
+#+end_src
 
 I hate macOS scroll inertia. Scrolling in one window, switching to Emacs, and hitting control occasionally changes the text size and can even cause Emacs (and my window manager for some reason) to hang forcing me to force quit Emacs.
 #+begin_src emacs-lisp

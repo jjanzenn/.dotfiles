@@ -4,3 +4,24 @@ Disable =package.el= at startup so that =elpaca= can enable it on its own.
 #+begin_src emacs-lisp
   (setq package-enable-at-startup nil)
 #+end_src
+
+Force the use of a =custom.el= file instead of appending to =init.el=.
+#+begin_src emacs-lisp
+  (setq custom-file (concat user-emacs-directory "custom.el"))
+  (when (file-exists-p custom-file)
+    (load custom-file))
+#+end_src
+
+Disable the default startup screen so Emacs starts in the =scratch= buffer and also defaults to an empty =scratch= buffer.
+#+begin_src emacs-lisp
+  (setq inhibit-startup-screen t
+        initial-scratch-message nil)
+#+end_src
+
+Clean up interface by removing unnecessary elements.
+#+begin_src emacs-lisp
+  (add-to-list 'default-frame-alist '(vertical-scroll-bars . nil)) ; saves about 0.02 seconds on startup over `(scroll-bar-mode -1)`
+  (push '(tool-bar-lines . 0) default-frame-alist) ; saves about 0.1 seconds on startup over `(tool-bar-mode -1)`
+  (menu-bar-mode -1)
+  (setq frame-resize-pixelwise t)
+#+end_src
