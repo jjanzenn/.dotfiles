@@ -1,6 +1,6 @@
 #+title: Emacs Configuration
 
-* Early Setup
+* Package Setup
 Bootstrap package management. I use =elpaca= with =use-package= to allow asynchronous declarative package management.
 #+begin_src emacs-lisp
   (defvar elpaca-installer-version 0.10)
@@ -51,24 +51,6 @@ Bootstrap package management. I use =elpaca= with =use-package= to allow asynchr
 #+end_src
 
 * Appearance
-
-Set up fonts. I use Source Code Pro (Nerd Font) for =monospace= and Computer Modern for /variable width/.
-#+begin_src emacs-lisp
-  (defvar jj/mono-font)
-  (defvar jj/var-font)
-  (pcase system-type
-    (`gnu/linux
-     (setq jj/mono-font "SauceCodePro Nerd Font-11"
-           jj/var-font "CMU Serif-14"))
-    (`darwin
-     (setq jj/mono-font "SauceCodePro Nerd Font-14:weight=thin"
-           jj/var-font "CMU Serif-18")))
-  (add-to-list 'default-frame-alist
-               `(font . ,jj/mono-font))
-  (custom-set-faces
-   `(variable-pitch ((t :font ,jj/var-font)))
-   `(fixed-pitch ((t :font ,jj/mono-font))))
- #+end_src
 
 Use =diredfl= for a colourful =dired= and =ns-auto-titlebar= for a macOS native title-bar look.
 #+begin_src emacs-lisp

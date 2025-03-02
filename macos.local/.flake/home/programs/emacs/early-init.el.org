@@ -20,8 +20,26 @@ Disable the default startup screen so Emacs starts in the =scratch= buffer and a
 
 Clean up interface by removing unnecessary elements.
 #+begin_src emacs-lisp
-  (add-to-list 'default-frame-alist '(vertical-scroll-bars . nil)) ; saves about 0.02 seconds on startup over `(scroll-bar-mode -1)`
-  (push '(tool-bar-lines . 0) default-frame-alist) ; saves about 0.1 seconds on startup over `(tool-bar-mode -1)`
+  (add-to-list 'default-frame-alist '(vertical-scroll-bars . nil))
+  (push '(tool-bar-lines . 0) default-frame-alist)
   (menu-bar-mode -1)
   (setq frame-resize-pixelwise t)
 #+end_src
+
+Set up fonts. I use Source Code Pro (Nerd Font) for =monospace= and Computer Modern for /variable width/.
+#+begin_src emacs-lisp
+  (defvar jj/mono-font)
+  (defvar jj/var-font)
+  (pcase system-type
+    (`gnu/linux
+     (setq jj/mono-font "SauceCodePro Nerd Font-11"
+           jj/var-font "CMU Serif-14"))
+    (`darwin
+     (setq jj/mono-font "SauceCodePro Nerd Font-14:weight=thin"
+           jj/var-font "CMU Serif-18")))
+  (add-to-list 'default-frame-alist
+               `(font . ,jj/mono-font))
+  (custom-set-faces
+   `(variable-pitch ((t :font ,jj/var-font)))
+   `(fixed-pitch ((t :font ,jj/mono-font))))
+ #+end_src
