@@ -1,0 +1,6 @@
+#+title: Emacs Early Initialization
+
+Disable =package.el= at startup so that =elpaca= can enable it on its own.
+#+begin_src emacs-lisp
+  (setq package-enable-at-startup nil)
+#+end_src
