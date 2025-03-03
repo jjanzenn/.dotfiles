@@ -61,6 +61,8 @@ $(DSTDIR)/%: $(SRCDIR)/%
 macos-update: install
 	nix flake update --flake $(DSTDIR)/.flake
 	darwin-rebuild switch --flake $(DSTDIR)/.flake
+	brew update
+	brew upgrade
 
 # macos install tells System Events to update the wallpaper after installation
 macos-install: $(CONFIGS)
