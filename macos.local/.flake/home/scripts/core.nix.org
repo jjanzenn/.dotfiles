@@ -18,6 +18,10 @@ Import various scripts useful on my system.
         executable = true;
         source = ./remove-quarantine;
       };
+      "./.local/bin/manage-system" = {
+        executable = true;
+        source = ./manage-system;
+      };
     };
   }
 #+end_src
