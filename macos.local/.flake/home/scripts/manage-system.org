@@ -5,7 +5,10 @@
 
   usage ()
   {
-      echo "Usage: $0 [-u/-i]"
+      echo "Usage: $0 [command] where command is one of"
+      echo "help    - show this message and exit"
+      echo "update  - update the system"
+      echo "install - install the system configurations"
   }
 
   [ "$#" -eq 0 ] && usage && exit 1
@@ -13,27 +16,26 @@
   dir="$pwd"
   cd ~/.dotfiles || exit 1
 
-  while getopts ":hui" arg; do
-      case "$arg" in
-          h)
-              usage
-              cd "$dir" || exit 1
-              exit 0
-              ;;
-          u)
-              make update
-              cd "$dir" || exit 1
-              exit 0
-              ;;
-          i)
-              make install
-              cd "$dir" || exit 1
-              exit 0
-              ;;
-          ,*)
-              cd "$dir" || exit 1
-              exit 1
-              ;;
-      esac
-  done
+  case "$1" in
+      help)
+          usage
+          cd "$dir" || exit 1
+          exit 0
+          ;;
+      update)
+          make update
+          cd "$dir" || exit 1
+          exit 0
+          ;;
+      install)
+          make install
+          cd "$dir" || exit 1
+          exit 0
+          ;;
+      ,*)
+          usage
+          cd "$dir" || exit 1
+          exit 1
+          ;;
+  esac
 #+end_src
