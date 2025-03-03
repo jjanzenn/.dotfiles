@@ -108,9 +108,9 @@ Set up Homebrew. I disable the quarantine automatically and ensure that the stat
         "rar"
         "syncthing"
         "thunderbird"
+        "tor-browser"
         "vlc"
         "whisky"
-        "zen-browser"
         "zotero"
        ];
     };
