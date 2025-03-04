@@ -51,6 +51,7 @@ Import configurations for programs and install programs with no configuration.
       python312Packages.black
       python312Packages.pylint
       python312Packages.python-lsp-server
+      ripgrep
       rsync
       rustup
       shellcheck
