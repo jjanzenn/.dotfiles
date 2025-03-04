@@ -40,6 +40,13 @@ This file imports various system configuration components in addition to enablin
     # Use zsh as my shell
     programs.zsh.enable = true;
 
+    # Enable documentation and make
+    documentation = {
+      enable = true;
+      info.enable = true;
+      man.enable = true;
+    };
+
     system.stateVersion = 5;
 
     # Use ARM64 packages
