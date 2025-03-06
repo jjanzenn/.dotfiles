@@ -1,5 +1,10 @@
 #+title: Emacs Early Initialization
 
+Set high =gc-cons-threshold= while booting.
+#+begin_src emacs-lisp
+  (setq gc-cons-threshold most-positive-fixnum)
+#+end_src
+
 Disable =package.el= at startup so that =elpaca= can enable it on its own.
 #+begin_src emacs-lisp
   (setq package-enable-at-startup nil)
