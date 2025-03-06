@@ -32,7 +32,7 @@ endif
 # update by default, install first
 all: update
 update: install $(UPDATE_TARGET)
-	cp $(DSTDIR)/.flake/flake.lock $(SRCDIR)/.flake
+	cp $(DSTDIR)/.flake/flake.lock $(SRCDIR)/flake
 	git add -A
 	git commit -m "update lock file" || true
 
