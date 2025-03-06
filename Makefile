@@ -32,7 +32,7 @@ endif
 # update by default, install first
 all: update
 update: install $(UPDATE_TARGET)
-	cp $(DSTDIR)/.flake/flake.lock $(SRCDIR)/flake
+	cp $(DSTDIR)/flake/flake.lock $(SRCDIR)/flake
 	git add -A
 	git commit -m "update lock file" || true
 
@@ -59,20 +59,20 @@ $(DSTDIR)/%: $(SRCDIR)/%
 	cp $< $@
 
 macos-update: install
-	nix flake update --flake $(DSTDIR)/.flake
-	darwin-rebuild switch --flake $(DSTDIR)/.flake
+	nix flake update --flake $(DSTDIR)/flake
+	darwin-rebuild switch --flake $(DSTDIR)/flake
 	brew update
 	brew upgrade
 
 # macos install tells System Events to update the wallpaper after installation
 macos-install: $(CONFIGS)
-	darwin-rebuild switch --flake $(DSTDIR)/.flake
+	darwin-rebuild switch --flake $(DSTDIR)/flake
 	osascript -e "tell application \"System Events\" to tell every desktop to set picture to \"/$$HOME/.wallpaper\" as POSIX file"
 	sudo /usr/libexec/makewhatis -o /usr/local/share/man/whatis
 
 nixos-update: install
-	nix flake update $(DSTDIR)/.flake
-	sudo nixos-rebuild switch --flake $(DSTDIR)/.flake
+	nix flake update $(DSTDIR)/flake
+	sudo nixos-rebuild switch --flake $(DSTDIR)/flake
 
 nixos-install: $(CONFIGS)
-	sudo nixos-rebuild switch --flake $(DSTDIR)/.flake
+	sudo nixos-rebuild switch --flake $(DSTDIR)/flake
