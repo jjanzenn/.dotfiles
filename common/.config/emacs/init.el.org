@@ -552,8 +552,3 @@ Set up =eglot= to run on languages that have been configured.
                           (tree-sitter-mode 1)
                           (tree-sitter-hl-mode 1))))
 #+end_src
-
-Set =gc-cons-threshold= to a normal value while running.
-#+begin_src emacs-lisp
-  (setq gc-cons-threshold 800000)
-#+end_src
