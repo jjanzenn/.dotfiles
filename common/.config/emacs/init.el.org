@@ -71,7 +71,7 @@ Colourful delimiters with =rainbow-delimiters=.
 
 Tell Emacs to use line numbers by default.
 #+begin_src emacs-lisp
-;;  (global-display-line-numbers-mode 1)
+  (global-display-line-numbers-mode 1)
 #+end_src
 
 Configure Emacs to default to spaces over tabs and use a width of 4 by default.
@@ -264,7 +264,7 @@ Allow multiple cursors.
   (use-package multiple-cursors
     :bind
     ("C->" . mc/mark-next-like-this)
-    ("C-<" . mc/mark-previous-like-this))
+    ("C-<" . mc/unmark-next-like-this))
 #+end_src
 
 Configure =dumb-jump= for better lookup.
