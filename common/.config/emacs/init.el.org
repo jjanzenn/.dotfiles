@@ -332,10 +332,10 @@ Set up =flycheck= and =flyspell= for syntax and spell checking respectively.
   (use-package flycheck
     :config
     (add-hook 'after-init-hook #'global-flycheck-mode))
+
+  (add-hook text-mode-hook #'flyspell-mode)
   (use-package flyspell-correct
     :after flyspell
-    :hook
-    (text-mode . flyspell-mode)
     :bind
     (:map flyspell-mode-map ("C-;" . flyspell-correct-wrapper)))
 #+end_src
