@@ -332,6 +332,7 @@ Set up =flycheck= and =flyspell= for syntax and spell checking respectively.
   (use-package flycheck
     :config
     (add-hook 'after-init-hook #'global-flycheck-mode))
+  (use-package flyspell)
   (use-package flyspell-correct
     :after flyspell
     :hook
