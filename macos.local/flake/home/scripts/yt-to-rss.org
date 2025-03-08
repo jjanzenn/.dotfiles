@@ -1,0 +1,8 @@
+#+title: YouTube Channel to RSS Link
+
+Quick script to get the RSS link for a YouTube channel so I don't have to visit the website.
+#+begin_src sh
+  #!/bin/sh
+
+  curl "$1" 2> /dev/null | pup 'link[title="RSS"] attr{href}'
+#+end_src

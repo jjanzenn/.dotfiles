@@ -22,6 +22,10 @@ Import various scripts useful on my system.
         executable = true;
         source = ./manage-system;
       };
+      "./.local/bin/yt-to-rss" = {
+        executable = true;
+        source = ./yt-to-rss;
+      };
     };
   }
 #+end_src
