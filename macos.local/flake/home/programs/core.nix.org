@@ -47,11 +47,11 @@ Import configurations for programs and install programs with no configuration.
       notcurses
       p7zip
       pandoc
+      pup
       python312
       python312Packages.black
       python312Packages.pylint
       python312Packages.python-lsp-server
-      python312Packages.requests
       ripgrep
       rsync
       rustup
