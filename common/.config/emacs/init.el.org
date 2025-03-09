@@ -404,7 +404,7 @@ Configure =org-mode=. I use =~/org= as my =org= directory and hide emphasis mark
     :config
     (org-crypt-use-before-save-magic)
     (setq org-directory "~/org"
-          org-agenda-files "~/org"
+          org-agenda-files (list org-directory)
           org-log-done 'time
           org-hide-emphasis-markers t
           org-format-latex-options (plist-put org-format-latex-options :scale 2.0)
@@ -412,6 +412,16 @@ Configure =org-mode=. I use =~/org= as my =org= directory and hide emphasis mark
           org-tags-exclude-from-inheritance '("crypt")
           org-crypt-key nil
           auto-save-default nil)
+    (setq org-capture-templates
+        '(
+          ("n" "Note"
+           entry (file+headline "~/org/notes.org.gpg" "Random Notes")
+           "** %?"
+           :empty-lines 0)
+          ("g" "General To-Do"
+           entry (file+headline "~/org/todos.org.gpg" "General Tasks")
+           "* TODO [#B] %?\n:Created: %T\n "
+           :empty-lines 0)))
     (font-lock-add-keywords 'org-mode
                             '(("^ *\\([-]\\) "
                                (0 (prog1 () (compose-region (match-beginning 1) (match-end 1) "•"))))))
@@ -449,7 +459,8 @@ Highlight comment tags like =TODO= and whatnot.
           comment-tags-case-sensitive t
           comment-tags-show-faces t
           comment-tags-lighter t)
-    (comment-tags-mode))
+    :hook
+    (prog-mode . comment-tags-mode))
 #+end_src
 
 Install =cmake-mode=.
