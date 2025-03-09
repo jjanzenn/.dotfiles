@@ -527,7 +527,6 @@ Install =zig-mode=.
 Set up =eglot= to run on languages that have been configured.
 #+begin_src emacs-lisp
   (global-set-key (kbd "C-c r") 'eglot-rename)
-  (global-set-key (kbd "C-c a") 'eglot-code-actions)
   (use-package tree-sitter)
   (use-package tree-sitter-langs)
   (dolist (lang-hook '(sh-mode-hook
