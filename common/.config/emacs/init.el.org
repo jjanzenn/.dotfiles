@@ -115,6 +115,11 @@ I hate macOS scroll inertia. Scrolling in one window, switching to Emacs, and hi
   (global-unset-key (kbd "<C-wheel-down>"))
 #+end_src
 
+Disable the bell sound on invalid commands.
+#+begin_src emacs-lisp
+  (setq ring-bell-function 'ignore)
+#+end_src
+
 Make Emacs confirm that I want to close it on kill.
 #+begin_src emacs-lisp
   (setq confirm-kill-emacs 'yes-or-no-p)
