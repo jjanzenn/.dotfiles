@@ -11,6 +11,7 @@ Specify my name and email for =git=. Also enable =delta= and =pull.rebase=.
       userEmail = "jjanzen@jjanzen.ca";
       delta.enable = true;
       extraConfig = {
+        init.defaultBranch = "main";
         pull.rebase = true;
       };
     };
