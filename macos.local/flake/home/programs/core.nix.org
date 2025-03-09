@@ -28,6 +28,7 @@ Import configurations for programs and install programs with no configuration.
       eza
       ffmpeg
       fzf
+      gnuplot
       gnutls
       go
       gopls
