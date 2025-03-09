@@ -408,6 +408,15 @@ Configure =org-mode=. I use =~/org= as my =org= directory and hide emphasis mark
           org-agenda-files (list org-directory)
           org-agenda-file-regexp "\\`[^.].*\\.org\\\(\\.gpg\\\)?\\'"
           org-todo-keywords '((sequence "TODO(t)" "PLANNING(p)" "IN-PROGRESS(i@/!)" "VERIFYING(v!)" "BLOCKED(b@)"  "|" "DONE(d!)" "WONT-DO(w@/!)"))
+          org-todo-keyword-faces '(
+                                   ("TODO" . (:foreground "GoldenRod" :weight bold))
+                                   ("PLANNING" . (:foreground "DeepPink" :weight bold))
+                                   ("IN-PROGRESS" . (:foreground "DarkCyan" :weight bold))
+                                   ("VERIFYING" . (:foreground "DarkOrange" :weight bold))
+                                   ("BLOCKED" . (:foreground "Red" :weight bold))
+                                   ("DONE" . (:foreground "LimeGreen" :weight bold))
+                                   ("OBE" . (:foreground "LimeGreen" :weight bold))
+                                   ("WONT-DO" . (:foreground "LimeGreen" :weight bold)))
           org-log-done 'time
           org-hide-emphasis-markers t
           org-format-latex-options (plist-put org-format-latex-options :scale 2.0)
@@ -424,6 +433,10 @@ Configure =org-mode=. I use =~/org= as my =org= directory and hide emphasis mark
           ("g" "General To-Do"
            entry (file+headline "~/org/todos.org.gpg" "General Tasks")
            "* TODO [#B] %?\n:Created: %T\n "
+           :empty-lines 0)
+          ("d" "To-Do with Deadline"
+           entry (file+headline "~/org/todos.org.gpg" "Time Dependent Tasks")
+           "* TODO [#B] %?\n:Created: %T\n:Deadline: %^t\n"
            :empty-lines 0)))
     (font-lock-add-keywords 'org-mode
                             '(("^ *\\([-]\\) "

@@ -102,6 +102,7 @@ Set up Homebrew. I disable the quarantine automatically and ensure that the stat
         "openemu"
         "openmw"
         "pokemon-showdown"
+        "proton-drive"
         "proton-mail-bridge"
         "protonvpn"
         "qbittorrent"
