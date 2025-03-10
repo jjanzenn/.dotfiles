@@ -299,15 +299,6 @@ Install a better PDF viewer than =DocView=.
           TeX-source-correlate-start-server t))
 #+end_src
 
-Install and configure =vterm= as a terminal emulator in Emacs.
-#+begin_src emacs-lisp
-  (use-package vterm
-    :hook
-    (vterm-mode . (lambda () (display-line-numbers-mode -1)))
-    :bind
-    ("C-c v" . vterm))
-#+end_src
-
 Install and configure =eat= as a terminal emulator in Emacs.
 #+begin_src emacs-lisp
   (use-package eat
@@ -318,8 +309,9 @@ Install and configure =eat= as a terminal emulator in Emacs.
     (setq eshell-visual-commands '())
     :hook
     (eat-mode . (lambda () (display-line-numbers-mode -1)))
+    (eshell-mode . (lambda () (display-line-numbers-mode -1)))
     :bind
-    ("C-c v" . eat))
+    ("C-c v" . eshell))
 #+end_src
 
 Use =corfu= and =vertico= for completions. =orderless= is used to allow searching in any portion of a string and =marginalia= gives descriptions of items in the list.
