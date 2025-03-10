@@ -312,8 +312,10 @@ Install and configure =eat= as a terminal emulator in Emacs.
 #+begin_src emacs-lisp
   (use-package eat
     :init
-    (eat-compile-terminfo)
     (setopt eat-kill-buffer-on-exit t)
+    :config
+    (eat-eshell-mode)
+    (setq eshell-visual-commands '())
     :hook
     (eat-mode . (lambda () (display-line-numbers-mode -1)))
     :bind
