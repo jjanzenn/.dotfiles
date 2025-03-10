@@ -48,6 +48,7 @@ Import configurations for programs and install programs with no configuration.
       notcurses
       p7zip
       pandoc
+      openpomodoro-cli
       pup
       python312
       python312Packages.black
