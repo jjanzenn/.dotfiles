@@ -311,7 +311,7 @@ Install and configure =eat= as a terminal emulator in Emacs.
     (eat-mode . (lambda () (display-line-numbers-mode -1)))
     (eshell-mode . (lambda () (display-line-numbers-mode -1)))
     :bind
-    ("C-c v" . eshell))
+    ("C-c v" . eat))
 #+end_src
 
 Use =corfu= and =vertico= for completions. =orderless= is used to allow searching in any portion of a string and =marginalia= gives descriptions of items in the list.
