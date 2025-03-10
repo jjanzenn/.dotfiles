@@ -397,7 +397,7 @@ Smooth scrolling with =ultra-scroll=.
    (ultra-scroll-mode 1))
 #+end_src
 
-* COMMENT Languages
+* Languages
 
 Configure =org-mode=. I use =~/org= as my =org= directory and hide emphasis markers because it's much easier to read that way. I enable =org-crypt= to allow reading and writing encrypted =org= files. I also replace bullets in bulleted lists with nicer looking icons. I configure faces to default to variable-width font, but switching to monospace where it is necessary. Finally, I use =visual-fill-column= to make =org= files display with a relatively narrow window centred in the frame.
 #+begin_src emacs-lisp
