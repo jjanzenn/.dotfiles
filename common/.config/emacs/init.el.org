@@ -369,7 +369,7 @@ Install =apheleia= and =clang-format= to automatically format code on save.
     (use-package clang-format)
 #+end_src
 
-Configure and install =elfeed= to serve as an =rss= feed reader. It stores the feed [[./feed.org.org][here]].
+Configure and install =elfeed= to serve as an =rss= feed reader.
 #+begin_src emacs-lisp
   (use-package elfeed
     :bind
