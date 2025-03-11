@@ -415,9 +415,11 @@ Install my pomodoro timer package.
 
 Configure =emms= as a music player.
 #+begin_src emacs-lisp
-  (use-package emms)
+  (use-package emms
+    :init
+    (setq emms-player-list '(emms-player-vlc)
+          emms-info-functions '(emms-info-native)))
 #+end_src
-
 
 * Languages
 

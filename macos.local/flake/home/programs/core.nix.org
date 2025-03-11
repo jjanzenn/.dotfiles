@@ -27,6 +27,7 @@ Import configurations for programs and install programs with no configuration.
       dos2unix
       eza
       ffmpeg
+      findutils
       fzf
       gnuplot
       gnutls
