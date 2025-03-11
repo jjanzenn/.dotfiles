@@ -69,9 +69,10 @@ Colourful delimiters with =rainbow-delimiters=.
     (prog-mode . rainbow-delimiters-mode))
 #+end_src
 
-Tell Emacs to use line numbers by default.
+Tell Emacs to show line numbers and column numbers by default.
 #+begin_src emacs-lisp
   (global-display-line-numbers-mode 1)
+  (column-number-mode 1)
 #+end_src
 
 Configure Emacs to default to spaces over tabs and use a width of 4 by default.
