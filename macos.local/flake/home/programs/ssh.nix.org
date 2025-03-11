@@ -29,6 +29,14 @@ Configure SSH. Keys should be added to the SSH agent. Use the system keychain on
           };
         };
 
+        "minecraft" = {
+          setEnv = {
+            "TERM" = "xterm";
+          };
+          hostname = "jjanzen.ca";
+          user = "minecraft";
+        };
+
         "oracle" = {
           setEnv = {
             "TERM" = "xterm";

@@ -417,7 +417,8 @@ Configure =emms= as a music player.
 #+begin_src emacs-lisp
   (use-package emms
     :init
-    (setq emms-player-list '(emms-player-vlc)
+    (emms-all)
+    (setq emms-player-list '(emms-player-mpv)
           emms-info-functions '(emms-info-native)))
 #+end_src
 
