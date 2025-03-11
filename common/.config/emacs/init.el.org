@@ -184,7 +184,6 @@ Automatically increase the size of the focused window.
    (setq zoom-size '(0.618 . 0.618)))
 #+end_src
 
-
 * Tools
 Install =esup= as a profiling tool.
 #+begin_src emacs-lisp
@@ -408,10 +407,17 @@ Smooth scrolling with =ultra-scroll=.
    (ultra-scroll-mode 1))
 #+end_src
 
+Install my pomodoro timer package.
 #+begin_src emacs-lisp
   (use-package pomodoro-mode
     :ensure (pomodoro-mode :host github :repo "jjanzenn/pomodoro-mode"))
 #+end_src
+
+Configure =emms= as a music player.
+#+begin_src emacs-lisp
+  (use-package emms)
+#+end_src
+
 
 * Languages
 
