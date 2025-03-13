@@ -333,7 +333,7 @@ Install and configure =eat= as a terminal emulator in Emacs.
                      (eshell/alias "la" "ls -a $@*")
                      (eshell/alias "l" "ls -F $@*")))
     :bind
-    ("C-c v" . eat))
+    ("C-c v" . eshell))
 #+end_src
 
 Use =corfu= and =vertico= for completions. =orderless= is used to allow searching in any portion of a string and =marginalia= gives descriptions of items in the list.
