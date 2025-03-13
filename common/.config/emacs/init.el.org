@@ -314,12 +314,21 @@ Install and configure =eat= as a terminal emulator in Emacs.
   (use-package eat
     :init
     (setopt eat-kill-buffer-on-exit t)
+    (defun jj/eshell-quit-or-delete-char (arg)
+      (interactive "p")
+      (if (and (eolp) (looking-back eshell-prompt-regexp))
+          (progn
+            (eshell-life-is-too-much)
+            (ignore-errors
+              (delete-window)))
+        (delete-forward-char arg)))
     :config
     (eat-eshell-mode)
     (setq eshell-visual-commands '())
     :hook
     (eat-mode . (lambda () (display-line-numbers-mode -1)))
     (eshell-mode . (lambda () (display-line-numbers-mode -1)
+                     (bind-keys :map eshell-mode-map ("C-d" . jj/eshell-quit-or-delete-char))
                      (eshell/alias "ll" "ls -alF $@*")
                      (eshell/alias "la" "ls -a $@*")
                      (eshell/alias "l" "ls -F $@*")))
