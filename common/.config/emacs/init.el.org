@@ -319,7 +319,10 @@ Install and configure =eat= as a terminal emulator in Emacs.
     (setq eshell-visual-commands '())
     :hook
     (eat-mode . (lambda () (display-line-numbers-mode -1)))
-    (eshell-mode . (lambda () (display-line-numbers-mode -1)))
+    (eshell-mode . (lambda () (display-line-numbers-mode -1)
+                     (eshell/alias "ll" "ls -alF $@*")
+                     (eshell/alias "la" "ls -a $@*")
+                     (eshell/alias "l" "ls -F $@*")))
     :bind
     ("C-c v" . eat))
 #+end_src
