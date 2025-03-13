@@ -419,7 +419,12 @@ Configure =emms= as a music player.
     :init
     (emms-all)
     (setq emms-player-list '(emms-player-mpv)
-          emms-info-functions '(emms-info-native)))
+          emms-info-functions '(emms-info-native)
+          emms-browser-covers #'emms-browser-cache-thumbnail-async
+          emms-browser-thumbnail-small-size 64
+          emms-browser-thumbnail-medium-size 128
+          emms-browser-thumbnail-large-size 256)
+    (emms-librefm-scrobbler-enable))
 #+end_src
 
 * Languages
