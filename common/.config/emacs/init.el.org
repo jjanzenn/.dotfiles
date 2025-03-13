@@ -325,7 +325,8 @@ Install and configure =eat= as a terminal emulator in Emacs.
                      (eshell/alias "la" "ls -a $@*")
                      (eshell/alias "l" "ls -F $@*")))
     :bind
-    ("C-c v" . eshell))
+    ("C-c v" . eshell)
+    (:map eshell-mode-map ("C-d" . eshell-delchar-or-maybe-eof)))
 #+end_src
 
 Use =corfu= and =vertico= for completions. =orderless= is used to allow searching in any portion of a string and =marginalia= gives descriptions of items in the list.
