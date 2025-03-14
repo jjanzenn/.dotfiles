@@ -346,10 +346,13 @@ Install and configure =eat= as a terminal emulator in Emacs with =eshell= as a s
 
     :hook
     (eat-mode . (lambda () (display-line-numbers-mode -1)))
-    (eshell-mode . (lambda () (display-line-numbers-mode -1)
+    (eshell-mode . (lambda ()
+                     (display-line-numbers-mode -1)
                      (eshell/alias "ll" "ls -alF $@*")
                      (eshell/alias "la" "ls -a $@*")
-                     (eshell/alias "l" "ls -F $@*")))
+                     (eshell/alias "l" "ls -F $@*")
+                     (eshell/alias "ff" "find-file $@*")
+                     (eshell/alias "clr" "clear-scrollback")))
     :bind
     ("C-c v" . eshell)
     (:map eshell-mode-map ("C-d" . jj/eshell-quit-or-delete-char)))
