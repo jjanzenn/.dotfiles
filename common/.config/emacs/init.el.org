@@ -530,12 +530,14 @@ Configure =emms= as a music player.
           emms-browser-thumbnail-small-size 64
           emms-browser-thumbnail-medium-size 128
           emms-browser-thumbnail-large-size 256)
+    :config
     (defun jj/enable-librefm-scrobbler ()
       (if (not emms-librefm-scrobbler-session-id)
           (emms-librefm-scrobbler-enable)))
     :hook
-    (emms-browser . #'jj/enable-librefm-scrobbler)
-    (emms . #'jj/enable-librefm-scrobbler))
+    (emms-browser-mode . (lambda () jj/enable-librefm-scrobbler))
+    (emms-playlist-mode . (lambda () jj/enable-librefm-scrobbler)))
+
 #+end_src
 
 * Languages
