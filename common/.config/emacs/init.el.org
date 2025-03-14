@@ -312,37 +312,36 @@ Install a better PDF viewer than =DocView=.
 
 Install and configure =eat= as a terminal emulator in Emacs with =eshell= as a shell.
 #+begin_src emacs-lisp
-  (require 'em-prompt)
-  :init
-  ;; Overwrite a default function that makes the prompt editable for some reason
-  (defun eshell-emit-prompt ()
-   "Emit a prompt if eshell is being used interactively."
-   (when (boundp 'ansi-color-context-region)
-     (setq ansi-color-context-region nil))
-   (run-hooks 'eshell-before-prompt-hook)
-   (if (not eshell-prompt-function)
-       (set-marker eshell-last-output-end (point))
-     (let ((prompt (funcall eshell-prompt-function)))
-       (add-text-properties
-        0 (length prompt)
-        (if eshell-highlight-prompt
-            '( read-only t
-               field prompt
-               font-lock-face eshell-prompt
-               front-sticky (read-only field font-lock-face)
-               rear-nonsticky (read-only field font-lock-face))
-          '( read-only t
-             field prompt
-             front-sticky (read-only field font-lock-face)
-             rear-nonsticky (read-only field font-lock-face)))
-        prompt)
-       (eshell-interactive-filter nil prompt)))
-   (run-hooks 'eshell-after-prompt-hook))
-
   (use-package eat
     :init
     (setopt eat-kill-buffer-on-exit t)
     (eat-eshell-mode)
+    (add-hook 'eshell-mode-hook (lambda ()
+                                  (require 'em-prompt)
+                                  ;; Overwrite a default function that makes the prompt editable for some reason
+                                 (defun eshell-emit-prompt ()
+                                  "Emit a prompt if eshell is being used interactively."
+                                  (when (boundp 'ansi-color-context-region)
+                                    (setq ansi-color-context-region nil))
+                                  (run-hooks 'eshell-before-prompt-hook)
+                                  (if (not eshell-prompt-function)
+                                      (set-marker eshell-last-output-end (point))
+                                    (let ((prompt (funcall eshell-prompt-function)))
+                                      (add-text-properties
+                                       0 (length prompt)
+                                       (if eshell-highlight-prompt
+                                           '( read-only t
+                                              field prompt
+                                              font-lock-face eshell-prompt
+                                              front-sticky (read-only field font-lock-face)
+                                              rear-nonsticky (read-only field font-lock-face))
+                                         '( read-only t
+                                            field prompt
+                                            front-sticky (read-only field font-lock-face)
+                                            rear-nonsticky (read-only field font-lock-face)))
+                                       prompt)
+                                      (eshell-interactive-filter nil prompt)))
+                                  (run-hooks 'eshell-after-prompt-hook))))
 
     (defun jj/shorten-path-str (path)
      (let* ((components (split-string (replace-regexp-in-string (getenv "HOME") "~" path) "/"))
