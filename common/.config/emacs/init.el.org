@@ -316,6 +316,42 @@ Install and configure =eat= as a terminal emulator in Emacs with =eshell= as a s
     (setopt eat-kill-buffer-on-exit t)
     (eat-eshell-mode)
 
+    (defun jj/shorten-path-str (path)
+     (let* ((components (split-string (replace-regexp-in-string (getenv "HOME") "~" path) "/"))
+            (head-items (butlast components 2))
+            (shortened-head (mapcar (lambda (element)
+                                      (if (= (length element) 0)
+                                          ""
+                                        (substring element 0 1)))
+                                    head-items))
+            (tail-items (last components 2))
+            (new-components (append shortened-head tail-items)))
+       (propertize (string-join new-components "/") 'font-lock-face '(:foreground "dark green"))))
+
+    (defun jj/curr-dir-git-branch (path)
+     (when (and (not (file-remote-p path))
+                (eshell-search-path "git")
+                (locate-dominating-file path ".git"))
+       (let* ((git-branch (s-trim (shell-command-to-string "git rev-parse --abbrev-ref HEAD")))
+              (git-status (s-trim (shell-command-to-string "git status")))
+              (outofsync (if (string-match-p "use \"git push\" to publish your local commits" git-status)
+                             " "
+                           ""))
+              (staged (if (string-match-p "Changes to be committed:" git-status)
+                          " "
+                        ""))
+              (unstaged (if (string-match-p "Changes not staged for commit:" git-status)
+                            " "
+                          ""))
+              (untracked (if (string-match-p "Untracked files:"git-status)
+                             " "
+                           "")))
+         (concat (propertize (concat " " git-branch) 'font-lock-face '(:foreground "blue"))
+                 (propertize outofsync 'font-lock-face '(:foreground "dark green"))
+                 (propertize staged 'font-lock-face '(:foreground "orange"))
+                 (propertize unstaged 'font-lock-face '(:foreground "magenta"))
+                 (propertize untracked 'font-lock-face '(:foreground "dark red"))))))
+
     (defun jj/eshell-quit-or-delete-char (arg)
       "Close the terminal if I hit C-d on an empty line"
       (interactive "p")
@@ -340,6 +376,14 @@ Install and configure =eat= as a terminal emulator in Emacs with =eshell= as a s
                (href (dom-attr rss 'href)))
           (kill-buffer)
           href)))
+
+    (setq eshell-highlight-prompt nil)
+    (setq eshell-prompt-function (lambda ()
+                                   (concat (jj/shorten-path-str (eshell/pwd))
+                                           (jj/curr-dir-git-branch (eshell/pwd))
+                                           (unless (eshell-exit-success-p)
+                                             (format " [%d]" eshell-last-command-status))
+                                           (if (= (file-user-uid) 0) " # " " $ "))))
 
     :config
     (setq eshell-visual-commands '())
