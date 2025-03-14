@@ -314,6 +314,7 @@ Install and configure =eat= as a terminal emulator in Emacs with =eshell= as a s
   (use-package eat
     :init
     (setopt eat-kill-buffer-on-exit t)
+    (eat-eshell-mode)
 
     (defun jj/eshell-quit-or-delete-char (arg)
       "Close the terminal if I hit C-d on an empty line"
@@ -341,8 +342,8 @@ Install and configure =eat= as a terminal emulator in Emacs with =eshell= as a s
           href)))
 
     :config
-    (eat-eshell-mode)
     (setq eshell-visual-commands '())
+
     :hook
     (eat-mode . (lambda () (display-line-numbers-mode -1)))
     (eshell-mode . (lambda () (display-line-numbers-mode -1)
