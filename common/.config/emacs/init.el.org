@@ -309,28 +309,43 @@ Install a better PDF viewer than =DocView=.
           TeX-source-correlate-start-server t))
 #+end_src
 
-Install and configure =eat= as a terminal emulator in Emacs.
+Install and configure =eat= as a terminal emulator in Emacs with =eshell= as a shell.
 #+begin_src emacs-lisp
   (use-package eat
     :init
     (setopt eat-kill-buffer-on-exit t)
+
     (defun jj/eshell-quit-or-delete-char (arg)
+      "Close the terminal if I hit C-d on an empty line"
       (interactive "p")
       (if (and (eolp) (looking-back eshell-prompt-regexp))
           (eshell-life-is-too-much)
         (delete-forward-char arg)))
+
     (defun eshell/manage-configs (arg)
+      "run the argument through make at the root of my dotfiles repository"
       (let ((dir (eshell/pwd)))
        (eshell/cd "~/.dotfiles")
        (compile (concat "make " arg))
        (eshell/cd dir)))
+
+    (defun eshell/yt-2-rss (url)
+      "convert a youtube channel link into an rss link"
+      (if (not (libxml-available-p))
+        (message "libxml is not available")
+        (browse-url-emacs url t)
+        (let* ((dom (libxml-parse-html-region))
+               (rss (dom-elements dom 'title "RSS"))
+               (href (dom-attr rss 'href)))
+          (kill-buffer)
+          href)))
+
     :config
     (eat-eshell-mode)
     (setq eshell-visual-commands '())
     :hook
     (eat-mode . (lambda () (display-line-numbers-mode -1)))
     (eshell-mode . (lambda () (display-line-numbers-mode -1)
-                     (bind-keys :map eshell-mode-map ("C-d" . jj/eshell-quit-or-delete-char))
                      (eshell/alias "ll" "ls -alF $@*")
                      (eshell/alias "la" "ls -a $@*")
                      (eshell/alias "l" "ls -F $@*")))
