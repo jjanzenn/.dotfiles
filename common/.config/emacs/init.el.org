@@ -521,10 +521,6 @@ Install my pomodoro timer package.
 
 Configure =emms= as a music player.
 #+begin_src emacs-lisp
-  (defun jj/enable-librefm-scrobbler ()
-    (if (not emms-librefm-scrobbler-session-id)
-        (emms-librefm-scrobbler-enable)))
-
   (use-package emms
     :init
     (emms-all)
@@ -535,8 +531,12 @@ Configure =emms= as a music player.
           emms-browser-thumbnail-medium-size 128
           emms-browser-thumbnail-large-size 256)
     :hook
-    (emms-browser-mode . (lambda () jj/enable-librefm-scrobbler))
-    (emms-playlist-mode . (lambda () jj/enable-librefm-scrobbler)))
+    (emms-browser-mode . (lambda ()
+                           (if (not emms-librefm-scrobbler-session-id)
+                            (emms-librefm-scrobbler-enable))))
+    (emms-playlist-mode . (lambda ()
+                            (if (not emms-librefm-scrobbler-session-id)
+                             (emms-librefm-scrobbler-enable)))))
 #+end_src
 
 * Languages
