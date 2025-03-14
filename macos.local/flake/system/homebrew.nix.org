@@ -18,14 +18,12 @@ Set up Homebrew. I disable the quarantine automatically and ensure that the stat
       };
 
       taps = [
-        "camillescholtz/formulae"
         "d12frosted/emacs-plus"
         "homebrew/bundle"
         "homebrew/cask-fonts"
         "homebrew/cask-versions"
         "homebrew/services"
         "jorgelbg/tap"
-        "osx-cross/avr"
       ];
 
       brews = [
@@ -47,14 +45,6 @@ Set up Homebrew. I disable the quarantine automatically and ensure that the stat
         "clang-format" # nix version screws up clang setup
         "openjdk" # there's really no jdk for mac from nix?
         "pinentry-touchid" # no nix version
-
-        # need for grading purposes
-        "avrdude"
-        "open-mpi"
-        "open-ocd"
-        "osx-cross/avr/avr-binutils"
-        "osx-cross/avr/avarice"
-        "osx-cross/avr/avr-gcc@14"
 
         # needed for pdf-tools for emacs
         "autoconf"
@@ -92,6 +82,7 @@ Set up Homebrew. I disable the quarantine automatically and ensure that the stat
         "gcc-arm-embedded"
         "ghostty"
         "gimp"
+        "ghidra"
         "godot"
         "gzdoom"
         "inkscape"
@@ -110,6 +101,7 @@ Set up Homebrew. I disable the quarantine automatically and ensure that the stat
         "syncthing"
         "thunderbird"
         "tor-browser"
+        "utm"
         "vlc"
         "whisky"
         "zotero"
