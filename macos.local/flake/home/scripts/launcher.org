@@ -3,5 +3,5 @@
 Use =choose-gui= to launch an application. This is used for a keyboard command to launch applications.
 #+begin_src sh
   #!/bin/sh
-  open -n $(find -L /Applications /System/Applications /System/Applications/Utilities ~/Applications /opt/homebrew/opt/emacs-plus@* -maxdepth 1 -name "*.app" | choose -f "SauceCodePro Nerd Font" -s 15)
+  open -n "$(find -L /Applications /System/Applications /System/Applications/Utilities ~/Applications /opt/homebrew/opt/emacs-plus@* -maxdepth 1 -name "*.app" | choose -f "SauceCodePro Nerd Font" -s 15)"
 #+end_src
