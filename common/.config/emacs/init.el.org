@@ -313,7 +313,7 @@ Install a better PDF viewer than =DocView=.
 Install and configure =eat= as a terminal emulator in Emacs with =eshell= as a shell.
 #+begin_src emacs-lisp
   ;; Overwrite a default function that makes the prompt editable for some reason
-  (eval-after-load "em-prompt" '(defun eshell-emit-prompt ())
+  (eval-after-load "em-prompt" '(defun eshell-emit-prompt ()
                      "Emit a prompt if eshell is being used interactively."
                      (when (boundp 'ansi-color-context-region)
                        (setq ansi-color-context-region nil))
