@@ -458,8 +458,8 @@ Set up =flycheck= and =flyspell= for syntax and spell checking respectively.
     :config
     (add-hook 'after-init-hook #'global-flycheck-mode))
 
-  (require 'flyspell)
-  (add-hook 'text-mode-hook #'flyspell-mode)
+  (eval-after-load "flyspell" '(add-hook 'text-mode-hook #'flyspell-mode))
+
   (use-package flyspell-correct
     :after flyspell
     :bind
