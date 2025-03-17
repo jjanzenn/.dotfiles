@@ -296,6 +296,25 @@ Configure and install =magit= as a =git= front end.
   (use-package magit)
 #+end_src
 
+=which-key= to display options in commands.
+#+begin_src emacs-lisp
+  (use-package which-key
+    :ensure t
+    :config
+    (which-key-mode))
+#+end_src
+
+Project management with projectile.
+#+begin_src emacs-lisp
+  (use-package rg)
+  (use-package projectile
+    :init
+    (projectile-mode)
+    (setq projectile-project-search-path '("~/projects"))
+    :bind
+    (:map projectile-mode-map ("C-c p" . projectile-command-map)))
+#+end_src
+
 Install a better PDF viewer than =DocView=.
 #+begin_src emacs-lisp
   (use-package pdf-tools
