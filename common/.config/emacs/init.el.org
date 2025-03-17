@@ -721,6 +721,13 @@ Install =nix-mode=.
       "\\.nix\\'")
 #+end_src
 
+Use =pet= to handle Python virtual environments.
+#+begin_src emacs-lisp
+  (use-package pet
+    :config
+    (add-hook 'python-base-mode-hook 'pet-mode -10))
+#+end_src
+
 Install =yaml-mode=.
 #+begin_src emacs-lisp :tangle yes
   (use-package yaml-mode)
