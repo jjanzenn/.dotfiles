@@ -18,6 +18,10 @@ Import various scripts useful on my system.
         executable = true;
         source = ./remove-quarantine;
       };
+      "./.local/bin/backup-org.sh" = {
+        executable = true;
+        source = ./backup-org.sh;
+      };
     };
   }
 #+end_src
