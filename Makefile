@@ -68,7 +68,7 @@ macos-update: install
 macos-install: $(CONFIGS)
 	darwin-rebuild switch --flake $(DSTDIR)/flake
 	osascript -e "tell application \"System Events\" to tell every desktop to set picture to \"/$$HOME/.wallpaper\" as POSIX file"
-	sudo /usr/libexec/makewhatis -o /usr/local/share/man/whatis
+	sudo /usr/libexec/makewhatis -o /usr/local/share/man/whatis -v /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/share/man /usr/share/man
 
 nixos-update: install
 	nix flake update $(DSTDIR)/flake
