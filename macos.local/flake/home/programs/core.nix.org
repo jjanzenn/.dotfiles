@@ -23,6 +23,7 @@ Import configurations for programs and install programs with no configuration.
       cmake
       cmake-language-server
       curl
+      dasel
       dos2unix
       eza
       ffmpeg
