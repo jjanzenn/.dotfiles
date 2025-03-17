@@ -24,6 +24,14 @@ Set up home manager for my user account and import submodules. Define my user as
       "$HOME/.local/bin"
       "/usr/local/bin"
       "/opt/homebrew/bin"
+      "/opt/homebrew/sbin"
     ];
+
+    home.sessionSearchVariables = {
+      MANPATH = [
+        "/Library/Developer/CommandLineTools/SDKs/macOSX13.0.sdk/usr/share/man"
+        "/usr/share/man"
+      ];
+    };
   }
 #+end_src
