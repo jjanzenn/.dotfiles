@@ -257,6 +257,7 @@ Use =consult= for better search and navigation.
     (setq register-preview-delay 0.5)
     (setq xref-show-xrefs-function #'consult-xref
           xref-show-definitions-function #'consult-xref)
+    (setq consult-man-args "/usr/bin/man -k")
 
     :config
     (consult-customize
