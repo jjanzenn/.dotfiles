@@ -104,11 +104,10 @@ Install and configure =visual-fill-column= to make some file types display with 
 
 Make Emacs use the correct =PATH= variable as macOS fails to load the =PATH= variable from my login shell.
 #+begin_src emacs-lisp
-  (let ((path-from-shell (replace-regexp-in-string
-                          "[ \t\n]*$" "" (shell-command-to-string
-                                          "$SHELL --login -c 'echo $PATH'"))))
-    (setenv "PATH" path-from-shell)
-    (setq exec-path (split-string path-from-shell path-separator)))
+  (use-package exec-path-from-shell
+    :init
+    (when (memq window-system '(mac ns x))
+      (exec-path-from-shell-initialize)))
 #+end_src
 
 I hate macOS scroll inertia. Scrolling in one window, switching to Emacs, and hitting control occasionally changes the text size and can even cause Emacs (and my window manager for some reason) to hang forcing me to force quit Emacs.
