@@ -59,7 +59,8 @@ Use =diredfl= for a colourful =dired= and =ns-auto-titlebar= for a macOS native 
     (diredfl-global-mode 1))
   (use-package ns-auto-titlebar
     :init
-    (ns-auto-titlebar-mode))
+    (when (memq window-system '(mac ns x))
+      (ns-auto-titlebar-mode)))
 #+end_src
 
 Colourful delimiters with =rainbow-delimiters=.
