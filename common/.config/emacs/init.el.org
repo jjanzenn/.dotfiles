@@ -736,9 +736,9 @@ Configure how Markdown is displayed (default to variable-width font and use mono
 
 Install =nix-mode=.
 #+begin_src emacs-lisp
-    (use-package nix-mode
-      :mode
-      "\\.nix\\'")
+  (use-package nix-mode
+    :mode
+    "\\.nix\\'")
 #+end_src
 
 Use =pet= to handle Python virtual environments.
@@ -770,7 +770,6 @@ Set up =eglot= to run on languages that have been configured.
                        cmake-mode-hook
                        html-mode-hook
                        css-mode-hook
-                       js-json-mode-hook
                        js-mode-hook
                        python-mode-hook
                        go-mode-hook
