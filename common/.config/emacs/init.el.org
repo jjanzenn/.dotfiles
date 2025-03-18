@@ -537,6 +537,26 @@ Configure a convenient startup profiler.
     (setq esup-depth 0))
 #+end_src
 
+Show previews in =dired=.
+#+begin_src emacs-lisp
+  (use-package dired-preview
+    :init
+    (setq dired-preview-delay 0.7
+          dired-preview-max-size (expt 2 20)
+          dired-preview-ignored-extensions-regexp (concat
+                                                   "\\."
+                                                   "\\(gz\\|"
+                                                   "zst\\|"
+                                                   "tar\\|"
+                                                   "xz\\|"
+                                                   "rar\\|"
+                                                   "zip\\|"
+                                                   "iso\\|"
+                                                   "epub"
+                                                   "\\)"))
+    (dired-preview-global-mode 1))
+#+end_src
+
 Allow multiple cursors.
 #+begin_src emacs-lisp
   (use-package multiple-cursors
