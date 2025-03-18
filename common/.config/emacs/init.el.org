@@ -1,7 +1,8 @@
 #+title: Emacs Configuration
 
 * Package Setup
-Bootstrap package management. I use =elpaca= with =use-package= to allow asynchronous declarative package management.
+
+Bootstrap package management. I use =elpaca= with =use-package= to allow asynchronous declarative package management. This is just the necessary boilerplate.
 #+begin_src emacs-lisp
   (defvar elpaca-installer-version 0.10)
   (defvar elpaca-directory (expand-file-name "elpaca/" user-emacs-directory))
@@ -52,36 +53,39 @@ Bootstrap package management. I use =elpaca= with =use-package= to allow asynchr
 
 * Appearance
 
-Use =diredfl= for a colourful =dired= and =ns-auto-titlebar= for a macOS native title-bar look.
+** Mode Line
+
+Show the column number in the mode line.
+#+begin_src emacs-lisp
+  (column-number-mode 1)
+#+end_src
+
+Display the current time in the mode line.
+#+begin_src emacs-lisp
+  (display-time-mode)
+#+end_src
+
+** Colours!
+
+=dired= needs more colour in my opinion. :3
 #+begin_src emacs-lisp
   (use-package diredfl
     :init
     (diredfl-global-mode 1))
-  (use-package ns-auto-titlebar
-    :init
-    (when (memq window-system '(mac ns x))
-      (ns-auto-titlebar-mode)))
 #+end_src
 
-Colourful delimiters with =rainbow-delimiters=.
+This package helps visually match delimiter pairs.
 #+begin_src emacs-lisp
   (use-package rainbow-delimiters
     :hook
     (prog-mode . rainbow-delimiters-mode))
 #+end_src
 
-Tell Emacs to show line numbers, column numbers, and the time by default.
+** Other User Interface Components
+
+Show line numbers by default.
 #+begin_src emacs-lisp
   (global-display-line-numbers-mode 1)
-  (column-number-mode 1)
-  (display-time-mode)
-#+end_src
-
-Configure Emacs to default to spaces over tabs and use a width of 4 by default.
-#+begin_src emacs-lisp
-  (setq-default indent-tabs-mode nil)
-  (setq tab-width 4
-        c-basic-offset tab-width)
 #+end_src
 
 Install and configure =visual-fill-column= to make some file types display with a narrow window centred in the frame.
@@ -101,7 +105,19 @@ Install and configure =visual-fill-column= to make some file types display with 
           visual-fill-column-center-text t))
 #+end_src
 
+** macOS
+
+This improves the look of the title-bar on macOS to make it look like other native applications.
+#+begin_src emacs-lisp
+  (use-package ns-auto-titlebar
+    :init
+    (when (memq window-system '(mac ns x))
+      (ns-auto-titlebar-mode)))
+#+end_src
+
 * Behaviour
+
+** Paths
 
 Make Emacs use the correct =PATH= variable as macOS fails to load the =PATH= variable from my login shell.
 #+begin_src emacs-lisp
@@ -110,6 +126,55 @@ Make Emacs use the correct =PATH= variable as macOS fails to load the =PATH= var
     (when (memq window-system '(mac ns x))
       (exec-path-from-shell-initialize)))
 #+end_src
+
+Disable =ls= for =dired=; the =--dired= option is not supported on macOS.
+#+begin_src emacs-lisp
+  (setq dired-use-ls-dired nil)
+#+end_src
+
+** Whitespace
+
+Default to spaces over tabs and use a width of 4 by default.
+#+begin_src emacs-lisp
+  (setq-default indent-tabs-mode nil)
+  (setq tab-width 4
+        c-basic-offset tab-width)
+#+end_src
+
+Make Emacs delete trailing whitspace on save. This does not happen in =markdown-mode= which sometimes needs trailing whitespace.
+#+begin_src emacs-lisp
+  (add-hook 'before-save-hook
+            (lambda ()
+              (unless (eql (with-current-buffer (current-buffer) major-mode)
+                           'markdown-mode)
+                (delete-trailing-whitespace))))
+#+end_src
+
+** Window Management
+
+Configure superior Emacs window management with =windmove=.
+#+begin_src emacs-lisp
+  (keymap-global-set "C-c w h" 'windmove-left)
+  (keymap-global-set "C-c w j" 'windmove-down)
+  (keymap-global-set "C-c w k" 'windmove-up)
+  (keymap-global-set "C-c w l" 'windmove-right)
+
+  (keymap-global-set "C-c C-w h" 'windmove-swap-states-left)
+  (keymap-global-set "C-c C-w j" 'windmove-swap-states-down)
+  (keymap-global-set "C-c C-w k" 'windmove-swap-states-up)
+  (keymap-global-set "C-c C-w l" 'windmove-swap-states-right)
+#+end_src
+
+Automatically increase the size of the focused window.
+#+begin_src emacs-lisp
+  (use-package zoom
+   :init
+   (zoom-mode)
+   :config
+   (setq zoom-size '(0.618 . 0.618)))
+#+end_src
+
+** Miscellaneous
 
 I hate macOS scroll inertia. Scrolling in one window, switching to Emacs, and hitting control occasionally changes the text size and can even cause Emacs (and my window manager for some reason) to hang forcing me to force quit Emacs.
 #+begin_src emacs-lisp
@@ -127,16 +192,7 @@ Make Emacs confirm that I want to close it on kill.
   (setq confirm-kill-emacs 'yes-or-no-p)
 #+end_src
 
-Make Emacs delete trailing whitspace on save. This does not happen in =markdown-mode= which sometimes needs trailing whitespace.
-#+begin_src emacs-lisp
-  (add-hook 'before-save-hook
-            (lambda ()
-              (unless (eql (with-current-buffer (current-buffer) major-mode)
-                           'markdown-mode)
-                (delete-trailing-whitespace))))
-#+end_src
-
-Make Emacs create directories if they don't exist if the user selects that answer.
+Create directories if they don't exist when finding a file where the directory isn't found.
 #+begin_src emacs-lisp
   (add-to-list 'find-file-not-found-functions
                (lambda ()
@@ -158,40 +214,25 @@ Make PDFs save where in the document it was last.
     (save-place-mode 1))
 #+end_src
 
-Configure superior Emacs window management with =windmove=.
-#+begin_src emacs-lisp
-  (keymap-global-set "C-c w h" 'windmove-left)
-  (keymap-global-set "C-c w j" 'windmove-down)
-  (keymap-global-set "C-c w k" 'windmove-up)
-  (keymap-global-set "C-c w l" 'windmove-right)
-
-  (keymap-global-set "C-c C-w h" 'windmove-swap-states-left)
-  (keymap-global-set "C-c C-w j" 'windmove-swap-states-down)
-  (keymap-global-set "C-c C-w k" 'windmove-swap-states-up)
-  (keymap-global-set "C-c C-w l" 'windmove-swap-states-right)
-#+end_src
-
-Don't show tooltips on hover; they are annoying with my window manager.
+Don't show tooltips on hover; Aerospace on macOS tries to tile them and annoyingly resizes everything.
 #+begin_src emacs-lisp
   (tooltip-mode -1)
 #+end_src
 
-Automatically increase the size of the focused window.
+Provide smooth scrolling.
 #+begin_src emacs-lisp
-  (use-package zoom
+  (use-package ultra-scroll
+   :ensure (ultra-scroll :host github :repo "jdtsmith/ultra-scroll")
    :init
-   (zoom-mode)
+   (setq scroll-conservatively 101
+     scroll-margin 0)
    :config
-   (setq zoom-size '(0.618 . 0.618)))
+   (ultra-scroll-mode 1))
 #+end_src
 
 * Tools
-Install =esup= as a profiling tool.
-#+begin_src emacs-lisp
-  (use-package esup
-    :config
-    (setq esup-depth 0))
-#+end_src
+
+** Navigation
 
 Use =consult= for better search and navigation.
 #+begin_src emacs-lisp
@@ -271,25 +312,14 @@ Use =consult= for better search and navigation.
     (setq consult-narrow-key "<"))
 #+end_src
 
-Disable =ls= for =dired=.
-#+begin_src emacs-lisp
-  (setq dired-use-ls-dired nil)
-#+end_src
-
-Allow multiple cursors.
-#+begin_src emacs-lisp
-  (use-package multiple-cursors
-    :bind
-    ("C->" . mc/mark-next-like-this)
-    ("C-<" . mc/unmark-next-like-this))
-#+end_src
-
-Configure =dumb-jump= for better lookup.
+Jump to definition with =dumb-jump=.
 #+begin_src emacs-lisp
   (use-package dumb-jump
     :init
     (add-hook 'xref-backend-functions #'dumb-jump-xref-activate))
 #+end_src
+
+** Project Management
 
 Configure and install =magit= as a =git= front end.
 #+begin_src emacs-lisp
@@ -297,15 +327,7 @@ Configure and install =magit= as a =git= front end.
   (use-package magit)
 #+end_src
 
-=which-key= to display options in commands.
-#+begin_src emacs-lisp
-  (use-package which-key
-    :ensure t
-    :config
-    (which-key-mode))
-#+end_src
-
-Project management with projectile.
+Better project management than =project.el= packaged with Emacs.
 #+begin_src emacs-lisp
   (use-package rg)
   (use-package projectile
@@ -316,21 +338,9 @@ Project management with projectile.
     (:map projectile-mode-map ("C-c p" . projectile-command-map)))
 #+end_src
 
-Install a better PDF viewer than =DocView=.
-#+begin_src emacs-lisp
-  (use-package pdf-tools
-    :hook
-    (doc-view-mode . (lambda () (pdf-tools-install))) ;; install on first pdf opened instead of startup
-    (pdf-view-mode . (lambda () (display-line-numbers-mode -1)))
-    :init
-    (add-hook 'TeX-after-compilation-finished-functions #'TeX-revert-document-buffer)
-    :config
-    (setq TeX-view-program-selection '((output-pdf "PDF Tools"))
-          TeX-view-program-list '(("PDF Tools" TeX-pdf-tools-sync-view))
-          TeX-source-correlate-start-server t))
-#+end_src
+** Shell
 
-Install and configure =eat= as a terminal emulator in Emacs with =eshell= as a shell.
+If I disable the default =eshell= prompt highlighting, the default =eshell-emit-prompt= function makes the prompt editable. Redefine the function after loading to not allow editing the prompt.
 #+begin_src emacs-lisp
   ;; Overwrite a default function that makes the prompt editable for some reason
   (eval-after-load "em-prompt" '(defun eshell-emit-prompt ()
@@ -356,47 +366,78 @@ Install and configure =eat= as a terminal emulator in Emacs with =eshell= as a s
                                       prompt)
                                      (eshell-interactive-filter nil prompt)))
                                  (run-hooks 'eshell-after-prompt-hook)))
+#+end_src
 
+Define an =eshell= command to reinstall and update my dotfiles.
+#+begin_src emacs-lisp
+  (defun eshell/manage-configs (arg)
+   "run the argument through make at the root of my dotfiles repository"
+   (let ((dir (eshell/pwd)))
+    (eshell/cd "~/.dotfiles")
+    (compile (concat "make " arg))
+    (eshell/cd dir)))
+#+end_src
+
+Define an =eshell= command to get the RSS link to a YouTube channel.
+#+begin_src emacs-lisp
+  (defun eshell/yt-2-rss (url)
+   "convert a youtube channel link into an rss link"
+   (if (not (libxml-available-p))
+     (message "libxml is not available")
+     (browse-url-emacs url t)
+     (let* ((dom (libxml-parse-html-region))
+            (rss (dom-elements dom 'title "RSS"))
+            (href (dom-attr rss 'href)))
+       (kill-buffer)
+       href)))
+#+end_src
+
+Define functions for my =eshell= prompt. =jj/shorten-path-str= takes only the first character of all path components except the last two directories. =jj/curr-dir-git-branch= gets the current branch and git status and turns it into a string.
+#+begin_src emacs-lisp
+  (defun jj/shorten-path-str (path)
+   (let* ((components (split-string (replace-regexp-in-string (getenv "HOME") "~" path) "/"))
+          (head-items (butlast components 2))
+          (shortened-head (mapcar (lambda (element)
+                                    (if (= (length element) 0)
+                                        ""
+                                      (substring element 0 1)))
+                                  head-items))
+          (tail-items (last components 2))
+          (new-components (append shortened-head tail-items)))
+     (propertize (string-join new-components "/") 'font-lock-face '(:foreground "dark green"))))
+
+  (defun jj/curr-dir-git-branch (path)
+   (when (and (not (file-remote-p path))
+              (eshell-search-path "git")
+              (locate-dominating-file path ".git"))
+     (let* ((git-branch (when (string-match "On branch \\(.*\\)$" (shell-command-to-string "git status"))
+                          (match-string 1 (shell-command-to-string "git status"))))
+            (git-status (s-trim (shell-command-to-string "git status")))
+            (outofsync (if (string-match-p "use \"git push\" to publish your local commits" git-status)
+                           " "
+                         ""))
+            (staged (if (string-match-p "Changes to be committed:" git-status)
+                        " "
+                      ""))
+            (unstaged (if (string-match-p "Changes not staged for commit:" git-status)
+                          " "
+                        ""))
+            (untracked (if (string-match-p "Untracked files:"git-status)
+                           " "
+                         "")))
+        (concat (propertize (concat " " git-branch) 'font-lock-face '(:foreground "blue"))
+                (propertize outofsync 'font-lock-face '(:foreground "dark green"))
+                (propertize staged 'font-lock-face '(:foreground "orange"))
+                (propertize unstaged 'font-lock-face '(:foreground "magenta"))
+                (propertize untracked 'font-lock-face '(:foreground "dark red"))))))
+#+end_src
+
+Install and configure =eat= as a terminal emulator in Emacs with =eshell= as a shell.
+#+begin_src emacs-lisp
   (use-package eat
     :init
     (setopt eat-kill-buffer-on-exit t)
     (eat-eshell-mode)
-
-    (defun jj/shorten-path-str (path)
-     (let* ((components (split-string (replace-regexp-in-string (getenv "HOME") "~" path) "/"))
-            (head-items (butlast components 2))
-            (shortened-head (mapcar (lambda (element)
-                                      (if (= (length element) 0)
-                                          ""
-                                        (substring element 0 1)))
-                                    head-items))
-            (tail-items (last components 2))
-            (new-components (append shortened-head tail-items)))
-       (propertize (string-join new-components "/") 'font-lock-face '(:foreground "dark green"))))
-
-    (defun jj/curr-dir-git-branch (path)
-     (when (and (not (file-remote-p path))
-                (eshell-search-path "git")
-                (locate-dominating-file path ".git"))
-       (let* ((git-branch (s-trim (shell-command-to-string "git rev-parse --abbrev-ref HEAD")))
-              (git-status (s-trim (shell-command-to-string "git status")))
-              (outofsync (if (string-match-p "use \"git push\" to publish your local commits" git-status)
-                             " "
-                           ""))
-              (staged (if (string-match-p "Changes to be committed:" git-status)
-                          " "
-                        ""))
-              (unstaged (if (string-match-p "Changes not staged for commit:" git-status)
-                            " "
-                          ""))
-              (untracked (if (string-match-p "Untracked files:"git-status)
-                             " "
-                           "")))
-         (concat (propertize (concat " " git-branch) 'font-lock-face '(:foreground "blue"))
-                 (propertize outofsync 'font-lock-face '(:foreground "dark green"))
-                 (propertize staged 'font-lock-face '(:foreground "orange"))
-                 (propertize unstaged 'font-lock-face '(:foreground "magenta"))
-                 (propertize untracked 'font-lock-face '(:foreground "dark red"))))))
 
     (defun jj/eshell-quit-or-delete-char (arg)
       "Close the terminal if I hit C-d on an empty line"
@@ -404,24 +445,6 @@ Install and configure =eat= as a terminal emulator in Emacs with =eshell= as a s
       (if (and (eolp) (looking-back eshell-prompt-regexp))
           (eshell-life-is-too-much)
         (delete-forward-char arg)))
-
-    (defun eshell/manage-configs (arg)
-      "run the argument through make at the root of my dotfiles repository"
-      (let ((dir (eshell/pwd)))
-       (eshell/cd "~/.dotfiles")
-       (compile (concat "make " arg))
-       (eshell/cd dir)))
-
-    (defun eshell/yt-2-rss (url)
-      "convert a youtube channel link into an rss link"
-      (if (not (libxml-available-p))
-        (message "libxml is not available")
-        (browse-url-emacs url t)
-        (let* ((dom (libxml-parse-html-region))
-               (rss (dom-elements dom 'title "RSS"))
-               (href (dom-attr rss 'href)))
-          (kill-buffer)
-          href)))
 
     (setq eshell-highlight-prompt nil)
     (setq eshell-prompt-function (lambda ()
@@ -448,7 +471,9 @@ Install and configure =eat= as a terminal emulator in Emacs with =eshell= as a s
     (:map eshell-mode-map ("C-d" . jj/eshell-quit-or-delete-char)))
 #+end_src
 
-Use =corfu= and =vertico= for completions. =orderless= is used to allow searching in any portion of a string and =marginalia= gives descriptions of items in the list.
+** Completions
+
+Provide a user interface for inline completions.
 #+begin_src emacs-lisp
   (use-package corfu
     :custom
@@ -456,14 +481,26 @@ Use =corfu= and =vertico= for completions. =orderless= is used to allow searchin
     (corfu-auto t)
     :init
     (global-corfu-mode))
+#+end_src
+
+Provide a user interface for mini-buffer completions.
+#+begin_src emacs-lisp
   (use-package vertico
     :custom
     (vertico-cycle t)
     (vertico-mode 1))
+#+end_src
+
+Allow fuzzy search in =vertico= completions.
+#+begin_src emacs-lisp
   (use-package orderless
     :custom
     (completion-styles '(orderless basic))
     (completion-category-overrides '((file (styles basic partial-completion)))))
+#+end_src
+
+Give descriptions of items in =vertico= buffer.
+#+begin_src emacs-lisp
   (use-package marginalia
     :bind
     (:map minibuffer-local-map
@@ -472,12 +509,17 @@ Use =corfu= and =vertico= for completions. =orderless= is used to allow searchin
     (marginalia-mode 1))
 #+end_src
 
-Set up =flycheck= and =flyspell= for syntax and spell checking respectively.
+** Checking Correctness
+
+Provide syntax checking.
 #+begin_src emacs-lisp
   (use-package flycheck
     :config
     (add-hook 'after-init-hook #'global-flycheck-mode))
+#+end_src
 
+Provide spell checking.
+#+begin_src emacs-lisp
   (require 'flyspell)
   (add-hook 'text-mode-hook #'flyspell-mode)
   (use-package flyspell-correct
@@ -486,24 +528,66 @@ Set up =flycheck= and =flyspell= for syntax and spell checking respectively.
     (:map flyspell-mode-map ("C-;" . flyspell-correct-wrapper)))
 #+end_src
 
-Install =yasnippet= for managing snippets and =yasnippet-snippets= for a collection of useful snippets.
+** Miscellaneous
+
+Configure a convenient startup profiler.
+#+begin_src emacs-lisp
+  (use-package esup
+    :config
+    (setq esup-depth 0))
+#+end_src
+
+Allow multiple cursors.
+#+begin_src emacs-lisp
+  (use-package multiple-cursors
+    :bind
+    ("C->" . mc/mark-next-like-this)
+    ("C-<" . mc/unmark-next-like-this))
+#+end_src
+
+Display available key bindings when typing commands.
+#+begin_src emacs-lisp
+  (use-package which-key
+    :ensure t
+    :config
+    (which-key-mode))
+#+end_src
+
+Install a better PDF viewer than =DocView=.
+#+begin_src emacs-lisp
+  (use-package pdf-tools
+    :hook
+    (doc-view-mode . (lambda () (pdf-tools-install))) ;; install on first pdf opened instead of startup
+    (pdf-view-mode . (lambda () (display-line-numbers-mode -1)))
+    :init
+    (add-hook 'TeX-after-compilation-finished-functions #'TeX-revert-document-buffer)
+    :config
+    (setq TeX-view-program-selection '((output-pdf "PDF Tools"))
+          TeX-view-program-list '(("PDF Tools" TeX-pdf-tools-sync-view))
+          TeX-source-correlate-start-server t))
+#+end_src
+
+Provide a snippet management system.
 #+begin_src emacs-lisp
   (use-package yasnippet
     :init
     (yas-global-mode 1)
     :bind
     ("C-c s" . yas-insert-snippet))
+#+end_src
+
+Provide a set of useful snippets.
+#+begin_src emacs-lisp
   (use-package yasnippet-snippets)
 #+end_src
 
-Install =apheleia= and =clang-format= to automatically format code on save.
+Enable automatic code formatting.
 #+begin_src emacs-lisp
-    (use-package apheleia
-      :init (apheleia-global-mode 1))
-    (use-package clang-format)
+  (use-package apheleia
+    :init (apheleia-global-mode 1))
 #+end_src
 
-Configure and install =elfeed= to serve as an =rss= feed reader.
+Provide an RSS reader with =elfeed=. Get the feed from an =.org= file.
 #+begin_src emacs-lisp
   (use-package elfeed
     :bind
@@ -520,24 +604,13 @@ Configure and install =elfeed= to serve as an =rss= feed reader.
     (setq rmh-elfeed-org-files (list "~/.config/emacs/feed.org")))
 #+end_src
 
-Smooth scrolling with =ultra-scroll=.
-#+begin_src emacs-lisp
-  (use-package ultra-scroll
-   :ensure (ultra-scroll :host github :repo "jdtsmith/ultra-scroll")
-   :init
-   (setq scroll-conservatively 101
-     scroll-margin 0)
-   :config
-   (ultra-scroll-mode 1))
-#+end_src
-
 Install my pomodoro timer package.
 #+begin_src emacs-lisp
   (use-package pomodoro-mode
     :ensure (pomodoro-mode :host github :repo "jjanzenn/pomodoro-mode"))
 #+end_src
 
-Configure =emms= as a music player.
+Provide a music player and configure scrobbling to =libre.fm=.
 #+begin_src emacs-lisp
   (use-package emms
     :init
@@ -558,6 +631,8 @@ Configure =emms= as a music player.
 #+end_src
 
 * Languages
+
+** Org
 
 Configure =org-mode=. I use =~/org= as my =org= directory and hide emphasis markers because it's much easier to read that way. I enable =org-crypt= to allow reading and writing encrypted =org= files. I also replace bullets in bulleted lists with nicer looking icons. I configure faces to default to variable-width font, but switching to monospace where it is necessary. Finally, I use =visual-fill-column= to make =org= files display with a relatively narrow window centred in the frame.
 #+begin_src emacs-lisp
@@ -650,10 +725,14 @@ Highlight comment tags like =TODO= and whatnot.
     (prog-mode . comment-tags-mode))
 #+end_src
 
+** CMake
+
 Install =cmake-mode=.
 #+begin_src emacs-lisp
   (use-package cmake-mode)
 #+end_src
+
+** Go
 
 Install =go-mode= and tools for =go= source code. Namely, =go-eldoc= gets documentation for =go= variables, functions, and arguments, =go-gen-tests= automatically generates tests for =go= code, and =go-guru= helps with refactoring =go= code.
 #+begin_src emacs-lisp
@@ -667,6 +746,8 @@ Install =go-mode= and tools for =go= source code. Namely, =go-eldoc= gets docume
     (go-mode . go-guru-hl-identifier-mode))
 #+end_src
 
+** LaTeX
+
 Install tools for LaTeX. Namely, =auctex= for better integration with Emacs and =cdlatex= for environment and macro insertion.
 #+begin_src emacs-lisp
   (use-package auctex
@@ -677,6 +758,8 @@ Install tools for LaTeX. Namely, =auctex= for better integration with Emacs and 
     (LaTeX-mode . turn-on-cdlatex))
 #+end_src
 
+** Lisp
+
 Install tools for Emacs Lisp. Namely =parinfer-rust-mode= which handles parentheses nicely in Emacs Lisp.
 #+begin_src emacs-lisp :tangle yes
   (use-package parinfer-rust-mode
@@ -686,10 +769,14 @@ Install tools for Emacs Lisp. Namely =parinfer-rust-mode= which handles parenthe
     (setq parinfer-rust-auto-download t))
 #+end_src
 
+** Lua
+
 Install =lua-mode=.
 #+begin_src emacs-lisp
   (use-package lua-mode)
 #+end_src
+
+** Markdown
 
 Configure how Markdown is displayed (default to variable-width font and use monospace where necessary) and installs =markdown-mode=.
 #+begin_src emacs-lisp
@@ -734,12 +821,16 @@ Configure how Markdown is displayed (default to variable-width font and use mono
     (markdown-url-face ((t :font ,jj/mono-font))))
 #+end_src
 
+** Nix
+
 Install =nix-mode=.
 #+begin_src emacs-lisp
   (use-package nix-mode
     :mode
     "\\.nix\\'")
 #+end_src
+
+** Python
 
 Use =pet= to handle Python virtual environments.
 #+begin_src emacs-lisp
@@ -748,15 +839,21 @@ Use =pet= to handle Python virtual environments.
     (add-hook 'python-base-mode-hook 'pet-mode -10))
 #+end_src
 
+** YAML
+
 Install =yaml-mode=.
 #+begin_src emacs-lisp :tangle yes
   (use-package yaml-mode)
 #+end_src
 
+** Zig
+
 Install =zig-mode=.
 #+begin_src emacs-lisp
   (use-package zig-mode)
 #+end_src
+
+** Eglot Setup
 
 Set up =eglot= to run on languages that have been configured.
 #+begin_src emacs-lisp
