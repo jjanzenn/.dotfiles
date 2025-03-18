@@ -81,7 +81,17 @@ This package helps visually match delimiter pairs.
     (prog-mode . rainbow-delimiters-mode))
 #+end_src
 
-** Other User Interface Components
+** macOS
+
+This improves the look of the title-bar on macOS to make it look like other native applications.
+#+begin_src emacs-lisp
+  (use-package ns-auto-titlebar
+    :init
+    (when (memq window-system '(mac ns x))
+      (ns-auto-titlebar-mode)))
+#+end_src
+
+** Miscellaneous
 
 Show line numbers by default.
 #+begin_src emacs-lisp
@@ -103,16 +113,6 @@ Install and configure =visual-fill-column= to make some file types display with 
     :config
     (setq visual-fill-column-width 100
           visual-fill-column-center-text t))
-#+end_src
-
-** macOS
-
-This improves the look of the title-bar on macOS to make it look like other native applications.
-#+begin_src emacs-lisp
-  (use-package ns-auto-titlebar
-    :init
-    (when (memq window-system '(mac ns x))
-      (ns-auto-titlebar-mode)))
 #+end_src
 
 * Behaviour
