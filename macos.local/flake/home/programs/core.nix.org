@@ -29,6 +29,7 @@ Import configurations for programs and install programs with no configuration.
       ffmpeg
       findutils
       fzf
+      ghc
       gnuplot
       gnutls
       go
