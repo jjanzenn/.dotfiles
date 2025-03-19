@@ -20,6 +20,7 @@ Import configurations for programs and install programs with no configuration.
       bash-language-server
       bear
       bison
+      cabal-install
       cmake
       cmake-language-server
       curl
@@ -35,6 +36,7 @@ Import configurations for programs and install programs with no configuration.
       go
       gopls
       gpgme
+      haskell-language-server
       htop
       hunspell
       hyfetch # TODO: configure
@@ -61,7 +63,6 @@ Import configurations for programs and install programs with no configuration.
       rustup
       shellcheck
       shfmt
-      stack
       texliveFull
       typescript-language-server
       vscode-langservers-extracted
