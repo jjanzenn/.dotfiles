@@ -766,6 +766,13 @@ Install =go-mode= and tools for =go= source code. Namely, =go-eldoc= gets docume
     (go-mode . go-guru-hl-identifier-mode))
 #+end_src
 
+** Haskell
+
+Install =haskell-mode= for interacting with Haskell code.
+#+begin_src emacs-lisp
+  (use-package haskell-mode)
+#+end_src
+
 ** LaTeX
 
 Install tools for LaTeX. Namely, =auctex= for better integration with Emacs and =cdlatex= for environment and macro insertion.
@@ -885,6 +892,7 @@ Set up =eglot= to run on languages that have been configured.
                        c++-mode-hook
                        cc-mode-hook
                        cmake-mode-hook
+                       haskell-mode-hook
                        html-mode-hook
                        css-mode-hook
                        js-mode-hook
