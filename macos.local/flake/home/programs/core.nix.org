@@ -35,7 +35,6 @@ Import configurations for programs and install programs with no configuration.
       go
       gopls
       gpgme
-      haskell-language-server
       htop
       hunspell
       hyfetch # TODO: configure
