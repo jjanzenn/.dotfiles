@@ -81,6 +81,28 @@ This package helps visually match delimiter pairs.
     (prog-mode . rainbow-delimiters-mode))
 #+end_src
 
+Highlight comment tags like =TODO= and whatnot.
+#+begin_src emacs-lisp
+  (use-package comment-tags
+    :init
+    (setq comment-tags-keyword-faces
+          `(("TODO" . ,(list :weight 'bold :foreground "#28ABE3"))
+            ("FIXME" . ,(list :weight 'bold :foreground "#DB3340"))
+            ("BUG" . ,(list :weight 'bold :foreground "#DB3340"))
+            ("HACK" . ,(list :weight 'bold :foreground "#E8B71A"))
+            ("KLUDGE" . ,(list :weight 'bold :foreground "#E8B71A"))
+            ("XXX" . ,(list :weight 'bold :foreground "#F7EAC8"))
+            ("INFO" . ,(list :weight 'bold :foreground "#F7EAC8"))
+            ("DONE" . ,(list :weight 'bold :foreground "#1FDA9A"))))
+    (setq comment-tags-comment-start-only t
+          comment-tags-require-colon t
+          comment-tags-case-sensitive t
+          comment-tags-show-faces t
+          comment-tags-lighter t)
+    :hook
+    (prog-mode . comment-tags-mode))
+#+end_src
+
 ** macOS
 
 This improves the look of the title-bar on macOS to make it look like other native applications.
@@ -721,28 +743,6 @@ Configure =org-mode=. I use =~/org= as my =org= directory and hide emphasis mark
     (org-level-4 ((t (:inherit outline-4 :weight bold :height 1.1))))
     (org-level-5 ((t (:inherit outline-5 :height 1.1))))
     (org-level-6 ((t (:inherit outline-6)))))
-#+end_src
-
-Highlight comment tags like =TODO= and whatnot.
-#+begin_src emacs-lisp
-  (use-package comment-tags
-    :init
-    (setq comment-tags-keyword-faces
-          `(("TODO" . ,(list :weight 'bold :foreground "#28ABE3"))
-            ("FIXME" . ,(list :weight 'bold :foreground "#DB3340"))
-            ("BUG" . ,(list :weight 'bold :foreground "#DB3340"))
-            ("HACK" . ,(list :weight 'bold :foreground "#E8B71A"))
-            ("KLUDGE" . ,(list :weight 'bold :foreground "#E8B71A"))
-            ("XXX" . ,(list :weight 'bold :foreground "#F7EAC8"))
-            ("INFO" . ,(list :weight 'bold :foreground "#F7EAC8"))
-            ("DONE" . ,(list :weight 'bold :foreground "#1FDA9A"))))
-    (setq comment-tags-comment-start-only t
-          comment-tags-require-colon t
-          comment-tags-case-sensitive t
-          comment-tags-show-faces t
-          comment-tags-lighter t)
-    :hook
-    (prog-mode . comment-tags-mode))
 #+end_src
 
 ** CMake
