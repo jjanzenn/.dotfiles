@@ -396,7 +396,7 @@ Define an =eshell= command to reinstall and update my dotfiles.
    "run the argument through make at the root of my dotfiles repository"
    (let ((dir (eshell/pwd)))
     (eshell/cd "~/.dotfiles")
-    (eshell/make arg)
+    (compile (concat "make " arg) t)
     (eshell/cd dir)))
 #+end_src
 
