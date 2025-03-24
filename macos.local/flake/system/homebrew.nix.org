@@ -86,6 +86,7 @@ Set up Homebrew. I disable the quarantine automatically and ensure that the stat
         "godot"
         "gzdoom"
         "inkscape"
+        "keepingyouawake"
         "krita"
         "librewolf"
         "multimc"
