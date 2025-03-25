@@ -13,6 +13,10 @@ Enable Aerospace as a window manager for macOS. I have disabled gaps, move the m
           outer.bottom = 10;
           outer.top = 10;
           outer.right = 10;
+          inner.left = 10;
+          inner.bottom = 10;
+          inner.top = 10;
+          inner.right = 10;
         };
         on-focus-changed = [
           "move-mouse window-lazy-center"
