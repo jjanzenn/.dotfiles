@@ -141,7 +141,7 @@ Install and configure =visual-fill-column= to make some file types display with 
     (org-mode . jj/run-visual-line-mode)
     (markdown-mode . jj/run-visual-line-mode)
     :config
-    (setq-default visual-fill-column-width 150
+    (setq-default visual-fill-column-width 128
           visual-fill-column-center-text t))
 #+end_src
 
@@ -718,7 +718,7 @@ Configure =org-mode=. I use =~/org= as my =org= directory and hide emphasis mark
                                    ("WONT-DO" . (:foreground "LimeGreen" :weight bold)))
           org-log-done 'time
           org-hide-emphasis-markers t
-          org-format-latex-options (plist-put org-format-latex-options :scale 2.0)
+          org-format-latex-options (plist-put org-format-latex-options :scale 1.0)
           org-return-follows-link t
           org-tags-exclude-from-inheritance '("crypt")
           org-crypt-key nil
