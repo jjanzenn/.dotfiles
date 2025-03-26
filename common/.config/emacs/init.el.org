@@ -72,14 +72,7 @@ Display the current time in the mode line.
     :custom
     (auto-dark-themes '((modus-vivendi) (modus-operandi)))
     :init
-    (auto-dark-mode)
-    :hook
-    (auto-dark-dark-mode
-     . (lambda ()
-         (pdf-view-midnight-minor-mode t)))
-    (auto-dark-light-mode
-     . (lambda ()
-         (pdf-view-midnight-minor-mode -1))))
+    (auto-dark-mode))
 #+end_src
 
 ** Colours!
@@ -618,7 +611,9 @@ Install a better PDF viewer than =DocView=.
   (use-package pdf-tools
     :hook
     (doc-view-mode . (lambda () (pdf-tools-install))) ;; install on first pdf opened instead of startup
-    (pdf-view-mode . (lambda () (display-line-numbers-mode -1)))
+    (pdf-view-mode . (lambda ()
+                       (display-line-numbers-mode -1)
+                       (pdf-view-themed-minor-mode)))
     :init
     (add-hook 'TeX-after-compilation-finished-functions #'TeX-revert-document-buffer)
     :config
