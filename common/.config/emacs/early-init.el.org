@@ -35,7 +35,7 @@ Set up fonts. I use Source Code Pro (Nerd Font) for =monospace= and Computer Mod
      (setq jj/mono-font "SauceCodePro Nerd Font-11"
            jj/var-font "CMU Serif-14"))
     (`darwin
-     (setq jj/mono-font "SauceCodePro Nerd Font-14:weight=thin"
+     (setq jj/mono-font "Atkinson Hyperlegible Mono-14:weight=thin"
            jj/var-font "CMU Serif-18")))
   (add-to-list 'default-frame-alist
                `(font . ,jj/mono-font))
