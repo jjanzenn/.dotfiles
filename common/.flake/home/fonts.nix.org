@@ -10,7 +10,6 @@ Install fonts necessary for my configuration. Namely
     fonts.fontconfig.enable = true;
     home.packages = with pkgs; [
       cm_unicode
-      atkinson-hyperlegible-mono
       nerd-fonts.sauce-code-pro
     ];
   }
