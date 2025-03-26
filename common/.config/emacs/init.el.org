@@ -72,7 +72,14 @@ Display the current time in the mode line.
     :custom
     (auto-dark-themes '((modus-vivendi) (modus-operandi)))
     :init
-    (auto-dark-mode))
+    (auto-dark-mode)
+    :hook
+    (auto-dark-dark-mode
+     . (lambda ()
+         (pdf-view-midnight-minor-mode t)))
+    (auto-dark-light-mode
+     . (lambda ()
+         (pdf-view-midnight-minor-mode -1))))
 #+end_src
 
 ** Colours!
