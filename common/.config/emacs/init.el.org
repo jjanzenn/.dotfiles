@@ -458,10 +458,10 @@ Define functions for my =eshell= prompt. =jj/shorten-path-str= takes only the fi
                            " "
                          "")))
         (concat (propertize (concat " " git-branch) 'font-lock-face '(:foreground "blue"))
-                (propertize outofsync 'font-lock-face '(:foreground "dark green"))
-                (propertize staged 'font-lock-face '(:foreground "orange"))
-                (propertize unstaged 'font-lock-face '(:foreground "magenta"))
-                (propertize untracked 'font-lock-face '(:foreground "dark red"))))))
+                (propertize outofsync 'font-lock-face '(:font "Symbols Nerd Font Mono" :foreground "dark green"))
+                (propertize staged 'font-lock-face '(:font "Symbols Nerd Font Mono" :foreground "orange"))
+                (propertize unstaged 'font-lock-face '(:font "Symbols Nerd Font Mono" :foreground "magenta"))
+                (propertize untracked 'font-lock-face '(:font "Symbols Nerd Font Mono" :foreground "dark red"))))))
 #+end_src
 
 Install and configure =eat= as a terminal emulator in Emacs with =eshell= as a shell.

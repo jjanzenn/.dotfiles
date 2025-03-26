@@ -28,7 +28,7 @@ Clean up interface by removing unnecessary elements.
 
 Set up fonts. I use Source Code Pro (Nerd Font) for =monospace= and Computer Modern for /variable width/.
 #+begin_src emacs-lisp
-  (defvar jj/mono-font "Atkinson Hyperlegible Mono-11:weight=thin")
+  (defvar jj/mono-font "Atkinson Hyperlegible Mono-14:weight=thin")
   (defvar jj/var-font "CMU Serif-18")
   (add-to-list 'default-frame-alist
                `(font . ,jj/mono-font))
