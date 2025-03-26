@@ -4,13 +4,14 @@ Install fonts necessary for my configuration. Namely
 - Computer Modern
 - Source Code Pro (Nerd Font)
 #+begin_src nix :tangle ~/.flake/home/fonts.nix :mkdirp yes
-{ config, pkgs, ... }:
+  { config, pkgs, ... }:
 
-{
-  fonts.fontconfig.enable = true;
-  home.packages = with pkgs; [
-    cm_unicode
-    nerd-fonts.sauce-code-pro
-  ];
-}
+  {
+    fonts.fontconfig.enable = true;
+    home.packages = with pkgs; [
+      cm_unicode
+      atkinson-hyperlegible-mono
+      nerd-fonts.sauce-code-pro
+    ];
+  }
 #+end_src
