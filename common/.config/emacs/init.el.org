@@ -446,22 +446,25 @@ Define functions for my =eshell= prompt. =jj/shorten-path-str= takes only the fi
                           (match-string 1 (shell-command-to-string "git status"))))
             (git-status (s-trim (shell-command-to-string "git status")))
             (outofsync (if (string-match-p "use \"git push\" to publish your local commits" git-status)
-                           " "
+                           (concat " " (propertize "" 'font-lock-face '(:family "Symbols Nerd Font Mono" :foreground "dark green")))
                          ""))
             (staged (if (string-match-p "Changes to be committed:" git-status)
-                        " "
+                        (concat " " (propertize "" 'font-lock-face '(:family "Symbols Nerd Font Mono" :foreground "orange")))
                       ""))
             (unstaged (if (string-match-p "Changes not staged for commit:" git-status)
-                          " "
+                          (concat " " (propertize "" 'font-lock-face '(:family "Symbols Nerd Font Mono" :foreground "magenta")))
                         ""))
             (untracked (if (string-match-p "Untracked files:"git-status)
-                           " "
+                           (concat " " (propertize "" 'font-lock-face '(:family "Symbols Nerd Font Mono" :foreground "dark red")))
                          "")))
-        (concat (propertize (concat " " git-branch) 'font-lock-face '(:foreground "blue"))
-                (propertize outofsync 'font-lock-face '(:font "Symbols Nerd Font Mono" :foreground "dark green"))
-                (propertize staged 'font-lock-face '(:font "Symbols Nerd Font Mono" :foreground "orange"))
-                (propertize unstaged 'font-lock-face '(:font "Symbols Nerd Font Mono" :foreground "magenta"))
-                (propertize untracked 'font-lock-face '(:font "Symbols Nerd Font Mono" :foreground "dark red"))))))
+       (concat " "
+               (propertize "" 'font-lock-face '(:family "Symbols Nerd Font Mono" :foreground "blue"))
+               (propertize git-branch 'font-lock-face '(:foreground "blue"))
+               outofsync
+               staged
+               unstaged
+               untracked))))
+
 #+end_src
 
 Install and configure =eat= as a terminal emulator in Emacs with =eshell= as a shell.
@@ -483,7 +486,7 @@ Install and configure =eat= as a terminal emulator in Emacs with =eshell= as a s
                                    (concat (jj/shorten-path-str (eshell/pwd))
                                            (jj/curr-dir-git-branch (eshell/pwd))
                                            (unless (eshell-exit-success-p)
-                                             (format " [%d]" eshell-last-command-status))
+                                             (propertize (format " [%d]" eshell-last-command-status) 'font-lock-face '(:foreground "dark red")))
                                            (if (= (file-user-uid) 0) " # " " $ "))))
 
     :config
