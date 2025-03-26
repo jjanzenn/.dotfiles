@@ -43,8 +43,3 @@ Set up fonts. I use Source Code Pro (Nerd Font) for =monospace= and Computer Mod
    `(variable-pitch ((t :font ,jj/var-font)))
    `(fixed-pitch ((t :font ,jj/mono-font))))
  #+end_src
-
-Default to =modus-operandi= theme for a highly legible light theme.
-#+begin_src emacs-lisp
-  (load-theme 'modus-operandi)
-#+end_src

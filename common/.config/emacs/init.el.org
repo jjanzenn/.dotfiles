@@ -65,6 +65,16 @@ Display the current time in the mode line.
   (display-time-mode)
 #+end_src
 
+** Theme
+
+#+begin_src emacs-lisp
+  (use-package auto-dark
+    :custom
+    (auto-dark-themes '((modus-vivendi) (modus-operandi)))
+    :init
+    (auto-dark-mode))
+#+end_src
+
 ** Colours!
 
 =dired= needs more colour in my opinion. :3
