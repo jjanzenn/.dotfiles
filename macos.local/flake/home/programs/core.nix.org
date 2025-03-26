@@ -7,7 +7,6 @@ Import configurations for programs and install programs with no configuration.
   {
     imports = [
       ./emacs/core.nix
-      ./fastfetch.nix
       ./ghostty.nix
       ./git.nix
       ./neovim.nix
