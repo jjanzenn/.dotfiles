@@ -498,7 +498,7 @@ Install and configure =eat= as a terminal emulator in Emacs with =eshell= as a s
                      (eshell/alias "la" "ls -a $@*")
                      (eshell/alias "l" "ls -F $@*")
                      (eshell/alias "ff" "find-file $@*")
-                     (eshell/alias "clr" "clear-scrollback")))
+                     (eshell/alias "clear" "clear-scrollback")))
     :bind
     ("C-c v" . eshell)
     (:map eshell-mode-map ("C-d" . jj/eshell-quit-or-delete-char)))
