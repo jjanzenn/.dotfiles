@@ -72,7 +72,8 @@ Display the current time in the mode line.
     :custom
     (auto-dark-themes '((modus-vivendi) (modus-operandi)))
     :init
-    (auto-dark-mode))
+    (when (memq window-system '(mac ns x))
+      (auto-dark-mode)))
 #+end_src
 
 ** Colours!
