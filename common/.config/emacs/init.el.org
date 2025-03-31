@@ -663,7 +663,7 @@ Provide an RSS reader with =elfeed=. Get the feed from an =.org= file.
 Install my pomodoro timer package.
 #+begin_src emacs-lisp
   (use-package pomodoro-mode
-    :ensure (pomodoro-mode :host "https://git.jjanzen.ca" :repo "jjanzenn/pomodoro-mode"))
+    :ensure (pomodoro-mode :url "https://git.jjanzen.ca/jjanzen/pomodoro-mode"))
 #+end_src
 
 Provide a music player and configure scrobbling to =libre.fm=.
