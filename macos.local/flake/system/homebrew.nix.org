@@ -45,6 +45,7 @@ Set up Homebrew. I disable the quarantine automatically and ensure that the stat
         "clang-format" # nix version screws up clang setup
         "openjdk" # there's really no jdk for mac from nix?
         "pinentry-touchid" # no nix version
+        "gnuplot" # no qt?
 
         # needed for pdf-tools for emacs
         "autoconf"

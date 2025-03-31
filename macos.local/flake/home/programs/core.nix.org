@@ -30,7 +30,6 @@ Import configurations for programs and install programs with no configuration.
       findutils
       fzf
       ghc
-      gnuplot
       gnutls
       go
       gopls
