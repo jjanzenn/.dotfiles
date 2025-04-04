@@ -686,6 +686,13 @@ Provide a music player and configure scrobbling to =libre.fm=.
                              (emms-librefm-scrobbler-enable)))))
 #+end_src
 
+Get a nice interface for Emacs =calc=.
+#+begin_src emacs-lisp
+  (use-package casual
+    :ensure t
+    :bind (:map calc-mode-map ("C-o" . 'casual-calc-tmenu)))
+#+end_src
+
 * Languages
 
 ** Org
