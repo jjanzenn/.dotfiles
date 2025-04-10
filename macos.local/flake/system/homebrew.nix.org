@@ -69,6 +69,10 @@ Set up Homebrew. I disable the quarantine automatically and ensure that the stat
         "libassuan@2"
         "gnupg"
         "pinentry-mac"
+
+        # libraries work better in homebrew sometimes
+        "sdl3"
+        "check"
       ];
 
       # homebrew handles graphical applications better than nix
