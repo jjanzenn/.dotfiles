@@ -660,6 +660,12 @@ Provide an RSS reader with =elfeed=. Get the feed from an =.org= file.
     (setq rmh-elfeed-org-files (list "~/.config/emacs/feed.org")))
 #+end_src
 
+Use built-in Newsticker package as an RSS reader.
+#+begin_src emacs-lisp
+  (global-set-key (kbd "C-c f") 'newsticker-show-news)
+  (newsticker-start)
+#+end_src
+
 Install my pomodoro timer package.
 #+begin_src emacs-lisp
   (use-package pomodoro-mode
