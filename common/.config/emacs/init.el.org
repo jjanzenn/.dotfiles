@@ -649,7 +649,8 @@ Use built-in Newsticker package as an RSS reader.
   (setq newsticker-automatically-mark-items-as-old nil)
   (setq newsticker-url-list-defaults nil)
   (global-set-key (kbd "C-c f") 'newsticker-show-news)
-  (newsticker-start)
+  (with-eval-after-load 'newsticker
+    (newsticker-start))
 #+end_src
 
 Install my pomodoro timer package.
