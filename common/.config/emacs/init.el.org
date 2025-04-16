@@ -643,26 +643,11 @@ Enable automatic code formatting.
     :init (apheleia-global-mode 1))
 #+end_src
 
-Provide an RSS reader with =elfeed=. Get the feed from an =.org= file.
-#+begin_src emacs-lisp
-  (use-package elfeed
-    :bind
-    ("C-c e f" . elfeed)
-    ("C-c e u" . elfeed-update))
-  (use-package elfeed-goodies
-    :after
-    elfeed
-    :config
-    (elfeed-goodies/setup))
-  (use-package elfeed-org
-    :config
-    (elfeed-org)
-    (setq rmh-elfeed-org-files (list "~/.config/emacs/feed.org")))
-#+end_src
-
 Use built-in Newsticker package as an RSS reader.
 #+begin_src emacs-lisp
   (load-file "~/.config/emacs/feed.el")
+  (setq newsticker-automatically-mark-items-as-old nil)
+  (setq newsticker-url-list-defaults nil)
   (global-set-key (kbd "C-c f") 'newsticker-show-news)
   (newsticker-start)
 #+end_src
