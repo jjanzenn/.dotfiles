@@ -664,6 +664,7 @@ Use built-in Newsticker package as an RSS reader.
 #+begin_src emacs-lisp
   (global-set-key (kbd "C-c f") 'newsticker-show-news)
   (newsticker-start)
+  (load-file "./feed.el")
 #+end_src
 
 Install my pomodoro timer package.
