@@ -646,7 +646,6 @@ Enable automatic code formatting.
 Use built-in Newsticker package as an RSS reader.
 #+begin_src emacs-lisp
   (load-file "~/.config/emacs/feed.el")
-  (setq newsticker-automatically-mark-items-as-old nil)
   (setq newsticker-url-list-defaults nil)
   (global-set-key (kbd "C-c f") 'newsticker-show-news)
   (with-eval-after-load 'newsticker
