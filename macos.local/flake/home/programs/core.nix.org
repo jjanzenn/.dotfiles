@@ -22,6 +22,7 @@ Import configurations for programs and install programs with no configuration.
       cabal-install
       cmake
       cmake-language-server
+      conan
       curl
       dasel
       dos2unix

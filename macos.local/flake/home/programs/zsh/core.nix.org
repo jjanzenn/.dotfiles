@@ -28,7 +28,7 @@ Open =zsh= configuration.
 
       syntaxHighlighting.enable = true;
 
-      initExtra = builtins.readFile ./init-extra.sh;
+      initContent = builtins.readFile ./init-extra.sh;
 
       profileExtra = builtins.readFile ./profile-extra.sh;
     };
