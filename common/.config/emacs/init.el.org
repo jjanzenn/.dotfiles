@@ -758,6 +758,12 @@ Configure =org-mode=. I use =~/org= as my =org= directory and hide emphasis mark
     (org-level-6 ((t (:inherit outline-6)))))
 #+end_src
 
+** Bison
+Support for =bison= and =flex=.
+#+begin_src emacs-lisp
+  (use-package bison-mode)
+#+end_src
+
 ** CMake
 
 Install =cmake-mode=.
