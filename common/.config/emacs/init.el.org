@@ -761,7 +761,8 @@ Configure =org-mode=. I use =~/org= as my =org= directory and hide emphasis mark
 ** Bison
 Support for =bison= and =flex=.
 #+begin_src emacs-lisp
-  (use-package bison-mode)
+  (use-package bison-mode
+    :mode ("\\.lex\\'" . flex-mode))
 #+end_src
 
 ** CMake
