@@ -906,7 +906,7 @@ Set up =eglot= to run on languages that have been configured.
   (global-set-key (kbd "C-c r") 'eglot-rename)
   (use-package tree-sitter)
   (use-package tree-sitter-langs)
-  (defun enable-extras ()
+  (defun jj/enable-extras ()
     (eglot-ensure)
     (tree-sitter-mode 1)
     (tree-sitter-hl-mode 1))
@@ -927,5 +927,5 @@ Set up =eglot= to run on languages that have been configured.
                        yaml-mode-hook
                        nix-mode-hook
                        zig-mode-hook))
-    (add-hook lang-hook enable-extras))
+    (add-hook lang-hook #'jj/enable-extras))
 #+end_src
