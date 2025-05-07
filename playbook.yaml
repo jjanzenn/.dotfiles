@@ -28,27 +28,74 @@
     - name: Install basic packages
       package:
         name:
+          - aescrypt
           - aspell
           - autoconf
           - automake
+          - bash-language-server
+          - bear
+          - bison
+          - cabal-install
           - choose-gui
           - clang-format
+          - cmake
+          - cmake-language-server
+          - conan
+          - curl
+          - dasel
+          - dos2unix
+          - eza
+          - ffmpeg
+          - findutils # TODO: make alias or something gfind -> find
           - gcc
+          - ghc
           - gnupg
           - gnuplot
+          - gnu-sed
+          - gnutls
+          - go
+          - gopls
+          - gpgme
+          - haskell-language-server
+          - htop
+          - hunspell
+          - hyfetch
           - imagemagick
+          - inetutils
+          - ispell
           - jansson
+          - lesspipe
           - libassuan@2
           - libgccjit
           - librsvg
+          - mailutils
+          - marksman
+          - meson
+          - mpv
+          - ninja
+          - node
           - openjdk
+          - p7zip
+          - pandoc
           - pinentry-mac
           - pinentry-touchid
           - pipx
           - pkg-config
           - poppler
+          - pup
+          - ripgrep
+          - rsync
+          - rustup
+          - shellcheck
+          - shfmt
+          - texlive
+          - typescript-language-server
+          - wget
           - yaml-language-server
+          - yt-dlp
+          - zig
           - zlib
+          - zls
         state: latest
 
     - name: Install cask packages
@@ -89,6 +136,24 @@
           - whisky
           - zotero
         state: latest
+
+    - name: Install python formatter
+      community.general.pipx:
+        name: black
+        executable: /opt/homebrew/bin/pipx
+        state: latest
+
+    - name: Install python linter
+      community.general.pipx:
+        name: pylint
+        state: latest
+        executable: /opt/homebrew/bin/pipx
+
+    - name: Install python lsp server
+      community.general.pipx:
+        name: python-lsp-server
+        state: latest
+        executable: /opt/homebrew/bin/pipx
 
     - name: Install ansible
       community.general.pipx:
