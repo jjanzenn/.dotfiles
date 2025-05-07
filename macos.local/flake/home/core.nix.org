@@ -5,13 +5,6 @@ Set up home manager for my user account and import submodules. Define my user as
   { config, pkgs, ... }:
 
   {
-    imports = [
-      # ./clang-format.nix
-      # ./fonts.nix
-      # ./programs/core.nix
-      # ./scripts/core.nix
-    ];
-
     home.stateVersion = "24.05";
     programs.home-manager.enable = true;
 

@@ -6,6 +6,7 @@
     home: /Users/jjanzen
     wallpaper_path: "{{ home }}/.wallpaper"
     config_dir: "{{ home }}/.config"
+    fonts_dir: "{{ home }}/Library/Fonts"
     exec_path: "{{ home }}/.local/bin"
 
   tasks:
@@ -53,6 +54,7 @@
           - gnupg
           - gnuplot
           - gnu-sed
+          - gnu-tar
           - gnutls
           - go
           - gopls
@@ -140,6 +142,34 @@
           - zotero
         state: latest
 
+    - name: Install Source Code Pro Nerd Font
+      unarchive:
+        src: fonts/SauceCodeProNerdFont.tar.gz
+        dest: "{{ fonts_dir }}"
+      register: font
+
+    - name: Install Atkinson Hyperlegible Font
+      unarchive:
+        src: fonts/AtkinsonHyperlegibleNext.tar.gz
+        dest: "{{ fonts_dir }}"
+      register: font
+
+    - name: Install Atkinson Hyperlegible Mono Font
+      unarchive:
+        src: fonts/AtkinsonHyperlegibleMono.tar.gz
+        dest: "{{ fonts_dir }}"
+      register: font
+
+    - name: Install Nerd Font Symbols
+      unarchive:
+        src: fonts/NerdFontSymbols.tar.gz
+        dest: "{{ fonts_dir }}"
+      register: font
+
+    - name: Reset font cache
+      command: fc-cache -f
+      when: font.changed
+
     - name: Install python formatter
       community.general.pipx:
         name: black
@@ -221,10 +251,11 @@
         owner: jjanzen
         group: staff
         mode: "0644"
+      register: wallpaper
 
     - name: Configure macOS wallpaper
-      shell:
-        cmd: osascript -e "tell application \"System Events\" to tell every desktop to set picture to \"{{ wallpaper_path }}\" as POSIX file"
+      command: osascript -e "tell application \"System Events\" to tell every desktop to set picture to \"{{ wallpaper_path }}\" as POSIX file"
+      when: wallpaper.changed
 
     - name: Ensure aerospace config dir exists
       file:
@@ -327,3 +358,22 @@
         owner: jjanzen
         group: staff
         mode: "0755"
+
+    - name: Ensure gpg config directory exists
+      file:
+        path: "{{ home }}/.gnupg"
+        recurse: true
+        state: directory
+
+    - name: Configure GPG Agent
+      copy:
+        src: config/gpg-agent.conf
+        dest: "{{ home }}/.gnupg/gpg-agent.conf"
+        owner: jjanzen
+        group: staff
+        mode: "0644"
+      register: gpg
+
+    - name: Reset GPG Agent
+      command: gpgconf --kill gpg-agent
+      when: gpg
