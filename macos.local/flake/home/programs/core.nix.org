@@ -8,7 +8,7 @@ Import configurations for programs and install programs with no configuration.
     imports = [
       ./emacs/core.nix
       # ./ghostty.nix
-      ./git.nix
+      # ./git.nix
       ./neovim.nix
       ./ssh.nix
       ./zsh/core.nix

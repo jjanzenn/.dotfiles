@@ -43,6 +43,7 @@
           - conan
           - curl
           - dasel
+          - delta
           - dos2unix
           - eza
           - ffmpeg
@@ -251,10 +252,24 @@
         recurse: true
         state: directory
 
-    - name: Configure aerospace
+    - name: Configure ghostty
       copy:
         src: config/ghostty.ini
         dest: "{{ config_dir }}/ghostty/config"
+        owner: jjanzen
+        group: staff
+        mode: "0644"
+
+    - name: Ensure git config dir exists
+      file:
+        path: "{{ config_dir }}/git"
+        recurse: true
+        state: directory
+
+    - name: Configure git
+      copy:
+        src: config/git.ini
+        dest: "{{ config_dir }}/git/config"
         owner: jjanzen
         group: staff
         mode: "0644"
