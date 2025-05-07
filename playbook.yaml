@@ -244,3 +244,17 @@
         owner: jjanzen
         group: staff
         mode: "0644"
+
+    - name: Ensure ghostty config dir exists
+      file:
+        path: "{{ config_dir }}/ghostty"
+        recurse: true
+        state: directory
+
+    - name: Configure aerospace
+      copy:
+        src: config/ghostty.ini
+        dest: "{{ config_dir }}/ghostty/config"
+        owner: jjanzen
+        group: staff
+        mode: "0644"
