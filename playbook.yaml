@@ -1,0 +1,102 @@
+- name: Provision Macbook Pro
+  hosts: hosts
+  gather_facts: true
+
+  tasks:
+    - name: Configure Homebrew taps
+      community.general.homebrew_tap:
+        name:
+          - d12frosted/emacs-plus
+          - homebrew/bundle
+          - homebrew/cask-fonts
+          - homebrew/cask-versions
+          - homebrew/services
+          - jorgelbg/tap
+          - nikitabobko/tap
+
+    - name: Update homebrew
+      community.general.homebrew:
+        update_homebrew: true
+        upgrade_all: true
+
+    - name: Install basic packages
+      ansible.builtin.package:
+        name:
+          - autoconf
+          - automake
+          - choose-gui
+          - clang-format
+          - gcc
+          - gnupg
+          - gnuplot
+          - imagemagick
+          - jansson
+          - libassuan@2
+          - libgccjit
+          - librsvg
+          - openjdk
+          - pinentry-mac
+          - pinentry-touchid
+          - pipx
+          - pkg-config
+          - poppler
+          - yaml-language-server
+          - zlib
+        state: latest
+
+    - name: Install cask packages
+      ansible.builtin.package:
+        name:
+          - aerospace
+          - audacity
+          - blender
+          - cabal
+          - calibre
+          - desmume
+          - discord
+          - dolphin
+          - dwarf-fortress-lmp
+          - firefox
+          - ghostty
+          - gimp
+          - godot
+          - gzdoom
+          - inkscape
+          - keepingyouawake
+          - krita
+          - librewolf
+          - multimc
+          - obs
+          - openemu
+          - openmw
+          - pokemon-showdown
+          - proton-drive
+          - proton-mail-bridge
+          - protonvpn
+          - qbittorrent
+          - rar
+          - homebrew/cask/syncthing
+          - thunderbird
+          - tor-browser
+          - vlc
+          - whisky
+          - zotero
+        state: latest
+
+    - name: Install ansible
+      community.general.pipx:
+        name: ansible
+        state: latest
+        install_deps: true
+        executable: /opt/homebrew/bin/pipx
+
+    - name: Install Emacs
+      community.general.homebrew:
+        name: emacs-plus@30
+        install_options:
+          - with-native-comp
+          - with-imagemagick
+          - with-xwidgets
+          - with-mailutils
+          - with-ctags
+          - with-retro-emacs-logo-icon

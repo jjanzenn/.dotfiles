@@ -9,8 +9,8 @@ This file imports various system configuration components in addition to enablin
   myaspell = aspellWithDicts (d: [d.en d.en-computers d.en-science]);
   in {
     imports = [
-      ./aerospace.nix
-      ./homebrew.nix
+      # ./aerospace.nix
+      # ./homebrew.nix
     ];
 
     # Unfortunately, I sometimes need unfree packages
