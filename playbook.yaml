@@ -305,3 +305,17 @@
         owner: jjanzen
         group: staff
         mode: "0755"
+
+    - name: Ensure Emacs config directory exists
+      file:
+        path: "{{ config_dir }}/emacs"
+        recurse: true
+        state: directory
+
+    - name: Install Emacs early init
+      copy:
+        src: config/emacs-early-init.el
+        dest: "{{ config_dir }}/emacs/early-init.el"
+        owner: jjanzen
+        group: staff
+        mode: "0755"

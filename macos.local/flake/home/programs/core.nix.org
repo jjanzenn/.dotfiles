@@ -6,7 +6,7 @@ Import configurations for programs and install programs with no configuration.
 
   {
     imports = [
-      ./emacs/core.nix
+      # ./emacs/core.nix
       # ./ghostty.nix
       # ./git.nix
       # ./neovim.nix
