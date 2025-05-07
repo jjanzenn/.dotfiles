@@ -1,7 +1,0 @@
-#+title: Website Deploy Script
-
-Deploy my website from a specified branch by using =ssh= to get into my server and running the deploy script, passing command line arguments to the script.
-#+begin_src sh
-  #!/bin/sh
-  /usr/bin/ssh jjanzen.ca "sudo /usr/local/bin/deploy.sh "$@""
-#+end_src
