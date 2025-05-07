@@ -1,0 +1,17 @@
+- name: Install ghostty
+  package:
+    name: ghostty
+
+- name: Ensure ghostty config dir exists
+  file:
+    path: "{{ config_dir }}/ghostty"
+    recurse: true
+    state: directory
+
+- name: Configure ghostty
+  copy:
+    src: config/ghostty.ini
+    dest: "{{ config_dir }}/ghostty/config"
+    owner: "{{ user }}"
+    group: "{{ default_group }}"
+    mode: "0644"

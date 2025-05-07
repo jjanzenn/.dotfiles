@@ -1,0 +1,23 @@
+- name: Install aerospace
+  package:
+    name: aerospace
+    state: latest
+
+- name: Ensure aerospace config dir exists
+  file:
+    path: "{{ config_dir }}/aerospace"
+    recurse: true
+    state: directory
+
+- name: Configure aerospace
+  copy:
+    src: config/aerospace.toml
+    dest: "{{ config_dir }}/aerospace/aerospace.toml"
+    owner: "{{ user }}"
+    group: "{{ default_group }}"
+    mode: "0644"
+  register: aerospace
+
+- name: reload aerospace configuration
+  command: aerospace reload-config
+  when: aerospace.changed

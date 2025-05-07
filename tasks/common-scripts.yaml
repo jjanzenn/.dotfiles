@@ -1,0 +1,21 @@
+- name: Ensure script directory exists
+  file:
+    path: "{{ exec_path }}"
+    recurse: true
+    state: directory
+
+- name: Install deploy website script
+  copy:
+    src: scripts/deploy-website.sh
+    dest: "{{ exec_path }}/deploy-website"
+    owner: "{{ user }}"
+    group: "{{ default_group }}"
+    mode: "0755"
+
+- name: Install deploy Org backup script
+  copy:
+    src: scripts/backup-org.sh
+    dest: "{{ exec_path }}/backup-org.sh"
+    owner: "{{ user }}"
+    group: "{{ default_group }}"
+    mode: "0755"

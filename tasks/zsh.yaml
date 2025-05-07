@@ -1,0 +1,23 @@
+- name: Install packages necessary for zsh
+  package:
+    name:
+      - zsh
+      - zsh-autosuggestions
+      - zsh-syntax-highlighting
+    state: latest
+
+- name: Configure zsh
+  copy:
+    src: config/zshrc.sh
+    dest: "{{ home }}/.zshrc"
+    owner: "{{ user }}"
+    group: "{{ default_group }}"
+    mode: "0755"
+
+- name: Configure environment variables
+  copy:
+    src: config/profile.sh
+    dest: "{{ home }}/.zshenv"
+    owner: "{{ user }}"
+    group: "{{ default_group }}"
+    mode: "0755"

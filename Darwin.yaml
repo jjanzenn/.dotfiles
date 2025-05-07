@@ -32,15 +32,11 @@
       package:
         name:
           - aescrypt
-          - aspell
-          - autoconf
-          - automake
           - bash-language-server
           - bear
           - bison
           - cabal-install
           - choose-gui
-          - clang-format
           - cmake
           - cmake-language-server
           - conan
@@ -50,11 +46,7 @@
           - dos2unix
           - eza
           - ffmpeg
-          - findutils # TODO: make alias or something gfind -> find
-          - gcc
           - ghc
-          - gnuplot
-          - gnu-sed
           - gnu-tar
           - gnutls
           - go
@@ -62,17 +54,11 @@
           - gpgme
           - haskell-language-server
           - htop
-          - hunspell
           - hyfetch
           - imagemagick
           - inetutils
-          - ispell
-          - jansson
           - lesspipe
           - libassuan@2
-          - libgccjit
-          - librsvg
-          - mailutils
           - marksman
           - meson
           - mpv
@@ -87,7 +73,6 @@
           - pkg-config
           - poppler
           - pup
-          - ripgrep
           - rsync
           - rustup
           - shellcheck
@@ -100,14 +85,6 @@
           - zig
           - zlib
           - zls
-          - zsh-autosuggestions
-          - zsh-syntax-highlighting
-        state: latest
-
-    - name: Install cask packages
-      package:
-        name:
-          - aerospace
           - audacity
           - blender
           - cabal
@@ -117,7 +94,6 @@
           - dolphin
           - dwarf-fortress-lmp
           - firefox
-          - ghostty
           - gimp
           - godot
           - gzdoom
@@ -172,23 +148,9 @@
       import_tasks:
         file: tasks/fonts.yaml
 
-    - name: Install and configure Emacs
+    - name: Install common scripts
       import_tasks:
-        file: tasks/emacs.yaml
-
-    - name: Ensure script directory exists
-      file:
-        path: "{{ exec_path }}"
-        recurse: true
-        state: directory
-
-    - name: Install deploy website script
-      copy:
-        src: scripts/deploy-website.sh
-        dest: "{{ exec_path }}/deploy-website"
-        owner: "{{ user }}"
-        group: "{{ default_group }}"
-        mode: "0755"
+        file: tasks/common-scripts.yaml
 
     - name: Install app launcher script
       copy:
@@ -206,108 +168,38 @@
         group: "{{ default_group }}"
         mode: "0755"
 
-    - name: Install deploy Org backup script
-      copy:
-        src: scripts/backup-org.sh
-        dest: "{{ exec_path }}/backup-org.sh"
-        owner: "{{ user }}"
-        group: "{{ default_group }}"
-        mode: "0755"
+    - name: Install and configure Aerospace
+      import_tasks:
+        file: tasks/aerospace.yaml
 
-    - name: Install wallpaper file
-      copy:
-        src: config/wallpaper.png
-        dest: "{{ home }}/.wallpaper"
-        owner: "{{ user }}"
-        group: "{{ default_group }}"
-        mode: "0644"
-      register: wallpaper
+    - name: Install and configure clang-format
+      import_tasks:
+        file: tasks/clang-format.yaml
+
+    - name: Install and configure Emacs
+      import_tasks:
+        file: tasks/emacs.yaml
+
+    - name: Install and configure GhosTTY
+      import_tasks:
+        file: tasks/ghostty.yaml
+
+    - name: Install and configure Git
+      import_tasks:
+        file: tasks/git.yaml
+
+    - name: Install and configure SSH
+      import_tasks:
+        file: tasks/ssh.yaml
+
+    - name: Install and configure zsh
+      import_tasks:
+        file: tasks/zsh.yaml
+
+    - name: Install the wallpaper file
+      import_tasks:
+        file: tasks/wallpaper.yaml
 
     - name: Configure macOS wallpaper
       command: osascript -e "tell application \"System Events\" to tell every desktop to set picture to \"{{ wallpaper_path }}\" as POSIX file"
       when: wallpaper.changed
-
-    - name: Ensure aerospace config dir exists
-      file:
-        path: "{{ config_dir }}/aerospace"
-        recurse: true
-        state: directory
-
-    - name: Configure aerospace
-      copy:
-        src: config/aerospace.toml
-        dest: "{{ config_dir }}/aerospace/aerospace.toml"
-        owner: "{{ user }}"
-        group: "{{ default_group }}"
-        mode: "0644"
-      register: aerospace
-
-    - name: reload aerospace configuration
-      command: aerospace reload-config
-      when: aerospace.changed
-
-    - name: configure clang-format
-      copy:
-        src: config/clang-format.yaml
-        dest: "{{ home }}/.clang-format"
-        owner: "{{ user }}"
-        group: "{{ default_group }}"
-        mode: "0644"
-
-    - name: Ensure ghostty config dir exists
-      file:
-        path: "{{ config_dir }}/ghostty"
-        recurse: true
-        state: directory
-
-    - name: Configure ghostty
-      copy:
-        src: config/ghostty.ini
-        dest: "{{ config_dir }}/ghostty/config"
-        owner: "{{ user }}"
-        group: "{{ default_group }}"
-        mode: "0644"
-
-    - name: Ensure git config dir exists
-      file:
-        path: "{{ config_dir }}/git"
-        recurse: true
-        state: directory
-
-    - name: Configure git
-      copy:
-        src: config/git.ini
-        dest: "{{ config_dir }}/git/config"
-        owner: "{{ user }}"
-        group: "{{ default_group }}"
-        mode: "0644"
-
-    - name: Ensure ssh config dir exists
-      file:
-        path: "{{ home }}/.ssh"
-        recurse: true
-        state: directory
-
-    - name: Configure ssh
-      copy:
-        src: config/ssh.conf
-        dest: "{{ home }}/.ssh/config"
-        owner: "{{ user }}"
-        group: "{{ default_group }}"
-        mode: "0644"
-
-    - name: Configure zsh
-      copy:
-        src: config/zshrc.sh
-        dest: "{{ home }}/.zshrc"
-        owner: "{{ user }}"
-        group: "{{ default_group }}"
-        mode: "0755"
-
-    - name: Configure profile
-      copy:
-        src: config/profile.sh
-        dest: "{{ home }}/.zshenv"
-        owner: "{{ user }}"
-        group: "{{ default_group }}"
-        mode: "0755"

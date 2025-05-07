@@ -1,0 +1,12 @@
+- name: Install clang-format
+  package:
+    name: clang-format
+    state: latest
+
+- name: configure clang-format
+  copy:
+    src: config/clang-format.yaml
+    dest: "{{ home }}/.clang-format"
+    owner: "{{ user }}"
+    group: "{{ default_group }}"
+    mode: "0644"

@@ -1,0 +1,13 @@
+- name: Ensure ssh config dir exists
+  file:
+    path: "{{ home }}/.ssh"
+    recurse: true
+    state: directory
+
+- name: Configure ssh
+  copy:
+    src: config/ssh.conf
+    dest: "{{ home }}/.ssh/config"
+    owner: "{{ user }}"
+    group: "{{ default_group }}"
+    mode: "0644"

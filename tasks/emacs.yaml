@@ -1,3 +1,19 @@
+- name: Install Emacs required packages
+  package:
+    name:
+      - aspell
+      - autoconf
+      - automake
+      - findutils # TODO: make alias or something gfind -> find
+      - gcc
+      - gnuplot
+      - hunspell
+      - ispell
+      - libgccjit
+      - librsvg
+      - mailutils
+      - ripgrep
+
 - name: Install Emacs
   community.general.homebrew:
     name: emacs-plus@30
