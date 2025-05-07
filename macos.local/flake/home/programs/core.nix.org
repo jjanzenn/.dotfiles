@@ -11,7 +11,7 @@ Import configurations for programs and install programs with no configuration.
       # ./git.nix
       ./neovim.nix
       # ./ssh.nix
-      ./zsh/core.nix
+      # ./zsh/core.nix
     ];
   }
 #+end_src

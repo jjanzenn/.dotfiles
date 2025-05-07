@@ -97,6 +97,8 @@
           - zig
           - zlib
           - zls
+          - zsh-autosuggestions
+          - zsh-syntax-highlighting
         state: latest
 
     - name: Install cask packages
