@@ -273,3 +273,17 @@
         owner: jjanzen
         group: staff
         mode: "0644"
+
+    - name: Ensure ssh config dir exists
+      file:
+        path: "{{ home }}/.ssh"
+        recurse: true
+        state: directory
+
+    - name: Configure git
+      copy:
+        src: config/ssh.conf
+        dest: "{{ home }}/.ssh/config"
+        owner: jjanzen
+        group: staff
+        mode: "0644"

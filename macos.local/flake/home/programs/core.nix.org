@@ -10,7 +10,7 @@ Import configurations for programs and install programs with no configuration.
       # ./ghostty.nix
       # ./git.nix
       ./neovim.nix
-      ./ssh.nix
+      # ./ssh.nix
       ./zsh/core.nix
     ];
   }
