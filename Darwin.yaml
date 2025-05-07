@@ -359,6 +359,14 @@
         group: staff
         mode: "0755"
 
+    - name: Install Emacs RSS feed
+      copy:
+        src: config/feed.el
+        dest: "{{ config_dir }}/emacs/feed.el"
+        owner: jjanzen
+        group: staff
+        mode: "0755"
+
     - name: Ensure gpg config directory exists
       file:
         path: "{{ home }}/.gnupg"
