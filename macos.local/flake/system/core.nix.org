@@ -33,7 +33,7 @@ This file imports various system configuration components in addition to enablin
     };
 
     # Use zsh as my shell
-    programs.zsh.enable = true;
+    # programs.zsh.enable = true;
 
     # Enable documentation and make
     documentation = {

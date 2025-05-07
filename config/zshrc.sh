@@ -1,7 +1,9 @@
+export PATH="$HOME/node_modules/.bin:$HOME/bin:$HOME/gems/bin:$HOME/.local/bin:$HOME/go/bin:/usr/local/bin:/Library/TeX/texbin/:/opt/homebrew/bin:$PATH"
+
 bindkey -e
 
 autoload -U compinit && compinit
-source "$(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh"
+source "$(/opt/homebrew/bin/brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh"
 ZSH_AUTOSUGGEST_STRATEGY=(history)
 
 HISTSIZE="10000"
@@ -44,5 +46,5 @@ alias -- la='ls -a'
 alias -- ll='ls -alF'
 alias -- sl=ls
 
-source "$(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
+source "$(/opt/homebrew/bin/brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
 ZSH_HIGHLIGHT_HIGHLIGHTERS+=()

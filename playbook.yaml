@@ -289,3 +289,19 @@
         owner: jjanzen
         group: staff
         mode: "0644"
+
+    - name: Configure zsh
+      copy:
+        src: config/zshrc.sh
+        dest: "{{ home }}/.zshrc"
+        owner: jjanzen
+        group: staff
+        mode: "0755"
+
+    - name: Configure profile
+      copy:
+        src: config/profile.sh
+        dest: "{{ home }}/.profile"
+        owner: jjanzen
+        group: staff
+        mode: "0755"
