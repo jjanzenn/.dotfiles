@@ -18,6 +18,11 @@ Set up home manager for my user account and import submodules. Define my user as
     home.username = "jjanzen";
     home.homeDirectory = "/Users/jjanzen";
 
+    nix.gc = {
+      automatic = true;
+      options = "--delete-older-than 30d";
+    };
+
     home.file.".wallpaper".source = ./.wallpaper;
 
     home.sessionPath = [
