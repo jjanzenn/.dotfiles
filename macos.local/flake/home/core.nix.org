@@ -9,7 +9,7 @@ Set up home manager for my user account and import submodules. Define my user as
       # ./clang-format.nix
       ./fonts.nix
       ./programs/core.nix
-      ./scripts/core.nix
+      # ./scripts/core.nix
     ];
 
     home.stateVersion = "24.05";

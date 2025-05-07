@@ -6,6 +6,7 @@
     home: /Users/jjanzen
     wallpaper_path: "{{ home }}/.wallpaper"
     config_dir: "{{ home }}/.config"
+    exec_path: "{{ home }}/.local/bin"
 
   tasks:
     - name: Configure Homebrew taps
@@ -106,6 +107,44 @@
           - with-mailutils
           - with-ctags
           - with-retro-emacs-logo-icon
+
+    - name: Ensure script directory exists
+      file:
+        path: "{{ exec_path }}"
+        recurse: true
+        state: directory
+
+    - name: Install deploy website script
+      copy:
+        src: scripts/deploy-website.sh
+        dest: "{{ exec_path }}/deploy-website"
+        owner: jjanzen
+        group: staff
+        mode: "0755"
+
+    - name: Install app launcher script
+      copy:
+        src: scripts/launcher.sh
+        dest: "{{ exec_path }}/launcher"
+        owner: jjanzen
+        group: staff
+        mode: "0755"
+
+    - name: Install remove quarantine script
+      copy:
+        src: scripts/remove-quarantine.sh
+        dest: "{{ exec_path }}/remove-quarantine"
+        owner: jjanzen
+        group: staff
+        mode: "0755"
+
+    - name: Install deploy Org backup script
+      copy:
+        src: scripts/backup-org.sh
+        dest: "{{ exec_path }}/backup-org.sh"
+        owner: jjanzen
+        group: staff
+        mode: "0755"
 
     - name: Install wallpaper file
       copy:
