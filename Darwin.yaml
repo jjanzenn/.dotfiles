@@ -142,10 +142,6 @@
           - zotero
         state: latest
 
-    - name: Install fonts
-      import_tasks:
-        file: tasks/fonts.yaml
-
     - name: Install python formatter
       community.general.pipx:
         name: black
@@ -171,16 +167,13 @@
         install_deps: true
         executable: /opt/homebrew/bin/pipx
 
-    - name: Install Emacs
-      community.general.homebrew:
-        name: emacs-plus@30
-        install_options:
-          - with-native-comp
-          - with-imagemagick
-          - with-xwidgets
-          - with-mailutils
-          - with-ctags
-          - with-retro-emacs-logo-icon
+    - name: Install fonts
+      import_tasks:
+        file: tasks/fonts.yaml
+
+    - name: Install and configure Emacs
+      import_tasks:
+        file: tasks/emacs.yaml
 
     - name: Ensure script directory exists
       file:
@@ -314,36 +307,6 @@
       copy:
         src: config/profile.sh
         dest: "{{ home }}/.zshenv"
-        owner: jjanzen
-        group: staff
-        mode: "0755"
-
-    - name: Ensure Emacs config directory exists
-      file:
-        path: "{{ config_dir }}/emacs"
-        recurse: true
-        state: directory
-
-    - name: Install Emacs early init
-      copy:
-        src: config/emacs-early-init.el
-        dest: "{{ config_dir }}/emacs/early-init.el"
-        owner: jjanzen
-        group: staff
-        mode: "0755"
-
-    - name: Install Emacs init
-      copy:
-        src: config/emacs-init.el
-        dest: "{{ config_dir }}/emacs/init.el"
-        owner: jjanzen
-        group: staff
-        mode: "0755"
-
-    - name: Install Emacs RSS feed
-      copy:
-        src: config/emacs-feed.el
-        dest: "{{ config_dir }}/emacs/feed.el"
         owner: jjanzen
         group: staff
         mode: "0755"
