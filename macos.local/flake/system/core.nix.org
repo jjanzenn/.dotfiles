@@ -37,6 +37,13 @@ This file imports various system configuration components in addition to enablin
     # Use flakes
     nix.settings.experimental-features = "nix-command flakes";
 
+    # Optimise space usage
+    # nix.settings.automatic = true;
+    nix.gc = {
+      automatic = true;
+      options = "--delete-older-than 30d";
+    };
+
     # Use zsh as my shell
     programs.zsh.enable = true;
 
