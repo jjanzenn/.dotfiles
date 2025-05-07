@@ -1,0 +1,28 @@
+#+title: Environment Variables
+
+Set my =PATH= variable.
+#+begin_src sh
+  export PATH="$HOME/node_modules/.bin:$HOME/bin:$HOME/gems/bin:$HOME/.local/bin:$HOME/go/bin:/usr/local/bin:/Library/TeX/texbin/:/usr/local/bin:/opt/homebrew/bin:/opt/homebrew/sbin:$PATH"
+#+end_src
+
+Set my path for man pages.
+#+begin_src sh
+  export MANPATH="/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/share/man:/usr/share/man:$MANPATH"
+#+end_src
+
+Use =vim= by default when editing.
+#+begin_src sh
+  export EDITOR="vim"
+#+end_src
+
+Install =pipx= packages to =~/.local/pipx=.
+#+begin_src sh
+  export PIPX_HOME="$HOME/.local/pipx"
+#+end_src
+
+If I am on macOS, set the GPG_TTY variable.
+#+begin_src sh
+  if [ "$(uname -s)" = 'Darwin' ]; then
+      export GPG_TTY=$(tty)
+  fi
+#+end_src

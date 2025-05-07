@@ -1,0 +1,41 @@
+#+title: Git Configuration
+
+Use =delta= as a pager program.
+#+begin_src conf
+  [core]
+  pager = /opt/homebrew/bin/delta
+#+end_src
+
+Use =gpg= as a PGP program.
+#+begin_src conf
+  [gpg]
+  format = "openpgp"
+
+  [gpg "openpgp"]
+  program = /opt/homebrew/bin/gpg
+#+end_src
+
+Default to =main= over =master= for the default branch.
+#+begin_src conf
+  [init]
+  defaultBranch = "main"
+#+end_src
+
+Use =delta= with only colours as a diff viewer.
+#+begin_src conf
+  [interactive]
+  diffFilter = "/opt/homebrew/bin/delta --color-only"
+#+end_src
+
+Default to rebasing on pull.
+#+begin_src conf
+  [pull]
+  rebase = true
+#+end_src
+
+Define my user profile.
+#+begin_src conf
+  [user]
+  email = "me@jjanzen.ca"
+  name = "jjanzen"
+#+end_src

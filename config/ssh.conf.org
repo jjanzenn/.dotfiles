@@ -1,0 +1,44 @@
+#+title: SSH Configuration
+
+Use the keychain by default and the keyfile at =~/.ssh/id_ed25519=.
+#+begin_src conf
+  Host *
+    IdentityFile ~/.ssh/id_ed25519
+    UseKeychain yes
+#+end_src
+
+Configuration for my school's server.
+#+begin_src conf
+  Host aviary
+    User janzenj2
+    HostName aviary.cs.umanitoba.ca
+    SetEnv TERM="xterm"
+#+end_src
+
+Configuration for my personal server.
+#+begin_src conf
+  Host jjanzen.ca
+    SetEnv TERM="xterm"
+  Host minecraft
+    User minecraft
+    HostName jjanzen.ca
+    SetEnv TERM="xterm"
+  Host oracle
+    IdentitiesOnly yes
+    User opc
+    HostName jjanzen.ca
+    SetEnv TERM="xterm"
+    IdentityFile ~/.ssh/oracle
+#+end_src
+
+Set some simple options for all connections.
+#+begin_src conf
+  Host *
+    ForwardAgent no
+    AddKeysToAgent yes
+    Compression no
+    ServerAliveInterval 0
+    ServerAliveCountMax 3
+    HashKnownHosts no
+    UserKnownHostsFile ~/.ssh/known_hosts
+#+end_src
