@@ -301,7 +301,7 @@
     - name: Configure profile
       copy:
         src: config/profile.sh
-        dest: "{{ home }}/.profile"
+        dest: "{{ home }}/.zshenv"
         owner: jjanzen
         group: staff
         mode: "0755"
@@ -316,6 +316,14 @@
       copy:
         src: config/emacs-early-init.el
         dest: "{{ config_dir }}/emacs/early-init.el"
+        owner: jjanzen
+        group: staff
+        mode: "0755"
+
+    - name: Install Emacs init
+      copy:
+        src: config/emacs-init.el
+        dest: "{{ config_dir }}/emacs/init.el"
         owner: jjanzen
         group: staff
         mode: "0755"

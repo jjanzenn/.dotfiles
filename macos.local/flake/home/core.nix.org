@@ -7,8 +7,8 @@ Set up home manager for my user account and import submodules. Define my user as
   {
     imports = [
       # ./clang-format.nix
-      ./fonts.nix
-      ./programs/core.nix
+      # ./fonts.nix
+      # ./programs/core.nix
       # ./scripts/core.nix
     ];
 

@@ -1,5 +1,3 @@
-export PATH="$HOME/node_modules/.bin:$HOME/bin:$HOME/gems/bin:$HOME/.local/bin:$HOME/go/bin:/usr/local/bin:/Library/TeX/texbin/:/opt/homebrew/bin:$PATH"
-
 bindkey -e
 
 autoload -U compinit && compinit
@@ -45,8 +43,6 @@ alias -- l='ls -F'
 alias -- la='ls -a'
 alias -- ll='ls -alF'
 alias -- sl=ls
-
-export EDITOR='vim'
 
 source "$(/opt/homebrew/bin/brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
 ZSH_HIGHLIGHT_HIGHLIGHTERS+=()
