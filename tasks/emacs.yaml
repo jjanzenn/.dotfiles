@@ -9,32 +9,9 @@
       - with-ctags
       - with-retro-emacs-logo-icon
 
-- name: Ensure Emacs config directory exists
-  file:
-    path: "{{ config_dir }}/emacs"
-    recurse: true
-    state: directory
-
-- name: Install Emacs early init
+- name: Install Emacs configuration directory
   copy:
-    src: config/emacs-early-init.el
-    dest: "{{ config_dir }}/emacs/early-init.el"
-    owner: jjanzen
-    group: staff
-    mode: "0755"
-
-- name: Install Emacs init
-  copy:
-    src: config/emacs-init.el
-    dest: "{{ config_dir }}/emacs/init.el"
-    owner: jjanzen
-    group: staff
-    mode: "0755"
-
-- name: Install Emacs RSS feed
-  copy:
-    src: config/emacs-feed.el
-    dest: "{{ config_dir }}/emacs/feed.el"
-    owner: jjanzen
-    group: staff
-    mode: "0755"
+    src: config/emacs
+    dest: "{{ config_dir }}/emacs"
+    owner: "{{ user }}"
+    group: "{{ default_group }}"

@@ -1,0 +1,23 @@
+- name: Install gpg
+  package:
+    name: gnupg
+    state: latest
+
+- name: Ensure gpg config directory exists
+  file:
+    path: "{{ home }}/.gnupg"
+    recurse: true
+    state: directory
+
+- name: Configure GPG Agent
+  copy:
+    src: config/gpg-agent.conf
+    dest: "{{ home }}/.gnupg/gpg-agent.conf"
+    owner: "{{ user }}"
+    group: "{{ default_group }}"
+    mode: "0644"
+  register: gpg
+
+- name: Reset GPG Agent
+  command: gpgconf --kill gpg-agent
+  when: gpg.changed

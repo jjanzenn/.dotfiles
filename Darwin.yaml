@@ -4,6 +4,8 @@
 
   vars:
     home: /Users/jjanzen
+    user: jjanzen
+    default_group: staff
     wallpaper_path: "{{ home }}/.wallpaper"
     config_dir: "{{ home }}/.config"
     fonts_dir: "{{ home }}/Library/Fonts"
@@ -51,7 +53,6 @@
           - findutils # TODO: make alias or something gfind -> find
           - gcc
           - ghc
-          - gnupg
           - gnuplot
           - gnu-sed
           - gnu-tar
@@ -185,40 +186,40 @@
       copy:
         src: scripts/deploy-website.sh
         dest: "{{ exec_path }}/deploy-website"
-        owner: jjanzen
-        group: staff
+        owner: "{{ user }}"
+        group: "{{ default_group }}"
         mode: "0755"
 
     - name: Install app launcher script
       copy:
         src: scripts/launcher.sh
         dest: "{{ exec_path }}/launcher"
-        owner: jjanzen
-        group: staff
+        owner: "{{ user }}"
+        group: "{{ default_group }}"
         mode: "0755"
 
     - name: Install remove quarantine script
       copy:
         src: scripts/remove-quarantine.sh
         dest: "{{ exec_path }}/remove-quarantine"
-        owner: jjanzen
-        group: staff
+        owner: "{{ user }}"
+        group: "{{ default_group }}"
         mode: "0755"
 
     - name: Install deploy Org backup script
       copy:
         src: scripts/backup-org.sh
         dest: "{{ exec_path }}/backup-org.sh"
-        owner: jjanzen
-        group: staff
+        owner: "{{ user }}"
+        group: "{{ default_group }}"
         mode: "0755"
 
     - name: Install wallpaper file
       copy:
         src: config/wallpaper.png
         dest: "{{ home }}/.wallpaper"
-        owner: jjanzen
-        group: staff
+        owner: "{{ user }}"
+        group: "{{ default_group }}"
         mode: "0644"
       register: wallpaper
 
@@ -236,8 +237,8 @@
       copy:
         src: config/aerospace.toml
         dest: "{{ config_dir }}/aerospace/aerospace.toml"
-        owner: jjanzen
-        group: staff
+        owner: "{{ user }}"
+        group: "{{ default_group }}"
         mode: "0644"
       register: aerospace
 
@@ -249,8 +250,8 @@
       copy:
         src: config/clang-format.yaml
         dest: "{{ home }}/.clang-format"
-        owner: jjanzen
-        group: staff
+        owner: "{{ user }}"
+        group: "{{ default_group }}"
         mode: "0644"
 
     - name: Ensure ghostty config dir exists
@@ -263,8 +264,8 @@
       copy:
         src: config/ghostty.ini
         dest: "{{ config_dir }}/ghostty/config"
-        owner: jjanzen
-        group: staff
+        owner: "{{ user }}"
+        group: "{{ default_group }}"
         mode: "0644"
 
     - name: Ensure git config dir exists
@@ -277,8 +278,8 @@
       copy:
         src: config/git.ini
         dest: "{{ config_dir }}/git/config"
-        owner: jjanzen
-        group: staff
+        owner: "{{ user }}"
+        group: "{{ default_group }}"
         mode: "0644"
 
     - name: Ensure ssh config dir exists
@@ -287,45 +288,26 @@
         recurse: true
         state: directory
 
-    - name: Configure git
+    - name: Configure ssh
       copy:
         src: config/ssh.conf
         dest: "{{ home }}/.ssh/config"
-        owner: jjanzen
-        group: staff
+        owner: "{{ user }}"
+        group: "{{ default_group }}"
         mode: "0644"
 
     - name: Configure zsh
       copy:
         src: config/zshrc.sh
         dest: "{{ home }}/.zshrc"
-        owner: jjanzen
-        group: staff
+        owner: "{{ user }}"
+        group: "{{ default_group }}"
         mode: "0755"
 
     - name: Configure profile
       copy:
         src: config/profile.sh
         dest: "{{ home }}/.zshenv"
-        owner: jjanzen
-        group: staff
+        owner: "{{ user }}"
+        group: "{{ default_group }}"
         mode: "0755"
-
-    - name: Ensure gpg config directory exists
-      file:
-        path: "{{ home }}/.gnupg"
-        recurse: true
-        state: directory
-
-    - name: Configure GPG Agent
-      copy:
-        src: config/gpg-agent.conf
-        dest: "{{ home }}/.gnupg/gpg-agent.conf"
-        owner: jjanzen
-        group: staff
-        mode: "0644"
-      register: gpg
-
-    - name: Reset GPG Agent
-      command: gpgconf --kill gpg-agent
-      when: gpg.changed
