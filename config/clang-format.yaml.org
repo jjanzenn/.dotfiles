@@ -1,0 +1,10 @@
+#+title: Clang-Format Configuration
+
+Use the LLVM style as a base with minor aesthetic tweaks that I like.
+#+begin_src yaml
+  BasedOnStyle: LLVM
+  IndentWidth: 4
+  BreakBeforeBraces: Linux
+  AllowShortIfStatementsOnASingleLine: false
+  IndentCaseLabels: false
+#+end_src

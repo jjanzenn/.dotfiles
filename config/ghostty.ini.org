@@ -1,0 +1,45 @@
+#+title: GhosTTY Configuration
+
+Disable automatic updates.
+#+begin_src conf
+  auto-update = "off"
+#+end_src
+
+Enable a pleasant transparency without becoming distracting.
+#+begin_src conf
+  background-blur-radius = 20
+  background-opacity = 0.8
+  macos-window-shadow = false
+#+end_src
+
+Do not copy trailing spaces when copying from GhosTTY.
+#+begin_src conf
+  clipboard-trim-trailing-spaces = true
+#+end_src
+
+Use my standard Source Code Pro Nerd Font.
+#+begin_src conf
+  font-family = "SauceCodePro Nerd Font"
+  font-thicken = true
+#+end_src
+
+Allow using the =alt= key.
+#+begin_src conf
+  macos-option-as-alt = true
+#+end_src
+
+Do not show the mouse when typing.
+#+begin_src conf
+  mouse-hide-while-typing = true
+#+end_src
+
+Quit GhosTTY when all windows are closed.
+#+begin_src conf
+  quit-after-last-window-closed = true
+#+end_src
+
+Use a light theme.
+#+begin_src conf
+  theme = "Builtin Light"
+  window-decoration = true
+#+end_src
