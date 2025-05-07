@@ -1,0 +1,149 @@
+#+title: Aerospace Configuration
+
+Don't do anything after startup, login, or on workspace change.
+#+begin_src toml
+  after-login-command = []
+  after-startup-command = []
+  exec-on-workspace-change = []
+#+end_src
+
+Tile by default and automatically choose the split direction to make the most sense.
+#+begin_src toml
+  default-root-container-layout = "tiles"
+  default-root-container-orientation = "auto"
+#+end_src
+
+Enable normalization in the window tree.
+#+begin_src toml
+  enable-normalization-flatten-containers = true
+  enable-normalization-opposite-orientation-for-nested-containers = true
+#+end_src
+
+Move the mouse to the centre of a window when focus changes.
+#+begin_src toml
+  on-focus-changed = ["move-mouse window-lazy-center"]
+  on-focused-monitor-changed = ["move-mouse monitor-lazy-center"]
+#+end_src
+
+Run at login.
+#+begin_src toml
+  start-at-login = true
+#+end_src
+
+Include tasteful gaps around each window.
+#+begin_src toml
+  [gaps.inner]
+  horizontal = 10
+  vertical = 10
+
+  [gaps.outer]
+  bottom = 10
+  left = 10
+  right = 10
+  top = 10
+#+end_src
+
+I use a qwerty keyboard.
+#+begin_src toml
+  [key-mapping]
+  preset = "qwerty"
+#+end_src
+
+Move between workspaces with =cmd-#=.
+#+begin_src toml
+  [mode.main.binding]
+  cmd-0 = "workspace 10"
+  cmd-1 = "workspace 1"
+  cmd-2 = "workspace 2"
+  cmd-3 = "workspace 3"
+  cmd-4 = "workspace 4"
+  cmd-5 = "workspace 5"
+  cmd-6 = "workspace 6"
+  cmd-7 = "workspace 7"
+  cmd-8 = "workspace 8"
+  cmd-9 = "workspace 9"
+#+end_src
+
+Join with neighbouring windows with =cmd-ctrl-shift-[hjkl]= to place windows in the ideal place in the tree.
+#+begin_src toml
+  cmd-ctrl-shift-h = "join-with left"
+  cmd-ctrl-shift-j = "join-with down"
+  cmd-ctrl-shift-k = "join-with up"
+  cmd-ctrl-shift-l = "join-with right"
+#+end_src
+
+Open the application launcher with =cmd-d=.
+#+begin_src toml
+  cmd-d = "exec-and-forget ~/.local/bin/launcher"
+#+end_src
+
+Open my terminal with =cmd-enter=.
+#+begin_src toml
+  cmd-enter = "exec-and-forget open -n /Applications/Ghostty.app/"
+#+end_src
+
+Change focus with =cmd-[hjkl]=.
+#+begin_src toml
+  cmd-h = "focus --boundaries-action wrap-around-the-workspace left"
+  cmd-j = "focus --boundaries-action wrap-around-the-workspace down"
+  cmd-k = "focus --boundaries-action wrap-around-the-workspace up"
+  cmd-l = "focus --boundaries-action wrap-around-the-workspace right"
+#+end_src
+
+Move windows to other workspaces with =cmd-shift-#=.
+#+begin_src toml
+  cmd-shift-0 = "move-node-to-workspace 10"
+  cmd-shift-1 = "move-node-to-workspace 1"
+  cmd-shift-2 = "move-node-to-workspace 2"
+  cmd-shift-3 = "move-node-to-workspace 3"
+  cmd-shift-4 = "move-node-to-workspace 4"
+  cmd-shift-5 = "move-node-to-workspace 5"
+  cmd-shift-6 = "move-node-to-workspace 6"
+  cmd-shift-7 = "move-node-to-workspace 7"
+  cmd-shift-8 = "move-node-to-workspace 8"
+  cmd-shift-9 = "move-node-to-workspace 9"
+#+end_src
+
+Make a window slightly bigger with =cmd-shift-equal= (or =cmd-plus=) and slightly smaller with =cmd-shift-minus=.
+#+begin_src toml
+  cmd-shift-equal = "resize smart +50"
+  cmd-shift-minus = "resize smart -50"
+#+end_src
+
+Change the layout of a window to fullscreen with =cmd-shift-f= and toggle tiling with =cmd-shift-space=.
+#+begin_src toml
+  cmd-shift-f = "fullscreen"
+  cmd-shift-space = "layout floating tiling"
+#+end_src
+
+Move windows with =cmd-shift-[hjkl]=.
+#+begin_src toml
+  cmd-shift-h = "move left"
+  cmd-shift-j = "move down"
+  cmd-shift-k = "move up"
+  cmd-shift-l = "move right"
+#+end_src
+
+Default to floating for =mpv=.
+#+begin_src toml
+  [[on-window-detected]]
+  run = ["layout floating"]
+
+  [on-window-detected.if]
+  app-name-regex-substring = "mpv"
+#+end_src
+
+Assign workspace 10 to the builtin screen and workspace 9 to by secondary screen. All other workspaces are assigned to my main display.
+#+begin_src toml
+  [workspace-to-monitor-force-assignment]
+  1 = "main"
+  10 = ["secondary", "built-in"]
+  2 = "main"
+  3 = "main"
+  4 = "main"
+  5 = "main"
+  6 = "main"
+  7 = "main"
+  8 = "main"
+  9 = ["secondary", "dell"]
+#+end_src

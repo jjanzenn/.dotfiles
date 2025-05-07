@@ -1,0 +1,11 @@
+#+title: GPG Agent Configuration
+
+Keep the GPG agent unlocked for two hours.
+#+begin_src conf
+  max-cache-ttl 7200
+#+end_src
+
+Allow unlocking the GPG key with touchID.
+#+begin_src conf
+  pinentry-program /opt/homebrew/bin/pinentry-touchid
+#+end_src
