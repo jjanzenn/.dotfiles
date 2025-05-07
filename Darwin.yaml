@@ -270,6 +270,11 @@
         owner: jjanzen
         group: staff
         mode: "0644"
+      register: aerospace
+
+    - name: reload aerospace configuration
+      command: aerospace reload-config
+      when: aerospace.changed
 
     - name: configure clang-format
       copy:
