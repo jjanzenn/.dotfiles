@@ -142,33 +142,9 @@
           - zotero
         state: latest
 
-    - name: Install Source Code Pro Nerd Font
-      unarchive:
-        src: fonts/SauceCodeProNerdFont.tar.gz
-        dest: "{{ fonts_dir }}"
-      register: font
-
-    - name: Install Atkinson Hyperlegible Font
-      unarchive:
-        src: fonts/AtkinsonHyperlegibleNext.tar.gz
-        dest: "{{ fonts_dir }}"
-      register: font
-
-    - name: Install Atkinson Hyperlegible Mono Font
-      unarchive:
-        src: fonts/AtkinsonHyperlegibleMono.tar.gz
-        dest: "{{ fonts_dir }}"
-      register: font
-
-    - name: Install Nerd Font Symbols
-      unarchive:
-        src: fonts/NerdFontSymbols.tar.gz
-        dest: "{{ fonts_dir }}"
-      register: font
-
-    - name: Reset font cache
-      command: fc-cache -f
-      when: font.changed
+    - name: Install fonts
+      import_tasks:
+        file: tasks/fonts.yaml
 
     - name: Install python formatter
       community.general.pipx:
