@@ -8,20 +8,8 @@ This file imports various system configuration components in addition to enablin
   inherit (pkgs) aspellWithDicts;
   myaspell = aspellWithDicts (d: [d.en d.en-computers d.en-science]);
   in {
-    imports = [
-      # ./aerospace.nix
-      # ./homebrew.nix
-    ];
-
     # Unfortunately, I sometimes need unfree packages
     nixpkgs.config.allowUnfree = true;
-
-    # Install a small number of packages for root
-    environment.systemPackages = with pkgs; [
-      gnupg
-      myaspell
-      neovim
-    ];
 
     # Use TouchID for sudo
     security.pam.services.sudo_local.touchIdAuth = true;

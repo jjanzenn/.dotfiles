@@ -2,6 +2,11 @@
   hosts: hosts
   gather_facts: true
 
+  vars:
+    home: /Users/jjanzen
+    wallpaper_path: "{{ home }}/.wallpaper"
+    config_dir: "{{ home }}/.config"
+
   tasks:
     - name: Configure Homebrew taps
       community.general.homebrew_tap:
@@ -20,8 +25,9 @@
         upgrade_all: true
 
     - name: Install basic packages
-      ansible.builtin.package:
+      package:
         name:
+          - aspell
           - autoconf
           - automake
           - choose-gui
@@ -45,7 +51,7 @@
         state: latest
 
     - name: Install cask packages
-      ansible.builtin.package:
+      package:
         name:
           - aerospace
           - audacity
@@ -100,3 +106,37 @@
           - with-mailutils
           - with-ctags
           - with-retro-emacs-logo-icon
+
+    - name: Install wallpaper file
+      copy:
+        src: config/wallpaper.png
+        dest: "{{ home }}/.wallpaper"
+        owner: jjanzen
+        group: staff
+        mode: "0644"
+
+    - name: Configure macOS wallpaper
+      shell:
+        cmd: osascript -e "tell application \"System Events\" to tell every desktop to set picture to \"{{ wallpaper_path }}\" as POSIX file"
+
+    - name: Ensure aerospace config dir exists
+      file:
+        path: "{{ config_dir }}/aerospace"
+        recurse: true
+        state: directory
+
+    - name: Configure aerospace
+      copy:
+        src: config/aerospace.toml
+        dest: "{{ config_dir }}/aerospace/aerospace.toml"
+        owner: jjanzen
+        group: staff
+        mode: "0644"
+
+    - name: configure clang-format
+      copy:
+        src: config/clang-format.yaml
+        dest: "{{ home }}/.clang-format"
+        owner: jjanzen
+        group: staff
+        mode: "0644"
