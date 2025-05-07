@@ -376,4 +376,4 @@
 
     - name: Reset GPG Agent
       command: gpgconf --kill gpg-agent
-      when: gpg
+      when: gpg.changed

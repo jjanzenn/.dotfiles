@@ -1,43 +1,23 @@
-.PHONY: install update macos-update macos-install nixos-update nixos-install fonts
+.PHONY: all install
 
-# Determine the current system from its hostname.
-# My university network changes my hostname on my laptop. I use the disgusting system_profiler pipeline to get the real hostname if the uname command fails
-SYSTEM := $(shell uname -n)
-ifeq ($(wildcard src/$(project)/*),)
-	SYSTEM = $(shell system_profiler SPSoftwareDataType | grep "Computer Name" | xargs | sed 's/Computer Name: //' | sed 's/$$/.local/')
-endif
+SYSTEM := $(shell uname -s)
 
 # Set directories
-SRCDIR = ./$(SYSTEM)
-DSTDIR = $(HOME)
-FONTSDIR = .local/share/fonts
+SRCDIR = .
+DSTDIR = $(HOME)/.ansible-conf
 
 # Get the list of files that need to be generated
-SOURCES := $(shell find -L $(SRCDIR)/ -type f)
+SOURCES := $(shell find -L $(SRCDIR)/ -type f -not -path "./.git/*")
 NOGPG := $(SOURCES:%.gpg=%)
 NOORG := $(NOGPG:%.org=%)
 CONFIGS := $(subst $(SRCDIR)/,$(DSTDIR)/,$(NOORG))
 
-# Set any extra targets based on the hostname
-UPDATE_TARGET :=
-INSTALL_TARGET :=
-ifeq ($(SYSTEM), nixos)
-	UPDATE_TARGET += nixos-update
-	INSTALL_TARGET += nixos-install
-else ifeq ($(SYSTEM), macos.local)
-	UPDATE_TARGET += macos-update
-	INSTALL_TARGET += macos-install
-endif
-
 # update by default, install first
-all: update
-update: install $(UPDATE_TARGET)
-	cp $(DSTDIR)/flake/flake.lock $(SRCDIR)/flake
-	git add -A
-	git commit -m "update lock file" || true
+all: install
 
 # install configs and any additional targets
-install: $(CONFIGS) $(INSTALL_TARGET)
+install: $(CONFIGS)
+	ansible-playbook -i $(DSTDIR)/inventory.ini $(DSTDIR)/$(SYSTEM).yaml
 	git add -A
 	git commit -m "system changes" || true
 
