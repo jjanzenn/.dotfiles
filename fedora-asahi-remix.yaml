@@ -71,5 +71,5 @@
     - name: Install Flatpak packages
       community.general.flatpak:
         name:
-          - io.github.spacingbat3.webcord
+          - xyz.armcord.ArmCord
           - com.github.tchx84.Flatseal
