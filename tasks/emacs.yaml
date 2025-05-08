@@ -10,8 +10,15 @@
       - hunspell
       - libgccjit
       - ripgrep
+      - yarnpkg
 
-- name: Install Fedora packages
+- name: Install necessary npm packages for Emacs
+  community.general.yarn:
+    name: yaml-language-server
+    global: true
+    state: latest
+
+- name: Install necessary Fedora packages for Emacs
   package:
     name:
       - emacs
@@ -25,8 +32,8 @@
       - librsvg
     state: latest
   when: ansible_facts['os_family'] == 'Darwin'
-    
-- name: Install Emacs
+
+- name: Install macOS Emacs
   community.general.homebrew:
     name: emacs-plus@30
     install_options:
