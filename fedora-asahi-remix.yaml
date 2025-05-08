@@ -46,6 +46,10 @@
       import_tasks:
         file: tasks/git.yaml
 
+    - name: Install and configure Hyprland
+      import_tasks:
+        file: tasks/hyprland.yaml
+
     - name: Install and configure SSH
       import_tasks:
         file: tasks/ssh.yaml

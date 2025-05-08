@@ -1,0 +1,13 @@
+- name: Install Hyprland
+  package:
+    name:
+      - hyprland
+      - wofi
+    state: latest
+
+- name: Install Hyprland configuration directory
+  copy:
+    src: config/hypr
+    dest: "{{ config_dir }}/"
+    owner: "{{ user }}"
+    group: "{{ default_group }}"
