@@ -17,6 +17,7 @@
       package:
         name:
           - foot
+          - hyfetch
           - python3-libdnf5
           - pipx
           - sshpass
