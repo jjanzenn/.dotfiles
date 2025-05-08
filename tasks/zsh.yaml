@@ -6,7 +6,7 @@
 
 - name: Setup zsh package directory
   file:
-    path: "~/.zsh"
+    path: ~/.zsh
     recurse: true
     state: directory
 
