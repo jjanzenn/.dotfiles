@@ -61,3 +61,15 @@
     - name: Install the wallpaper file
       import_tasks:
         file: tasks/wallpaper.yaml
+
+    - name: Enable Flathub
+      community.general.flatpak_remote:
+        name: flathub
+        state: present
+        enabled: true
+
+    - name: Install Flatpak packages
+      community.general.flatpak:
+        name:
+          - io.github.spacingbat3.webcord
+          - com.github.tchx84.Flatseal

@@ -2,6 +2,7 @@
   package:
     name:
       - hyprland
+      - mako
       - wofi
     state: latest
 
