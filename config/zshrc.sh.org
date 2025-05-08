@@ -8,8 +8,8 @@ Use Emacs keybindings.
 Install completions and auto-suggestions.
 #+begin_src sh
   autoload -U compinit && compinit
-source "$(/opt/homebrew/bin/brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh"
-ZSH_AUTOSUGGEST_STRATEGY=(history)
+  source "$HOME/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh"
+  ZSH_AUTOSUGGEST_STRATEGY=(history)
 #+end_src
 
 Keep a history of 10000 items at =~/.zsh_history=.
@@ -68,6 +68,6 @@ Configure a nice prompt that shows =git= status.
 
 Set up syntax highlighting.
 #+begin_src sh
-  source "$(/opt/homebrew/bin/brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
+  source "$HOME/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
   ZSH_HIGHLIGHT_HIGHLIGHTERS+=()
 #+end_src
