@@ -2,6 +2,10 @@
 
 SYSTEM := $(shell uname -s)
 
+ifeq ($(SYSTEM), Linux)
+  SYSTEM = $(shell grep "^ID=" /etc/os-release | sed "s/^ID=//")
+endif
+
 # Set directories
 SRCDIR = .
 DSTDIR = $(HOME)/.ansible-conf

@@ -1,0 +1,58 @@
+- name: Provision Asahi Linux
+  hosts: hosts
+  gather_facts: true
+  become: true
+
+  vars:
+    home: /home/jjanzen
+    user: jjanzen
+    default_group: jjanzen
+    wallpaper_path: "{{ home }}/.wallpaper"
+    config_dir: "{{ home }}/.config"
+    fonts_dir: "/usr/share/fonts"
+    exec_path: "{{ home }}/.local/bin"
+
+  tasks:
+    - name: Install packages
+      package:
+        name:
+          - foot
+          - python3-libdnf5
+          - pipx
+          - sshpass
+        state: latest
+
+    - name: Install ansible
+      community.general.pipx:
+        name: ansible
+        state: latest
+        install_deps: true
+        executable: /usr/bin/pipx
+
+    - name: Install fonts
+      import_tasks:
+        file: tasks/fonts.yaml
+
+    - name: Install common scripts
+      import_tasks:
+        file: tasks/common-scripts.yaml
+
+    - name: Install and configure Emacs
+      import_tasks:
+        file: tasks/emacs.yaml
+
+    - name: Install and configure Git
+      import_tasks:
+        file: tasks/git.yaml
+
+    - name: Install and configure SSH
+      import_tasks:
+        file: tasks/ssh.yaml
+
+    - name: Install and configure zsh
+      import_tasks:
+        file: tasks/zsh.yaml
+
+    - name: Install the wallpaper file
+      import_tasks:
+        file: tasks/wallpaper.yaml

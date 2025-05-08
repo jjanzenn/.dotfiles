@@ -5,8 +5,8 @@
     state: directory
 
 - name: Configure ssh
-  copy:
-    src: config/ssh.conf
+  template:
+    src: config/ssh.conf.j2
     dest: "{{ home }}/.ssh/config"
     owner: "{{ user }}"
     group: "{{ default_group }}"

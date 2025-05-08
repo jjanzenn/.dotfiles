@@ -8,12 +8,24 @@
       - gcc
       - gnuplot
       - hunspell
-      - ispell
       - libgccjit
-      - librsvg
-      - mailutils
       - ripgrep
 
+- name: Install Fedora packages
+  package:
+    name:
+      - emacs
+      - librsvg2
+    state: latest
+  when: ansible_facts['distribution'] == 'Fedora'
+
+- name: Install macOS packages
+  package:
+    name:
+      - librsvg
+    state: latest
+  when: ansible_facts['os_family'] == 'Darwin'
+    
 - name: Install Emacs
   community.general.homebrew:
     name: emacs-plus@30
@@ -24,10 +36,12 @@
       - with-mailutils
       - with-ctags
       - with-retro-emacs-logo-icon
+    state: latest
+  when: ansible_facts['os_family'] == 'Darwin'
 
 - name: Install Emacs configuration directory
   copy:
     src: config/emacs
-    dest: "{{ config_dir }}/emacs"
+    dest: "{{ config_dir }}/"
     owner: "{{ user }}"
     group: "{{ default_group }}"

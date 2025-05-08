@@ -4,7 +4,7 @@
 
 Bootstrap package management. I use =elpaca= with =use-package= to allow asynchronous declarative package management. This is just the necessary boilerplate.
 #+begin_src emacs-lisp
-  (defvar elpaca-installer-version 0.10)
+  (defvar elpaca-installer-version 0.11)
   (defvar elpaca-directory (expand-file-name "elpaca/" user-emacs-directory))
   (defvar elpaca-builds-directory (expand-file-name "builds/" elpaca-directory))
   (defvar elpaca-repos-directory (expand-file-name "repos/" elpaca-directory))
@@ -804,17 +804,6 @@ Install tools for LaTeX. Namely, =auctex= for better integration with Emacs and 
     (LaTeX-mode . turn-on-cdlatex))
 #+end_src
 
-** Lisp
-
-Install tools for Emacs Lisp. Namely =parinfer-rust-mode= which handles parentheses nicely in Emacs Lisp.
-#+begin_src emacs-lisp :tangle yes
-  (use-package parinfer-rust-mode
-    :hook
-    (emacs-lisp-mode . parinfer-rust-mode)
-    :init
-    (setq parinfer-rust-auto-download t))
-#+end_src
-
 ** Lua
 
 Install =lua-mode=.
@@ -904,8 +893,6 @@ Install =zig-mode=.
 Set up =eglot= to run on languages that have been configured.
 #+begin_src emacs-lisp
   (global-set-key (kbd "C-c r") 'eglot-rename)
-  (use-package tree-sitter)
-  (use-package tree-sitter-langs)
   (defun jj/enable-extras ()
     (eglot-ensure)
     (tree-sitter-mode 1)

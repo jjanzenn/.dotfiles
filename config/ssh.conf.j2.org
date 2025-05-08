@@ -4,7 +4,9 @@ Use the keychain by default and the keyfile at =~/.ssh/id_ed25519=.
 #+begin_src conf
   Host *
     IdentityFile ~/.ssh/id_ed25519
+    {% if ansible_facts['os_family'] == 'Darwin' %}
     UseKeychain yes
+    {% endif %}
 #+end_src
 
 Configuration for my school's server.
