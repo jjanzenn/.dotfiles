@@ -16,7 +16,9 @@
     - name: Install packages
       package:
         name:
+          - bison
           - foot
+          - flex
           - gcc-c++
           - hyfetch
           - ksshaskpass
