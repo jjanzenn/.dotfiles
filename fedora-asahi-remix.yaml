@@ -57,10 +57,6 @@
       import_tasks:
         file: tasks/ssh.yaml
 
-    - name: Install and configure River
-      import_tasks:
-        file: tasks/river.yaml
-
     - name: Install and configure zsh
       import_tasks:
         file: tasks/zsh.yaml
