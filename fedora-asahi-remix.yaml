@@ -24,7 +24,7 @@
           - git-delta
           - hyfetch
           - ksshaskpass
-          - libfl2
+          - libfl-devel
           - python3-libdnf5
           - pipx
           - sshpass
