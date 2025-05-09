@@ -10,19 +10,20 @@
       - hunspell
       - libgccjit
       - ripgrep
-      - yarnpkg
 
 - name: Install necessary npm packages for Emacs
   community.general.yarn:
     name: yaml-language-server
     global: true
     state: latest
+  when: ansible_facts['distribution'] == 'Fedora'
 
 - name: Install necessary Fedora packages for Emacs
   package:
     name:
       - emacs
       - librsvg2
+      - yarnpkg
     state: latest
   when: ansible_facts['distribution'] == 'Fedora'
 
