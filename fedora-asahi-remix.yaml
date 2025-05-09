@@ -21,6 +21,7 @@
           - python3-libdnf5
           - pipx
           - sshpass
+          - stack
         state: latest
 
     - name: Install ansible
