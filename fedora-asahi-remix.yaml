@@ -21,6 +21,7 @@
           - foot
           - flex
           - gcc-c++
+          - git-delta
           - hyfetch
           - ksshaskpass
           - libfl2
