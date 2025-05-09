@@ -20,9 +20,17 @@ Install =pipx= packages to =~/.local/pipx=.
   export PIPX_HOME="$HOME/.local/pipx"
 #+end_src
 
-If I am on macOS, set the GPG_TTY variable.
+If I am on macOS, set the =GPG_TTY= variable.
 #+begin_src sh
   if [ "$(uname -s)" = 'Darwin' ]; then
       export GPG_TTY=$(tty)
+  fi
+#+end_src
+
+If I am on Linux, set the =SSH_ASKPASS= variables.
+#+begin_src sh
+  if grep -q asahi /etc/os-release; then
+      SSH_ASKPASS=/usr/bin/ksshaskpass
+      SSH_ASKPASS_REQUIRE=prefer
   fi
 #+end_src

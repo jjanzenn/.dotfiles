@@ -895,8 +895,7 @@ Set up =eglot= to run on languages that have been configured.
   (global-set-key (kbd "C-c r") 'eglot-rename)
   (defun jj/enable-extras ()
     (eglot-ensure)
-    (tree-sitter-mode 1)
-    (tree-sitter-hl-mode 1))
+    (font-lock-mode 1))
   (dolist (lang-hook '(sh-mode-hook
                        c-mode-hook
                        c++-mode-hook
