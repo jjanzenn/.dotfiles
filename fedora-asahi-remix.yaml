@@ -17,6 +17,7 @@
       package:
         name:
           - bison
+          - clangd
           - foot
           - flex
           - gcc-c++
