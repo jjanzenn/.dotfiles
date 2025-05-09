@@ -18,6 +18,7 @@
         name:
           - bison
           - clangd
+          - conan
           - foot
           - flex
           - gcc-c++
@@ -25,6 +26,7 @@
           - hyfetch
           - ksshaskpass
           - libfl-devel
+          - meson
           - python3-libdnf5
           - pipx
           - sshpass
