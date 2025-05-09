@@ -31,7 +31,7 @@ Set up fonts. I use Source Code Pro (Nerd Font) for =monospace= and Computer Mod
   (defvar jj/mono-font "Atkinson Hyperlegible Mono-13:weight=thin")
   (defvar jj/var-font "Atkinson Hyperlegible Next-13")
 
-  (when (memq window-system '(mac ns x))
+  (when (eq system-type 'darwin)
             (setq jj/mono-font "Atkinson Hyperlegible Mono-14:weight=thin")
             (setq jj/var-font "Atkinson Hyperlegible Next-14"))
 
