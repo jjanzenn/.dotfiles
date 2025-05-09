@@ -26,6 +26,7 @@
           - hyfetch
           - ksshaskpass
           - libfl-devel
+          - mesa-libEGL-devel
           - meson
           - python3-libdnf5
           - pipx
