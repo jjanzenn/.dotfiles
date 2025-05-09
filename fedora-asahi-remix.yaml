@@ -33,6 +33,7 @@
           - sshpass
           - stack
           - systemd-devel
+          - xkeyboard-config-devel
         state: latest
 
     - name: Install ansible
