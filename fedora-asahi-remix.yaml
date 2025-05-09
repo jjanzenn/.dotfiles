@@ -19,6 +19,7 @@
           - foot
           - gcc-c++
           - hyfetch
+          - ksshaskpass
           - python3-libdnf5
           - pipx
           - sshpass
