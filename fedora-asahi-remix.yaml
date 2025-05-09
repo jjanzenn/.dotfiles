@@ -32,6 +32,7 @@
           - pipx
           - sshpass
           - stack
+          - systemd-devel
         state: latest
 
     - name: Install ansible
