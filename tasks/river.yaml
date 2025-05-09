@@ -1,0 +1,6 @@
+- name: Install river
+  package:
+    name:
+      - river
+      - NetworkManager-tui
+    state: latest

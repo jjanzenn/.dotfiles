@@ -46,13 +46,13 @@
       import_tasks:
         file: tasks/git.yaml
 
-    - name: Install and configure Hyprland
-      import_tasks:
-        file: tasks/hyprland.yaml
-
     - name: Install and configure SSH
       import_tasks:
         file: tasks/ssh.yaml
+
+    - name: Install and configure River
+      import_tasks:
+        file: tasks/river.yaml
 
     - name: Install and configure zsh
       import_tasks:
@@ -61,15 +61,3 @@
     - name: Install the wallpaper file
       import_tasks:
         file: tasks/wallpaper.yaml
-
-    - name: Enable Flathub
-      community.general.flatpak_remote:
-        name: flathub
-        state: present
-        enabled: true
-
-    - name: Install Flatpak packages
-      community.general.flatpak:
-        name:
-          - xyz.armcord.ArmCord
-          - com.github.tchx84.Flatseal
