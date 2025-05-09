@@ -17,6 +17,7 @@
       package:
         name:
           - foot
+          - gcc-c++
           - hyfetch
           - python3-libdnf5
           - pipx
