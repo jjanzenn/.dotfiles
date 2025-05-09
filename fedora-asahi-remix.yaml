@@ -23,6 +23,7 @@
           - gcc-c++
           - hyfetch
           - ksshaskpass
+          - libfl2
           - python3-libdnf5
           - pipx
           - sshpass

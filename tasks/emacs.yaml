@@ -11,7 +11,14 @@
       - libgccjit
       - ripgrep
 
-- name: Install necessary npm packages for Emacs
+- name: Install prettier
+  community.general.yarn:
+    name: prettier
+    global: true
+    state: latest
+  when: ansible_facts['distribution'] == 'Fedora'
+
+- name: Install yaml language server
   community.general.yarn:
     name: yaml-language-server
     global: true
