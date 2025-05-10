@@ -19,6 +19,7 @@
           - bison
           - clangd
           - conan
+          - fastfetch
           - foot
           - flex
           - gcc-c++
