@@ -61,6 +61,10 @@
       import_tasks:
         file: tasks/git.yaml
 
+    - name: Install and configure Ghostty
+      import_tasks:
+        file: tasks/ghostty.yaml
+
     - name: Install and configure SSH
       import_tasks:
         file: tasks/ssh.yaml
