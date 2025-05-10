@@ -28,8 +28,8 @@ Clean up interface by removing unnecessary elements.
 
 Set up fonts. I use Source Code Pro (Nerd Font) for =monospace= and Computer Modern for /variable width/.
 #+begin_src emacs-lisp
-  (defvar jj/mono-font "Atkinson Hyperlegible Mono-12:weight=thin")
-  (defvar jj/var-font "Atkinson Hyperlegible Next-10")
+  (defvar jj/mono-font "Atkinson Hyperlegible Mono-14:weight=thin")
+  (defvar jj/var-font "Atkinson Hyperlegible Next-14")
 
   (when (memq window-system '(mac ns x))
             (setq jj/mono-font "Atkinson Hyperlegible Mono-14:weight=thin")
@@ -41,3 +41,8 @@ Set up fonts. I use Source Code Pro (Nerd Font) for =monospace= and Computer Mod
    `(variable-pitch ((t :font ,jj/var-font)))
    `(fixed-pitch ((t :font ,jj/mono-font))))
  #+end_src
+
+Set the theme to =modus-vivendi= by default.
+#+begin_src emacs-lisp
+  (load-theme modus-vivendi)
+#+end_src
