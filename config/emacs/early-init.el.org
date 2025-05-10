@@ -42,7 +42,7 @@ Set up fonts. I use Source Code Pro (Nerd Font) for =monospace= and Computer Mod
    `(fixed-pitch ((t :font ,jj/mono-font))))
  #+end_src
 
-Set the theme to =modus-vivendi= by default.
+Set the theme to =modus-operandi= by default.
 #+begin_src emacs-lisp
   (load-theme 'modus-operandi)
 #+end_src
