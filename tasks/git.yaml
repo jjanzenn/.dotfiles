@@ -10,8 +10,8 @@
     state: directory
 
 - name: Configure git
-  copy:
-    src: config/git.ini
+  template:
+    src: config/git.ini.j2
     dest: "{{ config_dir }}/git/config"
     owner: "{{ user }}"
     group: "{{ default_group }}"

@@ -3,7 +3,11 @@
 Use =delta= as a pager program.
 #+begin_src conf
   [core]
+  {% if ansible_facts['os_family'] == 'Darwin' %}
   pager = /opt/homebrew/bin/delta
+  {% else %}
+  pager = /usr/bin/delta
+  {% endif %}
 #+end_src
 
 Use =gpg= as a PGP program.
@@ -12,7 +16,11 @@ Use =gpg= as a PGP program.
   format = "openpgp"
 
   [gpg "openpgp"]
+  {% if ansible_facts['os_family'] == 'Darwin' %}
   program = /opt/homebrew/bin/gpg
+  {% else %}
+  program = /usr/bin/gpg
+  {% endif %}
 #+end_src
 
 Default to =main= over =master= for the default branch.
@@ -24,7 +32,11 @@ Default to =main= over =master= for the default branch.
 Use =delta= with only colours as a diff viewer.
 #+begin_src conf
   [interactive]
+  {% if ansible_facts['os_family'] == 'Darwin' %}
   diffFilter = "/opt/homebrew/bin/delta --color-only"
+  {% else %}
+  diffFilter = "/usr/bin/delta --color-only"
+  {% endif %}
 #+end_src
 
 Default to rebasing on pull.
