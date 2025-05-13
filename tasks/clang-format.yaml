@@ -2,6 +2,7 @@
   package:
     name: clang-format
     state: latest
+  when: ansible_facts['os_family'] == 'Darwin'
 
 - name: configure clang-format
   copy:

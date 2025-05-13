@@ -48,6 +48,10 @@
         install_deps: true
         executable: /usr/bin/pipx
 
+    - name: Install clang-format
+      import_tasks:
+        file: tasks/clang-format.yaml
+
     - name: Install fonts
       import_tasks:
         file: tasks/fonts.yaml
