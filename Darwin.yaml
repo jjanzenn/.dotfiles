@@ -34,6 +34,7 @@
           - aescrypt
           - bash-language-server
           - bear
+          - biber
           - bison
           - cabal-install
           - choose-gui
