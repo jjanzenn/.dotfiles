@@ -622,7 +622,7 @@ Install a better PDF viewer than =DocView=.
           TeX-view-program-list '(("PDF Tools" TeX-pdf-tools-sync-view))
           TeX-source-correlate-start-server t))
   (when (eq system-type 'darwin)
-    (setenv "PKG_CONFIG_PATH" "$PKG_CONFIG_PATH:/opt/homebrew/lib/pkgconfig/:/opt/homebrew/:/opt/homebrew/opt/libffi/lib/pkgconfig/"))
+    (setenv "PKG_CONFIG_PATH" "$PKG_CONFIG_PATH:/opt/homebrew/lib/pkgconfig/:/opt/homebrew/:/opt/homebrew/opt/libffi/lib/pkgconfig/:/opt/homebrew/opt/poppler/lib/pkgconfig/"))
 #+end_src
 
 Provide a snippet management system.
