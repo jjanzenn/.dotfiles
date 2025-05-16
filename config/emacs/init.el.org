@@ -707,8 +707,7 @@ Install a better PDF viewer than =DocView=.
     :hook
     (doc-view-mode . (lambda () (pdf-tools-install))) ;; install on first pdf opened instead of startup
     (pdf-view-mode . (lambda ()
-                       (display-line-numbers-mode -1)
-                       (pdf-view-themed-minor-mode)))
+                       (display-line-numbers-mode -1)))
     :init
     (add-hook 'TeX-after-compilation-finished-functions #'TeX-revert-document-buffer)
     :config
