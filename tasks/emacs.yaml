@@ -10,6 +10,7 @@
       - hunspell
       - libgccjit
       - ripgrep
+    state: latest
 
 - name: Install prettier
   community.general.yarn:

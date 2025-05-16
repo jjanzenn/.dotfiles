@@ -1,0 +1,11 @@
+- name: Install foot terminal
+  package:
+    name: foot
+    state: latest
+
+- name: Install foot configuration directory
+  copy:
+    src: config/foot
+    dest: "{{ config_dir }}"
+    owner: "{{ user }}"
+    group: "{{ default_group }}"
