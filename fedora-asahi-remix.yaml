@@ -20,7 +20,6 @@
           - clangd
           - conan
           - fastfetch
-          - foot
           - flex
           - gcc-c++
           - go
@@ -63,6 +62,10 @@
     - name: Install and configure Emacs
       import_tasks:
         file: tasks/emacs.yaml
+
+    - name: Install and configure foot
+      import_tasks:
+        file: tasks/foot.yaml
 
     - name: Install and configure Git
       import_tasks:
