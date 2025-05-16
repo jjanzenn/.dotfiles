@@ -7,48 +7,32 @@
   box-drawings-uses-font-glyphs=no
   dpi-aware=yes
   gamma-correct-blending=yes
-  initial-color-theme=1
-
-  [environment]
-  # name=value
-
-  [security]
-  # osc52=enabled  # disabled|copy-enabled|paste-enabled|enabled
 
   [bell]
   system=no
-
-  [url]
-  launch=xdg-open ${url}
 
   [mouse]
   hide-when-typing=yes
 
   [colors]
-  alpha=1.0
-  alpha-mode=default # Can be `default`, `matching` or `all`
-  background=242424
-  foreground=ffffff
-  flash=7f7f00
-  flash-alpha=0.5
 
-  ## Normal/regular colors (color palette 0-7)
-  regular0=242424  # black
-  regular1=f62b5a  # red
-  regular2=47b413  # green
-  regular3=e3c401  # yellow
-  regular4=24acd4  # blue
-  regular5=f2affd  # magenta
-  regular6=13c299  # cyan
-  regular7=e6e6e6  # white
-
-  ## Bright colors (color palette 8-15)
-  bright0=616161   # bright black
-  bright1=ff4d51   # bright red
-  bright2=35d450   # bright green
-  bright3=e9e836   # bright yellow
-  bright4=5dc5f8   # bright blue
-  bright5=feabf2   # bright magenta
-  bright6=24dfc4   # bright cyan
-  bright7=ffffff   # bright white
+  cursor=eeeeee 444444
+  background=eeeeee
+  foreground=444444
+  regular0=eeeeee  # black
+  regular1=af0000  # red
+  regular2=008700  # green
+  regular3=5f8700  # yellow
+  regular4=0087af  # blue
+  regular5=878787  # magenta
+  regular6=005f87  # cyan
+  regular7=764e37  # white
+  bright0=bcbcbc   # bright black
+  bright1=d70000   # bright red
+  bright2=d70087   # bright green
+  bright3=8700af   # bright yellow
+  bright4=d75f00   # bright blue
+  bright5=d75f00   # bright magenta
+  bright6=4c7a5d   # bright cyan
+  bright7=005faf   # bright white
 #+end_src
