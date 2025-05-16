@@ -15,8 +15,6 @@
   hide-when-typing=yes
 
   [colors]
-
-  cursor=444444
   background=eeeeee
   foreground=444444
   regular0=eeeeee  # black
