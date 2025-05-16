@@ -16,7 +16,7 @@
 
   [colors]
 
-  cursor=eeeeee 444444
+  cursor=444444
   background=eeeeee
   foreground=444444
   regular0=eeeeee  # black
