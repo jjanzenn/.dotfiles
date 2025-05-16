@@ -7,7 +7,7 @@
   box-drawings-uses-font-glyphs=no
   dpi-aware=yes
   gamma-correct-blending=yes
-  initial-color-theme=0
+  initial-color-theme=1
 
   [environment]
   # name=value
