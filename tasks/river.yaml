@@ -2,5 +2,34 @@
   package:
     name:
       - river
+      - brightnessctl
+      - dunst
+      - fuzzel
+      - grim
       - NetworkManager-tui
+      - pamixer
+      - slurp
+      - swayidle
+      - swaylock
+      - waybar
+      - wlr-randr
     state: latest
+
+- name: Dowload way-displays source
+  get_url:
+    url: https://github.com/alex-courtis/way-displays/archive/refs/tags/1.14.0.tar.gz
+    dest: /usr/local/src/way-displays.tar.gz
+  register: way-displays-source-download
+
+- name: Unpack way-displays source
+  unarchive:
+    src: /usr/local/src/way-displays.tar.gz
+    dest: /usr/local/src
+  when: way-displays-source-download.changed
+  register: way-displays-source-unpack
+
+- name: Compile and install way-displays source
+  community.general.make:
+    chdir: /usr/local/src/way-displays/
+    target: install
+  when: way-displays-source-unpack.changed
