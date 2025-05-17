@@ -1,0 +1,9 @@
+#+title: keyd Configuration
+
+Remap caps lock to escape on press and control on hold.
+#+begin_src conf
+  [ids]
+  ,*
+  [main]
+  capslock = overload(control, esc)
+#+end_src

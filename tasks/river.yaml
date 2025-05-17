@@ -37,6 +37,36 @@
     target: install
   when: way_displays_source_unpack.changed
 
+- name: Download keyd source
+  git:
+    repo: https://github.com/rvaiya/keyd.git
+    dest: /usr/local/src/keyd
+    version: v2.5.0
+  register: keyd_source_download
+
+- name: Compile keyd
+  community.general.make:
+    chdir: /usr/local/src/keyd/
+  when: keyd_source_download.changed
+  register: keyd_compile
+
+- name: Install keyd
+  community.general.make:
+    chdir: /usr/local/src/keyd/
+    target: install
+  when: keyd_compile.changed
+
+- name: Install keyd configuration
+  copy:
+    src: config/keyd
+    dest: /etc
+
+- name: Start and enable keyd
+  service:
+    name: keyd
+    state: started
+    enabled: yes
+
 - name: Create river configuration directory
   file:
     path: "{{ config_dir }}/river"
