@@ -36,3 +36,19 @@
     chdir: /usr/local/src/way-displays-1.14.0/
     target: install
   when: way_displays_source_unpack.changed
+
+- name: Create river configuration directory
+  file:
+    path: "{{ config_dir }}/river"
+    recurse: true
+    state: directory
+    owner: "{{ user }}"
+    group: "{{ default_group }}"
+
+- name: Create river init script
+  copy:
+    src: config/river/init
+    dest: "{{ config_dir }}/river/init"
+    owner: "{{ user }}"
+    group: "{{ default_group }}"
+    mode: "0755"
