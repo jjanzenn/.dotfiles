@@ -1,0 +1,11 @@
+- name: Install kakoune
+  package:
+    name: kakoune
+    state: latest
+
+- name: Install kakoune configuration directory
+  copy:
+    src: config/kak
+    dest: "{{ config_dir }}/"
+    owner: "{{ user }}"
+    group: "{{ default_group }}"
