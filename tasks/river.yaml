@@ -19,17 +19,17 @@
   get_url:
     url: https://github.com/alex-courtis/way-displays/archive/refs/tags/1.14.0.tar.gz
     dest: /usr/local/src/way-displays.tar.gz
-  register: way-displays-source-download
+  register: way_displays_source_download
 
 - name: Unpack way-displays source
   unarchive:
     src: /usr/local/src/way-displays.tar.gz
     dest: /usr/local/src
-  when: way-displays-source-download.changed
-  register: way-displays-source-unpack
+  when: way_displays_source_download.changed
+  register: way_displays_source_unpack
 
 - name: Compile and install way-displays source
   community.general.make:
-    chdir: /usr/local/src/way-displays/
+    chdir: /usr/local/src/way-displays-1.14.0/
     target: install
-  when: way-displays-source-unpack.changed
+  when: way_displays_source_unpack.changed
