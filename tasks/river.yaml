@@ -6,6 +6,7 @@
       - dunst
       - fuzzel
       - grim
+      - libinput-devel
       - NetworkManager-tui
       - pamixer
       - slurp
@@ -14,6 +15,7 @@
       - waybar
       - wayland-devel
       - wlr-randr
+      - yaml-cpp-devel
     state: latest
 
 - name: Dowload way-displays source
