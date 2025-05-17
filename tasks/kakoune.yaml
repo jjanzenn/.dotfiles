@@ -1,6 +1,8 @@
 - name: Install kakoune
   package:
-    name: kakoune
+    name:
+      - kakoune
+      - wl-clipboard
     state: latest
 
 - name: Install kakoune configuration directory
