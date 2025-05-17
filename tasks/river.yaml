@@ -12,6 +12,7 @@
       - swayidle
       - swaylock
       - waybar
+      - wayland-devel
       - wlr-randr
     state: latest
 
