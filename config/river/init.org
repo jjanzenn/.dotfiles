@@ -4,6 +4,7 @@
   #!/bin/sh
   # Super+Shift+Return to start an instance of foot (https://codeberg.org/dnkl/foot)
   riverctl map normal Super+Shift Return spawn foot
+  riverctl map normal Super D spawn fuzzel
 
   # Super+Q to close the focused view
   riverctl map normal Super Q close
@@ -152,4 +153,7 @@
   # River will send the process group of the init executable SIGTERM on exit.
   riverctl default-layout rivertile
   rivertile -view-padding 6 -outer-padding 6 &
+
+  # configure displays
+  way-displays > /tmp/way-displays.${XDG_VTNR}.${USER}.log 2>&1 &
 #+end_src
