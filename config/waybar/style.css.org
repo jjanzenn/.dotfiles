@@ -5,6 +5,8 @@
           "Noto Sans Mono", "Font Awesome 6 Free", "Font Awesome 6 Brands",
           monospace;
       font-size: 15px;
+      margin: 0px;
+      padding: 0px;
   }
 
   window#waybar {
