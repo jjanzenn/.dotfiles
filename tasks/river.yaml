@@ -2,6 +2,7 @@
   package:
     name:
       - river
+      - blueman
       - brightnessctl
       - dunst
       - fuzzel
