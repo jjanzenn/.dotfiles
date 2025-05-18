@@ -70,6 +70,13 @@
     state: started
     enabled: yes
 
+- name: Install waybar configuration
+  copy:
+    src: config/waybar
+    dest: "{{ config_dir }}"
+    owner: "{{ user }}"
+    group: "{{ default_group }}"
+
 - name: Create river configuration directory
   file:
     path: "{{ config_dir }}/river"
