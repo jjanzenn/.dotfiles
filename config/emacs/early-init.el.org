@@ -42,7 +42,14 @@ Set up fonts. I use Source Code Pro (Nerd Font) for =monospace= and Computer Mod
    `(fixed-pitch ((t :font ,jj/mono-font))))
  #+end_src
 
-Set the theme to =modus-operandi= by default.
+Remove titlebar on Linux.
+#+begin_src emacs-lisp
+  (when (eq system-type 'gnu/linux)
+    (add-to-list 'default-frame-alist '(undecorated . t)))
+#+end_src
+
+
+set the theme to =modus-operandi= by default.
 #+begin_src emacs-lisp
   (load-theme 'modus-operandi)
 #+end_src
