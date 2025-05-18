@@ -3,10 +3,11 @@
 #+begin_src conf
   term=xterm-256color
   title=term
-  font=Atkinson Hyperlegible Mono:12
+  font=Atkinson Hyperlegible Mono:11
   box-drawings-uses-font-glyphs=no
   dpi-aware=yes
   gamma-correct-blending=yes
+  initial-window-size-chars=80x60
 
   [bell]
   system=no
