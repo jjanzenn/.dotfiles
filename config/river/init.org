@@ -7,7 +7,7 @@ This is literally just a shell script.
 
 Start a terminal with =super+return=.
 #+begin_src sh
-  riverctl map normal Super+Shift Return spawn foot
+  riverctl map normal Super Return spawn foot
 #+end_src
 
 Start an application launcher with =super+d=.
