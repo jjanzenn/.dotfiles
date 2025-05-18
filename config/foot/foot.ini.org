@@ -7,7 +7,7 @@
   box-drawings-uses-font-glyphs=no
   dpi-aware=yes
   gamma-correct-blending=yes
-  initial-window-size-chars=80x60
+  initial-window-size-chars=80x30
 
   [bell]
   system=no
