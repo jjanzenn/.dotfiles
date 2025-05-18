@@ -204,6 +204,11 @@ Start Wi-Fi connection.
   nm-applet &
 #+end_src
 
+Start up bluetooth.
+#+begin_src sh
+  blueman-applet &
+#+end_src
+
 Configure displays automatically.
 #+begin_src sh
   way-displays > /tmp/way-displays.${XDG_VTNR}.${USER}.log 2>&1 &
