@@ -184,6 +184,11 @@ Start notification manager.
   dunst &
 #+end_src
 
+Start waybar.
+#+begin_src sh
+  waybar &
+#+end_src
+
 Configure displays automatically.
 #+begin_src sh
   way-displays > /tmp/way-displays.${XDG_VTNR}.${USER}.log 2>&1 &
