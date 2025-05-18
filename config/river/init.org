@@ -189,6 +189,11 @@ Start waybar.
   waybar &
 #+end_src
 
+Start Wi-Fi connection.
+#+begin_src sh
+  nm-applet &
+#+end_src
+
 Configure displays automatically.
 #+begin_src sh
   way-displays > /tmp/way-displays.${XDG_VTNR}.${USER}.log 2>&1 &
