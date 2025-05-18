@@ -67,6 +67,8 @@
   # Super + Middle Mouse Button to toggle float
   riverctl map-pointer normal Super BTN_MIDDLE toggle-float
 
+  riverctl input pointer-1452-850-Apple_MTP_multi-touch natural-scroll disabled
+
   for i in $(seq 1 9)
   do
       tags=$((1 << ($i - 1)))

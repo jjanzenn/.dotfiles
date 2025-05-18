@@ -16,6 +16,7 @@
       - wayland-devel
       - wlr-randr
       - yaml-cpp-devel
+      - zig
     state: latest
 
 - name: Dowload way-displays source
@@ -66,6 +67,21 @@
     name: keyd
     state: started
     enabled: yes
+
+- name: Download levee
+  git:
+    repo: https://git.sr.ht/~andreafeletto/levee
+    dest: /usr/local/src/levee
+    version: v0.1.4
+    recursive: true
+  register: levee_download
+
+- name: Compile and install levee
+  shell:
+    cmd: zig build --prefix /usr/local install
+  args:
+    chdir: /usr/local/src/levee
+  when: levee_download.changed
 
 - name: Create river configuration directory
   file:
