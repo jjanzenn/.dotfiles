@@ -1,0 +1,141 @@
+#+title: Waybar Styling
+#+begin_src css
+  ,* {
+      font-family:
+          "Noto Sans Mono", "Font Awesome 6 Free", "Font Awesome 6 Brands",
+          monospace;
+      font-size: 15px;
+  }
+
+  window#waybar {
+      background-color: transparent;
+      color: #000000;
+      transition-property: background-color;
+      transition-duration: 0.5s;
+  }
+
+  window#waybar > box {
+      border: 3px solid #c3c3c3;
+      background-color: #c3c3c3;
+  }
+
+  .modules-right {
+      border-top: 3px solid #818181;
+      border-left: 3px solid #818181;
+      border-right: 3px solid #fdffff;
+      border-bottom: 3px solid #fdffff;
+      margin-right: 1px;
+  }
+
+  button {
+      border-left: 2px solid #fdffff;
+      border-top: 2px solid #fdffff;
+      border-right: 2px solid #818181;
+      border-bottom: 2px solid #818181;
+      box-shadow: 2px 2px 0px 0px #000000;
+      border-radius: 0;
+      margin: 4px;
+      padding-left: 10px;
+      padding-right: 10px;
+  }
+
+  button.focused {
+      border-right: 2px solid #fdffff;
+      border-bottom: 2px solid #fdffff;
+      border-left: 2px solid #818181;
+      border-top: 2px solid #818181;
+      box-shadow: -2px -2px 0px 0px #000000;
+      border-radius: 0;
+      margin: 4px;
+      padding-left: 10px;
+      padding-right: 10px;
+      margin-top: 8px;
+      margin-left: 8px;
+  }
+
+  #workspaces button {
+      padding: 0 5px;
+      background-color: transparent;
+      color: #ffffff;
+  }
+
+  #tags button:hover {
+      background: rgba(0, 0, 0, 0.2);
+  }
+
+  #tags button.urgent {
+      background-color: #eb4d4b;
+  }
+
+  #mode {
+      background-color: #64727d;
+      box-shadow: inset 0 -3px #ffffff;
+  }
+
+  #custom-power {
+      font-size: 20px;
+      border-left: 2px solid #fdffff;
+      border-top: 2px solid #fdffff;
+      border-right: 2px solid #818181;
+      border-bottom: 2px solid #818181;
+      box-shadow: 2px 2px 0px 0px #000000;
+      border-radius: 0;
+      margin: 4px;
+  }
+
+  #clock,
+  #battery,
+  #cpu,
+  #memory,
+  #disk,
+  #temperature,
+  #backlight,
+  #network,
+  #pulseaudio,
+  #wireplumber,
+  #custom-media,
+  #tray,
+  #mode,
+  #idle_inhibitor,
+  #scratchpad,
+  #power-profiles-daemon,
+  #mpd {
+      padding: 0 10px;
+      color: #000000;
+  }
+
+  #window,
+  #workspaces {
+      font-family: "Noto Sans";
+      margin: 0 4px;
+  }
+
+  /* If workspaces is the leftmost module, omit left margin */
+  .modules-left > widget:first-child > #workspaces {
+      margin-left: 0;
+  }
+
+  /* If workspaces is the rightmost module, omit right margin */
+  .modules-right > widget:last-child > #workspaces {
+      margin-right: 0;
+  }
+
+  @keyframes blink {
+      to {
+          background-color: #ffffff;
+          color: #000000;
+      }
+  }
+
+  /* Using steps() instead of linear as a timing function to limit cpu usage */
+  #battery.critical:not(.charging) {
+      background-color: #f53c3c;
+      color: #ffffff;
+      animation-name: blink;
+      animation-duration: 0.5s;
+      animation-timing-function: steps(12);
+      animation-iteration-count: infinite;
+      animation-direction: alternate;
+  }
+
+#+end_src

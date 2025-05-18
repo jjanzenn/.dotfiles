@@ -15,6 +15,16 @@ Start an application launcher with =super+d=.
   riverctl map normal Super D spawn fuzzel
 #+end_src
 
+Take a screenshot with =super+shift+s=.
+#+begin_src sh
+  riverctl map normal Super+Shift S spawn 'grim -g "$(slurp)" - | wl-copy'
+#+end_src
+
+Lock the screen with =super+control+q=.
+#+begin_src sh
+  riverctl map normal Super+Control Q spawn 'swaylock -c 008080'
+#+end_src
+
 Close an application with =super-q=.
 #+begin_src sh
   riverctl map normal Super Q close
