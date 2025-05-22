@@ -141,6 +141,11 @@ Toggle fullscreen mode with =super+f=.
   riverctl map normal Super F toggle-fullscreen
 #+end_src
 
+Maybe use Dvorak keyboard layout in the future.
+#+begin_src sh
+  # riverctl keyboard-type 'us(dvorak)'
+#+end_src
+
 Change the layout orientation with =super+up/right/down/left=.
 #+begin_src sh
   riverctl map normal Super Up    send-layout-cmd rivertile "main-location top"
