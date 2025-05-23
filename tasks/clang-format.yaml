@@ -7,7 +7,7 @@
 - name: configure clang-format
   copy:
     src: config/clang-format.yaml
-    dest: "{{ config_dir }}/.clang-format"
+    dest: "{{ home }}/.clang-format"
     owner: "{{ user }}"
     group: "{{ default_group }}"
     mode: "0644"
