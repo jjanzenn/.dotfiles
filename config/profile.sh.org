@@ -29,7 +29,7 @@ If I am on macOS, set the =GPG_TTY= variable.
 
 If I am on Linux, set the =SSH_ASKPASS= variables.
 #+begin_src sh
-  if grep -q asahi /etc/os-release; then
+  if grep -q asahi /etc/os-release 2> /dev/null; then
       SSH_ASKPASS=/usr/bin/ksshaskpass
       SSH_ASKPASS_REQUIRE=prefer
   fi
