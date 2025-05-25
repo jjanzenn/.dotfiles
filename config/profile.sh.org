@@ -2,6 +2,7 @@
 
 Set my =PATH= variable.
 #+begin_src sh
+  setopt no_global_rcs
   export PATH="$HOME/.yarn/bin:$HOME/node_modules/.bin:$HOME/bin:$HOME/gems/bin:$HOME/.local/bin:$HOME/go/bin:/usr/local/bin:/Library/TeX/texbin/:/usr/local/bin:/opt/homebrew/bin:/opt/homebrew/sbin:$PATH"
 #+end_src
 
