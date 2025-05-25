@@ -204,3 +204,12 @@
     - name: Configure macOS wallpaper
       command: osascript -e "tell application \"System Events\" to tell every desktop to set picture to \"{{ wallpaper_path }}\" as POSIX file"
       when: wallpaper.changed
+
+    - name: Install GNU find as default find program
+      file:
+        src: /opt/homebrew/bin/gfind
+        dest: "{{ home }}/.local/bin/find"
+        owner: "{{ user }}"
+        group: "{{ default_group }}"
+        mode: "0755"
+        state: link
