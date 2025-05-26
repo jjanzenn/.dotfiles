@@ -112,6 +112,13 @@ Use natural scrolling on the MacBook Pro TrackPad.
   riverctl input pointer-1452-850-Apple_MTP_multi-touch natural-scroll disabled
 #+end_src
 
+Slow the pointer down on my trackball.
+#+begin_src sh
+  riverctl input pointer-20547-23623-Ploopy_Corporation_Ploopy_Adept_Trackball_Mouse pointer-accel -0.1
+  riverctl input pointer-20547-23623-Ploopy_Corporation_Ploopy_Adept_Trackball_Mouse accel-profile adaptive
+#+end_src
+
+
 Manage tags. =super+#= moves focus to tag =#=. =super+shift+#= changes the tag of the focused view to =#=. Adding =ctrl= to either of these toggles rather than moving.
 #+begin_src sh
   for i in $(seq 1 9)
