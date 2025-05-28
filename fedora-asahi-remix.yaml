@@ -47,6 +47,12 @@
         install_deps: true
         executable: /usr/bin/pipx
 
+    - name: Install cmake-language-server
+      community.general.pipx:
+        name: cmake-language-server
+        state: latest
+        executable: /usr/bin/pipx
+
     - name: Install clang-format
       import_tasks:
         file: tasks/clang-format.yaml
