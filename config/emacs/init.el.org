@@ -350,6 +350,27 @@ Jump to definition with =dumb-jump=.
     (add-hook 'xref-backend-functions #'dumb-jump-xref-activate))
 #+end_src
 
+** Undo
+
+Set larger undo limits.
+#+begin_src emacs-lisp
+  (setq undo-limit 67108864)
+  (setq undo-strong-limit 100663296)
+  (setq undo-outer-limit 1006632960)
+#+end_src
+
+Keep undo history between sessions.
+#+begin_src emacs-lisp
+  (use-package undo-fu-session
+    :init
+    (undo-fu-session-global-mode))
+#+end_src
+
+Visualize the undo history.
+#+begin_src emacs-lisp
+  (use-package vundo)
+#+end_src
+
 ** Project Management
 
 Configure and install =magit= as a =git= front end.
