@@ -68,12 +68,11 @@ Display the current time in the mode line.
 ** Theme
 
 #+begin_src emacs-lisp
-  (use-package auto-dark
+  (use-package catppuccin-theme
     :custom
-    (auto-dark-themes '((modus-vivendi) (modus-operandi)))
+    (catppuccin-flavor 'latte)
     :init
-    (when (memq window-system '(mac ns x))
-      (auto-dark-mode)))
+    (load-theme 'catppuccin :no-confirm))
 #+end_src
 
 ** Colours!
