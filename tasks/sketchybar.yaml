@@ -1,6 +1,8 @@
 - name: Install SketchyBar
   package:
-    name: sketchybar
+    name:
+      - sketchybar
+      - font-hack-nerd-font
     state: latest
 
 - name: Ensure SketchyBar config directory exists
