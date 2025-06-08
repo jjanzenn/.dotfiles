@@ -1,0 +1,10 @@
+- name: Install SketchyBar
+  package:
+    name: sketchybar
+    state: latest
+
+- name: Ensure SketchyBar config directory exists
+  file:
+    path: "{{ config_dir }}/sketchybar/plugins"
+    recurse: true
+    state: directory
