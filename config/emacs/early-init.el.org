@@ -21,7 +21,6 @@ Disable the default startup screen so Emacs starts in the =scratch= buffer and a
 Clean up interface by removing unnecessary elements.
 #+begin_src emacs-lisp
   (add-to-list 'default-frame-alist '(vertical-scroll-bars . nil))
-  (add-to-list 'default-frame-alist '(alpha-background 0))
   (push '(tool-bar-lines . 0) default-frame-alist)
   (menu-bar-mode -1)
   (setq frame-resize-pixelwise t)
