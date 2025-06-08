@@ -6,7 +6,7 @@
     home: /Users/jjanzen
     user: jjanzen
     default_group: staff
-    wallpaper_path: "{{ home }}/.wallpaper"
+    wallpaper_path: "{{ home }}/wallpaper.png"
     config_dir: "{{ home }}/.config"
     fonts_dir: "{{ home }}/Library/Fonts"
     exec_path: "{{ home }}/.local/bin"

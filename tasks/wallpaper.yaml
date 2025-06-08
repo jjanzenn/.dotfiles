@@ -1,7 +1,7 @@
 - name: Install wallpaper file
   copy:
     src: config/wallpaper.png
-    dest: "{{ home }}/.wallpaper"
+    dest: "{{ wallpaper_path }}"
     owner: "{{ user }}"
     group: "{{ default_group }}"
     mode: "0644"
