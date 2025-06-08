@@ -147,3 +147,13 @@ Assign workspace 10 to the builtin screen and workspace 9 to by secondary screen
   8 = "main"
   9 = ["secondary", "dell"]
 #+end_src
+
+Handle SketchyBar integration.
+#+begin_src toml
+  after-startup-command = ['exec-and-forget sketchybar']
+
+  exec-on-workspace-change = ['/bin/bash', '-c',
+      'sketchybar --trigger aerospace_workspace_change FOCUSED_WORKSPACE=$AEROSPACE_FOCUSED_WORKSPACE'
+  ]
+
+#+end_src
