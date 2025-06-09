@@ -825,6 +825,16 @@ Install tools for LaTeX. Namely, =auctex= for better integration with Emacs and 
     (LaTeX-mode . turn-on-cdlatex))
 #+end_src
 
+** Lisp
+
+Use =parinfer-rust-mode= to handle parentheses in Lisp modes.
+#+begin_src emacs-lisp
+  (use-package parinfer-rust-mode
+    :init
+    (setq parinfer-rust-auto-download t)
+    :hook emacs-lisp-mode)
+#+end_src
+
 ** Lua
 
 Install =lua-mode=.
