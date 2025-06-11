@@ -18,8 +18,6 @@
           - d12frosted/emacs-plus
           - FelixKratz/formulae
           - homebrew/bundle
-          - homebrew/cask-fonts
-          - homebrew/cask-versions
           - homebrew/services
           - jorgelbg/tap
           - nikitabobko/tap
