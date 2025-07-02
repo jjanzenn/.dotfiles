@@ -21,7 +21,7 @@ all: install
 
 # install configs and any additional targets
 install: $(CONFIGS)
-	ansible-playbook -i $(DSTDIR)/inventory.ini $(DSTDIR)/$(SYSTEM).yaml
+	ansible-playbook -i $(DSTDIR)/inventory.ini $(DSTDIR)/$(SYSTEM).yaml -vvv
 	git add -A
 	git commit -m "system changes" || true
 

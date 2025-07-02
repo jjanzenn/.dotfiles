@@ -74,6 +74,7 @@
           - poppler
           - pup
           - rsync
+          - rust
           - rustup
           - shellcheck
           - shfmt
@@ -111,11 +112,9 @@
           - protonvpn
           - qbittorrent
           - rar
-          - homebrew/cask/syncthing
           - thunderbird
           - tor-browser
           - vlc
-          - whisky
           - zotero
         state: latest
 
