@@ -22,7 +22,6 @@
   community.general.cargo:
     directory: "{{ source_path }}/kakoune-lsp-18.2.0"
     name: kakoune-lsp
-    path: "{{ exec_path }}"
   when: kakoune_lsp_source_unpack.changed
 
 - name: Install kakoune configuration directory
