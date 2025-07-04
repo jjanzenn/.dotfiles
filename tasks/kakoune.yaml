@@ -21,7 +21,7 @@
 - name: Compile and install kakoune-lsp source
   community.general.cargo:
     directory: "{{ source_path }}/kakoune-lsp-18.2.0"
-    name: ""
+    name: kak-lsp
     locked: true
     version: 18.2.0
   when: kakoune_lsp_source_unpack.changed
