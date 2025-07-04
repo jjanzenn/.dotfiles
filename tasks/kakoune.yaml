@@ -21,7 +21,9 @@
 - name: Compile and install kakoune-lsp source
   community.general.cargo:
     directory: "{{ source_path }}/kakoune-lsp-18.2.0"
-    name: kakoune-lsp
+    name: ""
+    locked: true
+    version: 18.2.0
   when: kakoune_lsp_source_unpack.changed
 
 - name: Install kakoune configuration directory
