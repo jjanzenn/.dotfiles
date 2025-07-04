@@ -10,8 +10,15 @@
     config_dir: "{{ home }}/.config"
     fonts_dir: "{{ home }}/Library/Fonts"
     exec_path: "{{ home }}/.local/bin"
+    source_path: "{{ home }}/.local/src"
 
   tasks:
+    - name: Create source path
+      file:
+        path: "{{ source_path }}"
+        recurse: true
+        state: directory
+
     - name: Configure Homebrew taps
       community.general.homebrew_tap:
         name:
@@ -186,6 +193,10 @@
     - name: Install and configure Git
       import_tasks:
         file: tasks/git.yaml
+
+    - name: Install and configure Kakoune
+      import_tasks:
+        file: tasks/kakoune.yaml
 
     - name: Install and configure SSH
       import_tasks:

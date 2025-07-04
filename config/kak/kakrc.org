@@ -4,8 +4,4 @@
   set-option global tabstop 4
   set-option global indentwidth 4
   set-option global scrolloff 1,3
-  set-option global ui_options ncurses_status_on_top=true
-  add-highlighter global/ number-lines -hlcursor
-  map -docstring "yank the selection into the clipboard" global user y "<a-|> wl-copy<ret>"
-  map -docstring "paste the clipboard" global user p "<a-!> wl-paste<ret>"
 #+end_src

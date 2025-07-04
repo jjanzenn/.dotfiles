@@ -1,9 +1,29 @@
 - name: Install kakoune
   package:
     name:
+      - rust
       - kakoune
-      - wl-clipboard
     state: latest
+
+- name: Install kakoune-lsp
+  get_url:
+    url: https://github.com/kakoune-lsp/kakoune-lsp/archive/refs/tags/v18.2.0.tar.gz
+    dest: "{{ source_path }}/kakoune-lsp.tar.gz"
+  register: kakoune_lsp_source_download
+
+- name: Unpack kakoune-lsp source
+  unarchive:
+    src: "{{ source_path }}/kakoune-lsp.tar.gz"
+    dest: "{{ source_path }}"
+  when: kakoune_lsp_source_download.changed
+  register: kakoune_lsp_source_unpack
+
+- name: Compile and install kakoune-lsp source
+  community.general.cargo:
+    directory: "{{ source_path }}/kakoune-lsp-18.2.0"
+    name: kakoune-lsp
+    path: "{{ exec_path }}"
+  when: kakoune_lsp_source_unpack.changed
 
 - name: Install kakoune configuration directory
   copy:
