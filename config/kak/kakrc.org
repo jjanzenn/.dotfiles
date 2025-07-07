@@ -5,7 +5,7 @@
   set-option global indentwidth 4
   set-option global scrolloff 1,3
 
-  add-highlighter global/ number-lines -hlcursor
+  add-highlighter global/ number-lines -relative -hlcursor
 
   eval %sh{kak-lsp}
   lsp-enable
