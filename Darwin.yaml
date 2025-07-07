@@ -202,6 +202,10 @@
       import_tasks:
         file: tasks/ssh.yaml
 
+    - name: Install and configure Zellij
+      import_tasks:
+        file: tasks/zellij.yaml
+
     - name: Install and configure zsh
       import_tasks:
         file: tasks/zsh.yaml

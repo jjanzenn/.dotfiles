@@ -1,0 +1,5 @@
+#+title: Zellij Configuration
+
+#+begin_src conf
+  theme "catppuccin-latte"
+#+end_src

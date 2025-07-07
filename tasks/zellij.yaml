@@ -1,0 +1,11 @@
+- name: Install Zellij
+  package:
+    name: zellij
+    state: latest
+
+- name: Install Zellij configuration directory
+  copy:
+    src: config/zellij
+    dest: "{{ config_dir }}"
+    owner: "{{ user }}"
+    group: "{{ default_group }}"
