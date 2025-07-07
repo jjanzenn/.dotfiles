@@ -182,6 +182,10 @@
       import_tasks:
         file: tasks/clang-format.yaml
 
+    - name: Install and configure Elvish
+      import_tasks:
+        file: tasks/elvish.yaml
+
     - name: Install and configure Emacs
       import_tasks:
         file: tasks/emacs.yaml

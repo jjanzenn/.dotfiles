@@ -1,0 +1,11 @@
+- name: Install Elvish
+  package:
+    name: elvish
+    state: latest
+
+- name: Install Elvish configuration directory
+  copy:
+    src: config/elvish
+    dest: "{{ config_dir }}"
+    owner: "{{ user }}"
+    group: "{{ default_group }}"
