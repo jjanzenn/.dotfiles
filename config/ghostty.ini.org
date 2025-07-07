@@ -35,8 +35,6 @@ Do not show the mouse when typing.
 
 Start Zellij on launch.
 #+begin_src conf
-  env = PATH="$HOME/.cargo/bin:$HOME/.yarn/bin:$HOME/node_modules/.bin:$HOME/bin:$HOME/gems/bin:$HOME/.local/bin:$HOME/go/bin:/usr/local/bin:/Library/TeX/texbin/:/usr/local/bin:/opt/homebrew/bin:/opt/homebrew/sbin:$PATH"
-
   command = "zellij"
 #+end_src
 
