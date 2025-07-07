@@ -2,4 +2,6 @@
 
 #+begin_src sh
   use readline-binding
+  var b = {|k f| set edit:insert:binding[$k] = $f }
+  $b Alt-Backspace $edit:kill-word-left~
 #+end_src
