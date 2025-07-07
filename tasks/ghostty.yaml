@@ -15,3 +15,7 @@
     owner: "{{ user }}"
     group: "{{ default_group }}"
     mode: "0644"
+
+- name: Install and configure Zellij
+  import_tasks:
+    file: zellij.yaml

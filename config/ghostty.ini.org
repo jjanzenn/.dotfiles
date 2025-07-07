@@ -33,6 +33,12 @@ Do not show the mouse when typing.
   mouse-hide-while-typing = true
 #+end_src
 
+Start Zellij on launch.
+#+begin_src conf
+  command = "zellij"
+#+end_src
+
+
 Quit GhosTTY when all windows are closed.
 #+begin_src conf
   quit-after-last-window-closed = true
