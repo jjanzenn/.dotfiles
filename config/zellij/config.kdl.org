@@ -234,6 +234,8 @@
 
   theme "catppuccin-latte"
 
+  default_shell "elvish"
+
   // copy_command "xclip -selection clipboard" // x11
   // copy_command "wl-copy"                    // wayland
   copy_command "pbcopy"
