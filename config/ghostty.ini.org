@@ -35,7 +35,7 @@ Do not show the mouse when typing.
 
 Start Zellij on launch.
 #+begin_src conf
-  command = "source ~/.zshenv && zellij"
+  command = "zellij"
 #+end_src
 
 
