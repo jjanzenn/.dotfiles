@@ -813,6 +813,13 @@ Install =haskell-mode= for interacting with Haskell code.
   (use-package haskell-mode)
 #+end_src
 
+** KDL
+
+Install =kdl-mode= for interacting with KDL config files.
+#+begin_src emacs-lisp
+  (use-package kdl-mode)
+#+end_src
+
 ** LaTeX
 
 Install tools for LaTeX. Namely, =auctex= for better integration with Emacs and =cdlatex= for environment and macro insertion.
