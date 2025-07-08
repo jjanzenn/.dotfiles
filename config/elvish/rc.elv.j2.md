@@ -55,7 +55,7 @@ fn rprompt_data {
 		}
 		put (styled ")" blue)
 	} catch {
-		put (constantly (styled (whoami)@(hostname) inverse))
+		put (styled (whoami)@(hostname) inverse)
 	}
 }
 ```
