@@ -53,10 +53,10 @@ fn rprompt_data {
 			put (styled "("(echo $stat | grep ' detached at ' | sed 's/^.*detached at //' | sed 's/\s*//g' )")" blue)
 		}
 	} catch e {
-		put (styled (whoami)@(hostname) inverse)
+		put (styled (whoami)@(hostname))
 	}
 }
-set edit:rprompt = (print (rprompt_data))
+set edit:rprompt = { (styled (rprompt_data) inverse) }
 ```
 
 Use readline bindings, including alt-backspace to delete the word behind the cursor.
