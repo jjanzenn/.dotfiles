@@ -10,7 +10,7 @@ Define ls shortcuts.
 var ls_def = { |@a| e:ls --color $@a }
 try {
 	which eza > /dev/null 2> /dev/null
-	ls_def = { |@a| e:eza $@a }
+	$ls_def = { |@a| e:eza $@a }
 } catch { }
 fn ls { |@a| $ls_def $@a }
 fn l { |@a| ls -F $@a }
