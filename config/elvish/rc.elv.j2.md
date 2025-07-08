@@ -29,8 +29,7 @@ try {
 
 Configure the right prompt to show the `git` status if in a `git` repository.
 ```sh
-set edit:rprompt = (print ^
-(
+fn rprompt_data {
 	try {
 		var stat = (git status 2> /dev/null | slurp)
 
@@ -56,8 +55,8 @@ set edit:rprompt = (print ^
 	} catch e {
 		put (styled (whoami)@(hostname) inverse)
 	}
-)
 }
+set edit:rprompt = (print (rprompt_data))
 ```
 
 Use readline bindings, including alt-backspace to delete the word behind the cursor.
