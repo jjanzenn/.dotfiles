@@ -34,26 +34,36 @@ fn rprompt_data {
 		var stat = (git status 2> /dev/null | slurp)
 
 		use str
-		if (str:contains $stat 'use "git push" to publish your local commits') {
-			put (styled "" green)
-		}
-		if (str:contains $stat 'Changes to be committed:') {
-			put (styled "" magenta)
-		}
-		if (str:contains $stat 'Changes not staged for commit:') {
-			put (styled "" yellow)
-		}
-		if (str:contains $stat 'Untracked files:') {
-			put (styled "" red)
-		}
+		(
+			if (str:contains $stat 'use "git push" to publish your local commits') {
+				put (styled "" green)
+			}
+		)
+		(
+			if (str:contains $stat 'Changes to be committed:') {
+				put (styled "" magenta)
+			}
+		)
+		(
+			if (str:contains $stat 'Changes not staged for commit:') {
+				put (styled "" yellow)
+			}
+		)
+		(
+			if (str:contains $stat 'Untracked files:') {
+				put (styled "" red)
+			}
+		)
 
-		put (styled "(" blue)
-		if (str:contains $stat 'On branch ') {
-			put (styled (echo $stat | grep 'On branch ' | sed 's/On branch //') blue)
-		} elif (str:contains $stat ' detached at ') {
-			put (styled (echo $stat | grep ' detached at ' | sed 's/^.*detached at //') blue)
-		}
-		put (styled ")" blue)
+		(put (styled "(" blue))
+		(
+			if (str:contains $stat 'On branch ') {
+				put (styled (echo $stat | grep 'On branch ' | sed 's/On branch //') blue)
+			} elif (str:contains $stat ' detached at ') {
+				put (styled (echo $stat | grep ' detached at ' | sed 's/^.*detached at //') blue)
+			}
+		)
+		(put (styled ")" blue))
 	} catch {
 		put (styled (whoami)@(hostname) inverse)
 	}
