@@ -25,6 +25,8 @@ def extract(lines, out, startp, endp, quoted, unquoted):
                 min_spaces = spaces
             if quoted != None and unquoted != None:
                 curr.append(re.sub(quoted, unquoted, line))
+            else:
+                curr.append(line)
 
 def main():
     startp = None
