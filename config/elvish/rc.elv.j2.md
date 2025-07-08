@@ -13,9 +13,9 @@ try {
 	$ls_def = { |@a| e:eza $@a }
 } catch { }
 fn ls { |@a| $ls_def $@a }
-fn l { |@a| ls -F $@a }
-fn la { |@a| ls -a $@a }
-fn ll { |@a| ls -alF $@a }
+fn l { |@a| $ls_def -F $@a }
+fn la { |@a| $ls_def -a $@a }
+fn ll { |@a| $ls_def -alF $@a }
 ```
 
 Use readline bindings, including alt-backspace to delete the word behind the cursor.
