@@ -28,10 +28,10 @@
     group: "{{ default_group }}"
     mode: "0755"
 
-- name: Configure environment variables
-  copy:
-    src: config/profile.sh
-    dest: "{{ home }}/.zshenv"
-    owner: "{{ user }}"
-    group: "{{ default_group }}"
-    mode: "0755"
+- name: Configure shell profile
+  template:
+      src: config/profile.sh.j2
+      dest: "{{ home }}/.zshenv"
+      owner: "{{ user }}"
+      group: "{{ default_group }}"
+      mode: "0755"
