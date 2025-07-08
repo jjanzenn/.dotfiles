@@ -11,6 +11,22 @@
     fonts_dir: "{{ home }}/Library/Fonts"
     exec_path: "{{ home }}/.local/bin"
     source_path: "{{ home }}/.local/src"
+    path:
+        - "{{ home }}/.cargo/bin"
+        - "{{ home }}/.yarn/bin"
+        - "{{ home }}/node_modules/.bin"
+        - "{{ home }}/bin"
+        - "{{ home }}/gems/bin"
+        - "{{ home }}/.local/bin"
+        - "{{ home }}/go/bin"
+        - "/usr/local/bin"
+        - "/Library/TeX/texbin"
+        - "/opt/homebrew/bin"
+        - "/opt/homebrew/sbin"
+        - "/usr/bin"
+        - "/bin"
+        - "/usr/sbin"
+        - "/sbin"
 
   tasks:
     - name: Create source path

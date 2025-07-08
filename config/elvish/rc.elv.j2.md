@@ -2,7 +2,7 @@
 
 Set my path variable.
 ```elv
-  set paths = [ $E:HOME/.cargo/bin $E:HOME/.yarn/bin $E:HOME/node_modules/.bin $E:HOME/bin $E:HOME/gems/bin $E:HOME/.local/bin $E:HOME/go/bin /usr/local/bin /Library/TeX/texbin /usr/local/bin /opt/homebrew/bin /opt/homebrew/sbin /usr/bin /bin /usr/sbin /sbin ]
+  set paths = [ {% for item in path %} {{ item }} {% endfor %} ]
 ```
 
 Use readline bindings, including alt-backspace to delete the word behind the cursor.

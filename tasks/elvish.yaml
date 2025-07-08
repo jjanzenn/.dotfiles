@@ -3,9 +3,16 @@
     name: elvish
     state: latest
 
-- name: Install Elvish configuration directory
-  copy:
-    src: config/elvish
-    dest: "{{ config_dir }}"
-    owner: "{{ user }}"
-    group: "{{ default_group }}"
+- name: Ensure Elvish configuration directory exists
+  file:
+      path: "{{ config_dir }}/elvish"
+      recurse: true
+      state: directory
+
+- name: Configure Elvish
+  template:
+      src: config/elvish/rc.elv.j2.md
+      dest: "{{ config_dir }}/elvish/rc.elv"
+      owner: "{{ user }}"
+      group: "{{ default_group }}"
+      mode: "0755"
