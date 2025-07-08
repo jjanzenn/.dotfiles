@@ -1,0 +1,13 @@
+# Elvish Configuration
+
+Set my path variable.
+```elv
+  set paths = [ $E:HOME/.cargo/bin $E:HOME/.yarn/bin $E:HOME/node_modules/.bin $E:HOME/bin $E:HOME/gems/bin $E:HOME/.local/bin $E:HOME/go/bin /usr/local/bin /Library/TeX/texbin /usr/local/bin /opt/homebrew/bin /opt/homebrew/sbin /usr/bin /bin /usr/sbin /sbin ]
+```
+
+Use readline bindings, including alt-backspace to delete the word behind the cursor.
+```
+  use readline-binding
+  var b = {|k f| set edit:insert:binding[$k] = $f }
+  $b Alt-Backspace $edit:kill-word-left~
+```
