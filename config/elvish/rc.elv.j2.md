@@ -7,7 +7,7 @@ Set my path variable.
 
 Define ls shortcuts.
 ```sh
-try { which eza &> /dev/null } {
+try { which eza > /dev/null 2> /dev/null } {
 	fn ls { |@a| e:eza $@a }
 	fn l { |@a| e:eza -F $@a }
 	fn la { |@a| e:eza -a $@a }
