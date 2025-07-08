@@ -18,6 +18,14 @@ fn la { |@a| $ls_def -a $@a }
 fn ll { |@a| $ls_def -alF $@a }
 ```
 
+Use `lesspipe` if it is available.
+```sh
+try {
+	which lesspipe.sh > /dev/null 2> /dev/null
+	set E:LESSOPEN = "|lesspipe.sh %s"
+} catch { }
+```
+
 Use readline bindings, including alt-backspace to delete the word behind the cursor.
 ```sh
   use readline-binding
