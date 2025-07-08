@@ -47,12 +47,13 @@ fn rprompt_data {
 			put (styled "" red)
 		}
 
-		put (styled "" blue)
+		put (styled "(\b" blue)
 		if (str:contains $stat 'On branch ') {
 			put (styled (echo $stat | grep 'On branch ' | sed 's/On branch //' | sed 's/\s*//') blue)
 		} elif (str:contains $stat ' detached at ') {
 			put (styled (echo $stat | grep ' detached at ' | sed 's/^.*detached at //' | sed 's/\s*//' ) blue)
 		}
+		put (styled "\b)")
 	} catch e {
 		put (styled (whoami)@(hostname) inverse)
 	}
