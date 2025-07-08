@@ -14,7 +14,8 @@ DSTDIR = $(HOME)/.ansible-conf
 SOURCES := $(shell find -L $(SRCDIR)/ -type f -not -path "./.git/*")
 NOGPG := $(SOURCES:%.gpg=%)
 NOORG := $(NOGPG:%.org=%)
-CONFIGS := $(subst $(SRCDIR)/,$(DSTDIR)/,$(NOORG))
+NOMD := $(NOORG:%.md=%)
+CONFIGS := $(subst $(SRCDIR)/,$(DSTDIR)/,$(NOMD))
 
 # update by default, install first
 all: install
@@ -32,8 +33,20 @@ $(DSTDIR)/%: $(SRCDIR)/%.org.gpg
 	python3 ./extract_src.py tmp.org $@
 	rm tmp.org
 
+# install encrypted md configs
+$(DSTDIR)/%: $(SRCDIR)/%.md.gpg
+	mkdir -p $(dir $@)
+	gpg -d --batch $< 1> tmp.org
+	python3 ./extract_src.py tmp.org $@
+	rm tmp.org
+
 # install org configs
 $(DSTDIR)/%: $(SRCDIR)/%.org
+	mkdir -p $(dir $@)
+	python3 ./extract_src.py $< $@
+
+# install md configs
+$(DSTDIR)/%: $(SRCDIR)/%.md
 	mkdir -p $(dir $@)
 	python3 ./extract_src.py $< $@
 

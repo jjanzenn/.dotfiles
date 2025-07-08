@@ -11,7 +11,7 @@
 
 - name: Configure Elvish
   template:
-      src: config/elvish/rc.elv.j2.md
+      src: config/elvish/rc.elv.j2
       dest: "{{ config_dir }}/elvish/rc.elv"
       owner: "{{ user }}"
       group: "{{ default_group }}"
