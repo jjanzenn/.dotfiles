@@ -56,7 +56,7 @@ fn rprompt_data {
 		put (styled (whoami)@(hostname))
 	}
 }
-set edit:rprompt = { (styled (rprompt_data) inverse) }
+set edit:rprompt = { styled (rprompt_data) inverse }
 ```
 
 Use readline bindings, including alt-backspace to delete the word behind the cursor.
