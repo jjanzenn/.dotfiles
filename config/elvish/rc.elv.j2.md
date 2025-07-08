@@ -29,7 +29,6 @@ try {
 
 Configure the right prompt to show the `git` status if in a `git` repository.
 ```sh
-fn rprompt_data {
 set edit:rprompt = (print ^
 (
 	try {
