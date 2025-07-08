@@ -2,7 +2,7 @@
 
 Set my path variable.
 ```sh
-set paths = [ {% for item in path %}{{ item }} {% endfor %} ]
+set paths = [ {% for item in path %}{{ item }} {% endfor %}]
 ```
 
 Define ls shortcuts. Use `eza` over `ls` if it is available.
