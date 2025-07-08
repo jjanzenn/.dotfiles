@@ -7,18 +7,15 @@ Set my path variable.
 
 Define ls shortcuts.
 ```sh
+var ls_def = { |@a| e:ls --color $@a }
 try {
 	which eza > /dev/null 2> /dev/null
-	fn ls { |@a| e:eza $@a }
-	fn l { |@a| e:eza -F $@a }
-	fn la { |@a| e:eza -a $@a }
-	fn ll { |@a| e:eza -alF $@a }
-} catch {
-	fn ls { |@a| e:ls --color $@a }
-	fn l { |@a| e:ls --color -F $@a }
-	fn la { |@a| e:ls --color -a $@a }
-	fn ll { |@a| e:ls --color -alF $@a }
-}
+	ls_def = { |@a| e:eza $@a }
+} catch { }
+fn ls { |@a| $ls_def $@a }
+fn l { |@a| ls -F $@a }
+fn la { |@a| ls -a $@a }
+fn ll { |@a| ls -alF $@a }
 ```
 
 Use readline bindings, including alt-backspace to delete the word behind the cursor.
