@@ -709,31 +709,30 @@ Get a nice interface for Emacs =calc=.
 Configure =mu4e= as an email client.
 #+begin_src emacs-lisp
   (use-package mu4e :ensure ( :host github
-              :branch "release/1.10"
-              :repo "djcb/mu"
-              :files ("mu4e/*.el" "build/mu4e/mu4e-meta.el" "build/mu4e/mu4e-config.el" "build/mu4e/mu4e.info")
-              :main "mu4e/mu4e.el"
-              :pre-build (("./autogen.sh")
-                          ("ninja" "-C" "build")
-                          (make-symbolic-link (expand-file-name "./build/mu/mu")
-                                              (expand-file-name "~/bin/mu") 'ok-if-exists)))
+                             :branch "release/1.10"
+                             :repo "djcb/mu"
+                             :files ("mu4e/*.el" "build/mu4e/mu4e-meta.el" "build/mu4e/mu4e-config.el" "build/mu4e/mu4e.info")
+                             :main "mu4e/mu4e.el"
+                             :pre-build (("./autogen.sh")
+                                         ("ninja" "-C" "build")
+                                         (make-symbolic-link (expand-file-name "./build/mu/mu")
+                                                             (expand-file-name "~/bin/mu") 'ok-if-exists)))
     :init
     (setq mail-user-agent 'mu4e-user-agent
-          mu4e-drafts-folder "/[ProtonMail].Drafts"
-          mu4e-sent-folder "/[ProtonMail].Sent Mail"
-          mu4e-trash-folder "/[ProtonMail].Trash"
+          mu4e-drafts-folder "/jjanzen/Drafts"
+          mu4e-sent-folder "/jjanzen/Sent"
+          mu4e-trash-folder "/jjanzen/Trash"
           mu4e-sent-messages-behavior 'delete
-          mu4e-maildir-shortcuts '((:maildir "/INBOX" :key ?i)
-                                   (:maildir "[ProtonMail].Sent Mail" :key ?s)
-                                   (:maildir "[ProtonMail].Trash" :key ?t)
-                                   (:maildir "[ProtonMail].All Mail" :key ?a))
-          mu4e-get-mail-command "offlineimap"
+          mu4e-maildir-shortcuts '((:maildir "/jjanzen/INBOX" :key ?i)
+                                   (:maildir "/jjanzen/Sent" :key ?s)
+                                   (:maildir "/jjanzen/Trash" :key ?t)
+                                   (:maildir "/jjanzen/All Mail" :key ?a))
+          mu4e-get-mail-command "mbsync --all"
           user-mail-address "me@jjanzen.ca"
           user-full-name "j. janzen")
 
     :config
-    (add-to-list 'mu4e-bookmarks '(:query "maildir:/inbox" :name "Inbox" :key ?i :favorite t)))
-
+    (add-to-list 'mu4e-bookmarks '(:query "maildir:/jjanzen/INBOX" :name "Inbox" :key ?i :favorite t)))
 #+end_src
 
 * Languages

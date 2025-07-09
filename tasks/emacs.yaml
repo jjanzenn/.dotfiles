@@ -9,7 +9,7 @@
       - gnuplot
       - hunspell
       - libgccjit
-      - offlineimap
+      - isync
       - ripgrep
     state: latest
 
@@ -43,6 +43,12 @@
       - mu
     state: latest
   when: ansible_facts['os_family'] == 'Darwin'
+
+- name: Create ~/bin directory
+  file:
+    path: "{{ home }}/bin"
+    recurse: true
+    state: directory
 
 - name: Install macOS Emacs
   community.general.homebrew:
