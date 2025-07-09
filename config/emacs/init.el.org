@@ -723,6 +723,7 @@ Configure =mu4e= as an email client.
           mu4e-sent-folder "/jjanzen/Sent"
           mu4e-trash-folder "/jjanzen/Trash"
           mu4e-sent-messages-behavior 'delete
+          mu4e-change-filenames-when-moving t
           mu4e-maildir-shortcuts '((:maildir "/jjanzen/INBOX" :key ?i)
                                    (:maildir "/jjanzen/Sent" :key ?s)
                                    (:maildir "/jjanzen/Trash" :key ?t)
