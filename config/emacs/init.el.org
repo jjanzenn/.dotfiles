@@ -708,7 +708,15 @@ Get a nice interface for Emacs =calc=.
 
 Configure =mu4e= as an email client.
 #+begin_src emacs-lisp
-  (use-package mu4e
+  (use-package mu4e ( :host github
+              :branch "release/1.10"
+              :repo "djcb/mu"
+              :files ("mu4e/*.el" "build/mu4e/mu4e-meta.el" "build/mu4e/mu4e-config.el" "build/mu4e/mu4e.info")
+              :main "mu4e/mu4e.el"
+              :pre-build (("./autogen.sh")
+                          ("ninja" "-C" "build")
+                          (make-symbolic-link (expand-file-name "./build/mu/mu")
+                                              (expand-file-name "~/bin/mu") 'ok-if-exists)))
     :init
     (setq mail-user-agent 'mu4e-user-agent
           mu4e-drafts-folder "/[ProtonMail].Drafts"
