@@ -9,6 +9,7 @@
       - gnuplot
       - hunspell
       - libgccjit
+      - offlineimap
       - ripgrep
     state: latest
 
@@ -39,6 +40,7 @@
   package:
     name:
       - librsvg
+      - mu
     state: latest
   when: ansible_facts['os_family'] == 'Darwin'
 

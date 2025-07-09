@@ -706,6 +706,28 @@ Get a nice interface for Emacs =calc=.
     (define-key calc-mode-map (kbd "C-o") 'casual-calc-tmenu))
 #+end_src
 
+Configure =mu4e= as an email client.
+#+begin_src emacs-lisp
+  (use-package mu4e
+    :init
+    (setq mail-user-agent 'mu4e-user-agent
+          mu4e-drafts-folder "/[ProtonMail].Drafts"
+          mu4e-sent-folder "/[ProtonMail].Sent Mail"
+          mu4e-trash-folder "/[ProtonMail].Trash"
+          mu4e-sent-messages-behavior 'delete
+          mu4e-maildir-shortcuts '((:maildir "/INBOX" :key ?i)
+                                   (:maildir "[ProtonMail].Sent Mail" :key ?s)
+                                   (:maildir "[ProtonMail].Trash" :key ?t)
+                                   (:maildir "[ProtonMail].All Mail" :key ?a))
+          mu4e-get-mail-command "offlineimap"
+          user-mail-address "me@jjanzen.ca"
+          user-full-name "j. janzen")
+
+    :config
+    (add-to-list 'mu4e-bookmarks '(:query "maildir:/inbox" :name "Inbox" :key ?i :favorite t)))
+
+#+end_src
+
 * Languages
 
 ** Org
