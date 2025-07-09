@@ -731,8 +731,11 @@ Configure =mu4e= as an email client.
           user-mail-address "me@jjanzen.ca"
           user-full-name "j. janzen")
 
-    :config
-    (add-to-list 'mu4e-bookmarks '(:query "maildir:/jjanzen/INBOX" :name "Inbox" :key ?i :favorite t)))
+    (setq send-mail-function 'smtpmail-send-it
+          smtpmail-stream-type 'plain
+          smtpmail-default-smtp-server "127.0.0.1"
+          smtpmail-smtp-server "127.0.0.1"
+          smtpmail-smtp-service 1025))
 #+end_src
 
 * Languages
