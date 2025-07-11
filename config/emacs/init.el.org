@@ -591,6 +591,11 @@ Configure a convenient startup profiler.
     (setq esup-depth 0))
 #+end_src
 
+Edit regions in separate buffers for arbitrary regions.
+#+begin_src emacs-lisp
+  (use-package edit-indirect)
+#+end_src
+
 Show previews in =dired=.
 #+begin_src emacs-lisp
   (use-package dired-preview
