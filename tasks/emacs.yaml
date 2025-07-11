@@ -54,7 +54,6 @@
   community.general.homebrew:
     name: emacs-plus@30
     install_options:
-      - with-native-comp
       - with-imagemagick
       - with-xwidgets
       - with-mailutils
