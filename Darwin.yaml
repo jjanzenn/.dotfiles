@@ -12,21 +12,21 @@
     exec_path: "{{ home }}/.local/bin"
     source_path: "{{ home }}/.local/src"
     path:
-        - "{{ home }}/.cargo/bin"
-        - "{{ home }}/.yarn/bin"
-        - "{{ home }}/node_modules/.bin"
-        - "{{ home }}/bin"
-        - "{{ home }}/gems/bin"
-        - "{{ home }}/.local/bin"
-        - "{{ home }}/go/bin"
-        - "/usr/local/bin"
-        - "/Library/TeX/texbin"
-        - "/opt/homebrew/bin"
-        - "/opt/homebrew/sbin"
-        - "/usr/bin"
-        - "/bin"
-        - "/usr/sbin"
-        - "/sbin"
+      - "{{ home }}/.cargo/bin"
+      - "{{ home }}/.yarn/bin"
+      - "{{ home }}/node_modules/.bin"
+      - "{{ home }}/bin"
+      - "{{ home }}/gems/bin"
+      - "{{ home }}/.local/bin"
+      - "{{ home }}/go/bin"
+      - "/usr/local/bin"
+      - "/Library/TeX/texbin"
+      - "/opt/homebrew/bin"
+      - "/opt/homebrew/sbin"
+      - "/usr/bin"
+      - "/bin"
+      - "/usr/sbin"
+      - "/sbin"
 
   tasks:
     - name: Create source path
@@ -140,6 +140,15 @@
           - vlc
           - zotero
         state: latest
+
+    - name: Install GNU sed as sed
+      file:
+        src: /opt/homebrew/bin/gsed
+        dest: "{{ exec_path }}/sed"
+        owner: "{{ user }}"
+        group: "{{ default_group }}"
+        mode: "0755"
+        state: link
 
     - name: Install python formatter
       community.general.pipx:
