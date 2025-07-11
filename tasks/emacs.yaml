@@ -59,7 +59,7 @@
       - with-xwidgets
       - with-mailutils
       - with-ctags
-      - with-retro-emacs-logo-icon
+      - with-nobu417-big-sur-icon
     state: latest
   when: ansible_facts['os_family'] == 'Darwin'
 
